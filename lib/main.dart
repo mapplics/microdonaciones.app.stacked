@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
@@ -12,7 +16,22 @@ void main() {
   setupDialogUi();
   setupBottomSheetUi();
 
-  runApp(const MyApp());
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await Firebase.initializeApp();
+
+    await FirebaseAuth.instance.signInAnonymously().then((value) {
+      print('signedAnonymously');
+    }).catchError((error) {
+      print('<Print> FirebaseAuth.instance ERROR');
+    });
+
+    print('listo');
+    runApp(const MyApp());
+  }, (error, stack) {
+    print('Error custom $error');
+  });
 }
 
 class MyApp extends StatelessWidget {

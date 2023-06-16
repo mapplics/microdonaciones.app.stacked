@@ -1,9 +1,12 @@
 import 'package:microdonations/app/app.locator.dart';
+import 'package:microdonations/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _firebaseAuthenticationService = locator<FirebaseAuthenticationService>;
+  final _navigationService = locator<NavigationService>();
 
   Future<void> useGoogleAuthentication() async {
     final result =
@@ -12,17 +15,10 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void _handleAuthenticationResponse(FirebaseAuthenticationResult authResult) {
-    if (!authResult.hasError) {
+    if (authResult.hasError) {
       print('error al loguearme');
     } else {
-      print(authResult.user!.email);
-      print(authResult.user!.displayName);
-      print(authResult.user!.phoneNumber);
-      print(authResult.user!.photoURL);
-      print(authResult.user!.emailVerified);
-      print(authResult.user!.refreshToken);
-      print(authResult.user!.getIdToken());
-      print(authResult.user!.uid);
+      _navigationService.replaceWithHomeView();
     }
   }
 }

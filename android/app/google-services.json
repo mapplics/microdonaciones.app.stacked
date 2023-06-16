@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "949356289075",
+    "project_id": "microdonaciones-a5abb",
+    "storage_bucket": "microdonaciones-a5abb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949356289075:android:feacb46c361a011c4f5746",
+        "android_client_info": {
+          "package_name": "com.example.microdonations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949356289075-34lgv72k7sk7d70bvusplke7br3kggrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.microdonations",
+            "certificate_hash": "21036455ed01bfb13de9d2e7b925ea461cfa6852"
+          }
+        },
+        {
+          "client_id": "949356289075-jtgb08fd07jqidltho334amrlrthfb11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk8CGOflPc6CMQNhhL3vo-AJsNouqWe34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949356289075-jtgb08fd07jqidltho334amrlrthfb11.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "949356289075-332qeaq5admc71u32l53hkt3ejn00u5b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.microdonations"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
