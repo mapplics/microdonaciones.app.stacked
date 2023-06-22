@@ -24,6 +24,9 @@ class CustomStylesTheme {
 
   static const secondaryColor = kcSecondaryColor;
   static const tertiaryColor = kcTertiaryColor;
+  static const backgroundColor = kcBackgroundColor;
+  static const darkGreyColor = kcDarkGreyColor;
+  static const blackColor = kcBlackColor;
 
   /// Utilizar iconos Thin con este tamaño
   /// 16px
@@ -103,10 +106,10 @@ class CustomStylesTheme {
   static const bold20_28 =
       TextStyle(fontSize: 20, fontWeight: FontWeight.w500, height: 1.8);
   static const bold20_24 = TextStyle(
-      color: Colors.white,
-      fontSize: 20,
-      fontWeight: FontWeight.w500,
-      height: 1.2);
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    height: 1.2,
+  );
   static const bold16_24 =
       TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.5);
   static const bold16_20 =
