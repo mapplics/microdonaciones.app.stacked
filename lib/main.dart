@@ -7,6 +7,7 @@ import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/ui/common/logger.helpers.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'ui/common/app_theme.dart';
@@ -19,18 +20,22 @@ void main() {
   runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    await Firebase.initializeApp();
+    try {
+      await Firebase.initializeApp();
+      logInfo('Firebase initialized!');
+    } catch (e) {
+      logError('Firebase initialized failed!');
+    }
 
-    await FirebaseAuth.instance.signInAnonymously().then((value) {
-      print('signedAnonymously');
-    }).catchError((error) {
-      print('<Print> FirebaseAuth.instance ERROR');
-    });
+    // await FirebaseAuth.instance.signInAnonymously().then((value) {
+    //   logInfo('Firebase Auth signedAnonymously!');
+    // }).catchError((error) {
+    //   logError('Firebase Auth signedAnonymously failed!');
+    // });
 
-    print('listo');
     runApp(const MyApp());
   }, (error, stack) {
-    print('Error custom $error');
+    logError('<main.dart> ${error.toString()}');
   });
 }
 
