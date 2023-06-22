@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:stacked/stacked.dart';
-import 'package:microdonations/ui/common/ui_helpers.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../common/app_theme.dart';
 import 'startup_viewmodel.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
@@ -14,30 +15,33 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold(
-      body: Center(
+    final _deviceSize = MediaQuery.of(context).size;
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.red,
+      body: Container(
+        height: _deviceSize.height,
+        width: _deviceSize.width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage('assets/img/fondo_img.jpg'),
+          ),
+        ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
+            SvgPicture.asset(
+              'assets/logos/ic_logorosa.svg',
+              // 'assets/logos/ic_logovioleta.svg',
+            ),
+            const Spacer(),
             Text(
-              'STACKED',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Loading ...', style: TextStyle(fontSize: 16)),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 6,
-                  ),
-                )
-              ],
-            ),
+              'WWW.MICRODONACIONES.COM',
+              style: CustomStylesTheme.regular14_20.copyWith(),
+            )
           ],
         ),
       ),
