@@ -35,19 +35,6 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
             ),
-
-            SizedBox(
-              width: 260,
-              child: CustomOutlineButton(
-                label: 'Ingresar con Facebook',
-                icon: Icon(
-                  PhosphorIcons.fill.facebookLogo,
-                  color: kcPrimaryColor,
-                  size: 30.0,
-                ),
-                action: () {},
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: SizedBox(
