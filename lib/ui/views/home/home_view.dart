@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_colors.dart';
-import 'package:microdonations/ui/common/ui_helpers.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/widgets/custom_fill_button.widget.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+import 'package:stacked/stacked.dart';
 
+import '../../widgets/rounded_body.widget.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -14,63 +19,92 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return ScaffoldGradientBackground(
+      gradient: LinearGradient(
+        colors: <Color>[
+          CustomStylesTheme.secondaryColor,
+          CustomStylesTheme.primaryColor
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+      appBar: AppBar(
+        title: Text(
+          'Microdonaciones',
+          style: CustomStylesTheme.bold16_24.copyWith(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+      ),
+      body: RoundedBody(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 52,
+            ),
+
+            /// Svg y descripcion
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 16.0,
+                  ),
+                  child: SvgPicture.asset(
+                    'assets/logos/ic_logorosa.svg',
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcTertiaryColor,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: viewModel.showDialog,
-                    ),
-                    MaterialButton(
-                      color: kcPrimaryColor,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: viewModel.showBottomSheet,
-                    ),
-                  ],
-                )
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width / 1.6),
+                  child: const Text(
+                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
+                    style: CustomStylesTheme.regular14_20,
+                  ),
+                ),
               ],
             ),
-          ),
+            const SizedBox(
+              height: 40,
+            ),
+
+            /// Boton quiero donar.
+            SizedBox(
+              width: (MediaQuery.of(context).size.width / 1.5),
+              child: CustomFillButton(
+                label: 'Quiero Donar',
+                textStyle: CustomStylesTheme.bold14_20.copyWith(
+                  color: Colors.white,
+                ),
+                action: () {},
+              ),
+            ),
+
+            const SizedBox(
+              height: 69,
+            ),
+
+            CustomTile(
+              label: 'Historial de donaciones',
+              action: () {},
+              count: 2,
+              svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 22.0),
+              child: Divider(
+                color: kcLightGreyColor.withOpacity(0.34),
+              ),
+            ),
+            CustomTile(
+              label: 'Historial de donaciones',
+              action: () {},
+              count: 2,
+              svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+            ),
+          ],
         ),
       ),
     );
@@ -82,3 +116,98 @@ class HomeView extends StackedView<HomeViewModel> {
   ) =>
       HomeViewModel();
 }
+
+class CustomTile extends StatelessWidget {
+  final Function action;
+  final String label;
+  final String svgPath;
+  final int count;
+
+  const CustomTile({
+    required this.action,
+    required this.label,
+    required this.svgPath,
+    required this.count,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => action(),
+      splashColor: kcPrimaryColor,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                SizedBox(
+                  height: 37,
+                  width: 37,
+                  child: SvgPicture.asset(
+                    svgPath,
+                  ),
+                ),
+                (count > 0)
+                    ? Positioned(
+                        right: -12,
+                        top: -8,
+                        child: Container(
+                          width: 22,
+                          height: 22,
+                          decoration: const BoxDecoration(
+                            color: CustomStylesTheme.tertiaryColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          child: Text(
+                            count.toString(),
+                            textAlign: TextAlign.center,
+                            style: CustomStylesTheme.regular12_20
+                                .copyWith(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    : const SizedBox()
+              ],
+            ),
+          ),
+          Text(
+            label,
+            style: CustomStylesTheme.regular14_20,
+          ),
+          const Spacer(),
+          Icon(
+            PhosphorIcons.bold.caretRight,
+            size: 14,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+                      // Positioned.fill(
+                      //   child: Align(
+                      //     alignment: Alignment.topRight,
+                      //     child: Container(
+                      //       width: 10,
+                      //       height: 10,
+                      //       decoration: const BoxDecoration(
+                      //         color: CustomStylesTheme.tertiaryColor,
+                      //         borderRadius: BorderRadius.all(
+                      //           Radius.circular(15),
+                      //         ),
+                      //       ),
+                      //       child: Text(
+                      //         '12',
+                      //         style: CustomStylesTheme.regular12_20
+                      //             .copyWith(color: Colors.white),
+                      //         textAlign: TextAlign.center,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )

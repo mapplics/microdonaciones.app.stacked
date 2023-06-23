@@ -6,7 +6,7 @@ import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/ui/common/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'ui/common/app_theme.dart';

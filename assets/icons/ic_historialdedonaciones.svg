@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37.002" height="37.002" viewBox="0 0 37.002 37.002">
+  <g id="ic_historialdedonaciones" transform="translate(-47.624 -395.129)">
+    <circle id="Elipse_105" data-name="Elipse 105" cx="18.501" cy="18.501" r="18.501" transform="translate(47.624 395.129)" fill="#4c51c6"/>
+    <g id="Grupo_303" data-name="Grupo 303">
+      <path id="Trazado_773" data-name="Trazado 773" d="M55.429,405.69a.892.892,0,0,1,.965-.882H58.81a1.4,1.4,0,0,1,1.075.781s.413,1.149,1.148,1.149H74.4s1.007.137,1.053.964v13.037H55.429Z" fill="#e6e6e6"/>
+      <path id="Trazado_774" data-name="Trazado 774" d="M55.429,413.255l1.837.373-1.837,7.028Z" fill="#b3b3b3"/>
+      <path id="Trazado_775" data-name="Trazado 775" d="M58.862,409.953H78.228a.76.76,0,0,1,.735.955L76.3,420.964a.761.761,0,0,1-.735.565H56.193a.76.76,0,0,1-.735-.955l2.669-10.056A.761.761,0,0,1,58.862,409.953Z" fill="#fff"/>
+      <path id="Trazado_776" data-name="Trazado 776" d="M67.525,421.529H56.193a.76.76,0,0,1-.735-.955l2.669-10.056a.761.761,0,0,1,.735-.565h1.387a7.785,7.785,0,0,0-.318,4.961A10.077,10.077,0,0,0,67.525,421.529Z" fill="#f2f2f2" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

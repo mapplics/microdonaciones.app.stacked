@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_colors.dart';
-import 'package:microdonations/ui/common/ui_helpers.dart';
+import 'package:microdonations/ui/common/helpers/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
