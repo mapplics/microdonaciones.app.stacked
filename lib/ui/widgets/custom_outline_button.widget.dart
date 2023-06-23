@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_colors.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 
 class CustomOutlineButton extends StatelessWidget {
   final String label;
@@ -16,7 +17,10 @@ class CustomOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
-      label: Text(label),
+      label: Text(
+        label,
+        style: CustomStylesTheme.regular16_20,
+      ),
       icon: (icon != null) ? icon! : const SizedBox(),
       onPressed: () => action(),
       style: const ButtonStyle(
