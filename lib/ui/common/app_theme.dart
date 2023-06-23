@@ -43,87 +43,232 @@ class CustomStylesTheme {
   /// Text Styles
   ///
   /// Untitled Sans Styles
-  static const regular24_32 =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.normal, height: 1.33);
-  static const regular24_28 =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.normal, height: 1.16);
-  static const regular20_28 =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.normal, height: 1.4);
-  static const regular20_24 =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.normal, height: 1.2);
-  static const regular20_32 =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.normal, height: 1.6);
-  static const regular18_24 =
-      TextStyle(fontSize: 18, fontWeight: FontWeight.normal, height: 1.5);
-  static const regular16_26 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.normal, height: 1.8);
-  static const regular16_24 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.normal, height: 1.5);
-  static const regular16_20 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.normal, height: 1.25);
-  static const regular16_14 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.normal, height: 1.14);
-  static const regular15_16 =
-      TextStyle(fontSize: 15, fontWeight: FontWeight.normal, height: 1.14);
-  static const regular14_20 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.normal, height: 1.43);
-  static const regular14_24 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.normal, height: 1.71);
-  static const regular14_16 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.normal, height: 1.14);
-  static const regular12_20 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.normal, height: 1.66);
-  static const regular12_32 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.normal, height: 1.33);
-  static const regular12_16 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.normal, height: 1.33);
-  static const regular12_24 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.normal, height: 2);
+  static const regular24_32 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.normal,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+  static const regular24_28 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.normal,
+    height: 1.16,
+    letterSpacing: 0,
+  );
+  static const regular20_28 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    height: 1.4,
+    letterSpacing: 0,
+  );
+  static const regular20_24 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    letterSpacing: 0,
+  );
+  static const regular20_32 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    height: 1.6,
+    letterSpacing: 0,
+  );
+  static const regular18_24 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+  static const regular16_26 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    height: 1.8,
+    letterSpacing: 0,
+  );
+  static const regular16_24 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+  static const regular16_20 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    height: 1.25,
+    letterSpacing: 0,
+  );
+  static const regular16_14 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    height: 1.14,
+    letterSpacing: 0,
+  );
+  static const regular15_16 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.normal,
+    height: 1.14,
+    letterSpacing: 0,
+  );
+  static const regular14_20 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.43,
+    letterSpacing: 0,
+  );
+  static const regular14_24 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.71,
+    letterSpacing: 0,
+  );
+  static const regular14_16 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.14,
+    letterSpacing: 0,
+  );
+  static const regular12_20 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    height: 1.66,
+    letterSpacing: 0,
+  );
+  static const regular12_32 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+  static const regular12_16 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+  static const regular12_24 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    height: 2,
+    letterSpacing: 0,
+  );
 
-  static const regular10_16 =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.normal, height: 1.6);
-  static const regular10_12 =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.normal, height: 1.2);
-  static const regular10_20 =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.normal, height: 2);
-  static const regular26_40 =
-      TextStyle(fontSize: 26, fontWeight: FontWeight.normal, height: 1.54);
+  static const regular10_16 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+    height: 1.6,
+    letterSpacing: 0,
+  );
+  static const regular10_12 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    letterSpacing: 0,
+  );
+  static const regular10_20 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+    height: 2,
+    letterSpacing: 0,
+  );
+  static const regular26_40 = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.normal,
+    height: 1.54,
+    letterSpacing: 0,
+  );
 
-  static const bold34_44 =
-      TextStyle(fontSize: 34, fontWeight: FontWeight.w500, height: 1.29);
-  static const bold32_40 =
-      TextStyle(fontSize: 32, fontWeight: FontWeight.w500, height: 1.23);
-  static const bold28_32 =
-      TextStyle(fontSize: 28, fontWeight: FontWeight.w500, height: 1.14);
-  static const bold26_32 =
-      TextStyle(fontSize: 26, fontWeight: FontWeight.w500, height: 1.23);
-  static const bold26_28 =
-      TextStyle(fontSize: 26, fontWeight: FontWeight.w500, height: 1.08);
-  static const bold24_32 =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.w500, height: 1.33);
-  static const bold24_28 =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.w500, height: 1.16);
-  static const bold20_28 =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.w500, height: 1.8);
+  static const bold34_44 = TextStyle(
+    fontSize: 34,
+    fontWeight: FontWeight.w700,
+    height: 1.29,
+    letterSpacing: 0,
+  );
+  static const bold32_40 = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    height: 1.23,
+    letterSpacing: 0,
+  );
+  static const bold28_32 = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    height: 1.14,
+    letterSpacing: 0,
+  );
+  static const bold26_32 = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.w700,
+    height: 1.23,
+    letterSpacing: 0,
+  );
+  static const bold26_28 = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.w700,
+    height: 1.08,
+    letterSpacing: 0,
+  );
+  static const bold24_32 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+  static const bold24_28 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    height: 1.16,
+    letterSpacing: 0,
+  );
+  static const bold20_28 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    height: 1.8,
+    letterSpacing: 0,
+  );
   static const bold20_24 = TextStyle(
     fontSize: 20,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w700,
     height: 1.2,
+    letterSpacing: 0,
   );
   static const bold16_24 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.5);
-  static const bold16_20 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.25);
-  static const bold14_20 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 1.43);
-  static const bold14_24 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 1.71);
-  static const bold14_16 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.w500, height: 1.14);
-  static const bold12_20 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.w500, height: 1.66);
-  static const bold12_16 =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.w500, height: 1.33);
+      TextStyle(fontSize: 16, fontWeight: FontWeight.w700, height: 1.5);
+  static const bold16_20 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+    letterSpacing: 0,
+  );
+  static const bold14_20 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.43,
+    letterSpacing: 0,
+  );
+  static const bold14_24 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.71,
+    letterSpacing: 0,
+  );
+  static const bold14_16 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.14,
+    letterSpacing: 0,
+  );
+  static const bold12_20 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    height: 1.66,
+    letterSpacing: 0,
+  );
+  static const bold12_16 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    height: 1.33,
+    letterSpacing: 0,
+  );
 
   /// Theme
   ///
