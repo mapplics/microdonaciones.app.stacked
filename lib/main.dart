@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.bottomsheets.dart';
@@ -46,6 +45,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: CustomStylesTheme.mainTheme,
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
