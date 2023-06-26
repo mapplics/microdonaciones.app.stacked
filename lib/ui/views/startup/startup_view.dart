@@ -19,7 +19,6 @@ class StartupView extends StackedView<StartupViewModel> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.red,
       body: Container(
         height: _deviceSize.height,
         width: _deviceSize.width,

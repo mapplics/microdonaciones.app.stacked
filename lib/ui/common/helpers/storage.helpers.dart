@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/models/auth.model.dart';
+
 enum _Keys {
-  appLocal,
+  authModel,
 }
 
 class StorageHelper {
@@ -11,16 +16,30 @@ class StorageHelper {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  /// Limpia del storage solo los datos que dependen del user logueado
+  /// Limpia del storage solo los datos que dependen del user logueado.
   static Future<void> logoutClean() async {
-    await _prefs.remove(_Keys.appLocal.name);
+    await _prefs.remove(_Keys.authModel.name);
   }
 
-  // static Future<bool> setGradientVersion(String gradientVersion) async {
-  //   return await _prefs.setString(_Keys.gradientVersion.name, gradientVersion);
-  // }
+  /// Recibe un [AuthModel] y lo guarda en el storage.
+  static Future<bool> saveAuthModel(AuthModel authModel) async {
+    return await _prefs.setString(
+      _Keys.authModel.name,
+      jsonEncode(AuthModel.toJson(authModel)),
+    );
+  }
 
-  // static String? getGradientVersion() {
-  //   return _prefs.getString(_Keys.gradientVersion.name);
-  // }
+  /// Recupera un [AuthModel] del storage.
+  /// Si no encuentra ninguno devuelve null.
+  static AuthModel? getAuthModel() {
+    final authAsString = _prefs.getString(_Keys.authModel.name);
+
+    try {
+      return AuthModel.fromJson(jsonDecode(authAsString!));
+    } catch (e) {
+      logError(
+          '<StorageHelper> No se pudo recuperar el authModel del storage $e');
+      return null;
+    }
+  }
 }

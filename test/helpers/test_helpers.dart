@@ -2,7 +2,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:microdonations/services/auth_service.dart';
+import 'package:microdonations/core/services/auth_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
