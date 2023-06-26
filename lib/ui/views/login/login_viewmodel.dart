@@ -42,6 +42,8 @@ class LoginViewModel extends BaseViewModel {
 
         logInfo('Inicio de sesion exitoso!');
 
+        logWarn('Token <$_firebaseToken>');
+
         /// Navego al home.
         _navigationService.replaceWithHomeView();
       } catch (e) {

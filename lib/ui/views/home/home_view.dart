@@ -37,6 +37,16 @@ class HomeView extends StackedView<HomeViewModel> {
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
+        actions: [
+          IconButton.outlined(
+            onPressed: viewModel.logout,
+            color: kcTertiaryColor,
+            icon: Icon(
+              PhosphorIcons.bold.signOut,
+              color: kcTertiaryColor,
+            ),
+          )
+        ],
       ),
       body: RoundedBody(
         child: Column(
