@@ -34,6 +34,7 @@ dependencies:
   shared_preferences: ^2.1.2
   scaffold_gradient_background: ^1.0.3+1
   flutter_svg: ^2.0.7
+  loader_overlay: ^2.2.0
   phosphor_flutter:
     ^2.0.0
 
