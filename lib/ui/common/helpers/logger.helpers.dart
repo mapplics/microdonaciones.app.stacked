@@ -1,6 +1,5 @@
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 
 enum _LogType {
@@ -56,11 +55,11 @@ class _LogEntry {
   Color get color {
     switch (type) {
       case _LogType.error:
-        return errorColor;
+        return CustomStylesTheme.errorColor;
       case _LogType.warning:
-        return warningColor;
+        return CustomStylesTheme.warningColor;
       case _LogType.success:
-        return sucessColor;
+        return CustomStylesTheme.sucessColor;
       case _LogType.info:
       default:
         return CustomStylesTheme.secondaryColor;

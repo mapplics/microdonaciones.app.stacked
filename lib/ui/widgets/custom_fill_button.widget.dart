@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 
 class CustomFillButton extends StatelessWidget {
@@ -29,7 +28,7 @@ class CustomFillButton extends StatelessWidget {
       onPressed: () => action(),
       style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(
-          (backgroundColor ?? kcTertiaryColor) as Color?,
+          (backgroundColor ?? CustomStylesTheme.primaryColor) as Color?,
         ),
         shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(

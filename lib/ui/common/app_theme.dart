@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
-
 class CustomStylesTheme {
   /// Colors
   ///
   ///
-  static MaterialColor primaryColor = MaterialColor(
-    kcPrimaryColor.value, // primary
+  static const MaterialColor primaryColor = MaterialColor(
+    0xFFFF1494, // primary
     <int, Color>{
-      50: Color(kcPrimaryColor.value),
-      100: Color(kcPrimaryColor.value),
-      200: Color(kcPrimaryColor.value),
-      300: Color(kcPrimaryColor.value),
-      400: Color(kcPrimaryColor.value),
-      500: Color(kcPrimaryColor.value),
-      600: Color(kcPrimaryColor.value),
-      700: Color(kcPrimaryColor.value),
-      800: Color(kcPrimaryColor.value),
-      900: Color(kcPrimaryColor.value),
+      50: Color(0xFFFF1494),
+      100: Color(0xFFFF1494),
+      200: Color(0xFFFF1494),
+      300: Color(0xFFFF1494),
+      400: Color(0xFFFF1494),
+      500: Color(0xFFFF1494),
+      600: Color(0xFFFF1494),
+      700: Color(0xFFFF1494),
+      800: Color(0xFFFF1494),
+      900: Color(0xFFFF1494),
     },
   );
 
-  static const secondaryColor = kcSecondaryColor;
-  static const tertiaryColor = kcTertiaryColor;
-  static const backgroundColor = kcBackgroundColor;
-  static const darkGreyColor = kcDarkGreyColor;
-  static const blackColor = kcBlackColor;
+  static const Color tertiaryColor = Color(0xff4C51C6);
+  static const Color secondaryColor = Color(0xff6F8BF4);
+  static const Color backgroundColor = Color(0xFFFFFFFF);
+  static const Color darkGreyColor = Color(0xFF808080);
+  static const Color lightGreyColor = Color(0xFF606060);
+  static const Color blackColor = Color(0xFF000000);
+
+  /// Logger colors
+  static const Color sucessColor = Color(0xff82DB91);
+  static const Color warningColor = Color(0xffF3AD5A);
+  static const Color errorColor = Color(0xffFF896F);
 
   /// Utilizar iconos Thin con este tamaño
   /// 16px
@@ -335,6 +339,6 @@ class CustomStylesTheme {
       titleMedium: CustomStylesTheme.bold16_24,
       titleSmall: CustomStylesTheme.bold16_20,
     ),
-    scaffoldBackgroundColor: kcBackgroundColor,
+    scaffoldBackgroundColor: CustomStylesTheme.backgroundColor,
   );
 }

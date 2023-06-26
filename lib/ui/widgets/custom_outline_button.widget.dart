@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 
 class CustomOutlineButton extends StatelessWidget {
@@ -26,7 +25,7 @@ class CustomOutlineButton extends StatelessWidget {
       style: const ButtonStyle(
         side: MaterialStatePropertyAll(
           BorderSide(
-            color: kcPrimaryColor,
+            color: CustomStylesTheme.tertiaryColor,
           ),
         ),
         shape: MaterialStatePropertyAll(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/custom_fill_button.widget.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -20,7 +19,7 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return ScaffoldGradientBackground(
-      gradient: LinearGradient(
+      gradient: const LinearGradient(
         colors: <Color>[
           CustomStylesTheme.secondaryColor,
           CustomStylesTheme.primaryColor
@@ -38,12 +37,12 @@ class HomeView extends StackedView<HomeViewModel> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton.outlined(
+          IconButton.filled(
             onPressed: viewModel.logout,
-            color: kcTertiaryColor,
+            color: CustomStylesTheme.primaryColor,
             icon: Icon(
-              PhosphorIcons.bold.signOut,
-              color: kcTertiaryColor,
+              PhosphorIcons.light.signOut,
+              color: Colors.white,
             ),
           )
         ],
@@ -105,7 +104,7 @@ class HomeView extends StackedView<HomeViewModel> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 22.0),
               child: Divider(
-                color: kcLightGreyColor.withOpacity(0.34),
+                color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
               ),
             ),
             CustomTile(
@@ -145,7 +144,7 @@ class CustomTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => action(),
-      splashColor: kcPrimaryColor,
+      splashColor: CustomStylesTheme.primaryColor,
       child: Row(
         children: [
           Padding(
@@ -168,7 +167,7 @@ class CustomTile extends StatelessWidget {
                           width: 22,
                           height: 22,
                           decoration: const BoxDecoration(
-                            color: CustomStylesTheme.tertiaryColor,
+                            color: CustomStylesTheme.primaryColor,
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
@@ -199,25 +198,3 @@ class CustomTile extends StatelessWidget {
     );
   }
 }
-
-                      // Positioned.fill(
-                      //   child: Align(
-                      //     alignment: Alignment.topRight,
-                      //     child: Container(
-                      //       width: 10,
-                      //       height: 10,
-                      //       decoration: const BoxDecoration(
-                      //         color: CustomStylesTheme.tertiaryColor,
-                      //         borderRadius: BorderRadius.all(
-                      //           Radius.circular(15),
-                      //         ),
-                      //       ),
-                      //       child: Text(
-                      //         '12',
-                      //         style: CustomStylesTheme.regular12_20
-                      //             .copyWith(color: Colors.white),
-                      //         textAlign: TextAlign.center,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -30,7 +29,7 @@ class LoginView extends StackedView<LoginViewModel> {
               child: Text(
                 'Ingresar con tu cuenta',
                 style: CustomStylesTheme.bold16_24.copyWith(
-                  color: kcPrimaryColor,
+                  color: CustomStylesTheme.tertiaryColor,
                 ),
               ),
             ),
@@ -45,7 +44,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   label: 'Ingresar con Google',
                   icon: Icon(
                     PhosphorIcons.fill.googleLogo,
-                    color: kcPrimaryColor,
+                    color: CustomStylesTheme.tertiaryColor,
                     size: 30.0,
                   ),
                   action: viewModel.useGoogleAuthentication,

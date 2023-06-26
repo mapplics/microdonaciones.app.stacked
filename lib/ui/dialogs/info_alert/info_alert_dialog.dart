@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_colors.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -49,7 +49,8 @@ class InfoAlertDialog extends StackedView<InfoAlertDialogModel> {
                       Text(
                         request.description!,
                         style: const TextStyle(
-                            fontSize: 14, color: kcPrimaryColor),
+                            fontSize: 14,
+                            color: CustomStylesTheme.tertiaryColor),
                         maxLines: 3,
                         softWrap: true,
                       ),
