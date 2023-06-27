@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:stacked/stacked.dart';
@@ -52,15 +53,8 @@ class HomeView extends StackedView<HomeViewModel> {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      appBar: AppBar(
-        title: Text(
-          'Microdonaciones',
-          style: CustomStylesTheme.bold16_24.copyWith(
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
+      appBar: CustomAppbar(
+        title: 'Microdonaciones',
         actions: [
           IconButton.filled(
             onPressed: viewModel.logout,
@@ -75,49 +69,44 @@ class HomeView extends StackedView<HomeViewModel> {
       body: RoundedBody(
         widgetContent: Column(
           children: [
-            const SizedBox(
-              height: 52,
-            ),
-
             /// Svg y descripcion
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 16.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 52.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: 16.0,
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/logos/ic_logorosa.svg',
+                    ),
                   ),
-                  child: SvgPicture.asset(
-                    'assets/logos/ic_logorosa.svg',
+                  SizedBox(
+                    width: (MediaQuery.of(context).size.width / 1.6),
+                    child: const Text(
+                      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
+                      style: CustomStylesTheme.regular14_20,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: (MediaQuery.of(context).size.width / 1.6),
-                  child: const Text(
-                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
-                    style: CustomStylesTheme.regular14_20,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-
-            /// Boton quiero donar.
-            SizedBox(
-              width: (MediaQuery.of(context).size.width / 1.5),
-              child: CustomFillButton(
-                label: 'Quiero Donar',
-                textStyle: CustomStylesTheme.bold14_20.copyWith(
-                  color: Colors.white,
-                ),
-                action: () {},
+                ],
               ),
             ),
 
-            const SizedBox(
-              height: 69,
+            /// Boton quiero donar.
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0, bottom: 69),
+              child: SizedBox(
+                width: (MediaQuery.of(context).size.width / 1.5),
+                child: CustomFillButton(
+                  label: 'Quiero Donar',
+                  textStyle: CustomStylesTheme.bold14_20.copyWith(
+                    color: Colors.white,
+                  ),
+                  action: viewModel.startDonation,
+                ),
+              ),
             ),
 
             /// Seccion notificaciones y historial donaciones.

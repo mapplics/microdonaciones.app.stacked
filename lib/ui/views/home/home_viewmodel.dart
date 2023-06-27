@@ -16,4 +16,14 @@ class HomeViewModel extends BaseViewModel {
 
   /// Devuelve true si el usuario esta logueado.
   bool get isUserLogged => _authService.isUserLogged;
+
+  /// Empieza el flujo para hacer una donacion.
+  void startDonation() {
+    /// Si el usuario no esta logueado le pedimos que se loguee.
+    if (!_authService.isUserLogged) {
+      _navigationService.navigateToLoginView();
+    } else {
+      _navigationService.navigateToLoginView();
+    }
+  }
 }
