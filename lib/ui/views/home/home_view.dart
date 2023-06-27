@@ -38,7 +38,7 @@ class HomeView extends StackedView<HomeViewModel> {
           label: 'Historial de donaciones',
           action: () {},
           count: 2,
-          svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+          svgPath: 'assets/icons/ic_notificaciones.svg',
         ),
       ];
     }
