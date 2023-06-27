@@ -1,5 +1,3 @@
-import 'package:microdonations/ui/bottom_sheets/notice/notice_sheet.dart';
-import 'package:microdonations/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:microdonations/ui/views/home/home_view.dart';
 import 'package:microdonations/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -23,11 +21,9 @@ import 'package:microdonations/core/services/auth_service.dart';
 // @stacked-service
   ],
   bottomsheets: [
-    StackedBottomsheet(classType: NoticeSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [
-    StackedDialog(classType: InfoAlertDialog),
     // @stacked-dialog
   ],
 )
