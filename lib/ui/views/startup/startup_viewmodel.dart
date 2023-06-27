@@ -21,7 +21,11 @@ class StartupViewModel extends BaseViewModel {
     /// Intento recuperar un usuario del Storage para hacer autologin.
     _authService.tryAutoLogin();
 
-    /// Navego al home.
-    _navigationService.replaceWithHomeView();
+    if (true) {
+      _navigationService.replaceWithOnboardingView();
+    } else {
+      /// Navego al home.
+      _navigationService.replaceWithHomeView();
+    }
   }
 }
