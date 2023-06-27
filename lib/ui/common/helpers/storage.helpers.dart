@@ -7,6 +7,7 @@ import '../../../core/models/auth.model.dart';
 
 enum _Keys {
   authModel,
+  seenOnboarding,
 }
 
 class StorageHelper {
@@ -41,5 +42,15 @@ class StorageHelper {
           '<StorageHelper> No se pudo recuperar el authModel del storage $e');
       return null;
     }
+  }
+
+  /// Marca como visto o no el onboarding de  la app.
+  static Future<bool> saveOnboarding(bool value) async {
+    return await _prefs.setBool(_Keys.seenOnboarding.name, value);
+  }
+
+  /// Devuelve true/false si el usuario vio el onboarding de la app.
+  static bool getSeenOnboarding() {
+    return _prefs.getBool(_Keys.seenOnboarding.name) ?? false;
   }
 }

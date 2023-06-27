@@ -18,12 +18,16 @@ class StartupViewModel extends BaseViewModel {
     /// Inicializo el storage helper.
     await StorageHelper.init();
 
-    /// Intento recuperar un usuario del Storage para hacer autologin.
-    _authService.tryAutoLogin();
+    final seen = StorageHelper.getSeenOnboarding();
 
-    if (true) {
+    /// Chequeo si el user vio el onboarding.
+    if (!seen) {
+      /// Navego al onboarding.
       _navigationService.replaceWithOnboardingView();
     } else {
+      /// Intento recuperar un usuario del Storage para hacer autologin.
+      _authService.tryAutoLogin();
+
       /// Navego al home.
       _navigationService.replaceWithHomeView();
     }

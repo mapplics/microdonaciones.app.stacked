@@ -23,7 +23,7 @@ class CustomScaffold extends StackedView<CustomScaffoldModel> {
       gradient: const LinearGradient(
         colors: <Color>[
           CustomStylesTheme.secondaryColor,
-          CustomStylesTheme.primaryColor
+          CustomStylesTheme.tertiaryColor
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
