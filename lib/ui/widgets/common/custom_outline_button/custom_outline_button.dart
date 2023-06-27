@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:stacked/stacked.dart';
 
-class CustomOutlineButton extends StatelessWidget {
+import '../../../common/app_theme.dart';
+import 'custom_outline_button_model.dart';
+
+class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
   final String label;
   final Function action;
   final Widget? icon;
@@ -14,7 +17,11 @@ class CustomOutlineButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+    BuildContext context,
+    CustomOutlineButtonModel viewModel,
+    Widget? child,
+  ) {
     return OutlinedButton.icon(
       label: Text(
         label,
@@ -38,4 +45,10 @@ class CustomOutlineButton extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  CustomOutlineButtonModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      CustomOutlineButtonModel();
 }

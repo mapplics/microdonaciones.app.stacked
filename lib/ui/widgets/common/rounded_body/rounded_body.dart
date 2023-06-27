@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+import 'rounded_body_model.dart';
 
 /// Containter con los border redondeados.
 /// Lo utilizamos como hijo en los scaffold para dar la forma redondeada
 /// del contenido.
-class RoundedBody extends StatelessWidget {
-  final Widget child;
+class RoundedBody extends StackedView<RoundedBodyModel> {
+  final Widget widgetContent;
 
-  const RoundedBody({required this.child, super.key});
+  const RoundedBody({required this.widgetContent, super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+    BuildContext context,
+    RoundedBodyModel viewModel,
+    Widget? child,
+  ) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -20,8 +27,14 @@ class RoundedBody extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26.0),
-        child: child,
+        child: widgetContent,
       ),
     );
   }
+
+  @override
+  RoundedBodyModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      RoundedBodyModel();
 }

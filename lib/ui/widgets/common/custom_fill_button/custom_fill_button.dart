@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:stacked/stacked.dart';
 
-class CustomFillButton extends StatelessWidget {
+import '../../../common/app_theme.dart';
+import 'custom_fill_button_model.dart';
+
+class CustomFillButton extends StackedView<CustomFillButtonModel> {
   final String label;
   final Function action;
   final Widget? icon;
@@ -18,7 +21,11 @@ class CustomFillButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+    BuildContext context,
+    CustomFillButtonModel viewModel,
+    Widget? child,
+  ) {
     return ElevatedButton.icon(
       label: Text(
         label,
@@ -40,4 +47,10 @@ class CustomFillButton extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  CustomFillButtonModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      CustomFillButtonModel();
 }

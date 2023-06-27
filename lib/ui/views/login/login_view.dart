@@ -4,7 +4,7 @@ import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../widgets/custom_outline_button.widget.dart';
+import '../../widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StackedView<LoginViewModel> {

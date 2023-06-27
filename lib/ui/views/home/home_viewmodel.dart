@@ -13,4 +13,7 @@ class HomeViewModel extends BaseViewModel {
     await _authService.logout();
     _navigationService.replaceWithLoginView();
   }
+
+  /// Devuelve true si el usuario esta logueado.
+  bool get isUserLogged => _authService.isUserLogged;
 }

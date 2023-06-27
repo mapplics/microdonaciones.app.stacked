@@ -1,5 +1,4 @@
 import 'package:microdonations/core/services/auth_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
@@ -22,12 +21,7 @@ class StartupViewModel extends BaseViewModel {
     /// Intento recuperar un usuario del Storage para hacer autologin.
     _authService.tryAutoLogin();
 
-    /// Si estoy logueado navego al home. Sino voy al login.
-    if (_authService.isUserLogged) {
-      logSucess('Se puso hacer autologin.');
-      _navigationService.replaceWithHomeView();
-    } else {
-      _navigationService.replaceWithLoginView();
-    }
+    /// Navego al home.
+    _navigationService.replaceWithHomeView();
   }
 }
