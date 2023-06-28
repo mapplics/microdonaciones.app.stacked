@@ -106,7 +106,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 ),
 
                 /// Seccion notificaciones y historial donaciones.
-                if (!viewModel.isUserLogged) ..._buildTiles(),
+                if (viewModel.isUserLogged) ..._buildTiles(),
               ],
             ),
           ),
