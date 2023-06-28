@@ -10,8 +10,14 @@ import 'custom_scaffold_model.dart';
 class CustomScaffold extends StackedView<CustomScaffoldModel> {
   final CustomAppbar appbar;
   final Widget body;
+  final EdgeInsets? padding;
 
-  const CustomScaffold({required this.appbar, required this.body, super.key});
+  const CustomScaffold({
+    required this.appbar,
+    required this.body,
+    this.padding,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -29,7 +35,10 @@ class CustomScaffold extends StackedView<CustomScaffoldModel> {
         end: Alignment.bottomCenter,
       ),
       appBar: appbar,
-      body: RoundedBody(widgetContent: body),
+      body: RoundedBody(
+        padding: padding,
+        widgetContent: body,
+      ),
     );
   }
 

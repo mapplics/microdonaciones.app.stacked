@@ -8,8 +8,9 @@ import 'rounded_body_model.dart';
 /// del contenido.
 class RoundedBody extends StackedView<RoundedBodyModel> {
   final Widget widgetContent;
+  final EdgeInsets? padding;
 
-  const RoundedBody({required this.widgetContent, super.key});
+  const RoundedBody({required this.widgetContent, this.padding, super.key});
 
   @override
   Widget builder(
@@ -26,7 +27,7 @@ class RoundedBody extends StackedView<RoundedBodyModel> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 26.0),
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 26.0),
         child: widgetContent,
       ),
     );

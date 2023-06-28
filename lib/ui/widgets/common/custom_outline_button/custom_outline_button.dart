@@ -7,12 +7,16 @@ import 'custom_outline_button_model.dart';
 class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
   final String label;
   final Function action;
+  final TextStyle? textStyle;
   final Widget? icon;
+  final Color? mainColor;
 
   const CustomOutlineButton({
     required this.label,
     required this.action,
     this.icon,
+    this.mainColor,
+    this.textStyle,
     Key? key,
   }) : super(key: key);
 
@@ -25,17 +29,20 @@ class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
     return OutlinedButton.icon(
       label: Text(
         label,
-        style: CustomStylesTheme.regular16_20,
+        style: textStyle ??
+            CustomStylesTheme.regular16_20.copyWith(
+              color: mainColor ?? CustomStylesTheme.tertiaryColor,
+            ),
       ),
       icon: (icon != null) ? icon! : const SizedBox(),
       onPressed: () => action(),
-      style: const ButtonStyle(
+      style: ButtonStyle(
         side: MaterialStatePropertyAll(
           BorderSide(
-            color: CustomStylesTheme.tertiaryColor,
+            color: mainColor ?? CustomStylesTheme.tertiaryColor,
           ),
         ),
-        shape: MaterialStatePropertyAll(
+        shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(6),
