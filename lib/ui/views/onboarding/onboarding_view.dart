@@ -16,9 +16,11 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     OnboardingViewModel viewModel,
     Widget? child,
   ) {
-    return const CustomScaffold(
-      appbar: CustomAppbar(title: 'Hola!'),
-      body: PageViewSlider(),
+    return CustomScaffold(
+      appbar: const CustomAppbar(title: 'Hola!'),
+      body: Onboarding(
+        skipOnboardingAction: viewModel.navigateToHome,
+      ),
     );
   }
 
@@ -29,14 +31,16 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
       OnboardingViewModel();
 }
 
-class PageViewSlider extends StatefulWidget {
-  const PageViewSlider({super.key});
+class Onboarding extends StatefulWidget {
+  final Function skipOnboardingAction;
+
+  const Onboarding({required this.skipOnboardingAction, super.key});
 
   @override
-  State<PageViewSlider> createState() => _PageViewSliderState();
+  State<Onboarding> createState() => _OnboardingState();
 }
 
-class _PageViewSliderState extends State<PageViewSlider> {
+class _OnboardingState extends State<Onboarding> {
   final PageController _pageController = PageController(initialPage: 0);
   final int _numPages = 3;
   int _currentPage = 0;
@@ -81,7 +85,7 @@ class _PageViewSliderState extends State<PageViewSlider> {
               ),
               LinkButton(
                 label: 'Omitir introducción',
-                action: () {},
+                action: () => widget.skipOnboardingAction(),
                 textStyle: CustomStylesTheme.regular14_20.copyWith(
                   color: CustomStylesTheme.tertiaryColor,
                 ),
