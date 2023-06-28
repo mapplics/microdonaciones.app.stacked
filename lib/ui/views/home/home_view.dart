@@ -21,31 +21,39 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     /// Construye la seccion historial y notificaciones.
-    List<Widget> _buildTiles() {
-      return [
-        CustomTile(
-          label: 'Historial de donaciones',
-          action: () {},
-          count: 2,
-          svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+    Widget _buildTiles() {
+      return Padding(
+        padding: const EdgeInsets.only(
+          left: 30,
+          right: 30,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 22.0),
-          child: Divider(
-            color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
-          ),
+        child: Column(
+          children: [
+            CustomTile(
+              label: 'Historial de donaciones',
+              action: () {},
+              count: 2,
+              svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 22.0),
+              child: Divider(
+                color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
+              ),
+            ),
+            CustomTile(
+              label: 'Historial de donaciones',
+              action: () {},
+              count: 2,
+              svgPath: 'assets/icons/ic_notificaciones.svg',
+            ),
+          ],
         ),
-        CustomTile(
-          label: 'Historial de donaciones',
-          action: () {},
-          count: 2,
-          svgPath: 'assets/icons/ic_notificaciones.svg',
-        ),
-      ];
+      );
     }
 
     return CustomScaffold(
-      padding: const EdgeInsets.all(0),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       appbar: CustomAppbar(
         title: 'Microdonaciones',
         actions: [
@@ -62,55 +70,58 @@ class HomeView extends StackedView<HomeViewModel> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 26.0),
-            child: Column(
+            padding: const EdgeInsets.only(
+              top: 52.0,
+              left: 30,
+              right: 30,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                /// Svg y descripcion
                 Padding(
-                  padding: const EdgeInsets.only(top: 52.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          right: 16.0,
-                        ),
-                        child: SvgPicture.asset(
-                          'assets/logos/ic_logorosa.svg',
-                        ),
-                      ),
-                      SizedBox(
-                        width: (MediaQuery.of(context).size.width / 1.6),
-                        child: const Text(
-                          'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
-                          style: CustomStylesTheme.regular14_20,
-                        ),
-                      ),
-                    ],
+                  padding: const EdgeInsets.only(
+                    right: 16.0,
+                  ),
+                  child: SvgPicture.asset(
+                    'assets/logos/ic_logorosa.svg',
                   ),
                 ),
-
-                /// Boton quiero donar.
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0, bottom: 69),
-                  child: SizedBox(
-                    width: (MediaQuery.of(context).size.width / 1.5),
-                    child: CustomFillButton(
-                      label: 'QUIERO DONAR',
-                      textStyle: CustomStylesTheme.bold14_20.copyWith(
-                        color: Colors.white,
-                      ),
-                      action: viewModel.startDonation,
-                    ),
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width / 1.7),
+                  child: const Text(
+                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
+                    style: CustomStylesTheme.regular14_20,
                   ),
                 ),
-
-                /// Seccion notificaciones y historial donaciones.
-                if (viewModel.isUserLogged) ..._buildTiles(),
               ],
             ),
           ),
+
+          /// Boton quiero donar.
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 40.0,
+              bottom: 69,
+              left: 30,
+              right: 30,
+            ),
+            child: SizedBox(
+              width: (MediaQuery.of(context).size.width / 1.5),
+              child: CustomFillButton(
+                label: 'QUIERO DONAR',
+                textStyle: CustomStylesTheme.bold14_20.copyWith(
+                  color: Colors.white,
+                ),
+                action: viewModel.startDonation,
+              ),
+            ),
+          ),
+
+          /// Seccion notificaciones y historial donaciones.
+          if (viewModel.isUserLogged) _buildTiles(),
           const Spacer(),
+
+          /// Seccion para ser colaborador logistico.
           const NewCollaborator(),
         ],
       ),

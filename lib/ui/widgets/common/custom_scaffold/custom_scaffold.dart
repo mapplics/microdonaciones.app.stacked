@@ -36,7 +36,7 @@ class CustomScaffold extends StackedView<CustomScaffoldModel> {
       ),
       appBar: appbar,
       body: RoundedBody(
-        padding: padding,
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 30),
         widgetContent: body,
       ),
     );
