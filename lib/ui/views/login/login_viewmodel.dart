@@ -40,10 +40,6 @@ class LoginViewModel extends BaseViewModel {
         /// Guardo en el storage el inicio de sesion.
         StorageHelper.saveAuthModel(_authService.call().authModel!);
 
-        logInfo('Inicio de sesion exitoso!');
-
-        logWarn('Token <$_firebaseToken>');
-
         /// Navego al home.
         _navigationService.replaceWithHomeView();
       } catch (e) {
