@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../widgets/common/custom_fill_button/custom_fill_button.dart';
@@ -54,19 +53,7 @@ class HomeView extends StackedView<HomeViewModel> {
 
     return CustomScaffold(
       padding: const EdgeInsets.symmetric(horizontal: 0),
-      appbar: CustomAppbar(
-        title: 'Microdonaciones',
-        actions: [
-          IconButton.filled(
-            onPressed: viewModel.logout,
-            color: CustomStylesTheme.primaryColor,
-            icon: Icon(
-              PhosphorIcons.light.signOut,
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
+      appbar: const CustomAppbar(title: 'Microdonaciones'),
       body: Column(
         children: [
           Padding(

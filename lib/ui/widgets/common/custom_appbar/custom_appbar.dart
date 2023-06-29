@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../common/app_theme.dart';
@@ -26,7 +27,13 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
       ),
       centerTitle: true,
       backgroundColor: Colors.transparent,
-      actions: actions,
+      actions: [
+        IconButton.filled(
+          onPressed: viewModel.navigateToPersonalInformation,
+          color: CustomStylesTheme.primaryColor,
+          icon: Icon(PhosphorIcons.bold.user, color: Colors.white),
+        )
+      ],
     );
   }
 

@@ -35,9 +35,12 @@ class CustomScaffold extends StackedView<CustomScaffoldModel> {
         end: Alignment.bottomCenter,
       ),
       appBar: appbar,
-      body: RoundedBody(
-        padding: padding ?? const EdgeInsets.symmetric(horizontal: 30),
-        widgetContent: body,
+      body: SizedBox(
+        width: double.infinity,
+        child: RoundedBody(
+          padding: padding ?? const EdgeInsets.symmetric(horizontal: 30),
+          widgetContent: body,
+        ),
       ),
     );
   }

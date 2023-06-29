@@ -25,6 +25,8 @@ class CustomStylesTheme {
   static const Color backgroundColor = Color(0xFFFFFFFF);
   static const Color darkGreyColor = Color(0xFF808080);
   static const Color lightGreyColor = Color(0xFF606060);
+  static const Color gray100 = Color(0xFFb5b5b5);
+  static const Color gray200 = Color(0xFFd4d4d4);
   static const Color blackColor = Color(0xFF000000);
 
   /// Logger colors
