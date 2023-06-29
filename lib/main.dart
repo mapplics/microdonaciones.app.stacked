@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
@@ -43,16 +44,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: CustomStylesTheme.mainTheme,
-      initialRoute: Routes.startupView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ],
+    return GlobalLoaderOverlay(
+      overlayColor: CustomStylesTheme.lightGreyColor,
+      useDefaultLoading: false,
+      overlayOpacity: 0.5,
+      overlayWidget: const Center(
+        child: CircularProgressIndicator(
+          color: CustomStylesTheme.primaryColor,
+        ),
+      ),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: CustomStylesTheme.mainTheme,
+        initialRoute: Routes.startupView,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        navigatorKey: StackedService.navigatorKey,
+        navigatorObservers: [
+          StackedService.routeObserver,
+        ],
+      ),
     );
   }
 }
