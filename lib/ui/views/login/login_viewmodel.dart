@@ -1,5 +1,6 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/core/services/auth_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
@@ -8,7 +9,6 @@ import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class LoginViewModel extends BaseViewModel {
-  final _firebaseAuthenticationService = locator<FirebaseAuthenticationService>;
   final _authService = locator<AuthService>;
   final _navigationService = locator<NavigationService>();
 
@@ -16,8 +16,7 @@ class LoginViewModel extends BaseViewModel {
   /// Abre el popUp para que el usuario eliga una cuenta
   /// de la cual iniciar sesion.
   Future<void> useGoogleAuthentication() async {
-    final result =
-        await _firebaseAuthenticationService.call().signInWithGoogle();
+    final result = await FirebaseAuthenticationService().signInWithGoogle();
     _handleAuthenticationResponse(result);
   }
 
@@ -40,8 +39,10 @@ class LoginViewModel extends BaseViewModel {
         /// Guardo en el storage el inicio de sesion.
         StorageHelper.saveAuthModel(_authService.call().authModel!);
 
-        /// Navego al home.
-        _navigationService.replaceWithHomeView();
+        /// Navego a la pagina.
+        _navigationService.navigateToPersonalInformationView(
+          firebaseUser: PersonalInformationViewParameters(authResult.user!),
+        );
       } catch (e) {
         logError('Error al iniciar sesion! $e');
       }

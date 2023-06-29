@@ -7,8 +7,13 @@ import 'user_avatar_model.dart';
 
 class UserAvatar extends StackedView<UserAvatarModel> {
   final bool canUploadImg;
+  final String fullname;
 
-  const UserAvatar({this.canUploadImg = false, super.key});
+  const UserAvatar({
+    required this.fullname,
+    this.canUploadImg = false,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -34,7 +39,7 @@ class UserAvatar extends StackedView<UserAvatarModel> {
             backgroundColor: CustomStylesTheme.primaryColor,
             radius: 61,
             child: Text(
-              'GE',
+              viewModel.getInitials(fullname),
               style: CustomStylesTheme.bold34_44.copyWith(color: Colors.white),
             ),
           ),

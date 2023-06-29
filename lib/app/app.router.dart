@@ -7,6 +7,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
+    as _i8;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
 import 'package:microdonations/ui/views/onboarding/onboarding_view.dart' as _i5;
@@ -14,7 +16,7 @@ import 'package:microdonations/ui/views/personal_information/personal_informatio
     as _i6;
 import 'package:microdonations/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const homeView = '/home-view';
@@ -86,8 +88,12 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.PersonalInformationView: (data) {
+      final args = data.getArgs<PersonalInformationViewArguments>(
+        orElse: () => const PersonalInformationViewArguments(),
+      );
       return _i7.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.PersonalInformationView(),
+        builder: (context) => _i6.PersonalInformationView(
+            firebaseUser: args.firebaseUser, key: args.key),
         settings: data,
       );
     },
@@ -99,7 +105,34 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+class PersonalInformationViewArguments {
+  const PersonalInformationViewArguments({
+    this.firebaseUser,
+    this.key,
+  });
+
+  final _i8.PersonalInformationViewParameters? firebaseUser;
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return '{"firebaseUser": "$firebaseUser", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant PersonalInformationViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.firebaseUser == firebaseUser && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return firebaseUser.hashCode ^ key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -156,14 +189,18 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToPersonalInformationView([
+  Future<dynamic> navigateToPersonalInformationView({
+    _i8.PersonalInformationViewParameters? firebaseUser,
+    _i7.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.personalInformationView,
+        arguments: PersonalInformationViewArguments(
+            firebaseUser: firebaseUser, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -226,14 +263,18 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithPersonalInformationView([
+  Future<dynamic> replaceWithPersonalInformationView({
+    _i8.PersonalInformationViewParameters? firebaseUser,
+    _i7.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.personalInformationView,
+        arguments: PersonalInformationViewArguments(
+            firebaseUser: firebaseUser, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
