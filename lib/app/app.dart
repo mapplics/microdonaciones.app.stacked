@@ -6,6 +6,8 @@ import 'package:microdonations/ui/views/login/login_view.dart';
 import 'package:microdonations/core/services/auth_service.dart';
 import 'package:microdonations/ui/views/onboarding/onboarding_view.dart';
 import 'package:microdonations/ui/views/personal_information/personal_information_view.dart';
+import 'package:microdonations/ui/bottom_sheets/test_alert/test_alert_sheet.dart';
+import 'package:microdonations/ui/dialogs/test_dialog/test_dialog_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -25,10 +27,12 @@ import 'package:microdonations/ui/views/personal_information/personal_informatio
 // @stacked-service
   ],
   bottomsheets: [
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: TestAlertSheet),
+// @stacked-bottom-sheet
   ],
   dialogs: [
-    // @stacked-dialog
+    StackedDialog(classType: TestDialogDialog),
+// @stacked-dialog
   ],
 )
 class App {}
