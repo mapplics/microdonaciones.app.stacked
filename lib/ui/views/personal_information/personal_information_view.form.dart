@@ -7,6 +7,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/forms_validators/text_form_field.validators.dart';
 import 'package:stacked/stacked.dart';
 
 const String NameValueKey = 'name';
@@ -21,7 +22,7 @@ final Map<String, FocusNode> _PersonalInformationViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
     _PersonalInformationViewTextValidations = {
-  NameValueKey: null,
+  NameValueKey: TextFormFieldValidators.notEmpty,
   SurnameValueKey: null,
   PhoneValueKey: null,
   AddressValueKey: null,
