@@ -24,7 +24,7 @@ void main() {
       await Firebase.initializeApp();
       logInfo('Firebase initialized!');
     } catch (e) {
-      logError('Firebase initialized failed!');
+      logError('Firebase initialized failed! ${e.toString()}');
     }
 
     // await FirebaseAuth.instance.signInAnonymously().then((value) {

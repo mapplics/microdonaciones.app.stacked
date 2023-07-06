@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
-import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form.form.dart';
+import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
-import '../../../../core/forms_validators/text_form_field.validators.dart';
-import '../custom_text_field/custom_text_field.dart';
+import '../custom_text_field/custom_input_text.dart';
 import '../user_avatar/user_avatar.dart';
 import 'user_information_form_model.dart';
 
-enum PersonalInformationFormFields { name, surname, phone, address }
-
-@FormView(
-  fields: [
-    FormTextField(name: 'name', validator: TextFormFieldValidators.notEmpty),
-    FormTextField(name: 'surname'),
-    FormTextField(name: 'phone'),
-    FormTextField(name: 'address'),
-  ],
-)
-class UserInformationForm extends StackedView<UserInformationFormModel>
-    with $UserInformationForm {
+class UserInformationForm extends StackedView<UserInformationFormModel> {
   final BaseUser user;
 
   const UserInformationForm({required this.user, super.key});
@@ -31,59 +19,50 @@ class UserInformationForm extends StackedView<UserInformationFormModel>
     UserInformationFormModel viewModel,
     Widget? child,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        UserAvatar(
-          canUploadImg: true,
-          user: user,
-        ),
-        CustomTextField(
-          label: 'Nombre',
-          hintText: 'Ingresá tu nombre',
-          textInputController: nameController,
-          errorMessage: viewModel.hasNameValidationMessage
-              ? viewModel.nameValidationMessage
-              : '',
-        ),
-        CustomTextField(
-          label: 'Apellido',
-          hintText: 'Ingresá tu apellido',
-          textInputController: surnameController,
-          errorMessage: viewModel.hasSurnameValidationMessage
-              ? viewModel.surnameValidationMessage
-              : '',
-        ),
-        CustomTextField(
-          label: 'Telefono',
-          hintText: 'Ingresá tu telefono',
-          textInputController: phoneController,
-          errorMessage: viewModel.hasPhoneValidationMessage
-              ? viewModel.phoneValidationMessage
-              : '',
-        ),
-        CustomTextField(
-          label: 'Dirección',
-          hintText: 'Ingresá tu dirección',
-          textInputController: addressController,
-          errorMessage: viewModel.hasAddressValidationMessage
-              ? viewModel.addressValidationMessage
-              : '',
-        ),
-      ],
-    );
+    return (!viewModel.isFormInitialized)
+        ? const Center(child: CircularProgressIndicator())
+        : ReactiveForm(
+            formGroup: viewModel.formGroup!,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                UserAvatar(
+                  canUploadImg: true,
+                  user: user,
+                ),
+                CustomInputText(
+                  label: 'Nombre',
+                  hintText: 'Ingresá tu nombre',
+                  formControlName: UserInformationFormFields.name.name,
+                  validationMessage: ReactiveFormHelper.getValidationMessages,
+                ),
+                CustomInputText(
+                  label: 'Apellido',
+                  hintText: 'Ingresá tu apellido',
+                  formControlName: UserInformationFormFields.surname.name,
+                  validationMessage: ReactiveFormHelper.getValidationMessages,
+                ),
+                CustomInputText(
+                  label: 'Telefono',
+                  hintText: 'Ingresá tu telefono',
+                  formControlName: UserInformationFormFields.phone.name,
+                  validationMessage: ReactiveFormHelper.getValidationMessages,
+                  keyboardType: TextInputType.phone,
+                ),
+                CustomInputText(
+                  label: 'Dirección',
+                  hintText: 'Ingresá tu dirección',
+                  formControlName: UserInformationFormFields.address.name,
+                  validationMessage: ReactiveFormHelper.getValidationMessages,
+                ),
+              ],
+            ),
+          );
   }
 
   @override
   void onViewModelReady(UserInformationFormModel viewModel) {
-    syncFormWithViewModel(viewModel);
     viewModel.initForm(user);
-  }
-
-  @override
-  void onDispose(UserInformationFormModel viewModel) {
-    super.onDispose(viewModel);
-    disposeForm();
   }
 
   @override

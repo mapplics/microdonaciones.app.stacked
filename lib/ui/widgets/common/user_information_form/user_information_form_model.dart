@@ -1,19 +1,63 @@
+import 'package:microdonations/core/forms_validators/only_text.validator.dart';
+import 'package:microdonations/core/forms_validators/phone_number.validator.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
 import 'package:microdonations/core/models/logged_user.model.dart';
-import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form.form.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-class UserInformationFormModel extends FormViewModel {
-  /// Setea los campos del formulario con los datos del usuario.
-  /// Map11235813
-  void initForm(BaseUser user) {
-    nameValue = user.name.split(' ')[0];
-    surnameValue = user.surname.split(' ')[1];
-    phoneValue = user.phoneNumber;
+enum UserInformationFormFields { name, surname, phone, address }
 
-    if (user.runtimeType == LoggedUser) {
-      final _loggedUser = user as LoggedUser;
-      addressValue = _loggedUser.address;
-    }
+class UserInformationFormModel extends BaseViewModel {
+  FormGroup? _form;
+
+  /// Devuelve el formulario del usuario.
+  FormGroup? get formGroup => _form;
+
+  /// Devuelve true si el formulario fue initializado.
+  bool get isFormInitialized => (formGroup != null);
+
+  /// Setea los campos del formulario con los datos del user.
+  void initForm(BaseUser user) {
+    _form = FormGroup(
+      {
+        UserInformationFormFields.name.name: FormControl<String>(
+          value: user.name,
+          validators: [
+            Validators.required,
+            const RequiredOnlyText(),
+          ],
+        ),
+        UserInformationFormFields.surname.name: FormControl<String>(
+          value: user.surname,
+          validators: [
+            Validators.required,
+            const RequiredOnlyText(),
+          ],
+        ),
+        UserInformationFormFields.phone.name: FormControl<String>(
+          value: user.phoneNumber,
+          validators: [
+            Validators.number,
+            const RequiredPhoneNumber(),
+          ],
+        ),
+        UserInformationFormFields.address.name: FormControl<String>(
+          value: _canSetAddres(user) ? _tryParceAddress(user) : '',
+          validators: [
+            Validators.required,
+          ],
+        ),
+      },
+    );
+  }
+
+  /// Devuelve true si el campo 'address'
+  bool _canSetAddres(BaseUser user) => (user.runtimeType == LoggedUser);
+
+  /// Recibe un [BaseUser] y si es de tipo [LoggedUser] devuelve
+  /// el contenido del campo address.
+  String _tryParceAddress(BaseUser user) {
+    final _loggedUser = user as LoggedUser;
+    return _loggedUser.address;
   }
 }

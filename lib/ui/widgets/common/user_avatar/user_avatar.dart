@@ -40,7 +40,7 @@ class UserAvatar extends StackedView<UserAvatarModel> {
             backgroundColor: CustomStylesTheme.primaryColor,
             radius: 61,
             child: Text(
-              user.fullName,
+              user.getInitials(),
               style: CustomStylesTheme.bold34_44.copyWith(color: Colors.white),
             ),
           ),

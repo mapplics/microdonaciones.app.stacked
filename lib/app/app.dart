@@ -20,7 +20,6 @@ import 'package:microdonations/core/services/user_service.dart';
     MaterialRoute(page: OnboardingView),
     MaterialRoute(page: PersonalInformationView),
     MaterialRoute(page: CreateAccountView),
-    MaterialRoute(page: CreateAccountView),
 // @stacked-route
   ],
   dependencies: [

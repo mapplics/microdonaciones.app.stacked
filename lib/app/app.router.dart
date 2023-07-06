@@ -71,10 +71,6 @@ class StackedRouter extends _i1.RouterBase {
       Routes.createAccountView,
       page: _i7.CreateAccountView,
     ),
-    _i1.RouteDef(
-      Routes.createAccountView,
-      page: _i7.CreateAccountView,
-    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
