@@ -1,6 +1,7 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
+import 'package:microdonations/core/models/firebase_user.model.dart';
+import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
 import 'package:microdonations/core/services/auth_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
@@ -40,8 +41,10 @@ class LoginViewModel extends BaseViewModel {
         StorageHelper.saveAuthModel(_authService.call().authModel!);
 
         /// Navego a la pagina.
-        _navigationService.navigateToPersonalInformationView(
-          firebaseUser: PersonalInformationViewParameters(authResult.user!),
+        _navigationService.navigateToCreateAccountView(
+          viewParameters: CreateAccountViewParameters(
+            FirebaseUser.createOne(authResult.user!),
+          ),
         );
       } catch (e) {
         logError('Error al iniciar sesion! $e');

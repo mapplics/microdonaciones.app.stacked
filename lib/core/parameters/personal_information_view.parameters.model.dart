@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:microdonations/core/models/logged_user.model.dart';
 
-class PersonalInformationViewParameters {
-  final User firebaseUser;
-  PersonalInformationViewParameters(this.firebaseUser);
+class UserInformationFormParameters {
+  final LoggedUser user;
+  UserInformationFormParameters(this.user);
 }

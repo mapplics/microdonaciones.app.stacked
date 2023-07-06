@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/models/base_user.abstract.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
@@ -7,10 +8,10 @@ import 'user_avatar_model.dart';
 
 class UserAvatar extends StackedView<UserAvatarModel> {
   final bool canUploadImg;
-  final String fullname;
+  final BaseUser user;
 
   const UserAvatar({
-    required this.fullname,
+    required this.user,
     this.canUploadImg = false,
     super.key,
   });
@@ -39,7 +40,7 @@ class UserAvatar extends StackedView<UserAvatarModel> {
             backgroundColor: CustomStylesTheme.primaryColor,
             radius: 61,
             child: Text(
-              viewModel.getInitials(fullname),
+              user.fullName,
               style: CustomStylesTheme.bold34_44.copyWith(color: Colors.white),
             ),
           ),

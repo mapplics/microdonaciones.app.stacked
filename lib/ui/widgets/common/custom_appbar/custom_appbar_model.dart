@@ -8,6 +8,6 @@ class CustomAppbarModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   /// Navega a la pantalla de datos personales.
-  void navigateToPersonalInformation() =>
-      _navigationService.navigateToPersonalInformationView();
+  void navigateToPersonalInformation() => {};
+  // _navigationService.navigateToPersonalInformationView();
 }

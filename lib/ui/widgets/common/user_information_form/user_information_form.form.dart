@@ -16,19 +16,19 @@ const String PhoneValueKey = 'phone';
 const String AddressValueKey = 'address';
 
 final Map<String, TextEditingController>
-    _PersonalInformationViewTextEditingControllers = {};
+    _UserInformationFormTextEditingControllers = {};
 
-final Map<String, FocusNode> _PersonalInformationViewFocusNodes = {};
+final Map<String, FocusNode> _UserInformationFormFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
-    _PersonalInformationViewTextValidations = {
+    _UserInformationFormTextValidations = {
   NameValueKey: TextFormFieldValidators.notEmpty,
   SurnameValueKey: null,
   PhoneValueKey: null,
   AddressValueKey: null,
 };
 
-mixin $PersonalInformationView {
+mixin $UserInformationForm {
   TextEditingController get nameController =>
       _getFormTextEditingController(NameValueKey);
   TextEditingController get surnameController =>
@@ -46,21 +46,21 @@ mixin $PersonalInformationView {
     String key, {
     String? initialValue,
   }) {
-    if (_PersonalInformationViewTextEditingControllers.containsKey(key)) {
-      return _PersonalInformationViewTextEditingControllers[key]!;
+    if (_UserInformationFormTextEditingControllers.containsKey(key)) {
+      return _UserInformationFormTextEditingControllers[key]!;
     }
 
-    _PersonalInformationViewTextEditingControllers[key] =
+    _UserInformationFormTextEditingControllers[key] =
         TextEditingController(text: initialValue);
-    return _PersonalInformationViewTextEditingControllers[key]!;
+    return _UserInformationFormTextEditingControllers[key]!;
   }
 
   FocusNode _getFormFocusNode(String key) {
-    if (_PersonalInformationViewFocusNodes.containsKey(key)) {
-      return _PersonalInformationViewFocusNodes[key]!;
+    if (_UserInformationFormFocusNodes.containsKey(key)) {
+      return _UserInformationFormFocusNodes[key]!;
     }
-    _PersonalInformationViewFocusNodes[key] = FocusNode();
-    return _PersonalInformationViewFocusNodes[key]!;
+    _UserInformationFormFocusNodes[key] = FocusNode();
+    return _UserInformationFormFocusNodes[key]!;
   }
 
   /// Registers a listener on every generated controller that calls [model.setData()]
@@ -112,16 +112,15 @@ mixin $PersonalInformationView {
   void disposeForm() {
     // The dispose function for a TextEditingController sets all listeners to null
 
-    for (var controller
-        in _PersonalInformationViewTextEditingControllers.values) {
+    for (var controller in _UserInformationFormTextEditingControllers.values) {
       controller.dispose();
     }
-    for (var focusNode in _PersonalInformationViewFocusNodes.values) {
+    for (var focusNode in _UserInformationFormFocusNodes.values) {
       focusNode.dispose();
     }
 
-    _PersonalInformationViewTextEditingControllers.clear();
-    _PersonalInformationViewFocusNodes.clear();
+    _UserInformationFormTextEditingControllers.clear();
+    _UserInformationFormFocusNodes.clear();
   }
 }
 
@@ -141,9 +140,8 @@ extension ValueProperties on FormViewModel {
         }),
     );
 
-    if (_PersonalInformationViewTextEditingControllers.containsKey(
-        NameValueKey)) {
-      _PersonalInformationViewTextEditingControllers[NameValueKey]?.text =
+    if (_UserInformationFormTextEditingControllers.containsKey(NameValueKey)) {
+      _UserInformationFormTextEditingControllers[NameValueKey]?.text =
           value ?? '';
     }
   }
@@ -156,9 +154,9 @@ extension ValueProperties on FormViewModel {
         }),
     );
 
-    if (_PersonalInformationViewTextEditingControllers.containsKey(
+    if (_UserInformationFormTextEditingControllers.containsKey(
         SurnameValueKey)) {
-      _PersonalInformationViewTextEditingControllers[SurnameValueKey]?.text =
+      _UserInformationFormTextEditingControllers[SurnameValueKey]?.text =
           value ?? '';
     }
   }
@@ -171,9 +169,8 @@ extension ValueProperties on FormViewModel {
         }),
     );
 
-    if (_PersonalInformationViewTextEditingControllers.containsKey(
-        PhoneValueKey)) {
-      _PersonalInformationViewTextEditingControllers[PhoneValueKey]?.text =
+    if (_UserInformationFormTextEditingControllers.containsKey(PhoneValueKey)) {
+      _UserInformationFormTextEditingControllers[PhoneValueKey]?.text =
           value ?? '';
     }
   }
@@ -186,9 +183,9 @@ extension ValueProperties on FormViewModel {
         }),
     );
 
-    if (_PersonalInformationViewTextEditingControllers.containsKey(
+    if (_UserInformationFormTextEditingControllers.containsKey(
         AddressValueKey)) {
-      _PersonalInformationViewTextEditingControllers[AddressValueKey]?.text =
+      _UserInformationFormTextEditingControllers[AddressValueKey]?.text =
           value ?? '';
     }
   }
@@ -256,11 +253,11 @@ extension Methods on FormViewModel {
 
 /// Returns the validation message for the given key
 String? getValidationMessage(String key) {
-  final validatorForKey = _PersonalInformationViewTextValidations[key];
+  final validatorForKey = _UserInformationFormTextValidations[key];
   if (validatorForKey == null) return null;
 
   String? validationMessageForKey = validatorForKey(
-    _PersonalInformationViewTextEditingControllers[key]!.text,
+    _UserInformationFormTextEditingControllers[key]!.text,
   );
 
   return validationMessageForKey;
