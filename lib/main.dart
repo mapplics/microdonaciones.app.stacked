@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
@@ -12,6 +13,17 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'ui/common/app_theme.dart';
 
+// controlo el archivo env que voy a cargar
+get fileNameEnv {
+  String env = const String.fromEnvironment("env");
+  String fileNameEnv = "envs/.env";
+  if (env.isNotEmpty && env == 'prod') {
+    fileNameEnv = "envs/.env.prod";
+  }
+
+  return fileNameEnv;
+}
+
 void main() {
   setupLocator();
   setupDialogUi();
@@ -21,6 +33,7 @@ void main() {
     WidgetsFlutterBinding.ensureInitialized();
 
     try {
+      await dotenv.load(fileName: fileNameEnv);
       await Firebase.initializeApp();
       logInfo('Firebase initialized!');
     } catch (e) {

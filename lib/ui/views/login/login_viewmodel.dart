@@ -34,20 +34,22 @@ class LoginViewModel extends BaseViewModel {
         /// Recupero mi token.
         final _firebaseToken = await authResult.user!.getIdToken();
 
-        /// Seteo mi [AuthModel]
-        _authService.call().setAuthModel(_firebaseToken);
+        _authService.call().login(authResult.user!.email!, _firebaseToken);
 
-        /// Guardo en el storage el inicio de sesion.
-        StorageHelper.saveAuthModel(_authService.call().authModel!);
+        // /// Seteo mi [AuthModel]
+        // _authService.call().setAuthModel(_firebaseToken);
 
-        /// Navego a la pagina.
-        _navigationService.navigateToCreateAccountView(
-          viewParameters: CreateAccountViewParameters(
-            FirebaseUser.createOne(authResult.user!),
-          ),
-        );
+        // /// Guardo en el storage el inicio de sesion.
+        // StorageHelper.saveAuthModel(_authService.call().authModel!);
+
+        // /// Navego a la pagina.
+        // _navigationService.navigateToCreateAccountView(
+        //   viewParameters: CreateAccountViewParameters(
+        //     FirebaseUser.createOne(authResult.user!),
+        //   ),
+        // );
       } catch (e) {
-        logError('Error al iniciar sesion! $e');
+        logError('Error al iniciar sesion! ${e.toString()}');
       }
     }
   }

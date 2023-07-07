@@ -36,8 +36,10 @@ dependencies:
   reactive_forms: ^16.0.0
   flutter_svg: ^2.0.7
   loader_overlay: ^2.2.0
-  phosphor_flutter:
-    ^2.0.0
+  dio_smart_retry: ^5.0.0
+  jwt_decode: ^0.3.1
+  phosphor_flutter: ^2.0.0
+  flutter_dotenv: ^5.0.2
 
   # Firebase
   firebase_core: ^2.14.0
@@ -47,6 +49,7 @@ dependencies:
   stacked: ^3.2.7
   stacked_services: ^1.0.0
   stacked_firebase_auth: ^2.19.2
+  dio: ^5.2.1+1
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +81,7 @@ flutter:
     - assets/img/
     - assets/logos/
     - assets/icons/
+    - envs/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
