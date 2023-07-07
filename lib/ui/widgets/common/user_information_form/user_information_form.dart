@@ -4,15 +4,14 @@ import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../../core/form/typedef/onchange.typedef.dart';
 import '../custom_text_field/custom_input_text.dart';
 import '../user_avatar/user_avatar.dart';
 import 'user_information_form_model.dart';
 
-typedef OnChangeValue = void Function(FormGroup form);
-
 class UserInformationForm extends StackedView<UserInformationFormModel> {
   final BaseUser user;
-  final OnChangeValue onchange;
+  final OnChangeForm onchange;
 
   const UserInformationForm({
     required this.onchange,
@@ -104,5 +103,5 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
   UserInformationFormModel viewModelBuilder(
     BuildContext context,
   ) =>
-      UserInformationFormModel(action: onchange);
+      UserInformationFormModel(onChange: onchange);
 }

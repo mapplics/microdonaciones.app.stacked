@@ -1,19 +1,20 @@
 import 'dart:async';
 
-import 'package:microdonations/core/forms_validators/only_text.validator.dart';
-import 'package:microdonations/core/forms_validators/phone_number.validator.dart';
+import 'package:microdonations/core/form/validators/only_text.validator.dart';
+import 'package:microdonations/core/form/validators/phone_number.validator.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
 import 'package:microdonations/core/models/logged_user.model.dart';
-import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../../core/form/typedef/onchange.typedef.dart';
 
 enum UserInformationFormFields { name, surname, phone, address }
 
 class UserInformationFormModel extends BaseViewModel {
-  final OnChangeValue action;
+  final OnChangeForm onChange;
 
-  UserInformationFormModel({required this.action});
+  UserInformationFormModel({required this.onChange});
 
   FormGroup? _form;
 
@@ -83,7 +84,7 @@ class UserInformationFormModel extends BaseViewModel {
 
     _formSubscriptions.add(
       _form!.valueChanges.listen(
-        (_) => action(_form!),
+        (_) => onChange(_form!),
       ),
     );
   }
