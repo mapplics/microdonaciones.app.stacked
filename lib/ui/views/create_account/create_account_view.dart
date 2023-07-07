@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/ui/widgets/common/terms_and_conditions_checkbox/terms_and_conditions_checkbox.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../core/parameters/create_account_view.parameters.model.dart';
@@ -31,21 +32,11 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
               user: viewParameters.user,
               onchange: (form) => viewModel.updateForm = form,
             ),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                children: [
-                  Checkbox(
-                    value: true,
-                    onChanged: (_) {},
-                  ),
-                  Text(
-                    'Acepto todos los términos y condiciones',
-                    style: CustomStylesTheme.regular14_24.copyWith(
-                      color: CustomStylesTheme.blackColor,
-                    ),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: TermsAndConditionsCheckbox(
+                onchange: (newValue) =>
+                    viewModel.termsAndConditionsOnChange(newValue),
               ),
             ),
             Padding(
