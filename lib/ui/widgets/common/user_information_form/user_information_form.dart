@@ -30,30 +30,52 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
                   canUploadImg: true,
                   user: user,
                 ),
-                CustomInputText(
-                  label: 'Nombre',
-                  hintText: 'Ingresá tu nombre',
-                  formControlName: UserInformationFormFields.name.name,
-                  validationMessage: ReactiveFormHelper.getValidationMessages,
+                Padding(
+                  padding: const EdgeInsets.only(top: 66, bottom: 24.0),
+                  child: CustomInputText(
+                    label: 'Nombre',
+                    hintText: 'Ingresá tu nombre',
+                    formControlName: UserInformationFormFields.name.name,
+                    validationMessage: ReactiveFormHelper.getValidationMessages,
+                    isRequired: ReactiveFormHelper.isRequiredField(
+                      viewModel.formGroup!,
+                      UserInformationFormFields.name.name,
+                    ),
+                  ),
                 ),
                 CustomInputText(
                   label: 'Apellido',
                   hintText: 'Ingresá tu apellido',
                   formControlName: UserInformationFormFields.surname.name,
                   validationMessage: ReactiveFormHelper.getValidationMessages,
+                  isRequired: ReactiveFormHelper.isRequiredField(
+                    viewModel.formGroup!,
+                    UserInformationFormFields.surname.name,
+                  ),
                 ),
-                CustomInputText(
-                  label: 'Telefono',
-                  hintText: 'Ingresá tu telefono',
-                  formControlName: UserInformationFormFields.phone.name,
-                  validationMessage: ReactiveFormHelper.getValidationMessages,
-                  keyboardType: TextInputType.phone,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
+                  child: CustomInputText(
+                    label: 'Telefono',
+                    hintText: 'Ingresá tu telefono',
+                    formControlName: UserInformationFormFields.phone.name,
+                    validationMessage: ReactiveFormHelper.getValidationMessages,
+                    isRequired: ReactiveFormHelper.isRequiredField(
+                      viewModel.formGroup!,
+                      UserInformationFormFields.phone.name,
+                    ),
+                    keyboardType: TextInputType.phone,
+                  ),
                 ),
                 CustomInputText(
                   label: 'Dirección',
                   hintText: 'Ingresá tu dirección',
                   formControlName: UserInformationFormFields.address.name,
                   validationMessage: ReactiveFormHelper.getValidationMessages,
+                  isRequired: ReactiveFormHelper.isRequiredField(
+                    viewModel.formGroup!,
+                    UserInformationFormFields.address.name,
+                  ),
                 ),
               ],
             ),
@@ -63,6 +85,12 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
   @override
   void onViewModelReady(UserInformationFormModel viewModel) {
     viewModel.initForm(user);
+  }
+
+  @override
+  void onDispose(UserInformationFormModel viewModel) {
+    super.onDispose(viewModel);
+    viewModel.disposeForm();
   }
 
   @override

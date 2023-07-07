@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:microdonations/core/forms_validators/only_text.validator.dart';
 import 'package:microdonations/core/forms_validators/phone_number.validator.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
@@ -9,6 +11,8 @@ enum UserInformationFormFields { name, surname, phone, address }
 
 class UserInformationFormModel extends BaseViewModel {
   FormGroup? _form;
+
+  final List<StreamSubscription<dynamic>> _formSubscriptions = [];
 
   /// Devuelve el formulario del usuario.
   FormGroup? get formGroup => _form;
@@ -36,10 +40,6 @@ class UserInformationFormModel extends BaseViewModel {
         ),
         UserInformationFormFields.phone.name: FormControl<String>(
           value: user.phoneNumber,
-          validators: [
-            Validators.number,
-            const RequiredPhoneNumber(),
-          ],
         ),
         UserInformationFormFields.address.name: FormControl<String>(
           value: _canSetAddres(user) ? _tryParceAddress(user) : '',
@@ -48,6 +48,32 @@ class UserInformationFormModel extends BaseViewModel {
           ],
         ),
       },
+    );
+
+    final _phoneControl = _form!.control(UserInformationFormFields.phone.name);
+
+    _formSubscriptions.add(
+      _phoneControl.valueChanges.listen(
+        (_) {
+          final stringValue = _phoneControl.value as String;
+
+          if (stringValue.isEmpty) {
+            _phoneControl.clearValidators();
+          } else {
+            _phoneControl.setValidators(
+              [
+                Validators.number,
+                const RequiredPhoneNumber(),
+              ],
+            );
+          }
+
+          _phoneControl.updateValueAndValidity(
+            updateParent: false,
+            emitEvent: false,
+          );
+        },
+      ),
     );
   }
 
@@ -59,5 +85,12 @@ class UserInformationFormModel extends BaseViewModel {
   String _tryParceAddress(BaseUser user) {
     final _loggedUser = user as LoggedUser;
     return _loggedUser.address;
+  }
+
+  /// Cancela todas las subscripciones del formulario.
+  void disposeForm() {
+    for (var subscription in _formSubscriptions) {
+      subscription.cancel();
+    }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/common/label_field/label_field.dart';
+
 class CustomStylesTheme {
   /// Colors
   ///
@@ -27,6 +29,7 @@ class CustomStylesTheme {
   static const Color lightGreyColor = Color(0xFF606060);
   static const Color gray100 = Color(0xFFb5b5b5);
   static const Color gray200 = Color(0xFFd4d4d4);
+  static const Color gray300 = Color(0xFF868D96);
   static const Color blackColor = Color(0xFF000000);
 
   /// Logger colors
@@ -275,6 +278,42 @@ class CustomStylesTheme {
     height: 1.33,
     letterSpacing: 0,
   );
+
+  // Input styles
+  static InputDecoration inputDecoration(String label,
+      {bool required = false, String? hintText}) {
+    const _borderRadius = BorderRadius.all(
+      Radius.circular(4),
+    );
+
+    return InputDecoration(
+      label: LabelField(
+        label: label,
+        required: required,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      errorMaxLines: 2,
+      hintText: hintText,
+      border: const OutlineInputBorder(borderRadius: _borderRadius),
+      focusedErrorBorder: const OutlineInputBorder(
+        borderRadius: _borderRadius,
+        borderSide: BorderSide(color: errorColor),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderRadius: _borderRadius,
+        borderSide: BorderSide(color: gray300),
+      ),
+      errorBorder: const OutlineInputBorder(
+        borderRadius: _borderRadius,
+        borderSide: BorderSide(color: errorColor),
+      ),
+      hintStyle: regular14_24.copyWith(color: gray300),
+      errorStyle: regular14_24.copyWith(color: errorColor),
+    );
+  }
 
   /// Theme
   ///

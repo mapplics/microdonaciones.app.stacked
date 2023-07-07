@@ -9,17 +9,15 @@ class CustomInputText extends StackedView<CustomTextFieldModel> {
   final String label;
   final String formControlName;
   final String? hintText;
-  final TextStyle? labelStyle;
-  final TextStyle? valueStyle;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final Map<String, String Function(Object)>? validationMessage;
+  final bool isRequired;
 
   const CustomInputText({
     required this.label,
     required this.formControlName,
-    this.labelStyle,
-    this.valueStyle,
+    this.isRequired = false,
     this.hintText,
     this.validationMessage,
     this.keyboardType = TextInputType.text,
@@ -41,18 +39,13 @@ class CustomInputText extends StackedView<CustomTextFieldModel> {
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           validationMessages: validationMessage,
-          style: valueStyle ??
-              CustomStylesTheme.regular14_16.copyWith(
-                color: CustomStylesTheme.blackColor,
-              ),
-          decoration: InputDecoration(
-            label: Text(
-              label,
-            ),
+          style: CustomStylesTheme.regular14_16.copyWith(
+            color: CustomStylesTheme.blackColor,
+          ),
+          decoration: CustomStylesTheme.inputDecoration(
+            label,
+            required: isRequired,
             hintText: hintText,
-            hintStyle: CustomStylesTheme.bold12_16.copyWith(
-              color: CustomStylesTheme.gray100,
-            ),
           ),
         ),
       ],

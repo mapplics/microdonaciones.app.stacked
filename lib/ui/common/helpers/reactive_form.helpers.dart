@@ -1,4 +1,11 @@
+import 'package:reactive_forms/reactive_forms.dart';
+
 class ReactiveFormHelper {
+  /// Devuelve true si el campo es requerido.
+  /// Devuelve true si el [fieldName] para el [form] pasados por argumentos es requerido.
+  static bool isRequiredField(FormGroup form, String fieldName) =>
+      form.control(fieldName).validators.isNotEmpty;
+
   /// Devuelve los mensajes de error que se deben mostrar para
   /// los distintos campos de errores.
   static Map<String, String Function(Object)>? get getValidationMessages => {
