@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
+import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,7 +18,8 @@ class LoginView extends StackedView<LoginViewModel> {
     LoginViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
+    return CustomScaffold(
+      appbar: const CustomAppbar(title: '', actions: []),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
