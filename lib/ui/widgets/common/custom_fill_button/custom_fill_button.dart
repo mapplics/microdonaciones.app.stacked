@@ -9,7 +9,7 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
   final Function action;
   final Widget? icon;
   final TextStyle? textStyle;
-  final Colors? backgroundColor;
+  final Color? backgroundColor;
 
   const CustomFillButton({
     required this.label,
@@ -26,21 +26,27 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
     CustomFillButtonModel viewModel,
     Widget? child,
   ) {
-    return ElevatedButton.icon(
-      label: Text(
-        label,
-        style: textStyle ?? CustomStylesTheme.regular16_20,
-      ),
-      icon: (icon != null) ? icon! : const SizedBox(),
-      onPressed: () => action(),
-      style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(
-          (backgroundColor ?? CustomStylesTheme.primaryColor) as Color?,
+    return SizedBox(
+      height: 37,
+      child: ElevatedButton.icon(
+        label: Text(
+          label,
+          style: textStyle ??
+              CustomStylesTheme.bold14_20.copyWith(
+                color: Colors.white,
+              ),
         ),
-        shape: const MaterialStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(6),
+        icon: (icon != null) ? icon! : const SizedBox(),
+        onPressed: () => action(),
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(
+            (backgroundColor ?? CustomStylesTheme.primaryColor),
+          ),
+          shape: const MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(6),
+              ),
             ),
           ),
         ),

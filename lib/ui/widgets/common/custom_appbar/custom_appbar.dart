@@ -27,13 +27,14 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
       ),
       centerTitle: true,
       backgroundColor: Colors.transparent,
-      actions: [
-        IconButton.filled(
-          onPressed: viewModel.navigateToPersonalInformation,
-          color: CustomStylesTheme.primaryColor,
-          icon: Icon(PhosphorIcons.bold.user, color: Colors.white),
-        )
-      ],
+      actions: actions ??
+          [
+            IconButton.filled(
+              onPressed: viewModel.navigateToPersonalInformation,
+              color: CustomStylesTheme.primaryColor,
+              icon: Icon(PhosphorIcons.bold.user, color: Colors.white),
+            )
+          ],
     );
   }
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
+import 'package:microdonations/ui/widgets/common/custom_fill_button/custom_fill_button.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form.dart';
 import 'package:stacked/stacked.dart';
@@ -23,10 +26,28 @@ class PersonalInformationView
     Widget? child,
   ) {
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: FocusHelper.closeKeyboard,
       child: CustomScaffold(
-        appbar: const CustomAppbar(title: 'Formulario'),
-        body: UserInformationForm(user: viewParameters.user),
+        appbar: const CustomAppbar(
+          title: 'Datos personales',
+          actions: [],
+        ),
+        body: Column(
+          children: [
+            UserInformationForm(
+              user: viewParameters.user,
+              onchange: (form) => viewModel.updateForm = form,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 43.0),
+              child: CustomFillButton(
+                backgroundColor: CustomStylesTheme.tertiaryColor,
+                label: 'Guardar',
+                action: viewModel.onSaveUserData,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

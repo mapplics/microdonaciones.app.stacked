@@ -8,10 +8,17 @@ import '../custom_text_field/custom_input_text.dart';
 import '../user_avatar/user_avatar.dart';
 import 'user_information_form_model.dart';
 
+typedef OnChangeValue = void Function(FormGroup form);
+
 class UserInformationForm extends StackedView<UserInformationFormModel> {
   final BaseUser user;
+  final OnChangeValue onchange;
 
-  const UserInformationForm({required this.user, super.key});
+  const UserInformationForm({
+    required this.onchange,
+    required this.user,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -97,5 +104,5 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
   UserInformationFormModel viewModelBuilder(
     BuildContext context,
   ) =>
-      UserInformationFormModel();
+      UserInformationFormModel(action: onchange);
 }
