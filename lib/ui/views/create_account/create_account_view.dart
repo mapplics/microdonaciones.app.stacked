@@ -29,9 +29,7 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
           children: [
             UserInformationForm(
               user: viewParameters.user,
-              onchange: (form) {
-                print(form.valid);
-              },
+              onchange: (form) => viewModel.updateForm = form,
             ),
             InkWell(
               onTap: () {},
@@ -55,7 +53,7 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
               child: CustomFillButton(
                 backgroundColor: CustomStylesTheme.tertiaryColor,
                 label: 'Crear una cuenta',
-                action: () {},
+                action: viewModel.onSaveUserData,
               ),
             )
           ],
