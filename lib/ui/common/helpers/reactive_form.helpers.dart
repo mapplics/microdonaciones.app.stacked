@@ -6,6 +6,11 @@ class ReactiveFormHelper {
   static bool isRequiredField(FormGroup form, String fieldName) =>
       form.control(fieldName).validators.isNotEmpty;
 
+  /// Devuelve el valor que tenga el control [fieldName] en el [form].
+  static dynamic getControlValue(FormGroup form, String fieldName) {
+    return form.control(fieldName).value;
+  }
+
   /// Devuelve los mensajes de error que se deben mostrar para
   /// los distintos campos de errores.
   static Map<String, String Function(Object)>? get getValidationMessages => {

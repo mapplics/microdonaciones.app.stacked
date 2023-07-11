@@ -72,16 +72,20 @@ class DioClient {
     _dio.interceptors.addAll([
       InterceptorsWrapper(
         onRequest: (options, handler) async {
+          logWarn(
+              'Es distinto de null? ${_authService.call().authModel != null}');
           // Do something before request is sent
 
           try {
             if (_authService.call().isUserLogged) {
-              if (Jwt.isExpired(_authService.call().authModel!.token)) {
-                await _authService.call().logout();
-              } else {
-                options.headers['Authorization'] =
-                    _authService.call().authModel!.bearer;
-              }
+              // if (Jwt.isExpired(_authService.call().authModel!.token)) {
+              //   logError('Token vencido!!');
+              //   await _authService.call().logout();
+              // } else {
+              logWarn('Meto token');
+              options.headers['Authorization'] =
+                  _authService.call().authModel!.bearer;
+              // }
             }
           } catch (e) {
             logError('Error ${e.toString()}');

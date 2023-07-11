@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 
 import '../../../../core/form/typedef/onchange.typedef.dart';
 
-enum UserInformationFormFields { name, surname, phone, address }
+enum UserInformationFormFields { firstname, lastname, phone, address }
 
 class UserInformationFormModel extends BaseViewModel {
   final OnChangeForm onChange;
@@ -30,14 +30,14 @@ class UserInformationFormModel extends BaseViewModel {
   void initForm(BaseUser user) {
     _form = FormGroup(
       {
-        UserInformationFormFields.name.name: FormControl<String>(
+        UserInformationFormFields.firstname.name: FormControl<String>(
           value: user.firstname,
           validators: [
             Validators.required,
             const RequiredOnlyText(),
           ],
         ),
-        UserInformationFormFields.surname.name: FormControl<String>(
+        UserInformationFormFields.lastname.name: FormControl<String>(
           value: user.lastname,
           validators: [
             Validators.required,
@@ -96,7 +96,7 @@ class UserInformationFormModel extends BaseViewModel {
   /// el contenido del campo address.
   String _tryParceAddress(BaseUser user) {
     final _loggedUser = user as LoggedUser;
-    return _loggedUser.address;
+    return _loggedUser.address.address;
   }
 
   /// Cancela todas las subscripciones del formulario.

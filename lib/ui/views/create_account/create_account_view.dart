@@ -44,7 +44,7 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
               child: CustomFillButton(
                 backgroundColor: CustomStylesTheme.tertiaryColor,
                 label: 'Crear una cuenta',
-                action: viewModel.onSaveUserData,
+                action: () => viewModel.onSaveUserData(context),
               ),
             )
           ],

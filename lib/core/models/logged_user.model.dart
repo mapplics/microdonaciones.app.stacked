@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
@@ -26,17 +24,17 @@ class LoggedUser implements BaseUser {
     this.phone = '',
     this.avatarUrl = '',
   })  : assert(firstname.isNotEmpty, 'The name should not be empty'),
-        assert(lastname.isNotEmpty, 'The surname should not be empty'),
-        assert(!address.isNull, 'The address should not be null');
+        assert(lastname.isNotEmpty, 'The surname should not be empty');
 
-  /// Crea un usuario a partir de un [LoggedUser] de firebase.
-  static LoggedUser createFromFirebaseUser(FirebaseUser user) {
+  /// Crea una instancia de [LoggedUser] desde un Customer.
+  static LoggedUser createOne(Map<String, dynamic> data) {
     return LoggedUser(
-      firstname: user.firstname,
-      lastname: user.lastname,
-      avatarUrl: user.avatarUrl ?? '',
-      phone: user.phone ?? '',
-      address: UserAddress(address: 'Direccion testing'),
+      firstname: data['firstname'],
+      lastname: data['lastname'],
+      phone: data['phone'],
+      address: UserAddress(
+        address: data['addressPrimary']['address'],
+      ),
     );
   }
 

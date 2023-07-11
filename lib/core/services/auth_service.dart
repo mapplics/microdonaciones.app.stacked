@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:microdonations/core/models/auth.model.dart';
 import 'package:microdonations/core/models/social_login_response.model.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../../ui/common/helpers/storage.helpers.dart';
 import '../interceptor/dio.interceptor.dart';
@@ -10,7 +9,7 @@ import '../interceptor/dio.interceptor.dart';
 class AuthService {
   final dio = DioClient().dio;
 
-  String? apiUrl = dotenv.env['API_URL'];
+  final String? _apiUrl = dotenv.env['API_URL'];
 
   /// Modelo que contiene el token del usuario logueado.
   AuthModel? _authModel;
@@ -19,7 +18,7 @@ class AuthService {
   bool get isUserLogged => (_authModel != null);
 
   /// Setea el [AuthModel] del usuario.
-  void setAuthModel(String token) => _authModel = AuthModel(token: token);
+  void setAuthModel(String token) => (_authModel = AuthModel(token: token));
 
   /// Devuelve el token del Google del [_authModel]
   get authToken => _authModel?.token ?? 'token-not-found';
@@ -35,7 +34,7 @@ class AuthService {
   Future<SocialLoginResponse> login(String email, String token) async {
     try {
       final response = await dio.post(
-        'http://10.0.2.2:8080/api/v1/social-login',
+        '${_apiUrl}social-login',
         data: {
           'email': email,
           'token': token,
@@ -46,8 +45,9 @@ class AuthService {
       );
 
       /// Parseo la respuesta de la API.
-      final socialLoginResp =
-          SocialLoginResponse.createOne(response.data['data']);
+      final socialLoginResp = SocialLoginResponse.createOne(
+        response.data['data'],
+      );
 
       setAuthModel(socialLoginResp.token);
 

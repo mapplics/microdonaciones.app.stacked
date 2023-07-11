@@ -49,6 +49,7 @@ void main() {
     runApp(const MyApp());
   }, (error, stack) {
     logError('<main.dart> ${error.toString()}');
+    logError('<main.dart> ${stack.toString()}');
   });
 }
 

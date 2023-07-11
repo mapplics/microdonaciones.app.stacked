@@ -7,27 +7,28 @@ import '../interceptor/dio.interceptor.dart';
 import '../models/logged_user.model.dart';
 
 class UserService {
-  final dio = DioClient().dio;
+  final _dio = DioClient().dio;
 
-  String? apiUrl = dotenv.env['API_URL'];
+  final String? _apiUrl = dotenv.env['API_URL'];
 
   late LoggedUser _loggedUser;
 
-  void set(LoggedUser user) => _loggedUser = user;
+  set setLoggedUser(LoggedUser user) => _loggedUser = user;
 
   LoggedUser get loggedUser => _loggedUser;
 
-  Future<void> updateUser(UpdateUserRequest updateUserRequest) async {
+  Future<LoggedUser> updateUser(UpdateUserRequest updateUserRequest) async {
     try {
-      final response = await dio.put(
-        '${apiUrl}customers/update-me',
+      final response = await _dio.put(
+        '${_apiUrl}customers/update-me',
         data: updateUserRequest.toJson(),
-        options: Options(
-          responseType: ResponseType.json,
-        ),
+        options: Options(responseType: ResponseType.json),
       );
+
+      return LoggedUser.createOne(response.data['data']);
     } catch (e) {
       logError('No se pudo actualizar el usuario! ${e.toString()}');
+      rethrow;
     }
   }
 }

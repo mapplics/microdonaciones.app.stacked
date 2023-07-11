@@ -11,7 +11,8 @@ class HomeViewModel extends BaseViewModel {
   /// Desloguea al usuario y navega al login.
   Future<void> logout() async {
     await _authService.logout();
-    _navigationService.replaceWithLoginView();
+    rebuildUi();
+    // _navigationService.replaceWithLoginView();
   }
 
   /// Devuelve true si el usuario esta logueado.

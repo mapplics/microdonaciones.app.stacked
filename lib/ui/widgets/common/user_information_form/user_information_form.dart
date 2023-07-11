@@ -41,22 +41,22 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
                   child: CustomInputText(
                     label: 'Nombre',
                     hintText: 'Ingresá tu nombre',
-                    formControlName: UserInformationFormFields.name.name,
+                    formControlName: UserInformationFormFields.firstname.name,
                     validationMessage: ReactiveFormHelper.getValidationMessages,
                     isRequired: ReactiveFormHelper.isRequiredField(
                       viewModel.formGroup!,
-                      UserInformationFormFields.name.name,
+                      UserInformationFormFields.firstname.name,
                     ),
                   ),
                 ),
                 CustomInputText(
                   label: 'Apellido',
                   hintText: 'Ingresá tu apellido',
-                  formControlName: UserInformationFormFields.surname.name,
+                  formControlName: UserInformationFormFields.lastname.name,
                   validationMessage: ReactiveFormHelper.getValidationMessages,
                   isRequired: ReactiveFormHelper.isRequiredField(
                     viewModel.formGroup!,
-                    UserInformationFormFields.surname.name,
+                    UserInformationFormFields.lastname.name,
                   ),
                 ),
                 Padding(
