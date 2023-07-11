@@ -1,17 +1,28 @@
+import 'base_address.abstract.dart';
+
 /// Clase para enviar a la API y actualizar la direccion del usuario
-class UpdateAddressRequest {
-  final String address;
-  final String floor;
-  final String apartment;
-  final String latitude;
-  final String longitude;
+class UpdateAddressRequest implements BaseAddress {
+  @override
+  String address;
+
+  @override
+  String? floor;
+
+  @override
+  String? apartment;
+
+  @override
+  String? latitude;
+
+  @override
+  String? longitude;
 
   UpdateAddressRequest({
     required this.address,
-    required this.floor,
-    required this.apartment,
-    required this.latitude,
-    required this.longitude,
+    this.floor,
+    this.apartment,
+    this.latitude,
+    this.longitude,
   });
 
   /// Devuelve el JSON que espera la API cuando se quiere actualizar la

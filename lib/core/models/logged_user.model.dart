@@ -1,5 +1,8 @@
+import 'dart:js_interop';
+
 import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
+import 'package:microdonations/core/models/user_address.model.dart';
 
 class LoggedUser implements BaseUser {
   @override
@@ -11,10 +14,10 @@ class LoggedUser implements BaseUser {
   @override
   String? phone;
 
-  String address;
-
   @override
   String? avatarUrl;
+
+  UserAddress address;
 
   LoggedUser({
     required this.firstname,
@@ -24,7 +27,7 @@ class LoggedUser implements BaseUser {
     this.avatarUrl = '',
   })  : assert(firstname.isNotEmpty, 'The name should not be empty'),
         assert(lastname.isNotEmpty, 'The surname should not be empty'),
-        assert(address.isNotEmpty, 'The address should not be empty');
+        assert(!address.isNull, 'The address should not be null');
 
   /// Crea un usuario a partir de un [LoggedUser] de firebase.
   static LoggedUser createFromFirebaseUser(FirebaseUser user) {
@@ -33,7 +36,7 @@ class LoggedUser implements BaseUser {
       lastname: user.lastname,
       avatarUrl: user.avatarUrl ?? '',
       phone: user.phone ?? '',
-      address: '',
+      address: UserAddress(address: 'Direccion testing'),
     );
   }
 
