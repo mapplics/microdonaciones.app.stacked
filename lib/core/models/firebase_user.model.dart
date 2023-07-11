@@ -3,21 +3,21 @@ import 'package:microdonations/core/models/base_user.abstract.dart';
 
 class FirebaseUser implements BaseUser {
   @override
-  String name;
+  String firstname;
 
   @override
-  String surname;
+  String lastname;
 
   @override
-  String? phoneNumber;
+  String? phone;
 
   @override
   String? avatarUrl;
 
   FirebaseUser({
-    required this.name,
-    required this.surname,
-    this.phoneNumber,
+    required this.firstname,
+    required this.lastname,
+    this.phone,
     this.avatarUrl,
   });
 
@@ -25,15 +25,15 @@ class FirebaseUser implements BaseUser {
   /// el [User] que devuelve Firebase al hacer un login.
   static FirebaseUser createOne(User user) {
     return FirebaseUser(
-      name: user.displayName?.split(" ")[0] ?? 'user',
-      surname: user.displayName?.split(" ")[1] ?? 'anonymous',
+      firstname: user.displayName?.split(" ")[0] ?? 'user',
+      lastname: user.displayName?.split(" ")[1] ?? 'anonymous',
       avatarUrl: user.photoURL,
-      phoneNumber: user.phoneNumber,
+      phone: user.phoneNumber,
     );
   }
 
   @override
-  String get fullName => '$name $surname';
+  String get fullName => '$firstname $lastname';
 
   @override
   String getInitials() {

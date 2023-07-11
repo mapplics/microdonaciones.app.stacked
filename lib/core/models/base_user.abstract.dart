@@ -1,7 +1,7 @@
 abstract class BaseUser {
-  String name;
-  String surname;
-  String? phoneNumber;
+  String firstname;
+  String lastname;
+  String? phone;
   String? avatarUrl;
 
   /// Devuelve las iniciales del usuario.
@@ -11,8 +11,8 @@ abstract class BaseUser {
   String get fullName;
 
   BaseUser({
-    required this.name,
-    required this.surname,
-    this.phoneNumber = '',
+    required this.firstname,
+    required this.lastname,
+    this.phone = '',
   });
 }

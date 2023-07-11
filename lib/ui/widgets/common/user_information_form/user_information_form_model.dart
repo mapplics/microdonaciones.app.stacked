@@ -31,21 +31,21 @@ class UserInformationFormModel extends BaseViewModel {
     _form = FormGroup(
       {
         UserInformationFormFields.name.name: FormControl<String>(
-          value: user.name,
+          value: user.firstname,
           validators: [
             Validators.required,
             const RequiredOnlyText(),
           ],
         ),
         UserInformationFormFields.surname.name: FormControl<String>(
-          value: user.surname,
+          value: user.lastname,
           validators: [
             Validators.required,
             const RequiredOnlyText(),
           ],
         ),
         UserInformationFormFields.phone.name: FormControl<String>(
-          value: user.phoneNumber,
+          value: user.phone,
         ),
         UserInformationFormFields.address.name: FormControl<String>(
           value: _canSetAddres(user) ? _tryParceAddress(user) : '',

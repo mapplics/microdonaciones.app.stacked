@@ -14,8 +14,8 @@ class CustomAppbarModel extends BaseViewModel {
       _navigationService.navigateToPersonalInformationView(
         viewParameters: UserInformationFormParameters(
           LoggedUser(
-            name: 'Gonzalo',
-            surname: 'Etchegaray',
+            firstname: 'Gonzalo',
+            lastname: 'Etchegaray',
             address: 'San juan 1584',
           ),
         ),

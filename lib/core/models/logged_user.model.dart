@@ -3,13 +3,13 @@ import 'package:microdonations/core/models/base_user.abstract.dart';
 
 class LoggedUser implements BaseUser {
   @override
-  String name;
+  String firstname;
 
   @override
-  String surname;
+  String lastname;
 
   @override
-  String? phoneNumber;
+  String? phone;
 
   String address;
 
@@ -17,28 +17,28 @@ class LoggedUser implements BaseUser {
   String? avatarUrl;
 
   LoggedUser({
-    required this.name,
-    required this.surname,
+    required this.firstname,
+    required this.lastname,
     required this.address,
-    this.phoneNumber = '',
+    this.phone = '',
     this.avatarUrl = '',
-  })  : assert(name.isNotEmpty, 'The name should not be empty'),
-        assert(surname.isNotEmpty, 'The surname should not be empty'),
+  })  : assert(firstname.isNotEmpty, 'The name should not be empty'),
+        assert(lastname.isNotEmpty, 'The surname should not be empty'),
         assert(address.isNotEmpty, 'The address should not be empty');
 
   /// Crea un usuario a partir de un [LoggedUser] de firebase.
   static LoggedUser createFromFirebaseUser(FirebaseUser user) {
     return LoggedUser(
-      name: user.name,
-      surname: user.surname,
+      firstname: user.firstname,
+      lastname: user.lastname,
       avatarUrl: user.avatarUrl ?? '',
-      phoneNumber: user.phoneNumber ?? '',
+      phone: user.phone ?? '',
       address: '',
     );
   }
 
   @override
-  String get fullName => '$name $surname';
+  String get fullName => '$firstname $lastname';
 
   @override
   String getInitials() {
