@@ -20,7 +20,7 @@ class UserService {
   Future<void> updateUser(UpdateUserRequest updateUserRequest) async {
     try {
       final response = await dio.put(
-        '${apiUrl}social-login',
+        '${apiUrl}customers/update-me',
         data: updateUserRequest.toJson(),
         options: Options(
           responseType: ResponseType.json,
