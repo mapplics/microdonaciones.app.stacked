@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/firebase_user.model.dart';
@@ -16,9 +18,11 @@ class LoginViewModel extends BaseViewModel {
   /// Inicia el flujo de iniciar sesion con Google.
   /// Abre el popUp para que el usuario eliga una cuenta
   /// de la cual iniciar sesion.
-  Future<void> useGoogleAuthentication() async {
+  Future<void> useGoogleAuthentication(BuildContext context) async {
+    context.loaderOverlay.show();
     final result = await FirebaseAuthenticationService().signInWithGoogle();
-    _handleAuthenticationResponse(result);
+    await _handleAuthenticationResponse(result);
+    context.loaderOverlay.hide();
   }
 
   /// Recibe un [FirebaseAuthenticationResult] y si la respuesta fue exitosa
@@ -26,21 +30,17 @@ class LoginViewModel extends BaseViewModel {
   Future<void> _handleAuthenticationResponse(
       FirebaseAuthenticationResult authResult) async {
     if (authResult.hasError) {
-      logError(
-        '<LoginViewModel> Error al hacer el login ${authResult.errorMessage}',
-      );
+      logError('Social login error ${authResult.errorMessage}');
     } else {
       try {
         /// Recupero mi token.
         final _firebaseToken = await authResult.user!.getIdToken();
 
+        /// Hago login contra API.
         _authService.call().login(authResult.user!.email!, _firebaseToken);
 
-        // /// Seteo mi [AuthModel]
-        // _authService.call().setAuthModel(_firebaseToken);
-
-        // /// Guardo en el storage el inicio de sesion.
-        // StorageHelper.saveAuthModel(_authService.call().authModel!);
+        //// Guardo en el storage el inicio de sesion.
+        StorageHelper.saveAuthModel(_authService.call().authModel!);
 
         // /// Navego a la pagina.
         // _navigationService.navigateToCreateAccountView(

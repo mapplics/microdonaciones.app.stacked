@@ -50,7 +50,7 @@ class LoginView extends StackedView<LoginViewModel> {
                     color: CustomStylesTheme.tertiaryColor,
                     size: 30.0,
                   ),
-                  action: viewModel.useGoogleAuthentication,
+                  action: () => viewModel.useGoogleAuthentication(context),
                 ),
               ),
             ),
