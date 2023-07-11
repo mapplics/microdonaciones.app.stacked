@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:microdonations/core/models/auth.model.dart';
+import 'package:microdonations/core/models/social_login_response.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../../ui/common/helpers/storage.helpers.dart';
@@ -31,7 +32,7 @@ class AuthService {
 
   /// Login para el usuario.
   /// Envia el email y el token de Google.
-  Future<void> login(String email, String token) async {
+  Future<SocialLoginResponse> login(String email, String token) async {
     try {
       final response = await dio.post(
         'http://10.0.2.2:8080/api/v1/social-login',
@@ -44,9 +45,13 @@ class AuthService {
         ),
       );
 
-      setAuthModel(response.data['data']['token']);
+      /// Parseo la respuesta de la API.
+      final socialLoginResp =
+          SocialLoginResponse.createOne(response.data['data']);
 
-      logSucess(_authModel?.bearer ?? 'No disponible');
+      setAuthModel(socialLoginResp.token);
+
+      return socialLoginResp;
     } on DioException catch (e) {
       throw DioClient.parseDioException(e);
     }
