@@ -12,6 +12,7 @@ import 'package:microdonations/ui/views/create_account/create_account_view.dart'
 import 'package:microdonations/services/user_api_service.dart';
 
 import '../services/auth_service.dart';
+import 'package:microdonations/services/auth_api_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -31,6 +32,7 @@ import '../services/auth_service.dart';
     LazySingleton(classType: AuthService),
     LazySingleton(classType: UserService),
     LazySingleton(classType: UserApiService),
+    LazySingleton(classType: AuthApiService),
 // @stacked-service
   ],
   bottomsheets: [
