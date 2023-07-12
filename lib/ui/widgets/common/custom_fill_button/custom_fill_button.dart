@@ -26,27 +26,25 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
     CustomFillButtonModel viewModel,
     Widget? child,
   ) {
-    return SizedBox(
-      height: 37,
-      child: ElevatedButton.icon(
-        label: Text(
-          label,
-          style: textStyle ??
-              CustomStylesTheme.bold14_20.copyWith(
-                color: Colors.white,
-              ),
+    return ElevatedButton.icon(
+      label: Text(
+        label,
+        style: textStyle ??
+            CustomStylesTheme.bold14_20.copyWith(
+              color: Colors.white,
+            ),
+      ),
+      icon: (icon != null) ? icon! : const SizedBox(),
+      onPressed: () => action(),
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(
+          (backgroundColor ?? CustomStylesTheme.primaryColor),
         ),
-        icon: (icon != null) ? icon! : const SizedBox(),
-        onPressed: () => action(),
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(
-            (backgroundColor ?? CustomStylesTheme.primaryColor),
-          ),
-          shape: const MaterialStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(6),
-              ),
+        minimumSize: MaterialStatePropertyAll(CustomStylesTheme.minimumBtnSize),
+        shape: const MaterialStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(6),
             ),
           ),
         ),
