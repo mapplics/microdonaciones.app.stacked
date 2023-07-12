@@ -28,7 +28,7 @@ class UserService {
   //// Actualizar los datos personales del usuario logueado.
   Future<void> updateProfile(UpdateUserRequest updateUserRequest) async {
     try {
-      await _userApi.updateProfile(updateUserRequest);
+      _loggedUser = await _userApi.updateProfile(updateUserRequest);
     } catch (e) {
       rethrow;
     }

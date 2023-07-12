@@ -43,7 +43,7 @@ class PersonalInformationView
               child: CustomFillButton(
                 backgroundColor: CustomStylesTheme.tertiaryColor,
                 label: 'Guardar',
-                action: viewModel.onSaveUserData,
+                action: () => viewModel.onSaveUserData(context),
               ),
             )
           ],
