@@ -1,5 +1,7 @@
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/models/logged_user.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,6 +11,12 @@ import '../../../../app/app.locator.dart';
 class CustomAppbarModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
+  final _authService = locator<AuthService>();
+
+  /// Devuelve true si deberia mostrar el avatar con las iniciales del user.
+  bool get showAvatarWithInitials => _authService.isUserLogged;
+
+  LoggedUser get user => _userService.loggedUser;
 
   /// Navega a la pantalla de datos personales.
   void navigateToPersonalInformation() =>

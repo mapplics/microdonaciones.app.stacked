@@ -6,13 +6,17 @@ import 'package:stacked/stacked.dart';
 import '../../../common/app_theme.dart';
 import 'user_avatar_model.dart';
 
+enum UserAvatarSize { small, bigger }
+
 class UserAvatar extends StackedView<UserAvatarModel> {
   final bool canUploadImg;
   final BaseUser user;
+  final UserAvatarSize size;
 
   const UserAvatar({
     required this.user,
     this.canUploadImg = false,
+    this.size = UserAvatarSize.small,
     super.key,
   });
 
@@ -26,22 +30,23 @@ class UserAvatar extends StackedView<UserAvatarModel> {
       clipBehavior: Clip.none,
       children: [
         Container(
-          margin: const EdgeInsets.only(top: 60),
+          // margin: const EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: CustomStylesTheme.blackColor.withOpacity(0.3),
-                  blurRadius: 10,
-                )
-              ],
-              color: CustomStylesTheme.blackColor),
+            shape: BoxShape.circle,
+            color: CustomStylesTheme.blackColor,
+            boxShadow: [
+              BoxShadow(
+                color: CustomStylesTheme.blackColor.withOpacity(0.3),
+                blurRadius: 10,
+              )
+            ],
+          ),
           child: CircleAvatar(
             backgroundColor: CustomStylesTheme.primaryColor,
-            radius: 61,
+            radius: viewModel.getRadius,
             child: Text(
               user.getInitials(),
-              style: CustomStylesTheme.bold34_44.copyWith(color: Colors.white),
+              style: viewModel.initialsTextStyle,
             ),
           ),
         ),
@@ -68,5 +73,5 @@ class UserAvatar extends StackedView<UserAvatarModel> {
   UserAvatarModel viewModelBuilder(
     BuildContext context,
   ) =>
-      UserAvatarModel();
+      UserAvatarModel(size);
 }

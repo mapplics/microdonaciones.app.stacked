@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/ui/widgets/common/user_avatar/user_avatar.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,10 +30,39 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
       backgroundColor: Colors.transparent,
       actions: actions ??
           [
-            IconButton.filled(
-              onPressed: viewModel.navigateToPersonalInformation,
-              color: CustomStylesTheme.primaryColor,
-              icon: Icon(PhosphorIcons.bold.user, color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: viewModel.showAvatarWithInitials
+                  ? UserAvatar(
+                      user: viewModel.user,
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: CustomStylesTheme.blackColor.withOpacity(
+                              0.1,
+                            ),
+                            offset: Offset.fromDirection(-150.0),
+                            spreadRadius: 0.01,
+                            blurRadius: 7,
+                          )
+                        ],
+                      ),
+                      child: IconButton.filled(
+                        onPressed: null,
+                        style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                            CustomStylesTheme.secondaryColor,
+                          ),
+                        ),
+                        icon: Icon(
+                          PhosphorIcons.bold.user,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
             )
           ],
     );
