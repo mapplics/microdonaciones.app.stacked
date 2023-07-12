@@ -33,8 +33,11 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: viewModel.showAvatarWithInitials
-                  ? UserAvatar(
-                      user: viewModel.user,
+                  ? InkWell(
+                      onTap: viewModel.navigateToPersonalInformation,
+                      child: UserAvatar(
+                        user: viewModel.user,
+                      ),
                     )
                   : Container(
                       decoration: BoxDecoration(
