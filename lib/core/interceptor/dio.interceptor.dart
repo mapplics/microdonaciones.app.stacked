@@ -72,8 +72,6 @@ class DioClient {
     _dio.interceptors.addAll([
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          logWarn(
-              'Es distinto de null? ${_authService.call().authModel != null}');
           // Do something before request is sent
 
           try {
@@ -82,7 +80,6 @@ class DioClient {
               //   logError('Token vencido!!');
               //   await _authService.call().logout();
               // } else {
-              logWarn('Meto token');
               options.headers['Authorization'] =
                   _authService.call().authModel!.bearer;
               // }
