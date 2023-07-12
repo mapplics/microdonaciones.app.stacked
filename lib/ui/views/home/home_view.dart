@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
-import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:stacked/stacked.dart';
 
@@ -107,8 +106,6 @@ class HomeView extends StackedView<HomeViewModel> {
 
           /// Seccion notificaciones y historial donaciones.
           if (viewModel.isUserLogged) _buildTiles(),
-          if (viewModel.isUserLogged)
-            CustomOutlineButton(label: 'Desloguear', action: viewModel.logout),
           const Spacer(),
 
           /// Seccion para ser colaborador logistico.
