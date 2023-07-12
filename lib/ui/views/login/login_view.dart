@@ -19,7 +19,10 @@ class LoginView extends StackedView<LoginViewModel> {
     Widget? child,
   ) {
     return CustomScaffold(
-      appbar: const CustomAppbar(title: '', actions: []),
+      appbar: const CustomAppbar(
+        title: '',
+        showActions: false,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

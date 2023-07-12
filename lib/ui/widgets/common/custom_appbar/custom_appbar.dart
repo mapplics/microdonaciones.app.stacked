@@ -9,9 +9,15 @@ import 'custom_appbar_model.dart';
 class CustomAppbar extends StackedView<CustomAppbarModel>
     implements PreferredSizeWidget {
   final List<Widget>? actions;
+  final bool showActions;
   final String title;
 
-  const CustomAppbar({required this.title, this.actions, super.key});
+  const CustomAppbar({
+    required this.title,
+    this.actions,
+    this.showActions = true,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -28,46 +34,48 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
       ),
       centerTitle: true,
       backgroundColor: Colors.transparent,
-      actions: actions ??
-          [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: viewModel.showAvatarWithInitials
-                  ? InkWell(
-                      onTap: viewModel.navigateToPersonalInformation,
-                      child: UserAvatar(
-                        user: viewModel.user,
-                      ),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: CustomStylesTheme.blackColor.withOpacity(
-                              0.1,
+      actions: showActions
+          ? actions ??
+              [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: viewModel.showAvatarWithInitials
+                      ? InkWell(
+                          onTap: viewModel.navigateToPersonalInformation,
+                          child: UserAvatar(
+                            user: viewModel.user,
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: CustomStylesTheme.blackColor.withOpacity(
+                                  0.1,
+                                ),
+                                offset: Offset.fromDirection(-150.0),
+                                spreadRadius: 0.01,
+                                blurRadius: 7,
+                              )
+                            ],
+                          ),
+                          child: IconButton.filled(
+                            onPressed: null,
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                CustomStylesTheme.secondaryColor,
+                              ),
                             ),
-                            offset: Offset.fromDirection(-150.0),
-                            spreadRadius: 0.01,
-                            blurRadius: 7,
-                          )
-                        ],
-                      ),
-                      child: IconButton.filled(
-                        onPressed: null,
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                            CustomStylesTheme.secondaryColor,
+                            icon: Icon(
+                              PhosphorIcons.bold.user,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        icon: Icon(
-                          PhosphorIcons.bold.user,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-            )
-          ],
+                )
+              ]
+          : [],
     );
   }
 

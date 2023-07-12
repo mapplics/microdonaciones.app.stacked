@@ -30,7 +30,7 @@ class PersonalInformationView
       child: CustomScaffold(
         appbar: const CustomAppbar(
           title: 'Datos personales',
-          actions: [],
+          showActions: false,
         ),
         body: Column(
           children: [
