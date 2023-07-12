@@ -8,10 +8,13 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../app/app.locator.dart';
 
-class CustomAppbarModel extends BaseViewModel {
+class CustomAppbarModel extends ReactiveViewModel {
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
   final _authService = locator<AuthService>();
+
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve true si deberia mostrar el avatar con las iniciales del user.
   bool get showAvatarWithInitials => _authService.isUserLogged;
