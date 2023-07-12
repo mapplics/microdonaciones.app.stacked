@@ -3,6 +3,7 @@ import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_fill_button/custom_fill_button.dart';
+import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form.dart';
 import 'package:stacked/stacked.dart';
@@ -39,12 +40,16 @@ class PersonalInformationView
               onchange: (form) => viewModel.updateForm = form,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 43.0),
+              padding: const EdgeInsets.only(top: 43.0, bottom: 20.0),
               child: CustomFillButton(
                 backgroundColor: CustomStylesTheme.tertiaryColor,
                 label: 'Guardar',
                 action: () => viewModel.onSaveUserData(context),
               ),
+            ),
+            CustomOutlineButton(
+              label: 'Desloguear',
+              action: viewModel.logout,
             )
           ],
         ),

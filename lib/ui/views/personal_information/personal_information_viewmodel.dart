@@ -3,6 +3,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
@@ -13,6 +14,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class PersonalInformationViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
+  final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
   late FormGroup _form;
 
@@ -57,5 +59,11 @@ class PersonalInformationViewModel extends BaseViewModel {
     } finally {
       context.loaderOverlay.hide();
     }
+  }
+
+  /// Desloguea al usuario y navega al login.
+  Future<void> logout() async {
+    await _authService.logout();
+    _navigationService.popRepeated(1);
   }
 }

@@ -4,16 +4,12 @@ import 'package:microdonations/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends ReactiveViewModel {
   final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
 
-  /// Desloguea al usuario y navega al login.
-  Future<void> logout() async {
-    await _authService.logout();
-    rebuildUi();
-    // _navigationService.replaceWithLoginView();
-  }
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve true si el usuario esta logueado.
   bool get isUserLogged => _authService.isUserLogged;
