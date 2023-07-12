@@ -32,9 +32,13 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                UserAvatar(
-                  canUploadImg: true,
-                  user: user,
+                Container(
+                  margin: const EdgeInsets.only(top: 60),
+                  child: UserAvatar(
+                    user: user,
+                    size: UserAvatarSize.bigger,
+                    canUploadImg: true,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 66, bottom: 24.0),
