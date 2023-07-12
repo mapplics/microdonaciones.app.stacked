@@ -1,59 +1,43 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/auth.model.dart';
-import 'package:microdonations/core/models/social_login_response.model.dart';
+import 'package:microdonations/services/auth_api_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
 
-import '../../ui/common/helpers/storage.helpers.dart';
-import '../core/interceptor/dio.interceptor.dart';
+import '../core/models/social_login_response.model.dart';
 
 class AuthService {
-  final dio = DioClient().dio;
-
-  final String? _apiUrl = dotenv.env['API_URL'];
+  final _authApi = locator<AuthApiService>();
 
   /// Modelo que contiene el token del usuario logueado.
   AuthModel? _authModel;
 
-  /// Devuelve true si el usuario esta logueado.
-  bool get isUserLogged => (_authModel != null);
-
   /// Setea el [AuthModel] del usuario.
   void setAuthModel(String token) => (_authModel = AuthModel(token: token));
-
-  /// Devuelve el token del Google del [_authModel]
-  get authToken => _authModel?.token ?? 'token-not-found';
 
   /// Devuelve el [AuthModel].
   AuthModel? get authModel => _authModel;
 
-  /// Intenta recuperar un [AuthModel] del storage.
-  void tryAutoLogin() => _authModel = StorageHelper.getAuthModel();
+  /// Devuelve true si el usuario esta logueado.
+  bool get isUserLogged => (_authModel != null);
 
-  /// Login para el usuario.
-  /// Envia el email y el token de Google.
+  /// Intenta loguear al usuario recuperando un [AuthModel] del storage.
+  void tryAutoLogin() {
+    try {
+      _authModel = StorageHelper.getAuthModel();
+    } catch (e) {
+      logError('No se pudo recuperar el AuthModel');
+    }
+  }
+
+  /// Loguea al usuario contra la API.
   Future<SocialLoginResponse> login(String email, String token) async {
     try {
-      final response = await dio.post(
-        '${_apiUrl}social-login',
-        data: {
-          'email': email,
-          'token': token,
-        },
-        options: Options(
-          responseType: ResponseType.json,
-        ),
-      );
-
-      /// Parseo la respuesta de la API.
-      final socialLoginResp = SocialLoginResponse.createOne(
-        response.data['data'],
-      );
-
-      setAuthModel(socialLoginResp.token);
-
-      return socialLoginResp;
-    } on DioException catch (e) {
-      throw DioClient.parseDioException(e);
+      final _loginResp = await _authApi.login(email, token);
+      setAuthModel(_loginResp.token);
+      return _loginResp;
+    } catch (e) {
+      rethrow;
     }
   }
 

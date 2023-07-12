@@ -16,8 +16,21 @@ class UserService {
   /// Devuelve la instancia del usuario logueado.
   LoggedUser get loggedUser => _loggedUser;
 
+  //// Obtiene el perfil del usuario.
+  Future<LoggedUser> getProfile() async {
+    try {
+      return await _userApi.getProfile();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   //// Actualizar los datos personales del usuario logueado.
-  Future<void> updateUser(UpdateUserRequest updateUserRequest) async {
-    await _userApi.updateUser(updateUserRequest);
+  Future<void> updateProfile(UpdateUserRequest updateUserRequest) async {
+    try {
+      await _userApi.updateProfile(updateUserRequest);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

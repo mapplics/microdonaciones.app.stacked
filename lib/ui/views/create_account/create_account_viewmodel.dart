@@ -67,7 +67,7 @@ class CreateAccountViewModel extends BaseViewModel {
 
     try {
       context.loaderOverlay.show();
-      await _userService.updateUser(_updateRequest);
+      await _userService.updateProfile(_updateRequest);
       // _userService.loggedUser =
       _navigationService.navigateToHomeView();
       logSucess('Actualice datos de usuario!');
