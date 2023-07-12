@@ -3,10 +3,11 @@ import 'package:microdonations/core/models/auth.model.dart';
 import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
+import 'package:stacked/stacked.dart';
 
 import '../core/models/social_login_response.model.dart';
 
-class AuthService {
+class AuthService with ListenableServiceMixin {
   final _authApi = locator<AuthApiService>();
 
   /// Modelo que contiene el token del usuario logueado.
@@ -46,5 +47,6 @@ class AuthService {
   Future<void> logout() async {
     _authModel = null;
     await StorageHelper.logoutClean();
+    notifyListeners();
   }
 }
