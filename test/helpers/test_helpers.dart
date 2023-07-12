@@ -1,9 +1,10 @@
+import 'package:microdonations/services/auth_service.dart';
+import 'package:microdonations/services/user_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:microdonations/core/services/auth_service.dart';
-import 'package:microdonations/core/services/user_service.dart';
+import 'package:microdonations/services/user_api_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -14,6 +15,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<UserService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<UserApiService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -22,6 +24,7 @@ void registerServices() {
   getAndRegisterDialogService();
   getAndRegisterAuthService();
   getAndRegisterUserService();
+  getAndRegisterUserApiService();
 // @stacked-mock-register
 }
 
@@ -86,6 +89,13 @@ MockUserService getAndRegisterUserService() {
   _removeRegistrationIfExists<UserService>();
   final service = MockUserService();
   locator.registerSingleton<UserService>(service);
+  return service;
+}
+
+MockUserApiService getAndRegisterUserApiService() {
+  _removeRegistrationIfExists<UserApiService>();
+  final service = MockUserApiService();
+  locator.registerSingleton<UserApiService>(service);
   return service;
 }
 // @stacked-mock-create

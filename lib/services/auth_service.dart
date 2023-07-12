@@ -4,7 +4,7 @@ import 'package:microdonations/core/models/auth.model.dart';
 import 'package:microdonations/core/models/social_login_response.model.dart';
 
 import '../../ui/common/helpers/storage.helpers.dart';
-import '../interceptor/dio.interceptor.dart';
+import '../core/interceptor/dio.interceptor.dart';
 
 class AuthService {
   final dio = DioClient().dio;

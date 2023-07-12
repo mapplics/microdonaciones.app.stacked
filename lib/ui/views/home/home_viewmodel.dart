@@ -1,6 +1,6 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/core/services/auth_service.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

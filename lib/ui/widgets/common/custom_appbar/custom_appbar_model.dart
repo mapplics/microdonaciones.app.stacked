@@ -1,6 +1,6 @@
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
-import 'package:microdonations/core/services/user_service.dart';
+import 'package:microdonations/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -4,13 +4,14 @@ import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
-import 'package:microdonations/core/services/auth_service.dart';
-import 'package:microdonations/core/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../services/auth_service.dart';
+import '../../../services/user_service.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _authService = locator<AuthService>;

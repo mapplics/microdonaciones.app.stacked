@@ -7,12 +7,12 @@ import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../../app/app.locator.dart';
 import '../exceptions/http_exception.model.dart';
 import '../exceptions/no_internet_exception.model.dart';
-import '../services/auth_service.dart';
 
 class DioClient {
   final _authService = locator<AuthService>;

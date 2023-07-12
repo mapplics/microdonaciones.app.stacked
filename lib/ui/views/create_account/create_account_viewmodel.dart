@@ -4,7 +4,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
-import 'package:microdonations/core/services/user_service.dart';
+import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';

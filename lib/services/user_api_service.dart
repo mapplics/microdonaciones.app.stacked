@@ -1,22 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:microdonations/core/models/logged_user.model.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
-import '../interceptor/dio.interceptor.dart';
-import '../models/logged_user.model.dart';
+import '../core/interceptor/dio.interceptor.dart';
 
-class UserService {
+class UserApiService {
   final _dio = DioClient().dio;
 
   final String? _apiUrl = dotenv.env['API_URL'];
 
-  late LoggedUser _loggedUser;
-
-  set setLoggedUser(LoggedUser user) => _loggedUser = user;
-
-  LoggedUser get loggedUser => _loggedUser;
-
+  /// Recibe una request [UpdateUserRequest] para actualizar los datos
+  /// personales del usuario logueado.
   Future<LoggedUser> updateUser(UpdateUserRequest updateUserRequest) async {
     try {
       final response = await _dio.put(
