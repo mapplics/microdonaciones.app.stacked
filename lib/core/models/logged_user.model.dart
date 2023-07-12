@@ -1,4 +1,3 @@
-import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 
@@ -54,4 +53,22 @@ class LoggedUser implements BaseUser {
 
     return iniciales;
   }
+
+  /// Convierte un [LoggedUser] a JSON.
+  Map<String, dynamic> toJson() => {
+        'firstname': firstname,
+        'lastname': lastname,
+        'phone': phone,
+        'avatarUrl': avatarUrl,
+        'address': address,
+      };
+
+  /// Convierte un json a una instancia de [LoggedUser].
+  factory LoggedUser.fromJson(Map<String, dynamic> json) => LoggedUser(
+        firstname: json['firstname'],
+        lastname: json['lastname'],
+        address: json['address'],
+        phone: json['phone'],
+        avatarUrl: json['avatarUrl'],
+      );
 }
