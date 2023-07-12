@@ -315,6 +315,9 @@ class CustomStylesTheme {
     );
   }
 
+  // Buttons sizes
+  static Size get minimumBtnSize => const Size(130, 37);
+
   /// Theme
   ///
   ///
