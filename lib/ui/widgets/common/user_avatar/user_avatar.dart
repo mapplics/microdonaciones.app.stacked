@@ -30,7 +30,6 @@ class UserAvatar extends StackedView<UserAvatarModel> {
       clipBehavior: Clip.none,
       children: [
         Container(
-          // margin: const EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: CustomStylesTheme.blackColor,
