@@ -33,25 +33,27 @@ class PersonalInformationView
           title: 'Datos personales',
           showActions: false,
         ),
-        body: Column(
-          children: [
-            UserInformationForm(
-              user: viewParameters.user,
-              onchange: (form) => viewModel.updateForm = form,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 43.0, bottom: 20.0),
-              child: CustomFillButton(
-                backgroundColor: CustomStylesTheme.tertiaryColor,
-                label: 'Guardar',
-                action: () => viewModel.onSaveUserData(context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              UserInformationForm(
+                user: viewParameters.user,
+                onchange: (form) => viewModel.updateForm = form,
               ),
-            ),
-            CustomOutlineButton(
-              label: 'Desloguear',
-              action: viewModel.logout,
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 43.0, bottom: 20.0),
+                child: CustomFillButton(
+                  backgroundColor: CustomStylesTheme.tertiaryColor,
+                  label: 'Guardar',
+                  action: () => viewModel.onSaveUserData(context),
+                ),
+              ),
+              CustomOutlineButton(
+                label: 'Desloguear',
+                action: viewModel.logout,
+              )
+            ],
+          ),
         ),
       ),
     );
