@@ -5,24 +5,24 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart'
-    as _i11;
+    as _i12;
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
-    as _i10;
+    as _i11;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
-import 'package:microdonations/ui/views/donation_item_selector/donation_item_selector_view.dart'
-    as _i8;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
+import 'package:microdonations/ui/views/make_a_donation/make_a_donation_view.dart'
+    as _i9;
 import 'package:microdonations/ui/views/onboarding/onboarding_view.dart' as _i5;
 import 'package:microdonations/ui/views/personal_information/personal_information_view.dart'
     as _i6;
 import 'package:microdonations/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i12;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const homeView = '/home-view';
@@ -39,6 +39,8 @@ class Routes {
 
   static const donationItemSelectorView = '/donation-item-selector-view';
 
+  static const makeADonationView = '/make-adonation-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -47,6 +49,7 @@ class Routes {
     personalInformationView,
     createAccountView,
     donationItemSelectorView,
+    makeADonationView,
   };
 }
 
@@ -77,32 +80,32 @@ class StackedRouter extends _i1.RouterBase {
       page: _i7.CreateAccountView,
     ),
     _i1.RouteDef(
-      Routes.donationItemSelectorView,
-      page: _i8.DonationItemSelectorView,
+      Routes.makeADonationView,
+      page: _i9.MakeADonationView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.LoginView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.LoginView(),
         settings: data,
       );
     },
     _i5.OnboardingView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.OnboardingView(),
         settings: data,
       );
@@ -110,7 +113,7 @@ class StackedRouter extends _i1.RouterBase {
     _i6.PersonalInformationView: (data) {
       final args =
           data.getArgs<PersonalInformationViewArguments>(nullOk: false);
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.PersonalInformationView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
@@ -118,15 +121,15 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i7.CreateAccountView: (data) {
       final args = data.getArgs<CreateAccountViewArguments>(nullOk: false);
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i10.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.CreateAccountView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
       );
     },
-    _i8.DonationItemSelectorView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.DonationItemSelectorView(),
+    _i9.MakeADonationView: (data) {
+      return _i10.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i9.MakeADonationView(),
         settings: data,
       );
     },
@@ -144,9 +147,9 @@ class PersonalInformationViewArguments {
     this.key,
   });
 
-  final _i10.UserInformationFormParameters viewParameters;
+  final _i11.UserInformationFormParameters viewParameters;
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -171,9 +174,9 @@ class CreateAccountViewArguments {
     this.key,
   });
 
-  final _i11.CreateAccountViewParameters viewParameters;
+  final _i12.CreateAccountViewParameters viewParameters;
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -192,7 +195,7 @@ class CreateAccountViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i12.NavigationService {
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -250,8 +253,8 @@ extension NavigatorStateExtension on _i12.NavigationService {
   }
 
   Future<dynamic> navigateToPersonalInformationView({
-    required _i10.UserInformationFormParameters viewParameters,
-    _i9.Key? key,
+    required _i11.UserInformationFormParameters viewParameters,
+    _i10.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -268,8 +271,8 @@ extension NavigatorStateExtension on _i12.NavigationService {
   }
 
   Future<dynamic> navigateToCreateAccountView({
-    required _i11.CreateAccountViewParameters viewParameters,
-    _i9.Key? key,
+    required _i12.CreateAccountViewParameters viewParameters,
+    _i10.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -293,6 +296,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.donationItemSelectorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToMakeADonationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.makeADonationView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -356,8 +373,8 @@ extension NavigatorStateExtension on _i12.NavigationService {
   }
 
   Future<dynamic> replaceWithPersonalInformationView({
-    required _i10.UserInformationFormParameters viewParameters,
-    _i9.Key? key,
+    required _i11.UserInformationFormParameters viewParameters,
+    _i10.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -374,8 +391,8 @@ extension NavigatorStateExtension on _i12.NavigationService {
   }
 
   Future<dynamic> replaceWithCreateAccountView({
-    required _i11.CreateAccountViewParameters viewParameters,
-    _i9.Key? key,
+    required _i12.CreateAccountViewParameters viewParameters,
+    _i10.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -399,6 +416,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.donationItemSelectorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithMakeADonationView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.makeADonationView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

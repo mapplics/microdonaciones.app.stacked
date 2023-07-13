@@ -6,7 +6,13 @@ import 'dot_indicator_model.dart';
 
 class DotIndicator extends StackedView<DotIndicatorModel> {
   final bool active;
-  const DotIndicator({required this.active, super.key});
+  final DotIndicatorSize size;
+
+  const DotIndicator({
+    required this.active,
+    required this.size,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -17,8 +23,8 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      height: 12.0,
-      width: 12.0,
+      height: viewModel.getIndicatorSize,
+      width: viewModel.getIndicatorSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: active
@@ -40,5 +46,5 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
   DotIndicatorModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DotIndicatorModel();
+      DotIndicatorModel(size);
 }

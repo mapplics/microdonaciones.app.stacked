@@ -1,7 +1,7 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:stacked/stacked.dart';
 
-class DonationItemSelectorViewModel extends BaseViewModel {
+class DonationItemsSelectorModel extends BaseViewModel {
   /// Listado con los items de las donaciones que puede recibir la ONG.
   final List<DonationItem> _donationItems = [
     DonationItem(
