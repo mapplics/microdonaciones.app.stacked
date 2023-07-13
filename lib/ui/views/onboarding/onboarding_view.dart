@@ -3,6 +3,7 @@ import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
+import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.dart';
 import 'package:stacked/stacked.dart';
 
 import 'onboarding_viewmodel.dart';
@@ -136,62 +137,6 @@ class OnboardingPage extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class PageIndicator extends StatelessWidget {
-  final int pageSize;
-  final int currentPage;
-
-  const PageIndicator({
-    required this.pageSize,
-    required this.currentPage,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (int i = 0; i < pageSize; i++)
-          Padding(
-            padding: EdgeInsets.only(right: (i != (pageSize - 1)) ? 20.0 : 0.0),
-            child: DotIndicator(
-              active: (i == currentPage),
-            ),
-          )
-      ],
-    );
-  }
-}
-
-class DotIndicator extends StatelessWidget {
-  final bool active;
-  const DotIndicator({required this.active, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      height: 12.0,
-      width: 12.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: active
-            ? [
-                BoxShadow(
-                  color: CustomStylesTheme.tertiaryColor.withOpacity(0.3),
-                  blurRadius: 7.0,
-                )
-              ]
-            : null,
-        color: active
-            ? CustomStylesTheme.tertiaryColor
-            : CustomStylesTheme.darkGreyColor,
-      ),
     );
   }
 }
