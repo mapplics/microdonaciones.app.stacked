@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
+import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../../core/form/typedef/onchange.typedef.dart';
 import '../custom_text_field/custom_input_text.dart';
 import '../user_avatar/user_avatar.dart';
 import 'user_information_form_model.dart';
