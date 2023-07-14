@@ -9,10 +9,12 @@ import 'donation_item_card_model.dart';
 class DonationItemCard extends StackedView<DonationItemCardModel> {
   final DonationItem donationItem;
   final OnChangeCheckbox onChange;
+  final bool initialValue;
 
   const DonationItemCard({
     required this.donationItem,
     required this.onChange,
+    this.initialValue = false,
     super.key,
   });
 
@@ -80,5 +82,5 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
   DonationItemCardModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DonationItemCardModel(onChange);
+      DonationItemCardModel(onChange, initialValue);
 }

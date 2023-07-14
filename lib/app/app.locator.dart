@@ -13,6 +13,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/auth_api_service.dart';
 import '../services/auth_service.dart';
+import '../services/new_donation_service.dart';
 import '../services/user_api_service.dart';
 import '../services/user_service.dart';
 
@@ -34,4 +35,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => UserApiService());
   locator.registerLazySingleton(() => AuthApiService());
+  locator.registerLazySingleton(() => NewDonationService());
 }

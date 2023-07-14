@@ -1,7 +1,12 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/ui/widgets/common/donation_items_selector/donation_items_selector.dart';
 import 'package:stacked/stacked.dart';
 
 class DonationItemsSelectorModel extends BaseViewModel {
+  final OnChangeSelectedItems onchange;
+
+  DonationItemsSelectorModel(this.onchange);
+
   /// Listado con los items de las donaciones que puede recibir la ONG.
   final List<DonationItem> _donationItems = [
     DonationItem(
@@ -32,6 +37,7 @@ class DonationItemsSelectorModel extends BaseViewModel {
   /// El [value] indica si se debe agregar o eliminar el [item].
   void handleToggleDonation(bool value, DonationItem item) {
     value ? _addDonation(item) : _removeDonation(item);
+    onchange(selectedItems);
   }
 
   /// Agrega el [item] a la lista de donaciones [selectedItems].

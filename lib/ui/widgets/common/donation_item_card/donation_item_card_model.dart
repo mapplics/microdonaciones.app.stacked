@@ -3,8 +3,9 @@ import 'package:stacked/stacked.dart';
 
 class DonationItemCardModel extends BaseViewModel {
   OnChangeCheckbox onchange;
+  bool initialValue;
 
-  DonationItemCardModel(this.onchange);
+  DonationItemCardModel(this.onchange, this.initialValue);
 
   bool _checkboxValue = false;
 

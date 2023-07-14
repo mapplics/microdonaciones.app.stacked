@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/donation_item_quantity/donation_item_quantity.dart';
@@ -20,74 +21,96 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
     MakeADonationViewModel viewModel,
     Widget? child,
   ) {
-    return CustomScaffold(
-      appbar: const CustomAppbar(title: 'Que necesitamos?'),
-      body: Stack(
-        children: [
-          PageView(
-            physics: const ClampingScrollPhysics(),
-            controller: viewModel.pageController,
-            onPageChanged: viewModel.onPageChange,
-            children: const [
-              DonationItemsSelector(),
-              DonationItemQuantity(),
-              DonationItemsSelector(),
-              DonationItemsSelector(),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height / 24,
+    logWarn('build');
+    return WillPopScope(
+      onWillPop: () async {
+        if (viewModel.currentPage != 0) {
+          viewModel.previousPage();
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: CustomScaffold(
+        appbar: const CustomAppbar(title: 'Que necesitamos?'),
+        body: Stack(
+          children: [
+            PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: viewModel.pageController,
+              onPageChanged: viewModel.onPageChange,
+              children: [
+                DonationItemsSelector(
+                  onchange: viewModel.updateItems,
+                ),
+                const DonationItemQuantity(),
+                const Text('Nada'),
+                const Text('Nada'),
+              ],
             ),
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: viewModel.canShowGoBackBtn
-                        ? MainAxisAlignment.spaceBetween
-                        : MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (viewModel.canShowGoBackBtn)
-                        Expanded(
-                          child: LinkButton(
-                            label: 'Atras',
-                            action: viewModel.previousPage,
-                            textStyle: CustomStylesTheme.regular16_20.copyWith(
-                              color: CustomStylesTheme.lightGreyColor,
-                            ),
-                          ),
-                        ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 26.0),
-                            child: PageIndicator(
-                              pageSize: viewModel.numPages,
-                              currentPage: viewModel.currentPage,
-                              dotIndicatorSize: DotIndicatorSize.small,
-                            ),
-                          ),
-                          LinkButton(
-                            label: 'Siguiente',
-                            action: viewModel.nextPage,
-                            textStyle: CustomStylesTheme.bold16_20.copyWith(
-                              color: CustomStylesTheme.tertiaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 24,
               ),
-            ),
-          )
-        ],
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: viewModel.canShowGoBackBtn
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (viewModel.canShowGoBackBtn)
+                          Expanded(
+                            child: LinkButton(
+                              label: 'Atras',
+                              action: viewModel.previousPage,
+                              textStyle:
+                                  CustomStylesTheme.regular16_20.copyWith(
+                                color: CustomStylesTheme.lightGreyColor,
+                              ),
+                            ),
+                          ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 26.0),
+                              child: PageIndicator(
+                                pageSize: viewModel.numPages,
+                                currentPage: viewModel.currentPage,
+                                dotIndicatorSize: DotIndicatorSize.small,
+                              ),
+                            ),
+                            LinkButton(
+                              label: 'Siguiente',
+                              action: viewModel.canEnableNextPage()
+                                  ? viewModel.nextPage
+                                  : null,
+                              textStyle: CustomStylesTheme.bold16_20.copyWith(
+                                color: CustomStylesTheme.tertiaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void onDispose(MakeADonationViewModel viewModel) {
+    viewModel.disposeService();
+    super.onDispose(viewModel);
   }
 
   @override

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/donation_item_card/donation_item_card.dart';
 import 'package:stacked/stacked.dart';
 
 import 'donation_items_selector_model.dart';
 
+typedef OnChangeSelectedItems = void Function(List<DonationItem>);
+
 class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
-  const DonationItemsSelector({super.key});
+  final OnChangeSelectedItems onchange;
+
+  const DonationItemsSelector({required this.onchange, super.key});
 
   @override
   Widget builder(
@@ -53,5 +58,5 @@ class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
   DonationItemsSelectorModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DonationItemsSelectorModel();
+      DonationItemsSelectorModel(onchange);
 }

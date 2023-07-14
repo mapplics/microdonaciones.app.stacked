@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/app/app.locator.dart';
+import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/services/new_donation_service.dart';
 import 'package:stacked/stacked.dart';
 
-class MakeADonationViewModel extends BaseViewModel {
+class MakeADonationViewModel extends ReactiveViewModel {
+  final _newDonationService = locator<NewDonationService>();
+
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_newDonationService];
+
   final PageController pageController = PageController(initialPage: 0);
   final int numPages = 4;
   int currentPage = 0;
@@ -13,6 +21,20 @@ class MakeADonationViewModel extends BaseViewModel {
 
   /// Devuelve true si se debe mostrar el boton para retroceder una pagina.
   bool get canShowGoBackBtn => currentPage != 0;
+
+  bool canEnableNextPage() {
+    switch (currentPage) {
+      case 0:
+        return _newDonationService.selectedItemsIsNotEmpty;
+      default:
+        return true;
+    }
+  }
+
+  /// Actualiza la lista de items que se eligieron para donar.
+  void updateItems(List<DonationItem> items) {
+    _newDonationService.updateSelectedItems(items);
+  }
 
   //// Navega a la siguiente pagina.
   void nextPage() {
@@ -28,5 +50,10 @@ class MakeADonationViewModel extends BaseViewModel {
       duration: const Duration(milliseconds: 175),
       curve: Curves.linear,
     );
+  }
+
+  /// Resetea el servicio de [NewDonationService]
+  void disposeService() {
+    _newDonationService.resetNewDonation();
   }
 }
