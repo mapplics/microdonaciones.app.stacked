@@ -1,7 +1,6 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 
 class DonationItemsSelectorModel extends BaseViewModel {
@@ -33,16 +32,14 @@ class DonationItemsSelectorModel extends BaseViewModel {
   /// Decide si el [item] se debe agregar/eliminar a la lista de [_selectedItems]
   /// El [value] indica si se debe agregar o eliminar el [item].
   void handleToggleDonation(bool value, DonationItem item) {
-    value
-        ? _newDonationService.addDonation(item)
-        : _newDonationService.removeDonation(item);
+    if (value) {
+      _newDonationService.addDonation(item);
+    } else {
+      _newDonationService.removeDonation(item);
+    }
   }
 
-  /// Devuelve true si el item [DonationItem]
-  /// esta dentro de la lista de [_selectedItems]
-  bool isSelectedItem(DonationItem item) {
-    final found = _newDonationService.selectedItems.contains(item);
-    logSucess('${item.title} $found');
-    return found;
-  }
+  /// Devuelve true si el item debe mostrarse como chequeado en la card.
+  bool isSelectedItem(DonationItem item) =>
+      _newDonationService.checkIfItemExist(item);
 }

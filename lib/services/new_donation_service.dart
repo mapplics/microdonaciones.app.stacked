@@ -1,6 +1,6 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
+import 'package:collection/collection.dart';
 
 class NewDonationService with ListenableServiceMixin {
   /// Lista de items que la persona eligio para donar.
@@ -25,9 +25,16 @@ class NewDonationService with ListenableServiceMixin {
     notifyListeners();
   }
 
+  /// Devuelve true si el [item] a donar existe en la lista de [_selectedItems]
+  bool checkIfItemExist(DonationItem item) {
+    final _found = _selectedItems
+        .firstWhereOrNull((element) => element.title == item.title);
+
+    return (_found != null);
+  }
+
   /// Resetea todos todos los campos a su valor inicial.
   void resetNewDonation() {
-    logWarn('Dispose');
     _selectedItems = [];
   }
 }
