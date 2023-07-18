@@ -23,26 +23,57 @@ class DonationItemQuantity extends StackedView<DonationItemQuantityModel> {
             style: CustomStylesTheme.regular14_16,
           ),
         ),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Expanded(
+          child: ListView.separated(
+            itemBuilder: (_, index) {
+              return Column(
                 children: [
-                  Text(
-                    'Arroz\nIntegral',
-                    style: CustomStylesTheme.regular16_20.copyWith(
-                      color: CustomStylesTheme.blackColor,
+                  if (viewModel.shouldShoWFirstDivider(index))
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Divider(),
                     ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        viewModel.selectedItems[index].title,
+                        style: CustomStylesTheme.regular16_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
+                      ),
+                      QuantityPicker(
+                        initialValue: viewModel.selectedItems[index].quantity,
+                        onChange: (quantity) => viewModel.updateItemQuantity(
+                          viewModel.selectedItems[index],
+                          quantity,
+                        ),
+                      ),
+                    ],
                   ),
-                  const QuantityPicker()
+                  if (viewModel.shouldShowLastDivider(index))
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Divider(),
+                    )
                 ],
-              ),
-            ],
+              );
+            },
+            separatorBuilder: (_, __) => const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: Divider(),
+            ),
+            itemCount: viewModel.selectedItems.length,
           ),
         ),
       ],
     );
+  }
+
+  @override
+  void onViewModelReady(DonationItemQuantityModel viewModel) {
+    viewModel.getSelectedItems();
+    super.onViewModelReady(viewModel);
   }
 
   @override

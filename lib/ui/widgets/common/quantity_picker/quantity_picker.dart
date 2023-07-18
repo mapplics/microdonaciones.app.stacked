@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
@@ -6,7 +7,14 @@ import 'package:stacked/stacked.dart';
 import 'quantity_picker_model.dart';
 
 class QuantityPicker extends StackedView<QuantityPickerModel> {
-  const QuantityPicker({super.key});
+  final int initialValue;
+  final OnChangeQuantityPicker onChange;
+
+  const QuantityPicker({
+    required this.onChange,
+    this.initialValue = 0,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -39,7 +47,7 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Text(
-            viewModel.quantity.toString(),
+            viewModel.quantityValue.toString(),
             style: CustomStylesTheme.bold16_20.copyWith(
               color: CustomStylesTheme.tertiaryColor,
             ),
@@ -73,5 +81,5 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
   QuantityPickerModel viewModelBuilder(
     BuildContext context,
   ) =>
-      QuantityPickerModel();
+      QuantityPickerModel(onChange, initialValue);
 }
