@@ -17,40 +17,53 @@ class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
     DonationItemsSelectorModel viewModel,
     Widget? child,
   ) {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 19.0),
-          child: Text(
-            'Seleccioná que alimentos son los que vas a donar',
-            style: CustomStylesTheme.regular14_16,
-          ),
-        ),
-        SingleChildScrollView(
-          child: Column(
+    return viewModel.isLoading
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: CustomStylesTheme.primaryColor,
+            ),
+          )
+        : Column(
             children: [
-              ...viewModel.donationItems
-                  .map(
-                    (item) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 7.5,
-                      ),
-                      child: DonationItemCard(
-                        donationItem: item,
-                        initialValue: viewModel.isSelectedItem(item),
-                        onChange: (newValue) => viewModel.handleToggleDonation(
-                          newValue,
-                          item,
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 19.0),
+                child: Text(
+                  'Seleccioná que alimentos son los que vas a donar',
+                  style: CustomStylesTheme.regular14_16,
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ...viewModel.donationItems
+                        .map(
+                          (item) => Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 7.5,
+                            ),
+                            child: DonationItemCard(
+                              donationItem: item,
+                              initialValue: viewModel.isSelectedItem(item),
+                              onChange: (newValue) =>
+                                  viewModel.handleToggleDonation(
+                                newValue,
+                                item,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+  }
+
+  @override
+  void onViewModelReady(DonationItemsSelectorModel viewModel) {
+    viewModel.getDonationsItems();
+    super.onViewModelReady(viewModel);
   }
 
   @override
