@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/donation_item_quantity/donation_item_quantity.dart';
@@ -21,7 +20,6 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
     MakeADonationViewModel viewModel,
     Widget? child,
   ) {
-    logWarn('build');
     return WillPopScope(
       onWillPop: () async {
         if (viewModel.currentPage != 0) {
@@ -39,13 +37,11 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
               physics: const NeverScrollableScrollPhysics(),
               controller: viewModel.pageController,
               onPageChanged: viewModel.onPageChange,
-              children: [
-                DonationItemsSelector(
-                  onchange: viewModel.updateItems,
-                ),
-                const DonationItemQuantity(),
-                const Text('Nada'),
-                const Text('Nada'),
+              children: const [
+                DonationItemsSelector(),
+                DonationItemQuantity(),
+                Text('Nada'),
+                Text('Nada'),
               ],
             ),
             Padding(

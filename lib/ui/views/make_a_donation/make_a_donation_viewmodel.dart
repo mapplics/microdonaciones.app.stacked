@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,11 +28,6 @@ class MakeADonationViewModel extends ReactiveViewModel {
       default:
         return true;
     }
-  }
-
-  /// Actualiza la lista de items que se eligieron para donar.
-  void updateItems(List<DonationItem> items) {
-    _newDonationService.updateSelectedItems(items);
   }
 
   //// Navega a la siguiente pagina.
