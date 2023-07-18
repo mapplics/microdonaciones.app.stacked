@@ -37,7 +37,31 @@ class DonationItemsSelectorModel extends BaseViewModel {
   Future<void> getDonationsItems() async {
     try {
       _isLoading = true;
-      _donationItems.addAll(await _newDonationService.getDonationsItems());
+      _donationItems.addAll(
+        await Future.delayed(
+          const Duration(seconds: 1),
+          () {
+            return [
+              DonationItem(
+                title: 'Arroz',
+                pathImg: 'assets/img/img_arroz.png',
+              ),
+              DonationItem(
+                title: 'Fideos',
+                pathImg: 'assets/img/img_fideos.png',
+              ),
+              DonationItem(
+                title: 'Leche en polvo',
+                pathImg: 'assets/img/img_leche_en_polvo.png',
+              ),
+              DonationItem(
+                title: 'Latas en conserva',
+                pathImg: 'assets/img/img_latas_de_conserva.png',
+              ),
+            ];
+          },
+        ),
+      );
     } catch (e) {
       logError('Error al setear los items.');
     } finally {

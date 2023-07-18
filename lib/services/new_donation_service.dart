@@ -7,9 +7,6 @@ class NewDonationService with ListenableServiceMixin {
   /// Lista de items que la persona eligio para donar.
   List<DonationItem> _selectedItems = [];
 
-  /// Devuelve true si la persona no eligio ningun item para donar.
-  bool get selectedItemsIsNotEmpty => _selectedItems.isNotEmpty;
-
   /// Devuelve los items que seleciono el usuario para donar
   List<DonationItem> get selectedItems => _selectedItems;
 
@@ -34,7 +31,7 @@ class NewDonationService with ListenableServiceMixin {
 
     if (_found != null) {
       _found.updateQuantity = quantity;
-      replaceItem(_found);
+      _replaceItem(_found);
     } else {
       logError('DonationItem not found!');
     }
@@ -44,7 +41,7 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Recibe un [DonationItem] y busca en [_selectedItems] una coincidencia
   /// si encuentra una lo reemplaza con el [item]
-  void replaceItem(DonationItem item) {
+  void _replaceItem(DonationItem item) {
     final index = _selectedItems.indexWhere(
       (element) => element.title == item.title,
     );
@@ -69,41 +66,15 @@ class NewDonationService with ListenableServiceMixin {
     _selectedItems = [];
   }
 
+  /// Devuelve true si la persona selecciono al menos un item para donar.
+  bool selectedItemsValid() => _selectedItems.isNotEmpty;
+
   /// Devuelve true si todos los items de [_selectedItems]
   /// tienen una cantidad distinta de 0.
-  bool get itemsQuantityValid {
+  bool itemsQuantityValid() {
     final _found =
         _selectedItems.firstWhereOrNull((item) => item.quantity == 0);
 
     return (_found == null);
-  }
-
-  /// Recupera de la API la lista de items que se puede donar para la ONG.
-  Future<List<DonationItem>> getDonationsItems() async {
-    try {
-      return await Future.delayed(const Duration(seconds: 1), () {
-        return [
-          DonationItem(
-            title: 'Arroz',
-            pathImg: 'assets/img/img_arroz.png',
-          ),
-          DonationItem(
-            title: 'Fideos',
-            pathImg: 'assets/img/img_fideos.png',
-          ),
-          DonationItem(
-            title: 'Leche en polvo',
-            pathImg: 'assets/img/img_leche_en_polvo.png',
-          ),
-          DonationItem(
-            title: 'Latas en conserva',
-            pathImg: 'assets/img/img_latas_de_conserva.png',
-          ),
-        ];
-      });
-    } catch (e) {
-      logError('Get donations items failed ${e.toString()}');
-      rethrow;
-    }
   }
 }

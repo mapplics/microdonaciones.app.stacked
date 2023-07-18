@@ -24,9 +24,9 @@ class MakeADonationViewModel extends ReactiveViewModel {
   bool canEnableNextPage() {
     switch (currentPage) {
       case 0:
-        return _newDonationService.selectedItemsIsNotEmpty;
+        return _newDonationService.selectedItemsValid();
       case 1:
-        return _newDonationService.itemsQuantityValid;
+        return _newDonationService.itemsQuantityValid();
       default:
         return true;
     }
