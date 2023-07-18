@@ -38,6 +38,8 @@ class NewDonationService with ListenableServiceMixin {
     } else {
       logError('DonationItem not found!');
     }
+
+    notifyListeners();
   }
 
   /// Recibe un [DonationItem] y busca en [_selectedItems] una coincidencia
@@ -65,5 +67,43 @@ class NewDonationService with ListenableServiceMixin {
   /// Resetea todos todos los campos a su valor inicial.
   void resetNewDonation() {
     _selectedItems = [];
+  }
+
+  /// Devuelve true si todos los items de [_selectedItems]
+  /// tienen una cantidad distinta de 0.
+  bool get itemsQuantityValid {
+    final _found =
+        _selectedItems.firstWhereOrNull((item) => item.quantity == 0);
+
+    return (_found == null);
+  }
+
+  /// Recupera de la API la lista de items que se puede donar para la ONG.
+  Future<List<DonationItem>> getDonationsItems() async {
+    try {
+      return await Future.delayed(const Duration(seconds: 1), () {
+        return [
+          DonationItem(
+            title: 'Arroz',
+            pathImg: 'assets/img/img_arroz.png',
+          ),
+          DonationItem(
+            title: 'Fideos',
+            pathImg: 'assets/img/img_fideos.png',
+          ),
+          DonationItem(
+            title: 'Leche en polvo',
+            pathImg: 'assets/img/img_leche_en_polvo.png',
+          ),
+          DonationItem(
+            title: 'Latas en conserva',
+            pathImg: 'assets/img/img_latas_de_conserva.png',
+          ),
+        ];
+      });
+    } catch (e) {
+      logError('Get donations items failed ${e.toString()}');
+      rethrow;
+    }
   }
 }
