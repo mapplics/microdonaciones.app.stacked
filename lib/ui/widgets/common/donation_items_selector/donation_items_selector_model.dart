@@ -1,11 +1,11 @@
+import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
-import 'package:microdonations/ui/widgets/common/donation_items_selector/donation_items_selector.dart';
+import 'package:microdonations/services/new_donation_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 
 class DonationItemsSelectorModel extends BaseViewModel {
-  final OnChangeSelectedItems onchange;
-
-  DonationItemsSelectorModel(this.onchange);
+  final _newDonationService = locator<NewDonationService>();
 
   /// Listado con los items de las donaciones que puede recibir la ONG.
   final List<DonationItem> _donationItems = [
@@ -27,27 +27,22 @@ class DonationItemsSelectorModel extends BaseViewModel {
     ),
   ];
 
-  /// Representa la lista de items seleccionados que la persona va a donar.
-  final List<DonationItem> selectedItems = [];
-
   /// Devuelve la lista de items que se puede donar a la ONG.
   List<DonationItem> get donationItems => _donationItems;
 
-  /// Decide si el [item] se debe agregar/eliminar a la lista de [selectedItems]
+  /// Decide si el [item] se debe agregar/eliminar a la lista de [_selectedItems]
   /// El [value] indica si se debe agregar o eliminar el [item].
   void handleToggleDonation(bool value, DonationItem item) {
-    value ? _addDonation(item) : _removeDonation(item);
-    onchange(selectedItems);
+    value
+        ? _newDonationService.addDonation(item)
+        : _newDonationService.removeDonation(item);
   }
 
-  /// Agrega el [item] a la lista de donaciones [selectedItems].
-  void _addDonation(DonationItem item) {
-    selectedItems.add(item);
-  }
-
-  /// Remueve el [item] de la lista de donaciones [selectedItems].
-  void _removeDonation(DonationItem item) {
-    final index = selectedItems.indexOf(item);
-    selectedItems.removeAt(index);
+  /// Devuelve true si el item [DonationItem]
+  /// esta dentro de la lista de [_selectedItems]
+  bool isSelectedItem(DonationItem item) {
+    final found = _newDonationService.selectedItems.contains(item);
+    logSucess('${item.title} $found');
+    return found;
   }
 }

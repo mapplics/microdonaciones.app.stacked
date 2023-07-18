@@ -9,9 +9,7 @@ import 'donation_items_selector_model.dart';
 typedef OnChangeSelectedItems = void Function(List<DonationItem>);
 
 class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
-  final OnChangeSelectedItems onchange;
-
-  const DonationItemsSelector({required this.onchange, super.key});
+  const DonationItemsSelector({super.key});
 
   @override
   Widget builder(
@@ -58,5 +56,5 @@ class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
   DonationItemsSelectorModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DonationItemsSelectorModel(onchange);
+      DonationItemsSelectorModel();
 }
