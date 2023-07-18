@@ -25,6 +25,8 @@ class MakeADonationViewModel extends ReactiveViewModel {
     switch (currentPage) {
       case 0:
         return _newDonationService.selectedItemsIsNotEmpty;
+      case 1:
+        return _newDonationService.itemsQuantityValid;
       default:
         return true;
     }
