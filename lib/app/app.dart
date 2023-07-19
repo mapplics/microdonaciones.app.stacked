@@ -15,6 +15,7 @@ import '../services/auth_service.dart';
 import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/ui/views/make_a_donation/make_a_donation_view.dart';
 import 'package:microdonations/services/new_donation_service.dart';
+import 'package:microdonations/services/donation_item_api_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -37,6 +38,7 @@ import 'package:microdonations/services/new_donation_service.dart';
     LazySingleton(classType: UserApiService),
     LazySingleton(classType: AuthApiService),
     LazySingleton(classType: NewDonationService),
+    LazySingleton(classType: DonationItemApiService),
 // @stacked-service
   ],
   bottomsheets: [
