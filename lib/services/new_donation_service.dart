@@ -36,14 +36,16 @@ class NewDonationService with ListenableServiceMixin {
   /// Devuelve los items que seleciono el usuario para donar
   List<DonationItem> get selectedItems => _selectedItems;
 
-  /// Agrega el [product] a la lista de donaciones [_selectedItems].
+  /// Recibe un [product] que se convierte a [DonationItem] que se agrega
+  /// a la lista de donaciones [_selectedItems].
   void addDonationItem(Product product) {
     final asDonationItem = DonationItem.createFromProduct(product);
     _selectedItems.add(asDonationItem);
     notifyListeners();
   }
 
-  /// Remueve el [product] de la lista de donaciones [_selectedItems].
+  /// Recibe un [Product] y busca una coincidencia en [_selectedItems].
+  /// Si encuentra una elimina el [DonationItem] de [_selectedItems]
   void removeDonationItem(Product product) {
     final index = _selectedItems
         .indexWhere((selectedItem) => selectedItem.product.id == product.id);
@@ -51,7 +53,8 @@ class NewDonationService with ListenableServiceMixin {
     notifyListeners();
   }
 
-  /// Setea una cantidad para el item [DonationItem] que se va a donar.
+  /// Recibe un [DonationItem] y una cantidad [quantity]
+  /// que se le va a asignar al mismo.
   void onChangeItemQuantity(DonationItem item, int quantity) {
     final _found = _selectedItems
         .firstWhereOrNull((selectedItem) => selectedItem.title == item.title);
@@ -67,8 +70,8 @@ class NewDonationService with ListenableServiceMixin {
     notifyListeners();
   }
 
-  /// Recibe un [DonationItem] y busca en [_selectedItems] una coincidencia
-  /// si encuentra una lo reemplaza con el [item]
+  /// Recibe un item [DonationItem] y busca en [_selectedItems] una coincidencia
+  /// si encuentra uno lo reemplaza con el [item]
   void _replaceItem(DonationItem item) {
     final index = _selectedItems.indexWhere(
       (selectedItem) => selectedItem.title == item.title,
@@ -82,7 +85,8 @@ class NewDonationService with ListenableServiceMixin {
     }
   }
 
-  /// Devuelve true si el [item] a donar existe en la lista de [_selectedItems]
+  /// Devuelve true si existe un [DonationItem] en [_selectedItems]
+  /// para el [item].
   bool checkIfItemExist(Product product) {
     final _found = _selectedItems.firstWhereOrNull(
         (selectedItem) => selectedItem.product.id == product.id);
