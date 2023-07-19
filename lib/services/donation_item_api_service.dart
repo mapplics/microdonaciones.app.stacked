@@ -1,32 +1,26 @@
-// import 'package:microdonations/core/interceptor/dio.interceptor.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:microdonations/core/interceptor/dio.interceptor.dart';
+import 'package:microdonations/core/models/donation_item_presentation.model.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 
 class DonationItemApiService {
-  // final _dio = DioClient().dio;
-  // final String? _apiUrl = dotenv.env['API_URL'];
+  final _dio = DioClient().dio;
+  final String? _apiUrl = dotenv.env['API_URL'];
 
   /// Devuelve la lista de items que se puede donar para una ONG
-  /// TODO En algun momento este metodo debe recibir el dato de una ONG
-  Future<List<DonationItem>> getDonationItems() async {
-    return await Future.delayed(const Duration(milliseconds: 500), () {
-      return [
-        DonationItem(
-          title: 'Arroz',
-          pathImg: 'assets/img/img_arroz.png',
+  Future<List<DonationItemPresentation>> getDonationItems(Ong ong) async {
+    try {
+      final _response = await _dio.get(
+        '${_apiUrl}product-by-ong/${ong.id}',
+        options: Options(
+          responseType: ResponseType.json,
         ),
-        DonationItem(
-          title: 'Fideos',
-          pathImg: 'assets/img/img_fideos.png',
-        ),
-        DonationItem(
-          title: 'Leche en polvo',
-          pathImg: 'assets/img/img_leche_en_polvo.png',
-        ),
-        DonationItem(
-          title: 'Latas en conserva',
-          pathImg: 'assets/img/img_latas_de_conserva.png',
-        ),
-      ];
-    });
+      );
+
+      return DonationItemPresentation.createList(_response.data);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
