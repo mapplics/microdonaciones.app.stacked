@@ -35,7 +35,7 @@ class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    ...viewModel.donationItems
+                    ...viewModel.donationItemsOptions
                         .map(
                           (item) => Padding(
                             padding: const EdgeInsets.symmetric(

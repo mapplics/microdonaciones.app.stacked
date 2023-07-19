@@ -10,11 +10,9 @@ class DonationItemsSelectorModel extends BaseViewModel {
   /// Indica si el widget esta cargando.
   bool _isLoading = true;
 
-  /// Listado con los items de las donaciones que puede recibir la ONG.
-  final List<DonationItem> _donationItems = [];
-
   /// Devuelve la lista de items que se puede donar a la ONG.
-  List<DonationItem> get donationItems => _donationItems;
+  List<DonationItem> get donationItemsOptions =>
+      _newDonationService.donationItemsOptions;
 
   /// Devuelve true si el widget deberia mostrar un loading.
   bool get isLoading => _isLoading;
@@ -29,39 +27,11 @@ class DonationItemsSelectorModel extends BaseViewModel {
     }
   }
 
-  /// Devuelve true si el item debe mostrarse como chequeado en la card.
-  bool isSelectedItem(DonationItem item) =>
-      _newDonationService.checkIfItemExist(item);
-
   /// Recupera la lista de items que se pueden seleccionar para donar.
   Future<void> getDonationsItems() async {
     try {
       _isLoading = true;
-      _donationItems.addAll(
-        await Future.delayed(
-          const Duration(seconds: 1),
-          () {
-            return [
-              DonationItem(
-                title: 'Arroz',
-                pathImg: 'assets/img/img_arroz.png',
-              ),
-              DonationItem(
-                title: 'Fideos',
-                pathImg: 'assets/img/img_fideos.png',
-              ),
-              DonationItem(
-                title: 'Leche en polvo',
-                pathImg: 'assets/img/img_leche_en_polvo.png',
-              ),
-              DonationItem(
-                title: 'Latas en conserva',
-                pathImg: 'assets/img/img_latas_de_conserva.png',
-              ),
-            ];
-          },
-        ),
-      );
+      await _newDonationService.getOngDonationsItems();
     } catch (e) {
       logError('Error al setear los items.');
     } finally {
@@ -69,4 +39,8 @@ class DonationItemsSelectorModel extends BaseViewModel {
       rebuildUi();
     }
   }
+
+  /// Devuelve true si el item debe mostrarse como chequeado en la card.
+  bool isSelectedItem(DonationItem item) =>
+      _newDonationService.checkIfItemExist(item);
 }
