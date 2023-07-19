@@ -1,4 +1,6 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/product.model.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
@@ -9,29 +11,42 @@ import '../app/app.locator.dart';
 class NewDonationService with ListenableServiceMixin {
   final _donationItemApi = locator<DonationItemApiService>();
 
+  /// La ONG que eligio el usuario para hacer una donacion.
+  final Ong _ongSelected = Ong(
+    id: 1,
+    name: 'Ong Test',
+    web: '',
+    mision: '',
+    vision: '',
+    phone: '',
+    email: '',
+    enabled: true,
+  );
+
   /// Lista de items que la persona eligio para donar.
   List<DonationItem> _selectedItems = [];
 
   /// Contiene los items que recibe la ONG como donacion
   /// y la persona puede elegir.
-  List<DonationItem> _donationItemsOptions = [];
+  List<Product> _products = [];
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  List<DonationItem> get donationItemsOptions => _donationItemsOptions;
+  List<Product> get productsOptions => _products;
 
   /// Devuelve los items que seleciono el usuario para donar
   List<DonationItem> get selectedItems => _selectedItems;
 
-  /// Agrega el [item] a la lista de donaciones [_selectedItems].
-  void addDonation(DonationItem item) {
-    _selectedItems.add(item);
+  /// Agrega el [product] a la lista de donaciones [_selectedItems].
+  void addDonationItem(Product product) {
+    final asDonationItem = DonationItem.createFromProduct(product);
+    _selectedItems.add(asDonationItem);
     notifyListeners();
   }
 
-  /// Remueve el [item] de la lista de donaciones [_selectedItems].
-  void removeDonation(DonationItem item) {
+  /// Remueve el [product] de la lista de donaciones [_selectedItems].
+  void removeDonationItem(Product product) {
     final index = _selectedItems
-        .indexWhere((selectedItem) => selectedItem.title == item.title);
+        .indexWhere((selectedItem) => selectedItem.product.id == product.id);
     _selectedItems.removeAt(index);
     notifyListeners();
   }
@@ -41,7 +56,7 @@ class NewDonationService with ListenableServiceMixin {
     final _found = _selectedItems
         .firstWhereOrNull((selectedItem) => selectedItem.title == item.title);
 
-    /// Chequeo si encontr el item que quiero modificar
+    /// Chequeo si encontre el item que quiero modificar
     if (_found != null) {
       _found.updateQuantity = quantity;
       _replaceItem(_found);
@@ -68,9 +83,9 @@ class NewDonationService with ListenableServiceMixin {
   }
 
   /// Devuelve true si el [item] a donar existe en la lista de [_selectedItems]
-  bool checkIfItemExist(DonationItem item) {
-    final _found = _selectedItems
-        .firstWhereOrNull((selectedItem) => selectedItem.title == item.title);
+  bool checkIfItemExist(Product product) {
+    final _found = _selectedItems.firstWhereOrNull(
+        (selectedItem) => selectedItem.product.id == product.id);
 
     return (_found != null);
   }
@@ -91,8 +106,10 @@ class NewDonationService with ListenableServiceMixin {
   Future<void> getOngDonationsItems() async {
     try {
       /// Chequeo si tengo que recuperar los items para donar.
-      if (_donationItemsOptions.isEmpty) {
-        _donationItemsOptions.addAll(await _donationItemApi.getDonationItems());
+      if (_products.isEmpty) {
+        _products.addAll(
+          await _donationItemApi.getProductsByOng(_ongSelected),
+        );
       }
     } catch (e) {
       rethrow;
@@ -102,6 +119,6 @@ class NewDonationService with ListenableServiceMixin {
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
     _selectedItems = [];
-    _donationItemsOptions = [];
+    _products = [];
   }
 }

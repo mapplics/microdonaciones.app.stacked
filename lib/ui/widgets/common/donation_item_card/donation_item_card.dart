@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:stacked/stacked.dart';
@@ -7,12 +7,12 @@ import 'package:stacked/stacked.dart';
 import 'donation_item_card_model.dart';
 
 class DonationItemCard extends StackedView<DonationItemCardModel> {
-  final DonationItem donationItem;
-  final OnChangeCheckbox onChange;
+  final Product product;
   final bool initialValue;
+  final OnChangeCheckbox onChange;
 
   const DonationItemCard({
-    required this.donationItem,
+    required this.product,
     required this.onChange,
     this.initialValue = false,
     super.key,
@@ -32,7 +32,7 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(donationItem.pathImg),
+              image: NetworkImage(product.urlImg),
             ),
             borderRadius: const BorderRadius.all(
               Radius.circular(10),
@@ -55,7 +55,7 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
             Padding(
               padding: const EdgeInsets.only(left: 12.0),
               child: Text(
-                donationItem.title,
+                product.text,
                 style: CustomStylesTheme.regular14_20.copyWith(
                   color: Colors.white,
                 ),

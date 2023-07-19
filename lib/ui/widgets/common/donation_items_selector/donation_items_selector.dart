@@ -42,7 +42,7 @@ class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
                               vertical: 7.5,
                             ),
                             child: DonationItemCard(
-                              donationItem: item,
+                              product: item,
                               initialValue: viewModel.isSelectedItem(item),
                               onChange: (newValue) =>
                                   viewModel.handleToggleDonation(
