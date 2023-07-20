@@ -33,7 +33,6 @@ class DonationItemsSelectorModel extends BaseViewModel {
   /// Recupera la lista de items que se pueden seleccionar para donar.
   Future<void> getDonationsItems() async {
     try {
-      print('Zarasa');
       _error = false;
       _isLoading = true;
       rebuildUi();
