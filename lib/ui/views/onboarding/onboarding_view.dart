@@ -78,7 +78,7 @@ class _OnboardingState extends State<Onboarding> {
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 5.7),
+                    bottom: MediaQuery.of(context).size.height / 10.7),
                 child: PageIndicator(
                   pageSize: _numPages,
                   currentPage: _currentPage,
@@ -92,7 +92,7 @@ class _OnboardingState extends State<Onboarding> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 50,
               ),
             ],
           ),
