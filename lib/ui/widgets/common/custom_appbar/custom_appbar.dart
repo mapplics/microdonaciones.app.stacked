@@ -60,16 +60,19 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
                               )
                             ],
                           ),
-                          child: IconButton.filled(
-                            onPressed: null,
-                            style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                CustomStylesTheme.secondaryColor,
+                          child: InkWell(
+                            onTap: viewModel.navigateToLogin,
+                            child: IconButton.filled(
+                              onPressed: null,
+                              style: const ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                  CustomStylesTheme.secondaryColor,
+                                ),
                               ),
-                            ),
-                            icon: Icon(
-                              PhosphorIcons.bold.user,
-                              color: Colors.white,
+                              icon: Icon(
+                                PhosphorIcons.bold.user,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
