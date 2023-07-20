@@ -48,6 +48,15 @@ class MakeADonationViewModel extends ReactiveViewModel {
     );
   }
 
+  Future<bool> onBackBtnAppbar() async {
+    if (currentPage != 0) {
+      previousPage();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   /// Resetea el servicio de [NewDonationService]
   void disposeService() {
     _newDonationService.resetNewDonation();

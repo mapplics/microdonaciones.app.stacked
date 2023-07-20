@@ -21,14 +21,7 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
     Widget? child,
   ) {
     return WillPopScope(
-      onWillPop: () async {
-        if (viewModel.currentPage != 0) {
-          viewModel.previousPage();
-          return false;
-        } else {
-          return true;
-        }
-      },
+      onWillPop: viewModel.onBackBtnAppbar,
       child: CustomScaffold(
         appbar: const CustomAppbar(title: 'Que necesitamos?'),
         body: Stack(
