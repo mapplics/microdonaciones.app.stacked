@@ -16,6 +16,7 @@ import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/ui/views/make_a_donation/make_a_donation_view.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
+import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -27,6 +28,7 @@ import 'package:microdonations/services/donation_item_api_service.dart';
     MaterialRoute(page: PersonalInformationView),
     MaterialRoute(page: CreateAccountView),
     MaterialRoute(page: MakeADonationView),
+    MaterialRoute(page: SelectDeliveryMethodView),
 // @stacked-route
   ],
   dependencies: [
