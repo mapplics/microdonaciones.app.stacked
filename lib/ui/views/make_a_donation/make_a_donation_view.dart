@@ -23,7 +23,10 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
     return WillPopScope(
       onWillPop: viewModel.onBackBtnAppbar,
       child: CustomScaffold(
-        appbar: const CustomAppbar(title: 'Que necesitamos?'),
+        appbar: const CustomAppbar(
+          title: 'Que necesitamos?',
+          showActions: false,
+        ),
         body: Stack(
           children: [
             PageView(
