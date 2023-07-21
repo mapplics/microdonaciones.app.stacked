@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
 import 'package:microdonations/ui/widgets/common/donation_item_quantity/donation_item_quantity.dart';
@@ -36,7 +37,7 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
               children: const [
                 DonationItemsSelector(),
                 DonationItemQuantity(),
-                Text('Nada'),
+                SelectDeliveryMethodView(),
                 Text('Nada'),
               ],
             ),
