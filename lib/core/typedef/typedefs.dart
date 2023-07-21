@@ -1,3 +1,4 @@
+import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// Funcion que espera un [FormGroup].
@@ -10,3 +11,6 @@ typedef OnChangeCheckbox = void Function(bool newValue);
 
 /// Lo utilizamos para enviar el valor [newValue] a un widget padre.
 typedef OnChangeQuantityPicker = void Function(int newValue);
+
+/// Lo utilizamos para enviar el valor [newValue] a un widget padre.
+typedef OnChangeTypeDelivery = void Function(TypeDelivery newValue);
