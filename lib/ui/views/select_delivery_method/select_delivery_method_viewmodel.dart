@@ -6,5 +6,12 @@ import 'package:stacked/stacked.dart';
 class SelectDeliveryMethodViewModel extends BaseViewModel {
   final _newDonationService = locator<NewDonationService>();
 
-  void onChangeTypeDelivery(TypeDelivery type) {}
+  TypeDelivery get typeDeliverySelected =>
+      _newDonationService.selectedTypeDelivery;
+
+  /// Actualiza el tipo de delivery de la donacion.
+  void onChangeTypeDelivery(TypeDelivery type) {
+    _newDonationService.updateTypeDelivery(type);
+    rebuildUi();
+  }
 }

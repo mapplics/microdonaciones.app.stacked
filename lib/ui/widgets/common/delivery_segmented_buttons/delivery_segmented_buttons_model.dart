@@ -11,18 +11,23 @@ enum TypeDelivery {
 
 class DeliverySegmentedButtonsModel extends BaseViewModel {
   final OnChangeTypeDelivery onChangeTypeDelivery;
+  final TypeDelivery initialValue;
 
-  DeliverySegmentedButtonsModel(this.onChangeTypeDelivery);
+  DeliverySegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
+    _selectedDelivery = initialValue;
+  }
 
-  final Map<TypeDelivery, String> _children = {
+  late TypeDelivery _selectedDelivery;
+
+  final Map<TypeDelivery, String> _buttonsOptions = {
     TypeDelivery.home: 'Domicilio',
     TypeDelivery.branch: 'Punto de entrega',
   };
 
-  TypeDelivery _selectedDelivery = TypeDelivery.home;
-
+  /// Devuelve el tipo de delivery seleccionado [_selectedDelivery]
   TypeDelivery get deliverySelected => _selectedDelivery;
 
+  /// Recibe un [TypeDelivery] y actualiza el tipo de delivery de la donacion.
   void onChangeSelected(TypeDelivery newValue) {
     _selectedDelivery = newValue;
     onChangeTypeDelivery(_selectedDelivery);
@@ -32,7 +37,7 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
   Map<TypeDelivery, Widget> buildSegmentedButtons() {
     Map<TypeDelivery, Widget> segmentedButtons = {};
 
-    _children.forEach(
+    _buttonsOptions.forEach(
       (key, value) {
         segmentedButtons.putIfAbsent(
           key,

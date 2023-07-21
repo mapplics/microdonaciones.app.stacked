@@ -9,8 +9,10 @@ import 'delivery_segmented_buttons_model.dart';
 class DeliverySegmentedButtons
     extends StackedView<DeliverySegmentedButtonsModel> {
   final OnChangeTypeDelivery onChangeTypeDelivery;
+  final TypeDelivery initialValue;
 
   const DeliverySegmentedButtons({
+    required this.initialValue,
     required this.onChangeTypeDelivery,
     super.key,
   });
@@ -37,5 +39,5 @@ class DeliverySegmentedButtons
   DeliverySegmentedButtonsModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DeliverySegmentedButtonsModel(onChangeTypeDelivery);
+      DeliverySegmentedButtonsModel(initialValue, onChangeTypeDelivery);
 }

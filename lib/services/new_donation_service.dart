@@ -36,6 +36,9 @@ class NewDonationService with ListenableServiceMixin {
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<DonationItem> get selectedItems => _newDonation.donationsItemsList;
 
+  /// Devuelve las opciones que el usuario puede elegir para donar.
+  TypeDelivery get selectedTypeDelivery => _newDonation.typeDelivery;
+
   /// Recibe un [product] que se convierte a [DonationItem] que se agrega
   /// a la lista de donaciones [_selectedItems].
   void addDonationItem(Product product) {

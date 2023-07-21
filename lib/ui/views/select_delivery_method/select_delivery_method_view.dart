@@ -22,6 +22,7 @@ class SelectDeliveryMethodView
             width: double.infinity,
             child: DeliverySegmentedButtons(
               onChangeTypeDelivery: viewModel.onChangeTypeDelivery,
+              initialValue: viewModel.typeDeliverySelected,
             ),
           ),
         ],
