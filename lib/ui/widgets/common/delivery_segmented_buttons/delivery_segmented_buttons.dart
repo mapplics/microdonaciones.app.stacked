@@ -32,6 +32,7 @@ class DeliverySegmentedButtons
       unselectedColor: Colors.white,
       verticalOffset: 18.0,
       borderWidth: 0.7,
+      horizontalPadding: const EdgeInsets.all(0),
     );
   }
 

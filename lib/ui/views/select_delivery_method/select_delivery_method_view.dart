@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:stacked/stacked.dart';
 
@@ -18,6 +19,14 @@ class SelectDeliveryMethodView
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.only(bottom: 19.0),
+            child: Text(
+              'Seleccioná que metodo de entrega quieres utilizar para tu donación',
+              style: CustomStylesTheme.regular14_16,
+              textAlign: TextAlign.center,
+            ),
+          ),
           SizedBox(
             width: double.infinity,
             child: DeliverySegmentedButtons(
@@ -25,6 +34,29 @@ class SelectDeliveryMethodView
               initialValue: viewModel.typeDeliverySelected,
             ),
           ),
+          if (viewModel.isHomeDelivery)
+            SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Vamos a retirar tu donación por',
+                    style: CustomStylesTheme.bold16_20.copyWith(
+                      color: CustomStylesTheme.blackColor,
+                    ),
+                    // textAlign: TextAlign.start,
+                  ),
+                  Text(
+                    viewModel.userAddress.fullAddress,
+                    style: CustomStylesTheme.regular16_20.copyWith(
+                      color: CustomStylesTheme.blackColor,
+                    ),
+                    // textAlign: TextAlign.start,
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );
