@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
@@ -55,8 +56,8 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
             Padding(
               padding: const EdgeInsets.only(left: 12.0),
               child: Text(
-                product.text,
-                style: CustomStylesTheme.regular14_20.copyWith(
+                product.name.capitalize(),
+                style: CustomStylesTheme.bold14_20.copyWith(
                   color: Colors.white,
                 ),
               ),

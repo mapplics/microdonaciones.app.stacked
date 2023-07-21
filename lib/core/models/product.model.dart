@@ -3,15 +3,15 @@ import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 /// Representa los productos que puede recibir una ONG como donacion.
 class Product {
   final int id;
-  final String text;
+  final String name;
   final String urlImg;
 
   Product({
     required this.id,
-    required this.text,
+    required this.name,
     required this.urlImg,
   })  : assert(
-          text.isNotEmpty,
+          name.isNotEmpty,
           'The title should not be empty',
         ),
         assert(
@@ -23,8 +23,11 @@ class Product {
   static Product createOne(Map<String, dynamic> data) {
     return Product(
       id: data['id'],
-      text: data['text'],
-      urlImg: data['image'],
+      name: data['name'],
+      urlImg: data['image'].toString().replaceFirst(
+            'http://localhost:8080/',
+            'http://10.0.2.2:8080/',
+          ),
     );
   }
 
@@ -37,7 +40,7 @@ class Product {
         items.add(Product.createOne(course));
       } catch (e) {
         logError(e);
-        continue;
+        rethrow;
       }
     }
 

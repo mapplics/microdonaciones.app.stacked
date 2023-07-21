@@ -27,7 +27,7 @@ class DonationItem {
   }
 
   /// Devuelve el titulo del producto a donar.
-  String get title => product.text;
+  String get title => product.name;
 
   /// Setea el [quantity] del [DonationItem].
   /// Valida que el numero ingresado no sea negativo.
