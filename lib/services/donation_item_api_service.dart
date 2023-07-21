@@ -18,7 +18,7 @@ class DonationItemApiService {
         ),
       );
 
-      return Product.createList(_response.data);
+      return Product.createList(_response.data['data']);
     } catch (e) {
       rethrow;
     }
