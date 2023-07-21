@@ -17,6 +17,15 @@ class UpdateAddressRequest implements BaseAddress {
   @override
   String? longitude;
 
+  @override
+  String get fullAddress => '$address ${isFlat ? fullFlat : ''}';
+
+  @override
+  bool get isFlat => apartment != null;
+
+  @override
+  String get fullFlat => (floor != null) ? '$apartment - $floor' : '$floor';
+
   UpdateAddressRequest({
     required this.address,
     this.floor,

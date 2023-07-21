@@ -25,6 +25,15 @@ class UserAddress implements BaseAddress {
     this.longitude,
   });
 
+  @override
+  String get fullAddress => '$address ${isFlat ? fullFlat : ''}';
+
+  @override
+  bool get isFlat => apartment != null;
+
+  @override
+  String get fullFlat => (floor != null) ? '$apartment - $floor' : '$floor';
+
   /// Crea una instancia de [UserAddress]
   UserAddress createOne(Map<String, dynamic> data) {
     return UserAddress(
