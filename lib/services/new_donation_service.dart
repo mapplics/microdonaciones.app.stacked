@@ -1,8 +1,8 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:collection/collection.dart';
 
@@ -23,8 +23,7 @@ class NewDonationService with ListenableServiceMixin {
     enabled: true,
   );
 
-  /// Lista de items que la persona eligio para donar.
-  List<DonationItem> _selectedItems = [];
+  NewDonation _newDonation = NewDonation();
 
   /// Contiene los items que recibe la ONG como donacion
   /// y la persona puede elegir.
@@ -33,75 +32,44 @@ class NewDonationService with ListenableServiceMixin {
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<Product> get productsOptions => _products;
 
-  /// Devuelve los items que seleciono el usuario para donar
-  List<DonationItem> get selectedItems => _selectedItems;
+  /// Devuelve las opciones que el usuario puede elegir para donar.
+  List<DonationItem> get selectedItems => _newDonation.donationsItemsList;
 
   /// Recibe un [product] que se convierte a [DonationItem] que se agrega
   /// a la lista de donaciones [_selectedItems].
   void addDonationItem(Product product) {
     final asDonationItem = DonationItem.createFromProduct(product);
-    _selectedItems.add(asDonationItem);
+    _newDonation.addDonationItem(asDonationItem);
     notifyListeners();
   }
 
   /// Recibe un [Product] y busca una coincidencia en [_selectedItems].
   /// Si encuentra una elimina el [DonationItem] de [_selectedItems]
   void removeDonationItem(Product product) {
-    final index = _selectedItems
-        .indexWhere((selectedItem) => selectedItem.product.id == product.id);
-    _selectedItems.removeAt(index);
+    _newDonation.removeDonationItem(product);
     notifyListeners();
   }
 
   /// Recibe un [DonationItem] y una cantidad [quantity]
   /// que se le va a asignar al mismo.
   void onChangeItemQuantity(DonationItem item, int quantity) {
-    final _found = _selectedItems
-        .firstWhereOrNull((selectedItem) => selectedItem.title == item.title);
-
-    /// Chequeo si encontre el item que quiero modificar
-    if (_found != null) {
-      _found.updateQuantity = quantity;
-      _replaceItem(_found);
-    } else {
-      logError('DonationItem not found!');
-    }
-
+    _newDonation.updateDonationItemQuality(item, quantity);
     notifyListeners();
   }
 
-  /// Recibe un item [DonationItem] y busca en [_selectedItems] una coincidencia
-  /// si encuentra uno lo reemplaza con el [item]
-  void _replaceItem(DonationItem item) {
-    final index = _selectedItems.indexWhere(
-      (selectedItem) => selectedItem.title == item.title,
-    );
-
-    /// Chequeo si encontre el item que quiero reemplazar.
-    if (index != -1) {
-      _selectedItems[index] = item;
-    } else {
-      logError('No se encontro una coincidencia');
-    }
-  }
-
-  /// Devuelve true si existe un [DonationItem] en [_selectedItems]
-  /// para el [item].
-  bool checkIfItemExist(Product product) {
-    final _found = _selectedItems.firstWhereOrNull(
-        (selectedItem) => selectedItem.product.id == product.id);
-
-    return (_found != null);
-  }
+  /// Devuelve true si existe el [Product] en la lista de donacion.
+  bool checkIfItemExist(Product product) =>
+      _newDonation.checkIfItemExist(product);
 
   /// Devuelve true si la persona selecciono al menos un item para donar.
-  bool selectedItemsValid() => _selectedItems.isNotEmpty;
+  bool selectedItemsValid() => _newDonation.donationsItemsList.isNotEmpty;
 
   /// Devuelve true si todos los items de [_selectedItems]
   /// tienen una cantidad distinta de 0.
   bool itemsQuantityValid() {
-    final _found = _selectedItems
-        .firstWhereOrNull((selectedItem) => selectedItem.quantity == 0);
+    final _found = _newDonation.donationsItemsList.firstWhereOrNull(
+      (selectedItem) => (selectedItem.quantity == 0),
+    );
 
     return (_found == null);
   }
@@ -122,7 +90,7 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
-    _selectedItems = [];
+    _newDonation = NewDonation();
     _products = [];
   }
 }
