@@ -34,7 +34,9 @@ class NewDonation {
   }
 
   /// Actualiza el tipo de delivery [TypeDelivery] de la donacion
-  set updateTypeDelivery(TypeDelivery type) => typeDelivery = type;
+  void updateTypeDelivery(TypeDelivery type) {
+    typeDelivery = type;
+  }
 
   /// Recibe un [DonationItem] y la cantidad [quantity] que se le va a setear
   /// al mismo [DonationItem].

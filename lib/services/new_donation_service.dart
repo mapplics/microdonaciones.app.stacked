@@ -3,6 +3,7 @@ import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
+import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:collection/collection.dart';
 
@@ -55,6 +56,10 @@ class NewDonationService with ListenableServiceMixin {
   void onChangeItemQuantity(DonationItem item, int quantity) {
     _newDonation.updateDonationItemQuality(item, quantity);
     notifyListeners();
+  }
+
+  void updateTypeDelivery(TypeDelivery type) {
+    _newDonation.updateTypeDelivery(type);
   }
 
   /// Devuelve true si existe el [Product] en la lista de donacion.
