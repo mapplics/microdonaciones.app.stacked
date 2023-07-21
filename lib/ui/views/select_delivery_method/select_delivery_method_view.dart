@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import 'select_delivery_method_viewmodel.dart';
+import 'package:material_segmented_control/material_segmented_control.dart';
 
 class SelectDeliveryMethodView
     extends StackedView<SelectDeliveryMethodViewModel> {
@@ -19,47 +19,20 @@ class SelectDeliveryMethodView
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
-          SegmentedButton(
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(
-                CustomStylesTheme.secondaryColor,
-              ),
-              side: MaterialStatePropertyAll(
-                BorderSide(
-                  color: CustomStylesTheme.primaryColor,
-                ),
-              ),
-              foregroundColor: MaterialStatePropertyAll(
-                CustomStylesTheme.errorColor,
-              ),
-              shadowColor: MaterialStatePropertyAll(
-                CustomStylesTheme.sucessColor,
-              ),
+          SizedBox(
+            width: double.infinity,
+            child: MaterialSegmentedControl<TypeDelivery>(
+              children: viewModel.buildSegmentedButtons(),
+              selectionIndex: viewModel.deliverySelected,
+              onSegmentTapped: viewModel.onChangeSelected,
+              selectedColor: CustomStylesTheme.primaryColor,
+              borderColor: CustomStylesTheme.gray100,
+              unselectedColor: Colors.white,
+              // selectedTextStyle: TextStyle(color: Colors.white),
+              // unselectedTextStyle: TextStyle(color: Colors.redAccent),
+              borderWidth: 0.7,
+              borderRadius: 32.0,
             ),
-            segments: [
-              ButtonSegment(
-                label: Text(
-                  'Test',
-                  style: CustomStylesTheme.bold12_16.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-                icon: Icon(PhosphorIcons.bold.houseLine),
-                value: TypeDelivery.home,
-              ),
-              ButtonSegment(
-                label: Text(
-                  'Test',
-                  style: CustomStylesTheme.bold12_16.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-                icon: Icon(PhosphorIcons.bold.mapPinLine),
-                value: TypeDelivery.branch,
-              ),
-            ],
-            selected: viewModel.deliveryTypeSelected,
-            onSelectionChanged: viewModel.onchangeDeliveryType,
           ),
         ],
       ),
