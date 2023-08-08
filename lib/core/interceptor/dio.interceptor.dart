@@ -75,7 +75,7 @@ class DioClient {
           // Do something before request is sent
 
           try {
-            if (_authService.call().isUserLogged) {
+            if (_authService.call().authModel != null) {
               options.headers['Authorization'] =
                   _authService.call().authModel!.bearer;
             }

@@ -12,7 +12,7 @@ class SelectDeliveryMethodViewModel extends BaseViewModel {
   TypeDelivery get typeDeliverySelected =>
       _newDonationService.selectedTypeDelivery;
 
-  UserAddress get userAddress => _userService.loggedUser.address;
+  UserAddress get userAddress => _userService.loggedUser!.address;
 
   /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
   /// es a domicilio.

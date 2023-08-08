@@ -32,7 +32,7 @@ class StartupViewModel extends BaseViewModel {
         /// Intento recuperar un usuario del Storage para hacer autologin.
         _authService.tryAutoLogin();
 
-        if (_authService.isUserLogged) {
+        if (_authService.authModel != null) {
           /// Recupero el perfil
           _userService.setLoggedUser = await _userService.getProfile();
 

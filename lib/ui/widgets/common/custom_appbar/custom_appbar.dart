@@ -43,7 +43,7 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
                       ? InkWell(
                           onTap: viewModel.navigateToPersonalInformation,
                           child: UserAvatar(
-                            user: viewModel.user,
+                            user: viewModel.user!,
                           ),
                         )
                       : Container(

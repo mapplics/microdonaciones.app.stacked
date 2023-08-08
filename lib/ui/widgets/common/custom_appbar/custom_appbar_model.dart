@@ -17,14 +17,14 @@ class CustomAppbarModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve true si deberia mostrar el avatar con las iniciales del user.
-  bool get showAvatarWithInitials => _authService.isUserLogged;
+  bool get showAvatarWithInitials => (_userService.isUserLogged);
 
-  LoggedUser get user => _userService.loggedUser;
+  LoggedUser? get user => _userService.loggedUser;
 
   /// Navega a la pantalla de datos personales.
   void navigateToPersonalInformation() =>
       _navigationService.navigateToPersonalInformationView(
-        viewParameters: UserInformationFormParameters(_userService.loggedUser),
+        viewParameters: UserInformationFormParameters(_userService.loggedUser!),
       );
 
   /// Navega a la pagina para que la persona se loguee

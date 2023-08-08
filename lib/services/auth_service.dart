@@ -19,9 +19,6 @@ class AuthService with ListenableServiceMixin {
   /// Devuelve el [AuthModel].
   AuthModel? get authModel => _authModel;
 
-  /// Devuelve true si el usuario esta logueado.
-  bool get isUserLogged => (_authModel != null);
-
   /// Intenta loguear al usuario recuperando un [AuthModel] del storage.
   void tryAutoLogin() {
     try {

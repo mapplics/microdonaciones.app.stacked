@@ -1,20 +1,24 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
 import 'package:microdonations/services/user_api_service.dart';
+import 'package:stacked/stacked.dart';
 
 import '../core/models/logged_user.model.dart';
 
-class UserService {
+class UserService with ListenableServiceMixin {
   final _userApi = locator<UserApiService>();
 
   /// Instancia del usuario logueado.
-  late LoggedUser _loggedUser;
+  LoggedUser? _loggedUser;
 
   /// Setea la instancia del usuario logueado.
   set setLoggedUser(LoggedUser user) => _loggedUser = user;
 
   /// Devuelve la instancia del usuario logueado.
-  LoggedUser get loggedUser => _loggedUser;
+  LoggedUser? get loggedUser => _loggedUser;
+
+  /// Devuelve true si el usuario esta logueado.
+  bool get isUserLogged => (_loggedUser != null);
 
   //// Obtiene el perfil del usuario.
   Future<LoggedUser> getProfile() async {
