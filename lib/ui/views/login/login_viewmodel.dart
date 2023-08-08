@@ -41,8 +41,6 @@ class LoginViewModel extends BaseViewModel {
     /// Recupero mi social login token.
     final _firebaseToken = await authResult.user!.getIdToken();
 
-    logSucess('GoogleToken $_firebaseToken');
-
     /// Hago login contra API.
     final _socialLoginResp = await _authService.call().login(
           authResult.user!.email!,
