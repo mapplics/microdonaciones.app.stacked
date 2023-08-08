@@ -25,7 +25,7 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: CustomScaffold(
-        appbar: const CustomAppbar(title: 'Formulario'),
+        appbar: const CustomAppbar(title: 'Crear cuenta', showActions: false),
         body: Column(
           children: [
             UserInformationForm(
