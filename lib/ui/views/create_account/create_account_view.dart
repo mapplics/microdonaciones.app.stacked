@@ -26,28 +26,30 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: CustomScaffold(
         appbar: const CustomAppbar(title: 'Crear cuenta', showActions: false),
-        body: Column(
-          children: [
-            UserInformationForm(
-              user: viewParameters.user,
-              onchange: (form) => viewModel.updateForm = form,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 18.0),
-              child: TermsAndConditionsCheckbox(
-                onchange: (newValue) =>
-                    viewModel.termsAndConditionsOnChange(newValue),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              UserInformationForm(
+                user: viewParameters.user,
+                onchange: (form) => viewModel.updateForm = form,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 43.0),
-              child: CustomFillButton(
-                backgroundColor: CustomStylesTheme.tertiaryColor,
-                label: 'Crear una cuenta',
-                action: () => viewModel.onSaveUserData(context),
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: TermsAndConditionsCheckbox(
+                  onchange: (newValue) =>
+                      viewModel.termsAndConditionsOnChange(newValue),
+                ),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 43.0),
+                child: CustomFillButton(
+                  backgroundColor: CustomStylesTheme.tertiaryColor,
+                  label: 'Crear una cuenta',
+                  action: () => viewModel.onSaveUserData(context),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
