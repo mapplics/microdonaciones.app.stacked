@@ -41,6 +41,7 @@ dependencies:
   jwt_decode: ^0.3.1
   phosphor_flutter: ^2.0.0
   flutter_dotenv: ^5.0.2
+  flutter_launcher_icons: ^0.13.1
 
   # Firebase
   firebase_core: ^2.14.0

@@ -18,9 +18,59 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     Widget? child,
   ) {
     return CustomScaffold(
-      appbar: const CustomAppbar(title: 'Hola!'),
-      body: Onboarding(
-        skipOnboardingAction: viewModel.navigateToHome,
+      appbar: const CustomAppbar(title: 'Hola!', showActions: false),
+      body: Stack(
+        children: [
+          PageView(
+            physics: const ClampingScrollPhysics(),
+            controller: viewModel.pageController,
+            onPageChanged: viewModel.onPageChange,
+            children: const [
+              OnboardingPage(
+                pathImg: 'assets/img/img_foto_uno.png',
+                description:
+                    'Occaecat deserunt et sit dolore do deserunt dolore aute cupidatat cupidatat do ad. Sint eu quis exercitation eiusmod veniam ea cupidatat.',
+              ),
+              OnboardingPage(
+                pathImg: 'assets/img/img_foto_dos.png',
+                description:
+                    'Et ad aliquip labore ex quis pariatur id. Enim do adipisicing nulla eiusmod laboris elit cillum adipisicing elit sint consequat. Lorem cillum aliquip incididunt culpa qui quis ullamco.',
+              ),
+              OnboardingPage(
+                pathImg: 'assets/img/img_foto_tres.png',
+                description:
+                    'Do ullamco nostrud laboris consequat reprehenderit officia laboris fugiat aliqua ea culpa et ut. Ea sunt excepteur aliqua aliquip eiusmod dolor. Deserunt ad Lorem ad ullamco ex consectetur culpa quis.',
+              ),
+            ],
+          ),
+          SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                PageIndicator(
+                  pageSize: viewModel.numSlides,
+                  currentPage: viewModel.currentPage,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 50.0),
+                  child: Column(
+                    children: [
+                      LinkButton(
+                        label: viewModel.isLastPage
+                            ? 'Omitir introducción'
+                            : 'Comenzar!',
+                        action: viewModel.navigateToHome,
+                        textStyle: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.tertiaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -30,76 +80,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     BuildContext context,
   ) =>
       OnboardingViewModel();
-}
-
-class Onboarding extends StatefulWidget {
-  final Function skipOnboardingAction;
-
-  const Onboarding({required this.skipOnboardingAction, super.key});
-
-  @override
-  State<Onboarding> createState() => _OnboardingState();
-}
-
-class _OnboardingState extends State<Onboarding> {
-  final PageController _pageController = PageController(initialPage: 0);
-  final int _numPages = 3;
-  int _currentPage = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        PageView(
-          physics: const ClampingScrollPhysics(),
-          controller: _pageController,
-          onPageChanged: (int page) => setState(() => _currentPage = page),
-          children: const [
-            OnboardingPage(
-              pathImg: 'assets/img/img_foto_uno.png',
-              description:
-                  'Occaecat deserunt et sit dolore do deserunt dolore aute cupidatat cupidatat do ad. Sint eu quis exercitation eiusmod veniam ea cupidatat.',
-            ),
-            OnboardingPage(
-              pathImg: 'assets/img/img_foto_dos.png',
-              description:
-                  'Et ad aliquip labore ex quis pariatur id. Enim do adipisicing nulla eiusmod laboris elit cillum adipisicing elit sint consequat. Lorem cillum aliquip incididunt culpa qui quis ullamco.',
-            ),
-            OnboardingPage(
-              pathImg: 'assets/img/img_foto_tres.png',
-              description:
-                  'Do ullamco nostrud laboris consequat reprehenderit officia laboris fugiat aliqua ea culpa et ut. Ea sunt excepteur aliqua aliquip eiusmod dolor. Deserunt ad Lorem ad ullamco ex consectetur culpa quis.',
-            ),
-          ],
-        ),
-        SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 10.7),
-                child: PageIndicator(
-                  pageSize: _numPages,
-                  currentPage: _currentPage,
-                ),
-              ),
-              LinkButton(
-                label: 'Omitir introducción',
-                action: () => widget.skipOnboardingAction(),
-                textStyle: CustomStylesTheme.regular14_20.copyWith(
-                  color: CustomStylesTheme.tertiaryColor,
-                ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
-          ),
-        )
-      ],
-    );
-  }
 }
 
 class OnboardingPage extends StatelessWidget {
