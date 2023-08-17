@@ -1,54 +1,40 @@
 {
-  "project_info": {
-    "project_number": "949356289075",
-    "project_id": "microdonaciones-a5abb",
-    "storage_bucket": "microdonaciones-a5abb.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:949356289075:android:feacb46c361a011c4f5746",
-        "android_client_info": {
-          "package_name": "com.example.microdonations"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "949356289075-34lgv72k7sk7d70bvusplke7br3kggrt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.microdonations",
-            "certificate_hash": "21036455ed01bfb13de9d2e7b925ea461cfa6852"
-          }
+    "project_info": {
+        "project_number": "826758902094",
+        "project_id": "microdonaciones-15b3f",
+        "storage_bucket": "microdonaciones-15b3f.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:826758902094:android:776944f3be4272ecf0ee1f",
+            "android_client_info": {
+                "package_name": "com.example.microdonations"
+            }
         },
-        {
-          "client_id": "949356289075-jtgb08fd07jqidltho334amrlrthfb11.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCk8CGOflPc6CMQNhhL3vo-AJsNouqWe34"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "949356289075-jtgb08fd07jqidltho334amrlrthfb11.apps.googleusercontent.com",
-              "client_type": 3
+        "oauth_client": [{
+                "client_id": "826758902094-pggs1hech1r1eduhfavtbmbs70ht1ann.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "com.example.microdonations",
+                    "certificate_hash": "4bec7fbea2e3cd1c91047329d208339a5cffdca3"
+                }
             },
             {
-              "client_id": "949356289075-332qeaq5admc71u32l53hkt3ejn00u5b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.microdonations"
-              }
+                "client_id": "826758902094-7dk3ehasdobiuhsk40jjps058rk37o8u.apps.googleusercontent.com",
+                "client_type": 3
             }
-          ]
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyDyeFx1p8OPn9mqELcV_ON5lAZ6mo36nEM"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "826758902094-7dk3ehasdobiuhsk40jjps058rk37o8u.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
         }
-      }
-    }
-  ],
-  "configuration_version": "1"
+    }],
+    "configuration_version": "1"
 }
