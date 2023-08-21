@@ -29,17 +29,17 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_uno.png',
                 description:
-                    'Occaecat deserunt et sit dolore do deserunt dolore aute cupidatat cupidatat do ad. Sint eu quis exercitation eiusmod veniam ea cupidatat.',
+                    'Bienvenidos! MicroDonaciones es un desarrollo de la Asociación Civil Código Fuente.',
               ),
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_dos.png',
                 description:
-                    'Et ad aliquip labore ex quis pariatur id. Enim do adipisicing nulla eiusmod laboris elit cillum adipisicing elit sint consequat. Lorem cillum aliquip incididunt culpa qui quis ullamco.',
+                    'Somos una asociación sin fines de lucro que tiene por objetivo la creación de soluciones digitales como respuesta a distintas problemáticas sociales. Donamos nuestro tiempo para la coordinación de equipos y el desarrollo de tecnologías que generen impacto en nuestra sociedad.',
               ),
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_tres.png',
                 description:
-                    'Do ullamco nostrud laboris consequat reprehenderit officia laboris fugiat aliqua ea culpa et ut. Ea sunt excepteur aliqua aliquip eiusmod dolor. Deserunt ad Lorem ad ullamco ex consectetur culpa quis.',
+                    'A través de MicroDonaciones vas a poder publicar tu donación especificando qué vas a donar junto con tu dirección, horario y fecha en que podrían pasar a retirarla. También podrás hacer el seguimiento de tus donaciones, las cuales tendrán como destino distintos merenderos de la ciudad.',
               ),
             ],
           ),
