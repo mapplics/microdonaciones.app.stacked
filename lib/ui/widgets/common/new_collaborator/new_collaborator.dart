@@ -54,18 +54,18 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: (MediaQuery.of(context).size.height / 25),
-                  ),
-                  child: Text(
-                    'Laborum sunt laborum commodo enim. Mollit est amet commodo tempor minim.',
-                    style: CustomStylesTheme.regular14_16.copyWith(
-                      color: Colors.white.withOpacity(0.52),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(
+                //     bottom: (MediaQuery.of(context).size.height / 25),
+                //   ),
+                //   child: Text(
+                //     'Laborum sunt laborum commodo enim. Mollit est amet commodo tempor minim.',
+                //     style: CustomStylesTheme.regular14_16.copyWith(
+                //       color: Colors.white.withOpacity(0.52),
+                //     ),
+                //     textAlign: TextAlign.center,
+                //   ),
+                // ),
               ],
             ),
           ),
