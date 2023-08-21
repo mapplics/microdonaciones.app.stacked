@@ -48,11 +48,12 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 PageIndicator(
-                  pageSize: viewModel.numSlides,
-                  currentPage: viewModel.currentPage,
+                  totalSlides: viewModel.numSlides,
+                  currentSlide: viewModel.currentPage,
+                  withPositionsColors: true,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 50.0),
+                  padding: const EdgeInsets.symmetric(vertical: 40.0),
                   child: Column(
                     children: [
                       LinkButton(
@@ -97,15 +98,13 @@ class OnboardingPage extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: double.infinity,
+          width: MediaQuery.of(context).size.width / 1.5,
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 40.0, bottom: 18),
                 child: Image.asset(
                   pathImg,
-                  scale: 2,
-                  // color: Colors.red,
                 ),
               ),
               Text(

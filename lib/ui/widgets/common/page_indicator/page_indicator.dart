@@ -6,13 +6,15 @@ import 'package:stacked/stacked.dart';
 import 'page_indicator_model.dart';
 
 class PageIndicator extends StackedView<PageIndicatorModel> {
-  final int pageSize;
-  final int currentPage;
+  final int totalSlides;
+  final int currentSlide;
   final DotIndicatorSize dotIndicatorSize;
+  final bool withPositionsColors;
 
   const PageIndicator({
-    required this.pageSize,
-    required this.currentPage,
+    required this.totalSlides,
+    required this.currentSlide,
+    this.withPositionsColors = false,
     this.dotIndicatorSize = DotIndicatorSize.big,
     super.key,
   });
@@ -26,15 +28,14 @@ class PageIndicator extends StackedView<PageIndicatorModel> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        for (int i = 0; i < pageSize; i++)
+        for (int index = 0; index < totalSlides; index++)
           Padding(
-            padding: EdgeInsets.only(
-              right:
-                  (i != (pageSize - 1)) ? viewModel.getHorizontalPadding : 0.0,
-            ),
+            padding: viewModel.getDotPadding(index, totalSlides),
             child: DotIndicator(
-              active: (i == currentPage),
+              active: viewModel.isCurrentPage(index, currentSlide),
               size: dotIndicatorSize,
+              currentSlide: currentSlide,
+              withPositionsColors: withPositionsColors,
             ),
           )
       ],

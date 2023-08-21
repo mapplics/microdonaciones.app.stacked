@@ -6,11 +6,15 @@ import 'dot_indicator_model.dart';
 
 class DotIndicator extends StackedView<DotIndicatorModel> {
   final bool active;
+  final int currentSlide;
   final DotIndicatorSize size;
+  final bool withPositionsColors;
 
   const DotIndicator({
     required this.active,
+    required this.currentSlide,
     required this.size,
+    this.withPositionsColors = false,
     super.key,
   });
 
@@ -36,7 +40,9 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
               ]
             : null,
         color: active
-            ? CustomStylesTheme.tertiaryColor
+            ? withPositionsColors
+                ? viewModel.getDotColor(currentSlide)
+                : CustomStylesTheme.tertiaryColor
             : CustomStylesTheme.darkGreyColor,
       ),
     );

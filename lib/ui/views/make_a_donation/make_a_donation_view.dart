@@ -72,8 +72,8 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 26.0),
                               child: PageIndicator(
-                                pageSize: viewModel.numPages,
-                                currentPage: viewModel.currentPage,
+                                totalSlides: viewModel.numPages,
+                                currentSlide: viewModel.currentPage,
                                 dotIndicatorSize: DotIndicatorSize.small,
                               ),
                             ),
