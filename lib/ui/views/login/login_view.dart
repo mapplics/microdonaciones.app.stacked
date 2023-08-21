@@ -57,16 +57,6 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 250,
-              child: Text(
-                'Laboris proident fugiat sit ut adipisicing officia reprehenderit. Voluptate officia in labore reprehenderit exercitation.',
-                textAlign: TextAlign.center,
-                style: CustomStylesTheme.regular14_20.copyWith(
-                  color: CustomStylesTheme.blackColor,
-                ),
-              ),
-            ),
           ],
         ),
       ),
