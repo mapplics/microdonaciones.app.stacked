@@ -76,7 +76,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 1.7),
                   child: const Text(
-                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.',
+                    'Aporta tu microdonacion y empezamos a generar un cambio',
                     style: CustomStylesTheme.regular14_20,
                   ),
                 ),
