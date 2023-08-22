@@ -73,15 +73,13 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                                   const EdgeInsets.symmetric(horizontal: 26.0),
                               child: PageIndicator(
                                 totalSlides: viewModel.numPages,
-                                currentSlide: viewModel.currentPage,
+                                currentSlide: viewModel.currentSlide,
                                 dotIndicatorSize: DotIndicatorSize.small,
                               ),
                             ),
                             LinkButton(
                               label: 'Siguiente',
-                              action: viewModel.canEnableNextPage()
-                                  ? viewModel.nextPage
-                                  : null,
+                              action: () => viewModel.nextPage(context),
                               textStyle: CustomStylesTheme.bold16_20.copyWith(
                                 color: CustomStylesTheme.tertiaryColor,
                               ),

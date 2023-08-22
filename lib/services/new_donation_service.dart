@@ -1,3 +1,4 @@
+import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
@@ -69,17 +70,23 @@ class NewDonationService with ListenableServiceMixin {
   bool checkIfItemExist(Product product) =>
       _newDonation.checkIfItemExist(product);
 
-  /// Devuelve true si la persona selecciono al menos un item para donar.
-  bool selectedItemsValid() => _newDonation.donationsItemsList.isNotEmpty;
+  /// Devuelve null si la persona selecciono al menos un item para donar.
+  /// Sino devuelve un [NewDonationError]
+  NewDonationError? selectedItemsValid() {
+    return _newDonation.donationsItemsList.isNotEmpty
+        ? null
+        : NewDonationError.noProductsSelected;
+  }
 
-  /// Devuelve true si todos los items de [_selectedItems]
-  /// tienen una cantidad distinta de 0.
-  bool itemsQuantityValid() {
+  /// Devuelve null si todos los items de [_selectedItems]
+  /// tienen una cantidad superior a 0.
+  NewDonationError? itemsQuantityValid() {
     final _found = _newDonation.donationsItemsList.firstWhereOrNull(
-      (selectedItem) => (selectedItem.quantity == 0),
+      (selectedItem) =>
+          (selectedItem.quantity == 0 && !selectedItem.quantity.isNegative),
     );
 
-    return (_found == null);
+    return (_found == null) ? null : NewDonationError.quantityProductsInvalid;
   }
 
   /// Recupera la lista de items que se pueden seleccionar para donar.
