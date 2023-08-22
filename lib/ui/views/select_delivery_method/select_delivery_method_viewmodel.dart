@@ -35,7 +35,9 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Navega a la pantalla para editar los datos del usuario.
   void navigateToPersonalInformation() {
     _navigationService.navigateToPersonalInformationView(
-      viewParameters: UserInformationFormParameters(_userService.loggedUser!),
+      viewParameters: UserInformationFormParameters(
+        user: _userService.loggedUser!,
+      ),
     );
   }
 }

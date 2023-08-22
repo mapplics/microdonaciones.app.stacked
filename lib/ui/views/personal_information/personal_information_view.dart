@@ -45,13 +45,14 @@ class PersonalInformationView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: CustomOutlineButton(
-                        label: 'Desloguear',
-                        action: viewModel.logout,
+                    if (viewParameters.showLogoutButton)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: CustomOutlineButton(
+                          label: 'Desloguear',
+                          action: viewModel.logout,
+                        ),
                       ),
-                    ),
                     CustomFillButton(
                       backgroundColor: CustomStylesTheme.tertiaryColor,
                       label: 'Guardar',
