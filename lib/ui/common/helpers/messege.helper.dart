@@ -226,14 +226,12 @@ class MessegeHelper {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        duration: const Duration(seconds: 5),
+        duration: const Duration(milliseconds: 2800),
       ),
     );
   }
 
-  /// snackbar error
-  ///
-  /// muestra un [message]
+  /// Toast de error que muestra un [message]
   static void showErrorSnackBar(
     BuildContext context,
     String message, {
@@ -248,9 +246,22 @@ class MessegeHelper {
     );
   }
 
-  /// snackbar success
-  ///
-  /// muestra un [message]
+  /// Toast de error que muestra un [message]
+  static void showInfoSnackBar(
+    BuildContext context,
+    String message, {
+    double marginBottom = 16.0,
+  }) {
+    showSnackBar(
+      context,
+      message,
+      CustomStylesTheme.secondaryColor,
+      PhosphorIcons.bold.info,
+      marginBottom: marginBottom,
+    );
+  }
+
+  /// Toast de exito que muestra un [message]
   static void showSuccessSnackBar(
     BuildContext context,
     String message, {
