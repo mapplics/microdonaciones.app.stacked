@@ -222,7 +222,7 @@ class MessegeHelper {
         elevation: 0,
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.only(bottom: marginBottom, left: 16, right: 16),
-        backgroundColor: Colors.white, // backgroundColor,
+        backgroundColor: CustomStylesTheme.gray400, // backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
