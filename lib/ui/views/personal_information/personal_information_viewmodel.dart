@@ -5,7 +5,7 @@ import 'package:microdonations/core/models/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
 import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/user_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -24,7 +24,10 @@ class PersonalInformationViewModel extends BaseViewModel {
   /// Guarda los datos del usuario.
   Future<void> onSaveUserData(BuildContext context) async {
     if (_form.invalid) {
-      logError('Formulario invalido');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'El formulario es invalido. Los campos marcados con * son obligatorios.',
+      );
       return;
     }
 
@@ -53,9 +56,16 @@ class PersonalInformationViewModel extends BaseViewModel {
     try {
       context.loaderOverlay.show();
       await _userService.updateProfile(_updateRequest);
+      MessegeHelper.showSuccessSnackBar(
+        context,
+        'Tus datos fueron actualizados exitosamente!',
+      );
       _navigationService.back();
     } catch (e) {
-      logError('Update user failed! ${e.toString()}');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'No pudimos actualizar tus datos. Por favor, volve a intentarlo.',
+      );
     } finally {
       context.loaderOverlay.hide();
     }
