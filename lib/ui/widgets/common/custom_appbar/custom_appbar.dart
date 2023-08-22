@@ -33,7 +33,9 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
         ),
       ),
       centerTitle: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: CustomStylesTheme.secondaryColor,
+      foregroundColor: Colors.white,
+      forceMaterialTransparency: true,
       actions: showActions
           ? actions ??
               [
