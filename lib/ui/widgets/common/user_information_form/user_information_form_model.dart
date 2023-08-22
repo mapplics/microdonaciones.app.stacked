@@ -92,7 +92,7 @@ class UserInformationFormModel extends BaseViewModel {
     );
   }
 
-  /// Devuelve true si el campo 'address'
+  /// Devuelve true si el campo 'address' existe en el [user]
   bool _canSetAddres(BaseUser user) => (user.runtimeType == LoggedUser);
 
   /// Recibe un [BaseUser] y si es de tipo [LoggedUser] devuelve
