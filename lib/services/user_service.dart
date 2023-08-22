@@ -33,6 +33,7 @@ class UserService with ListenableServiceMixin {
   Future<void> updateProfile(UpdateUserRequest updateUserRequest) async {
     try {
       _loggedUser = await _userApi.updateProfile(updateUserRequest);
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
