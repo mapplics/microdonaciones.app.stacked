@@ -41,17 +41,25 @@ class PersonalInformationView
                 onchange: (form) => viewModel.updateForm = form,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 43.0, bottom: 20.0),
-                child: CustomFillButton(
-                  backgroundColor: CustomStylesTheme.tertiaryColor,
-                  label: 'Guardar',
-                  action: () => viewModel.onSaveUserData(context),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: CustomOutlineButton(
+                        label: 'Desloguear',
+                        action: viewModel.logout,
+                      ),
+                    ),
+                    CustomFillButton(
+                      backgroundColor: CustomStylesTheme.tertiaryColor,
+                      label: 'Guardar',
+                      action: () => viewModel.onSaveUserData(context),
+                    ),
+                  ],
                 ),
               ),
-              CustomOutlineButton(
-                label: 'Desloguear',
-                action: viewModel.logout,
-              )
             ],
           ),
         ),
