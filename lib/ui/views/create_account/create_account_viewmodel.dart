@@ -32,7 +32,7 @@ class CreateAccountViewModel extends BaseViewModel {
     if (_form.invalid) {
       MessegeHelper.showErrorSnackBar(
         context,
-        'El formulario en invalido. Los campos marcados con * son obligatorios.',
+        'El formulario es invalido. Los campos marcados con * son obligatorios.',
       );
       return;
     }
@@ -70,7 +70,7 @@ class CreateAccountViewModel extends BaseViewModel {
     try {
       context.loaderOverlay.show();
       await _userService.updateProfile(_updateRequest);
-      MessegeHelper.showErrorSnackBar(context, 'Usuario creado con éxito');
+      MessegeHelper.showSuccessSnackBar(context, 'Usuario creado con éxito');
       _navigationService.popUntil((route) => route.isFirst);
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
