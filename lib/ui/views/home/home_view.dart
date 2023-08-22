@@ -34,18 +34,18 @@ class HomeView extends StackedView<HomeViewModel> {
               count: 2,
               svgPath: 'assets/icons/ic_historialdedonaciones.svg',
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 22.0),
-              child: Divider(
-                color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
-              ),
-            ),
-            CustomTile(
-              label: 'Historial de donaciones',
-              action: () {},
-              count: 2,
-              svgPath: 'assets/icons/ic_notificaciones.svg',
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 22.0),
+            //   child: Divider(
+            //     color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
+            //   ),
+            // ),
+            // CustomTile(
+            //   label: 'Historial de donaciones',
+            //   action: () {},
+            //   count: 2,
+            //   svgPath: 'assets/icons/ic_notificaciones.svg',
+            // ),
           ],
         ),
       );
