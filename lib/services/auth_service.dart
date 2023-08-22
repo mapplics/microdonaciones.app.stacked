@@ -15,7 +15,6 @@ class AuthService with ListenableServiceMixin {
 
   /// Setea el [AuthModel] del usuario y lo guarda en el storage.
   void setAuthModel(String token) {
-    logSucess('Seteo auth');
     _authModel = AuthModel(token: token);
     StorageHelper.saveAuthModel(_authModel!);
   }
@@ -28,18 +27,24 @@ class AuthService with ListenableServiceMixin {
   /// Loguea al usuario contra la API.
   Future<SocialLoginResponse> login(String email, String token) async {
     try {
-      return await _authApi.login(email, token);
+      SocialLoginResponse response = await _authApi.login(email, token);
+      setAuthModel(response.token);
+      return response;
     } catch (e) {
       rethrow;
     }
   }
 
-  /// Hace el logout del usuario. Setea [_authoModel] en null
-  /// y limpia el cache de la app.
+  /// Hace el logout del usuario.
   Future<void> logout() async {
+    await clearAuth();
+    notifyListeners();
+  }
+
+  /// Setea [_authModel] en null y limpia el Storage.
+  Future<void> clearAuth() async {
     _authModel = null;
     await StorageHelper.logoutClean();
-    notifyListeners();
   }
 
   /// Intenta loguear al usuario recuperando un [AuthModel] del storage.

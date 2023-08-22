@@ -50,7 +50,7 @@ class LoginViewModel extends BaseViewModel {
           _firebaseToken,
         );
 
-    /// Si es customer es null entonces tengo que hacerlo crear un cuenta.
+    /// Si el customer es null entonces tengo que hacerlo crear un cuenta.
     if (_socialLoginResp.customerIsNull) {
       _navigationService
           .navigateToCreateAccountView(
@@ -68,7 +68,13 @@ class LoginViewModel extends BaseViewModel {
   /// Funcion que se ejecuta al volver de la pantalla de crear cuenta.
   /// Valida si el usuario creo su cuenta y termina de loguearlo.
   void _onBackCreateAccount(SocialLoginResponse socialLoginResp) {
-    if (_userService.call().haveUser) _finishLogin(socialLoginResp);
+    if (!_userService.call().haveUser) {
+      /// El usuario cancelo la creacion de su cuenta.
+      /// Limpio cualquier dato basura.
+      _authService.call().clearAuth();
+    } else {
+      _finishLogin(socialLoginResp);
+    }
   }
 
   /// Termina de loguear al usuario.
