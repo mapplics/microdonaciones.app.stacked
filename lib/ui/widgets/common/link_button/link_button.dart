@@ -6,6 +6,7 @@ import 'link_button_model.dart';
 class LinkButton extends StackedView<LinkButtonModel> {
   final String label;
   final TextStyle? textStyle;
+  final ButtonStyle? buttonStyle;
   final VoidCallback? action;
 
   /// boton sin relleno y sin borde
@@ -16,6 +17,7 @@ class LinkButton extends StackedView<LinkButtonModel> {
     required this.label,
     required this.action,
     this.textStyle,
+    this.buttonStyle,
     Key? key,
   }) : super(key: key);
 
@@ -27,6 +29,7 @@ class LinkButton extends StackedView<LinkButtonModel> {
   ) {
     return TextButton(
       onPressed: action,
+      style: buttonStyle,
       child: Text(
         label,
         style: viewModel.getTextStyle(action),
