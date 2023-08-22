@@ -3,7 +3,7 @@ import 'package:microdonations/core/models/update_address_request.model.dart';
 class UpdateUserRequest {
   final String firstname;
   final String lastname;
-  final String phone;
+  final String? phone;
   final String imageBase54;
   final UpdateAddressRequest address;
 
