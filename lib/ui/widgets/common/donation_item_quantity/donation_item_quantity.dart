@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/quantity_picker/quantity_picker.dart';
 import 'package:stacked/stacked.dart';
@@ -37,7 +38,7 @@ class DonationItemQuantity extends StackedView<DonationItemQuantityModel> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        viewModel.selectedItems[index].title,
+                        viewModel.selectedItems[index].title.capitalize(),
                         style: CustomStylesTheme.regular16_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
