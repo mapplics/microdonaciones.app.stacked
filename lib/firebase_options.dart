@@ -53,10 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCk8CGOflPc6CMQNhhL3vo-AJsNouqWe34',
-    appId: '1:949356289075:android:feacb46c361a011c4f5746',
-    messagingSenderId: '949356289075',
-    projectId: 'microdonaciones-a5abb',
-    storageBucket: 'microdonaciones-a5abb.appspot.com',
+    apiKey: 'AIzaSyDyeFx1p8OPn9mqELcV_ON5lAZ6mo36nEM',
+    appId: '1:826758902094:android:45c3f220df25d621f0ee1f',
+    messagingSenderId: '826758902094',
+    projectId: 'microdonaciones-15b3f',
+    storageBucket: 'microdonaciones-15b3f.appspot.com',
   );
 }
