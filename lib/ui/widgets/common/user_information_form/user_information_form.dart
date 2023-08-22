@@ -33,7 +33,7 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 60),
+                  margin: const EdgeInsets.only(top: 30, bottom: 30),
                   child: UserAvatar(
                     user: user,
                     size: UserAvatarSize.bigger,
@@ -41,7 +41,7 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 66, bottom: 24.0),
+                  padding: const EdgeInsets.only(bottom: 24.0),
                   child: CustomInputText(
                     label: 'Nombre',
                     hintText: 'Ingresá tu nombre',
