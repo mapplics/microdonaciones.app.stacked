@@ -17,8 +17,8 @@ class UserService with ListenableServiceMixin {
   /// Devuelve la instancia del usuario logueado.
   LoggedUser? get loggedUser => _loggedUser;
 
-  /// Devuelve true si el usuario esta logueado.
-  bool get isUserLogged => (_loggedUser != null);
+  /// Devuelve true si hay un usuario.
+  bool get haveUser => (_loggedUser != null);
 
   //// Obtiene el perfil del usuario.
   Future<LoggedUser> getProfile() async {

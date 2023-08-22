@@ -3,9 +3,9 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/firebase_user.model.dart';
+import 'package:microdonations/core/models/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
-import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
+import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/views/home/home_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
@@ -28,7 +28,10 @@ class LoginViewModel extends BaseViewModel {
       final result = await FirebaseAuthenticationService().signInWithGoogle();
       await _handleAuthenticationResponse(result);
     } catch (e) {
-      logError('Error al iniciar sesion! ${e.toString()}');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'No se pudimos iniciar sesión con tu cuenta. Por favor, volve a intentarlo.',
+      );
     } finally {
       context.loaderOverlay.hide();
     }
@@ -47,25 +50,33 @@ class LoginViewModel extends BaseViewModel {
           _firebaseToken,
         );
 
-    /// Seteo mi AuthModel.
-    _authService.call().setAuthModel(_socialLoginResp.token);
-
-    //// Guardo en el storage el inicio de sesion.
-    StorageHelper.saveAuthModel(_authService.call().authModel!);
-
-    /// Si es customer es null entonces tengo que navegar el formulario
+    /// Si es customer es null entonces tengo que hacerlo crear un cuenta.
     if (_socialLoginResp.customerIsNull) {
-      _navigationService.navigateToCreateAccountView(
-        viewParameters: CreateAccountViewParameters(
-          FirebaseUser.createOne(authResult.user!),
-        ),
-      );
+      _navigationService
+          .navigateToCreateAccountView(
+            viewParameters: CreateAccountViewParameters(
+                FirebaseUser.createOne(authResult.user!)),
+          )
+          .then((_) => _onBackCreateAccount(_socialLoginResp));
     } else {
-      /// Seteo el usuario logueado en el servicio.
-      _userService.call().setLoggedUser = _socialLoginResp.customer!;
-
       /// Navego a la pagina de home.
+      _finishLogin(_socialLoginResp);
       _navigationService.clearStackAndShowView(const HomeView());
     }
+  }
+
+  /// Funcion que se ejecuta al volver de la pantalla de crear cuenta.
+  /// Valida si el usuario creo su cuenta y termina de loguearlo.
+  void _onBackCreateAccount(SocialLoginResponse socialLoginResp) {
+    if (_userService.call().haveUser) _finishLogin(socialLoginResp);
+  }
+
+  /// Termina de loguear al usuario.
+  void _finishLogin(SocialLoginResponse socialLoginResp) {
+    /// Guardo mi token.
+    _authService.call().setAuthModel(socialLoginResp.token);
+
+    /// Seteo el usuario logueado en el servicio.
+    _userService.call().setLoggedUser = socialLoginResp.customer!;
   }
 }

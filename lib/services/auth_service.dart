@@ -13,27 +13,22 @@ class AuthService with ListenableServiceMixin {
   /// Modelo que contiene el token del usuario logueado.
   AuthModel? _authModel;
 
-  /// Setea el [AuthModel] del usuario.
-  void setAuthModel(String token) => (_authModel = AuthModel(token: token));
+  /// Setea el [AuthModel] del usuario y lo guarda en el storage.
+  void setAuthModel(String token) {
+    logSucess('Seteo auth');
+    _authModel = AuthModel(token: token);
+    StorageHelper.saveAuthModel(_authModel!);
+  }
 
   /// Devuelve el [AuthModel].
   AuthModel? get authModel => _authModel;
 
-  /// Intenta loguear al usuario recuperando un [AuthModel] del storage.
-  void tryAutoLogin() {
-    try {
-      _authModel = StorageHelper.getAuthModel();
-    } catch (e) {
-      logError('No se pudo recuperar el AuthModel');
-    }
-  }
+  bool get isUserLogged => (_authModel != null);
 
   /// Loguea al usuario contra la API.
   Future<SocialLoginResponse> login(String email, String token) async {
     try {
-      final _loginResp = await _authApi.login(email, token);
-      setAuthModel(_loginResp.token);
-      return _loginResp;
+      return await _authApi.login(email, token);
     } catch (e) {
       rethrow;
     }
@@ -45,5 +40,14 @@ class AuthService with ListenableServiceMixin {
     _authModel = null;
     await StorageHelper.logoutClean();
     notifyListeners();
+  }
+
+  /// Intenta loguear al usuario recuperando un [AuthModel] del storage.
+  void tryAutoLogin() {
+    try {
+      _authModel = StorageHelper.getAuthModel();
+    } catch (e) {
+      logError('No se pudo recuperar el AuthModel');
+    }
   }
 }

@@ -17,7 +17,7 @@ class CustomAppbarModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve true si deberia mostrar el avatar con las iniciales del user.
-  bool get showAvatarWithInitials => (_userService.isUserLogged);
+  bool get showAvatarWithInitials => (_userService.loggedUser != null);
 
   LoggedUser? get user => _userService.loggedUser;
 
