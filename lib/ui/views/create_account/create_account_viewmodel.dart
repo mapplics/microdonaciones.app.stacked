@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_user_request.model.dart';
 import 'package:microdonations/services/user_service.dart';
+import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../common/helpers/logger.helpers.dart';
 
 class CreateAccountViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
@@ -32,16 +30,20 @@ class CreateAccountViewModel extends BaseViewModel {
   /// Guarda los datos del usuario.
   Future<void> onSaveUserData(BuildContext context) async {
     if (_form.invalid) {
-      logError('Formulario invalido');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'El formulario en invalido. Los campos marcados con * son obligatorios.',
+      );
       return;
     }
 
     if (!_termsAccepted) {
-      logError('Terminos y condiciones no aceptados');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'Para poder crear su cuenta debe aceptar los terminos y condiciones.',
+      );
       return;
     }
-
-    logSucess('Formulario valido');
 
     final _updateRequest = UpdateUserRequest(
       firstname: ReactiveFormHelper.getControlValue(
@@ -68,11 +70,13 @@ class CreateAccountViewModel extends BaseViewModel {
     try {
       context.loaderOverlay.show();
       await _userService.updateProfile(_updateRequest);
-      // _userService.loggedUser =
-      _navigationService.navigateToHomeView();
-      logSucess('Actualice datos de usuario!');
+      MessegeHelper.showErrorSnackBar(context, 'Usuario creado con éxito');
+      _navigationService.popUntil((route) => route.isFirst);
     } catch (e) {
-      logError('Update user failed! ${e.toString()}');
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'No se pudo crear su usuario. Por favor, vuelva a intentarlo',
+      );
     } finally {
       context.loaderOverlay.hide();
     }
