@@ -81,6 +81,10 @@ class UserInformationFormModel extends BaseViewModel {
       ),
     );
 
+    /// Envio al padre el formulario ya inicializado
+    /// para que tenga una primera instancia del form.
+    onChange(_form!);
+
     _formSubscriptions.add(
       _form!.valueChanges.listen(
         (_) => onChange(_form!),
