@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/base_user.abstract.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../common/app_theme.dart';
@@ -49,21 +48,21 @@ class UserAvatar extends StackedView<UserAvatarModel> {
             ),
           ),
         ),
-        if (canUploadImg)
-          Positioned(
-            bottom: -10,
-            right: 0,
-            child: CircleAvatar(
-              backgroundColor: CustomStylesTheme.gray100,
-              child: IconButton(
-                onPressed: () {},
-                color: CustomStylesTheme.gray200,
-                icon: Icon(
-                  PhosphorIcons.bold.camera,
-                ),
-              ),
-            ),
-          )
+        // if (canUploadImg)
+        //   Positioned(
+        //     bottom: -10,
+        //     right: 0,
+        //     child: CircleAvatar(
+        //       backgroundColor: CustomStylesTheme.gray100,
+        //       child: IconButton(
+        //         onPressed: () {},
+        //         color: CustomStylesTheme.gray200,
+        //         icon: Icon(
+        //           PhosphorIcons.bold.camera,
+        //         ),
+        //       ),
+        //     ),
+        //   )
       ],
     );
   }
