@@ -24,4 +24,19 @@ class ReceptionApiService {
       rethrow;
     }
   }
+
+  /// Devuelve los los horarios de retiro a domicilio que puede hacer la [ong].
+  Future<List<ReceptionPoint>> getWeekdayRangeTime(Ong ong) async {
+    try {
+      final response = await _dio.get(
+        '${_apiUrl}pickeup-weekday-range-time/${ong.id}',
+        options: Options(responseType: ResponseType.json),
+      );
+
+      return ReceptionPoint.createList(response.data['data']);
+    } catch (e) {
+      logError('No se pudo recuperar los puntos de entrega! ${e.toString()}');
+      rethrow;
+    }
+  }
 }
