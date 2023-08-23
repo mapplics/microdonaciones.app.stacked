@@ -3,6 +3,7 @@ import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
+import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
 import 'package:stacked/stacked.dart';
 
 import 'select_delivery_method_viewmodel.dart';
@@ -82,33 +83,7 @@ class SelectDeliveryMethodView
                     ],
                   )
                 else
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (viewModel.loadingReceptionPoints)
-                        const Padding(
-                          padding: EdgeInsets.only(top: 60.0),
-                          child: CircularProgressIndicator(),
-                        )
-                      else
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ...viewModel.receptionPoints
-                                .map(
-                                  (receptionPoint) => Text(
-                                    '- ${receptionPoint.extraInfo}',
-                                    style:
-                                        CustomStylesTheme.regular14_20.copyWith(
-                                      color: CustomStylesTheme.blackColor,
-                                    ),
-                                  ),
-                                )
-                                .toList()
-                          ],
-                        )
-                    ],
-                  )
+                  ReceptionPointList(receptionPoints: viewModel.receptionPoints)
               ],
             ),
           )
