@@ -42,76 +42,76 @@ class SelectDeliveryMethodView
             ),
           ),
 
-          /// Instrucciones para retiro por domicilio
-          if (viewModel.isHomeDelivery)
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Vamos a retirar tu donación por',
-                    style: CustomStylesTheme.bold16_20.copyWith(
-                      color: CustomStylesTheme.blackColor,
-                    ),
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  viewModel.isHomeDelivery
+                      ? 'Vamos a retirar tu donación por'
+                      : 'Puntos de entrega para dejar tu donación',
+                  style: CustomStylesTheme.bold16_20.copyWith(
+                    color: CustomStylesTheme.blackColor,
                   ),
-                  Text(
-                    viewModel.userAddress.fullAddress,
-                    style: CustomStylesTheme.regular14_20.copyWith(
-                      color: CustomStylesTheme.blackColor,
-                    ),
-                  ),
-                  LinkButton(
-                    label: 'Cambiar dirección',
-                    action: viewModel.navigateToPersonalInformation,
-                    buttonStyle: const ButtonStyle(
-                      padding: MaterialStatePropertyAll(
-                        EdgeInsets.all(0),
+                ),
+
+                /// Instrucciones para retiro por domicilio
+                if (viewModel.isHomeDelivery)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        viewModel.userAddress.fullAddress,
+                        style: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
                       ),
-                    ),
-                    textStyle: CustomStylesTheme.regular14_20.copyWith(
-                      color: CustomStylesTheme.tertiaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          else
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (viewModel.loadingReceptionPoints)
-                    const Padding(
-                      padding: EdgeInsets.only(top: 60.0),
-                      child: CircularProgressIndicator(),
-                    )
-                  else
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Puntos de entrega para dejar tu donación',
-                          style: CustomStylesTheme.bold16_20.copyWith(
-                            color: CustomStylesTheme.blackColor,
+                      LinkButton(
+                        label: 'Cambiar dirección',
+                        action: viewModel.navigateToPersonalInformation,
+                        buttonStyle: const ButtonStyle(
+                          padding: MaterialStatePropertyAll(
+                            EdgeInsets.all(0),
                           ),
                         ),
-                        ...viewModel.receptionPoints
-                            .map(
-                              (receptionPoint) => Text(
-                                '- ${receptionPoint.extraInfo}',
-                                style: CustomStylesTheme.regular14_20.copyWith(
-                                  color: CustomStylesTheme.blackColor,
-                                ),
-                              ),
-                            )
-                            .toList()
-                      ],
-                    )
-                ],
-              ),
+                        textStyle: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.tertiaryColor,
+                        ),
+                      ),
+                    ],
+                  )
+                else
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (viewModel.loadingReceptionPoints)
+                        const Padding(
+                          padding: EdgeInsets.only(top: 60.0),
+                          child: CircularProgressIndicator(),
+                        )
+                      else
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...viewModel.receptionPoints
+                                .map(
+                                  (receptionPoint) => Text(
+                                    '- ${receptionPoint.extraInfo}',
+                                    style:
+                                        CustomStylesTheme.regular14_20.copyWith(
+                                      color: CustomStylesTheme.blackColor,
+                                    ),
+                                  ),
+                                )
+                                .toList()
+                          ],
+                        )
+                    ],
+                  )
+              ],
             ),
+          )
         ],
       ),
     );
