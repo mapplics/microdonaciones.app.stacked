@@ -3,7 +3,10 @@ import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
+import 'package:microdonations/services/reception_api_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:collection/collection.dart';
@@ -12,6 +15,7 @@ import '../app/app.locator.dart';
 
 class NewDonationService with ListenableServiceMixin {
   final _donationItemApi = locator<DonationItemApiService>();
+  final _receptionApi = locator<ReceptionApiService>();
 
   /// La ONG que eligio el usuario para hacer una donacion.
   final Ong _ongSelected = Ong(
@@ -25,6 +29,9 @@ class NewDonationService with ListenableServiceMixin {
     enabled: true,
   );
 
+  /// Devuelve la ong seleccionada a la que se le va a hacer la donacion.
+  Ong get ongSelected => _ongSelected;
+
   NewDonation _newDonation = NewDonation();
 
   /// Contiene los items que recibe la ONG como donacion
@@ -33,6 +40,13 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<Product> get productsOptions => _products;
+
+  /// Contiene los items que recibe la ONG como donacion
+  /// y la persona puede elegir.
+  List<ReceptionPoint> _receptionPoints = [];
+
+  /// Devuelve las opciones que el usuario puede elegir para donar.
+  List<ReceptionPoint> get receptionPoints => _receptionPoints;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<DonationItem> get selectedItems => _newDonation.donationsItemsList;
@@ -103,9 +117,20 @@ class NewDonationService with ListenableServiceMixin {
     }
   }
 
+  /// Recupera la lista de puntos de entrega de la ong seleccionada [_ongSelected]
+  Future<void> getReceptionPoints() async {
+    try {
+      _receptionPoints = await _receptionApi.getReceptionPoints(_ongSelected);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
     _newDonation = NewDonation();
     _products = [];
+    _receptionPoints = [];
+    logSucess('Dispose newDonation');
   }
 }

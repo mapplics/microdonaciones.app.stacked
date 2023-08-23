@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:stacked/stacked.dart';
@@ -19,6 +20,7 @@ class SelectDeliveryMethodView
     return Scaffold(
       body: Column(
         children: [
+          /// Descripcion
           const Padding(
             padding: EdgeInsets.only(bottom: 19.0),
             child: Text(
@@ -27,6 +29,8 @@ class SelectDeliveryMethodView
               textAlign: TextAlign.center,
             ),
           ),
+
+          /// Segmented Buttons
           Padding(
             padding: const EdgeInsets.only(bottom: 50.0),
             child: SizedBox(
@@ -37,6 +41,8 @@ class SelectDeliveryMethodView
               ),
             ),
           ),
+
+          /// Instrucciones para retiro por domicilio
           if (viewModel.isHomeDelivery)
             SizedBox(
               width: double.infinity,
@@ -69,10 +75,57 @@ class SelectDeliveryMethodView
                   ),
                 ],
               ),
+            )
+          else
+            SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (viewModel.loadingReceptionPoints)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 60.0),
+                      child: CircularProgressIndicator(),
+                    )
+                  else
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Puntos de entrega para dejar tu donación',
+                          style: CustomStylesTheme.bold16_20.copyWith(
+                            color: CustomStylesTheme.blackColor,
+                          ),
+                        ),
+                        ...viewModel.receptionPoints
+                            .map(
+                              (receptionPoint) => Text(
+                                '- ${receptionPoint.extraInfo}',
+                                style: CustomStylesTheme.regular14_20.copyWith(
+                                  color: CustomStylesTheme.blackColor,
+                                ),
+                              ),
+                            )
+                            .toList()
+                      ],
+                    )
+                ],
+              ),
             ),
         ],
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(SelectDeliveryMethodViewModel viewModel) {
+    if (viewModel.receptionPoints.isEmpty) {
+      logWarn('No tengo que cargar nada');
+      viewModel.loadReceptionPoints();
+    } else {
+      logWarn('No tengo que cargar nada');
+    }
+    super.onViewModelReady(viewModel);
   }
 
   @override
