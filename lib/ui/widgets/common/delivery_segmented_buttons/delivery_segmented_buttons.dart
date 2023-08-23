@@ -27,7 +27,7 @@ class DeliverySegmentedButtons
       children: viewModel.buildSegmentedButtons(),
       selectionIndex: viewModel.deliverySelected,
       onSegmentTapped: viewModel.onChangeSelected,
-      selectedColor: CustomStylesTheme.primaryColor,
+      selectedColor: CustomStylesTheme.tertiaryColor,
       borderColor: CustomStylesTheme.gray100,
       unselectedColor: Colors.white,
       verticalOffset: 18.0,
