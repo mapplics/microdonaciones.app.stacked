@@ -1,6 +1,7 @@
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
+import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
@@ -48,6 +49,14 @@ class NewDonationService with ListenableServiceMixin {
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<ReceptionPoint> get receptionPoints => _receptionPoints;
 
+  /// Contiene el rango de horarios que puede pasar a buscar las donaciones
+  /// la ong [_ongSelected].
+  List<PickupWeekDayRange> _pickupRange = [];
+
+  /// Devuelve el rango de horarios que puede pasar a buscar las donaciones
+  /// la ong [_ongSelected].
+  List<PickupWeekDayRange> get pickupRange => _pickupRange;
+
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<DonationItem> get selectedItems => _newDonation.donationsItemsList;
 
@@ -76,6 +85,7 @@ class NewDonationService with ListenableServiceMixin {
     notifyListeners();
   }
 
+  /// Actualiza el tipo de delivery que se va a usar para la donacion.
   void updateTypeDelivery(TypeDelivery type) {
     _newDonation.updateTypeDelivery(type);
   }
@@ -121,6 +131,14 @@ class NewDonationService with ListenableServiceMixin {
   Future<void> getReceptionPoints() async {
     try {
       _receptionPoints = await _receptionApi.getReceptionPoints(_ongSelected);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> getPickupWeekdayTimeRange() async {
+    try {
+      _pickupRange = await _receptionApi.getWeekdayRangeTime(_ongSelected);
     } catch (e) {
       rethrow;
     }

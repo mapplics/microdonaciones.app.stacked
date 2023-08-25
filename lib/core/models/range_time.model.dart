@@ -17,26 +17,10 @@ class RangeTime {
     );
   }
 
-  // static RangeTime createOne(Map<String, dynamic> data) {
-  //   return RangeTime(
-  //     end: data['timeClose'],
-  //     start: data['timeOpen'],
-  //   );
-  // }
+  /// Devuelve como String el rango de tiempo en formato 'hh:mm a hh:mm'
+  String get fullTime =>
+      '${_removeMiliseconds(start)} a ${_removeMiliseconds(end)}';
 
-  // /// Crea una lista de [ReceptionPoint]
-  // static List<RangeTime> createList(List<dynamic> data) {
-  //   List<RangeTime> receptionPoints = [];
-
-  //   for (var receptionPoint in data) {
-  //     try {
-  //       receptionPoints.add(ReceptionPoint.createOne(receptionPoint));
-  //     } catch (e) {
-  //       logError(e);
-  //       rethrow;
-  //     }
-  //   }
-
-  //   return receptionPoints;
-  // }
+  /// Devuelve [start] o [end] sin los milisegundos.
+  static String _removeMiliseconds(String time) => time.substring(0, 4);
 }

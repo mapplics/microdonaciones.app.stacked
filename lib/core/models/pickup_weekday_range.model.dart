@@ -38,7 +38,7 @@ class PickupWeekDayRange {
   }
 
   /// Parse el rango de horarios de la ong.
-  static List<RangeTime> _parseRangeTimes(List<Map<String, dynamic>> data) {
+  static List<RangeTime> _parseRangeTimes(List<dynamic> data) {
     List<RangeTime> range = [];
 
     data.forEach((element) {
@@ -52,5 +52,14 @@ class PickupWeekDayRange {
     });
 
     return range;
+  }
+
+  List<String> timeByWeek() {
+    List<String> timeByWeek = [];
+    for (var e in range) {
+      timeByWeek.add('$weekday de ${e.fullTime}');
+    }
+
+    return timeByWeek;
   }
 }

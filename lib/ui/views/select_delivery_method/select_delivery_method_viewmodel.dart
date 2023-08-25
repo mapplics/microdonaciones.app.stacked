@@ -1,11 +1,13 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/widgets/common/custom_dropdown/custom_dropdown.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -19,20 +21,23 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [_userService];
 
   /// Indica si hubo un error al cargar los puntos de entrega.
-  bool _loadingReceptionPoints = false;
+  bool _isLoading = false;
 
   /// Devuelve true si se estan recuperando los puntos de entrega.
-  bool get loadingReceptionPoints => _loadingReceptionPoints;
+  bool get isLoading => _isLoading;
 
   /// Indica si hubo un error al cargar los puntos de entrega.
-  bool _errorReceptionPoints = false;
+  bool _haveError = false;
 
   /// Devuelve true si hubo un error al recuperar los puntos de entrega.
-  bool get errorReceptionPoints => _errorReceptionPoints;
+  bool get haveError => _haveError;
 
   /// Devuelve los puntos de entrega de la ong seleccionada.
   List<ReceptionPoint> get receptionPoints =>
       _newDonationService.receptionPoints;
+
+  /// Devuelve los horarios de retiro de la ong.
+  List<PickupWeekDayRange> get pickupRange => _newDonationService.pickupRange;
 
   TypeDelivery get typeDeliverySelected =>
       _newDonationService.selectedTypeDelivery;
@@ -59,20 +64,39 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     );
   }
 
-  /// Carga los puntos de entrega de la ong seleccionada.
-  Future<void> loadReceptionPoints() async {
+  List<CustomDropdownItems> get getPickupOptions {
+    List<CustomDropdownItems> items = [];
+
+    _newDonationService.pickupRange.forEach((element) {
+      final times = element.timeByWeek();
+
+      times.forEach((label) {
+        items.add(CustomDropdownItems<PickupWeekDayRange>(
+            label: label, value: element));
+      });
+    });
+
+    return items;
+  }
+
+  Future<void> loadOngData() async {
     try {
-      logWarn('Cargando puntos');
-      _loadingReceptionPoints = true;
-      _errorReceptionPoints = false;
+      _isLoading = true;
+      _haveError = false;
 
       rebuildUi();
 
-      await _newDonationService.getReceptionPoints();
+      /// Recupero los puntos de entrega de donaciones
+      /// y recupero los horarios de busqueda de donaciones de la ong.
+      await Future.wait([
+        _newDonationService.getReceptionPoints(),
+        _newDonationService.getPickupWeekdayTimeRange(),
+      ]);
     } catch (e) {
-      _errorReceptionPoints = true;
+      _haveError = true;
+      logError('LoadOngData failed!');
     } finally {
-      _loadingReceptionPoints = false;
+      _isLoading = false;
       rebuildUi();
     }
   }
