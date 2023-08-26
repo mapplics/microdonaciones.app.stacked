@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,6 +12,14 @@ class MakeADonationViewModel extends ReactiveViewModel {
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
+
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  bool _haveError = false;
+
+  bool get haveError => _haveError;
 
   final PageController pageController = PageController(initialPage: 0);
   final int numPages = 4;
@@ -91,6 +101,34 @@ class MakeADonationViewModel extends ReactiveViewModel {
       return false;
     } else {
       return true;
+    }
+  }
+
+  Future<void> initNewDonation() async {
+    try {
+      _isLoading = true;
+      _haveError = false;
+
+      rebuildUi();
+
+      await _newDonationService.initNewDonationData(
+        Ong(
+          id: 1,
+          name: 'ONG',
+          web: '',
+          mision: '',
+          vision: '',
+          phone: '',
+          email: '',
+          enabled: true,
+        ),
+      );
+    } catch (e) {
+      _haveError = true;
+      logError(e);
+    } finally {
+      _isLoading = false;
+      rebuildUi();
     }
   }
 

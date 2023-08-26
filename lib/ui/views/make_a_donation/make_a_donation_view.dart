@@ -8,6 +8,7 @@ import 'package:microdonations/ui/widgets/common/donation_items_selector/donatio
 import 'package:microdonations/ui/widgets/common/dot_indicator/dot_indicator_model.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.dart';
+import 'package:microdonations/ui/widgets/common/wrapper_http_loading/wrapper_http_loading.dart';
 import 'package:stacked/stacked.dart';
 
 import 'make_a_donation_viewmodel.dart';
@@ -28,74 +29,85 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
           title: 'Que necesitamos?',
           showActions: false,
         ),
-        body: Stack(
-          children: [
-            PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: viewModel.pageController,
-              onPageChanged: viewModel.onPageChange,
-              children: const [
-                DonationItemsSelector(),
-                DonationItemQuantity(),
-                SelectDeliveryMethodView(),
-                Text('Nada'),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height / 24,
+        body: WrapperHttpLoading(
+          showLoading: viewModel.isLoading,
+          showError: viewModel.haveError,
+          retryFunction: viewModel.initNewDonation,
+          mainContent: Stack(
+            children: [
+              PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: viewModel.pageController,
+                onPageChanged: viewModel.onPageChange,
+                children: const [
+                  DonationItemsSelector(),
+                  DonationItemQuantity(),
+                  SelectDeliveryMethodView(),
+                  Text('Nada'),
+                ],
               ),
-              child: SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: viewModel.canShowGoBackBtn
-                          ? MainAxisAlignment.spaceBetween
-                          : MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (viewModel.canShowGoBackBtn)
-                          Expanded(
-                            child: LinkButton(
-                              label: 'Atras',
-                              action: viewModel.previousPage,
-                              textStyle:
-                                  CustomStylesTheme.regular16_20.copyWith(
-                                color: CustomStylesTheme.lightGreyColor,
-                              ),
-                            ),
-                          ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 26.0),
-                              child: PageIndicator(
-                                totalSlides: viewModel.numPages,
-                                currentSlide: viewModel.currentSlide,
-                                dotIndicatorSize: DotIndicatorSize.small,
-                              ),
-                            ),
-                            LinkButton(
-                              label: 'Siguiente',
-                              action: () => viewModel.nextPage(context),
-                              textStyle: CustomStylesTheme.bold16_20.copyWith(
-                                color: CustomStylesTheme.tertiaryColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height / 24,
                 ),
-              ),
-            )
-          ],
+                child: SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        mainAxisAlignment: viewModel.canShowGoBackBtn
+                            ? MainAxisAlignment.spaceBetween
+                            : MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if (viewModel.canShowGoBackBtn)
+                            Expanded(
+                              child: LinkButton(
+                                label: 'Atras',
+                                action: viewModel.previousPage,
+                                textStyle:
+                                    CustomStylesTheme.regular16_20.copyWith(
+                                  color: CustomStylesTheme.lightGreyColor,
+                                ),
+                              ),
+                            ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 26.0),
+                                child: PageIndicator(
+                                  totalSlides: viewModel.numPages,
+                                  currentSlide: viewModel.currentSlide,
+                                  dotIndicatorSize: DotIndicatorSize.small,
+                                ),
+                              ),
+                              LinkButton(
+                                label: 'Siguiente',
+                                action: () => viewModel.nextPage(context),
+                                textStyle: CustomStylesTheme.bold16_20.copyWith(
+                                  color: CustomStylesTheme.tertiaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(MakeADonationViewModel viewModel) {
+    viewModel.initNewDonation();
+    super.onViewModelReady(viewModel);
   }
 
   @override

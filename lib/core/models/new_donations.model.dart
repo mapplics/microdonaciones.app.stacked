@@ -1,17 +1,19 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:collection/collection.dart';
 
 class NewDonation {
+  final Ong ong;
+  final List<DonationItem> _donationsList = [];
   TypeDelivery typeDelivery;
 
   NewDonation({
+    required this.ong,
     this.typeDelivery = TypeDelivery.branch,
   });
-
-  final List<DonationItem> _donationsList = [];
 
   /// Devuelve la lista de items [DonationItem] que el usuario selecciono
   /// para donar.
