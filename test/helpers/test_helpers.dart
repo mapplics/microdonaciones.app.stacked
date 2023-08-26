@@ -9,6 +9,7 @@ import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/services/reception_api_service.dart';
+import 'package:microdonations/services/new_donation_data_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -24,6 +25,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<NewDonationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DonationItemApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ReceptionApiService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<NewDonationDataService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -38,6 +40,7 @@ void registerServices() {
   getAndRegisterDonationItemApiService();
   getAndRegisterReceptionService();
   getAndRegisterReceptionApiService();
+  getAndRegisterNewDonationDataService();
 // @stacked-mock-register
 }
 
@@ -144,6 +147,13 @@ MockReceptionApiService getAndRegisterReceptionApiService() {
   _removeRegistrationIfExists<ReceptionApiService>();
   final service = MockReceptionApiService();
   locator.registerSingleton<ReceptionApiService>(service);
+  return service;
+}
+
+MockNewDonationDataService getAndRegisterNewDonationDataService() {
+  _removeRegistrationIfExists<NewDonationDataService>();
+  final service = MockNewDonationDataService();
+  locator.registerSingleton<NewDonationDataService>(service);
   return service;
 }
 // @stacked-mock-create

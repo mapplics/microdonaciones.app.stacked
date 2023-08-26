@@ -18,6 +18,7 @@ import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 import 'package:microdonations/services/reception_api_service.dart';
+import 'package:microdonations/services/new_donation_data_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -43,6 +44,7 @@ import 'package:microdonations/services/reception_api_service.dart';
     LazySingleton(classType: NewDonationService),
     LazySingleton(classType: DonationItemApiService),
     LazySingleton(classType: ReceptionApiService),
+    LazySingleton(classType: NewDonationDataService),
 // @stacked-service
   ],
   bottomsheets: [
