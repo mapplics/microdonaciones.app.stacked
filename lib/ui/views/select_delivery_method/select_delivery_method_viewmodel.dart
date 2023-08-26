@@ -1,6 +1,7 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
@@ -71,12 +72,13 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
       final times = element.timeByWeek();
 
       times.forEach((label) {
-        items.add(CustomDropdownItems<PickupWeekDayRange>(
-            label: label, value: element));
+        items.add(
+          CustomDropdownItems<RangeTime>(label: label, value: element.range[0]),
+        );
       });
     });
 
-    return items;
+    return [];
   }
 
   Future<void> loadOngData() async {
