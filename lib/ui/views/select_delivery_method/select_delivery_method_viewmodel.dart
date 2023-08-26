@@ -1,17 +1,18 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
-import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
-import 'package:microdonations/ui/widgets/common/custom_dropdown/custom_dropdown.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import '../../../core/abstracts/custom_dropdown_model.abstract.dart';
 
 class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
@@ -55,19 +56,17 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     );
   }
 
-  List<CustomDropdownItems> get getPickupOptions {
-    List<CustomDropdownItems> items = [];
+  List<CustomDropdownItems<PickupDropdownValue>> get getPickupOptions {
+    List<CustomDropdownItems<PickupDropdownValue>> items = [];
 
     _newDonationDataService.pickupRange.forEach((element) {
-      final times = element.timeByWeek();
-
-      times.forEach((label) {
-        items.add(
-          CustomDropdownItems<RangeTime>(label: label, value: element.range[0]),
-        );
-      });
+      items.addAll(element.prepareForDropdown());
     });
 
-    return [];
+    return items;
+  }
+
+  void setRange<T>(T value) {
+    value as PickupDropdownValue;
   }
 }

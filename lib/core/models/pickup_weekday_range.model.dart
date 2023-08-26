@@ -1,15 +1,19 @@
+import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
+import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+
+import 'pickup_dropdown_item.model.dart';
 
 class PickupWeekDayRange {
   final int id;
   final String weekday;
-  final List<RangeTime> range;
+  final List<RangeTime> ranges;
 
   PickupWeekDayRange({
     required this.id,
     required this.weekday,
-    required this.range,
+    required this.ranges,
   });
 
   /// Crea una instancia de [PickupWeekDayRange]
@@ -17,7 +21,7 @@ class PickupWeekDayRange {
     return PickupWeekDayRange(
       id: data['id'],
       weekday: data['name'],
-      range: _parseRangeTimes(data['rangeTimes']),
+      ranges: _parseRangeTimes(data['rangeTimes']),
     );
   }
 
@@ -54,12 +58,28 @@ class PickupWeekDayRange {
     return range;
   }
 
-  List<String> timeByWeek() {
-    List<String> timeByWeek = [];
-    for (var e in range) {
-      timeByWeek.add('$weekday de ${e.fullTime}');
+  /// Devuelve una lista de items para seleccionar en un [DropdownButton]
+  List<CustomDropdownItems<PickupDropdownValue>> prepareForDropdown() {
+    List<CustomDropdownItems<PickupDropdownValue>> items = [];
+
+    for (var range in ranges) {
+      items.add(
+        _getPickupDropdownItem(range),
+      );
     }
 
-    return timeByWeek;
+    return items;
+  }
+
+  /// Convierte la instancia de [PickupWeekDayRange] junto con un [range]
+  /// en una instancia para usar en un [DropdownButton]
+  PickupDropdownItem _getPickupDropdownItem(RangeTime range) {
+    return PickupDropdownItem(
+      label: '$weekday de ${range.fullTime}',
+      value: PickupDropdownValue(
+        rangeTimeId: range.id,
+        weekdayId: id,
+      ),
+    );
   }
 }
