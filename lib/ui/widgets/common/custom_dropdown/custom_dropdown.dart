@@ -50,7 +50,7 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
         iconEnabledColor: CustomStylesTheme.tertiaryColor,
         onChanged: (value) => viewModel.onchangeValue(value),
         dropdownColor: Colors.white,
-        menuMaxHeight: 250,
+        menuMaxHeight: 375,
         underline: const SizedBox(),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         isExpanded: true,
