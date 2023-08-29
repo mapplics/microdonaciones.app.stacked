@@ -5,8 +5,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 enum TypeDelivery {
-  home,
-  branch,
+  delivery,
+  pickup,
 }
 
 class DeliverySegmentedButtonsModel extends BaseViewModel {
@@ -20,8 +20,8 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
   late TypeDelivery _selectedDelivery;
 
   final Map<TypeDelivery, String> _buttonsOptions = {
-    TypeDelivery.home: 'Domicilio',
-    TypeDelivery.branch: 'Punto de entrega',
+    TypeDelivery.delivery: 'Domicilio',
+    TypeDelivery.pickup: 'Punto de entrega',
   };
 
   /// Devuelve el tipo de delivery seleccionado [_selectedDelivery]
@@ -45,7 +45,7 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                (TypeDelivery.home == key)
+                (TypeDelivery.delivery == key)
                     ? PhosphorIcons.bold.houseLine
                     : PhosphorIcons.bold.mapPinLine,
                 size: 18,

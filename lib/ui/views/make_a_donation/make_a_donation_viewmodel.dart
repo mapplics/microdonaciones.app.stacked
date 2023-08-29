@@ -42,6 +42,8 @@ class MakeADonationViewModel extends ReactiveViewModel {
         return _newDonationService.selectedItemsValid();
       case 1:
         return _newDonationService.itemsQuantityValid();
+      case 2:
+        return _newDonationService.deliveryValid();
       default:
         return NewDonationError.unknow;
     }
@@ -74,6 +76,10 @@ class MakeADonationViewModel extends ReactiveViewModel {
       case NewDonationError.quantityProductsInvalid:
         _message =
             'Para poder continuar todos tus productos deben tener una cantidad mayor a cero';
+        break;
+      case NewDonationError.pickupRangeInvalid:
+        _message =
+            'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación';
         break;
       case NewDonationError.unknow:
         _message =

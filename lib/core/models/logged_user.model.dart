@@ -31,8 +31,8 @@ class LoggedUser implements BaseUser {
       firstname: data['firstname'],
       lastname: data['lastname'],
       phone: data['phone'],
-      address: UserAddress(
-        address: data['addressPrimary']['address'],
+      address: UserAddress.createOne(
+        data['addressPrimary'],
       ),
     );
   }

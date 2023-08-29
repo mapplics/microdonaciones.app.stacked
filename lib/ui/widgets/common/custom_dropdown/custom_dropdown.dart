@@ -9,11 +9,15 @@ import 'custom_dropdown_model.dart';
 
 class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   final OnChangeDropdownButton onchange;
-  final List<CustomDropdownItems<T>>
-      items; // Indicar que los items son de tipo CustomDropdownItems<T>
+  final T? initialValue;
+  final List<CustomDropdownItems<T>> items;
 
-  const CustomDropdown(
-      {required this.items, required this.onchange, super.key});
+  const CustomDropdown({
+    required this.items,
+    required this.onchange,
+    this.initialValue,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -38,14 +42,7 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
             color: CustomStylesTheme.lightGreyColor,
           ),
         ),
-        items: items
-            .map(
-              (e) => DropdownMenuItem(
-                child: Text(e.label),
-                value: e.value,
-              ),
-            )
-            .toList(),
+        items: viewModel.getDropdownItems as List<DropdownMenuItem<T>>,
         value: viewModel.selectedValue,
         iconEnabledColor: CustomStylesTheme.tertiaryColor,
         onChanged: (value) => viewModel.onchangeValue(value),
@@ -62,8 +59,17 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   }
 
   @override
+  void onViewModelReady(CustomDropdownModel viewModel) {
+    viewModel.loadDropdownItems(items);
+    super.onViewModelReady(viewModel);
+  }
+
+  @override
   CustomDropdownModel viewModelBuilder(
     BuildContext context,
   ) =>
-      CustomDropdownModel(onchange);
+      CustomDropdownModel<T>(
+        onchange: onchange,
+        initialValue: initialValue,
+      );
 }

@@ -2,6 +2,8 @@ import 'base_address.abstract.dart';
 
 /// Clase para representar la direccion del usuario logueado.
 class UserAddress implements BaseAddress {
+  final int id;
+
   @override
   String address;
 
@@ -19,6 +21,7 @@ class UserAddress implements BaseAddress {
 
   UserAddress({
     required this.address,
+    required this.id,
     this.floor,
     this.apartment,
     this.latitude,
@@ -35,8 +38,9 @@ class UserAddress implements BaseAddress {
   String get fullFlat => (floor != null) ? '$apartment - $floor' : '$floor';
 
   /// Crea una instancia de [UserAddress]
-  UserAddress createOne(Map<String, dynamic> data) {
+  static UserAddress createOne(Map<String, dynamic> data) {
     return UserAddress(
+      id: data['id'],
       address: data['address'],
       apartment: data['apartment'],
       floor: data['floor'],

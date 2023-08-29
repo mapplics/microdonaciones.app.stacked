@@ -1,19 +1,24 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
+import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:collection/collection.dart';
 
+import 'pickup_dropdown_value.model.dart';
+
 class NewDonation {
   final Ong ong;
   final List<DonationItem> _donationsList = [];
-  TypeDelivery typeDelivery;
 
-  NewDonation({
-    required this.ong,
-    this.typeDelivery = TypeDelivery.branch,
-  });
+  NewDonation({required this.ong});
+
+  TypeDelivery typeDelivery = TypeDelivery.pickup;
+  UserAddress? _userAddress;
+  PickupDropdownValue? _pickupValue;
+  ReceptionPoint? _receptionPoint;
 
   /// Devuelve la lista de items [DonationItem] que el usuario selecciono
   /// para donar.
@@ -36,9 +41,33 @@ class NewDonation {
   }
 
   /// Actualiza el tipo de delivery [TypeDelivery] de la donacion
-  void updateTypeDelivery(TypeDelivery type) {
-    typeDelivery = type;
-  }
+  void updateTypeDelivery(TypeDelivery type) => typeDelivery = type;
+
+  /// Setea el [_userAddress].
+  /// Se utiliza cuando la donacion se retira por la casa del donante.
+  set userAddress(UserAddress userAddress) => _userAddress = userAddress;
+
+  /// Resetea [_userAddress] a null.
+  void resetUserAddress() => _userAddress = null;
+
+  /// Setea el [_pickupValue].
+  /// Se utiliza cuando la donacion se retira por la casa del donante.
+  set setPickupValue(PickupDropdownValue pickupValue) =>
+      _pickupValue = pickupValue;
+
+  /// Devuelve [_pickupValue]
+  PickupDropdownValue? get pickupValue => _pickupValue;
+
+  /// Resetea [_pickupValue] a null.
+  void resetPickupValue() => _pickupValue = null;
+
+  /// Setea el [_receptionPoint].
+  /// Se utiliza cuando la donacion la lleva el donante a un punto de entrega.
+  set receptionPoint(ReceptionPoint receptionPoint) =>
+      _receptionPoint = receptionPoint;
+
+  /// Resetea [_receptionPoint] a null.
+  void resetReceptionPoint() => _receptionPoint = null;
 
   /// Recibe un [DonationItem] y la cantidad [quantity] que se le va a setear
   /// al mismo [DonationItem].
@@ -62,5 +91,27 @@ class NewDonation {
         (selectedItem) => selectedItem.product.id == product.id);
 
     return (_found != null);
+  }
+
+  /// Devuelve true si el metodo de entrega de la donacion es a domicilio.
+  bool get _isDelivery => (TypeDelivery.delivery == typeDelivery);
+
+  toJson() {
+    return {
+      "ong_id": ong.id,
+      "shipping_method": typeDelivery.name,
+      "reception_point_id": _receptionPoint?.id,
+      "address_id": _isDelivery ? _userAddress!.id : null,
+      "range_time_id": _isDelivery ? _pickupValue!.rangeTimeId : null,
+      "weekday_id": _isDelivery ? _pickupValue!.weekdayId : null,
+      "products": _donationsList
+          .map(
+            (donationItem) => {
+              'id': donationItem.product.id,
+              'quantity': donationItem.quantity
+            },
+          )
+          .toList(),
+    };
   }
 }

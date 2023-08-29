@@ -1,5 +1,6 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
@@ -11,8 +12,6 @@ import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../core/abstracts/custom_dropdown_model.abstract.dart';
 
 class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
@@ -39,11 +38,23 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
   /// es a domicilio.
   bool get isHomeDelivery =>
-      _newDonationService.selectedTypeDelivery == TypeDelivery.home;
+      _newDonationService.selectedTypeDelivery == TypeDelivery.delivery;
 
   /// Actualiza el tipo de delivery de la donacion.
   void onChangeTypeDelivery(TypeDelivery type) {
     _newDonationService.updateTypeDelivery(type);
+
+    if (TypeDelivery.delivery == type) {
+      _newDonationService.resetReceptionPoint();
+      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
+    } else {
+      _newDonationService.resetPickupValue();
+      _newDonationService.resetUserAddres();
+      _newDonationService.updateReceptionPoint(
+        _newDonationDataService.receptionPoints.first,
+      );
+    }
+
     rebuildUi();
   }
 
@@ -66,7 +77,13 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     return items;
   }
 
-  void setRange<T>(T value) {
-    value as PickupDropdownValue;
+  ///
+  void setPickupRange<T>(T value) {
+    final pickupValue = value as PickupDropdownValue;
+    _newDonationService.updatePickupValue(pickupValue);
+  }
+
+  PickupDropdownValue? getPickupValue() {
+    return _newDonationService.pickupValue;
   }
 }

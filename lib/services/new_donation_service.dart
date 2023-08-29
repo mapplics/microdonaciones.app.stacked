@@ -1,8 +1,11 @@
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
+import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
@@ -21,6 +24,8 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   TypeDelivery get selectedTypeDelivery => _newDonation!.typeDelivery;
+
+  PickupDropdownValue? get pickupValue => _newDonation!.pickupValue;
 
   /// Inicializa el proceso de donacion.
   /// Siempre se debe llamar este metodo antes que cualquier otro.
@@ -70,6 +75,36 @@ class NewDonationService with ListenableServiceMixin {
     _newDonation!.updateTypeDelivery(type);
   }
 
+  /// Actualiza el punto de entrega de la donacion.
+  void updateReceptionPoint(ReceptionPoint receptionPoint) {
+    _newDonation!.receptionPoint = receptionPoint;
+  }
+
+  /// Resetea el punto de entrega de la donacion.
+  void resetReceptionPoint() {
+    _newDonation!.resetReceptionPoint();
+  }
+
+  /// Actualiza el horario de retiro de la donacion por domicilio.
+  void updatePickupValue(PickupDropdownValue pickupValue) {
+    _newDonation!.setPickupValue = pickupValue;
+  }
+
+  /// Resetea el horario de retiro de la donacion por domicilio.
+  void resetPickupValue() {
+    _newDonation!.resetPickupValue();
+  }
+
+  /// Actualiza la direccion del donante de retiro de la donacion por domicilio.
+  void updateUserAddres(UserAddress userAddres) {
+    _newDonation!.userAddress = userAddres;
+  }
+
+  /// Resetea la direccion del donante de retiro de la donacion por domicilio.
+  void resetUserAddres() {
+    _newDonation!.resetUserAddress();
+  }
+
   /// Devuelve true si existe el [Product] en la lista de donacion.
   bool checkIfItemExist(Product product) =>
       _newDonation!.checkIfItemExist(product);
@@ -91,6 +126,17 @@ class NewDonationService with ListenableServiceMixin {
     );
 
     return (_found == null) ? null : NewDonationError.quantityProductsInvalid;
+  }
+
+  /// Devuelve null si el metodo de entrega de la donacion es valido.
+  NewDonationError? deliveryValid() {
+    if (_newDonation!.typeDelivery == TypeDelivery.delivery) {
+      return (_newDonation!.pickupValue == null)
+          ? NewDonationError.pickupRangeInvalid
+          : null;
+    } else {
+      return null;
+    }
   }
 
   /// Resetea todos todos los campos del servicio a su valor inicial.

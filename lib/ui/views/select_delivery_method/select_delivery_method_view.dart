@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_dropdown/custom_dropdown.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
@@ -64,7 +63,8 @@ class SelectDeliveryMethodView
                         ),
                         CustomDropdown(
                           items: viewModel.getPickupOptions,
-                          onchange: viewModel.setRange,
+                          onchange: viewModel.setPickupRange,
+                          initialValue: viewModel.getPickupValue(),
                         ),
                       ],
                     ),
