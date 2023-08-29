@@ -42,63 +42,21 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
           onChanged: (T? value) => viewModel.onchangeValue(value),
           dropdownColor: Colors.white,
           menuMaxHeight: 375,
+          value: viewModel.selectedValue as T?,
           underline: const SizedBox(),
           padding: const EdgeInsets.symmetric(horizontal: 10),
+          items: viewModel.getDropdownItems as List<DropdownMenuItem<T>>?,
+          hint: Text(
+            'Seleccioná una opción',
+            style: CustomStylesTheme.regular14_20.copyWith(
+              color: CustomStylesTheme.lightGreyColor,
+            ),
+          ),
           style: CustomStylesTheme.regular14_20.copyWith(
             color: CustomStylesTheme.tertiaryColor,
           ),
-          // items: viewModel.getDropdownItems,
-          items: items.map<DropdownMenuItem<T>>(
-            (item) {
-              return DropdownMenuItem<T>(
-                value: item.value,
-                child: Text(
-                  item.label,
-                ),
-              );
-            },
-          ).toList(),
-          // selectedItemBuilder: (BuildContext ctx) {
-          //   return items.map<Widget>(
-          //     (item) {
-          //       return DropdownMenuItem(
-          //         child: Text(
-          //           itemFormatter != null
-          //               ? itemFormatter!(item)
-          //               : item.toString(),
-          //           style: CustomStylesHelper.regular14_16.copyWith(
-          //             color: CustomStylesHelper.whiteColor,
-          //           ),
-          //           maxLines: 1,
-          //           overflow: TextOverflow.ellipsis,
-          //         ),
-          //         value: item,
-          //       );
-          //     },
-          //   ).toList();
-          // },
         ),
       ),
-      // child: DropdownButton<T>(
-      //   hint: Text(
-      //     'Seleccioná una opción',
-      //     style: CustomStylesTheme.regular14_20.copyWith(
-      //       color: CustomStylesTheme.lightGreyColor,
-      //     ),
-      //   ),
-      //   items: viewModel.getDropdownItems as List<DropdownMenuItem<T>>,
-      //   value: viewModel.selectedValue,
-      //   iconEnabledColor: CustomStylesTheme.tertiaryColor,
-      //   onChanged: (value) => viewModel.onchangeValue(value),
-      //   dropdownColor: Colors.white,
-      //   menuMaxHeight: 375,
-      //   underline: const SizedBox(),
-      //   padding: const EdgeInsets.symmetric(horizontal: 10),
-      //   isExpanded: true,
-      //   style: CustomStylesTheme.regular14_20.copyWith(
-      //     color: CustomStylesTheme.tertiaryColor,
-      //   ),
-      // ),
     );
   }
 
