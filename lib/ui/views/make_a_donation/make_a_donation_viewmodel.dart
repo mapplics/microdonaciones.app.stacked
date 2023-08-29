@@ -131,7 +131,7 @@ class MakeADonationViewModel extends ReactiveViewModel {
       );
     } catch (e) {
       _haveError = true;
-      logError(e);
+      logSucess('ACAAAAA');
     } finally {
       _isLoading = false;
       rebuildUi();

@@ -44,7 +44,8 @@ class NewDonationService with ListenableServiceMixin {
         _newDonationData.getPickupWeekdayTimeRange(),
       ]);
     } catch (e) {
-      logError(e);
+      logError('Fallo la carga de datos!!');
+      rethrow;
     }
   }
 
