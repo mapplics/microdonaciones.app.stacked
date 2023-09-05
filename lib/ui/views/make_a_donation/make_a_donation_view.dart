@@ -7,6 +7,7 @@ import 'package:microdonations/ui/widgets/common/donation_item_quantity/donation
 import 'package:microdonations/ui/widgets/common/donation_items_selector/donation_items_selector.dart';
 import 'package:microdonations/ui/widgets/common/dot_indicator/dot_indicator_model.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
+import 'package:microdonations/ui/widgets/common/new_donation_detail/new_donation_detail.dart';
 import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.dart';
 import 'package:microdonations/ui/widgets/common/wrapper_http_loading/wrapper_http_loading.dart';
 import 'package:stacked/stacked.dart';
@@ -43,7 +44,7 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                   DonationItemsSelector(),
                   DonationItemQuantity(),
                   SelectDeliveryMethodView(),
-                  Text('Nada'),
+                  NewDonationDetail(),
                 ],
               ),
               Padding(
