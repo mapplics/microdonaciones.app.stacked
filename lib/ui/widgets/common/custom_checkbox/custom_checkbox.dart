@@ -8,10 +8,12 @@ import 'custom_checkbox_model.dart';
 class CustomCheckbox extends StackedView<CustomCheckboxModel> {
   final String label;
   final OnChangeCheckbox onchange;
+  final Widget? content;
 
   const CustomCheckbox({
     required this.onchange,
     required this.label,
+    this.content,
     super.key,
   });
 
@@ -29,12 +31,13 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
             value: viewModel.checkboxValue,
             onChanged: (_) => viewModel.toggleCheckbox(),
           ),
-          Text(
-            label,
-            style: CustomStylesTheme.regular14_24.copyWith(
-              color: CustomStylesTheme.blackColor,
-            ),
-          ),
+          content ??
+              Text(
+                label,
+                style: CustomStylesTheme.regular14_24.copyWith(
+                  color: CustomStylesTheme.blackColor,
+                ),
+              ),
         ],
       ),
     );

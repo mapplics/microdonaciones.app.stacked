@@ -30,10 +30,21 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   List<PickupWeekDayRange> get pickupRange =>
       _newDonationDataService.pickupRange;
 
+  /// Devuelve el tipo de entrega que eligio el usuario.
   TypeDelivery get typeDeliverySelected =>
       _newDonationService.selectedTypeDelivery;
 
+  /// Devuelve la direccion del usuario.
   UserAddress get userAddress => _userService.loggedUser!.address;
+
+  /// Devuelve la hora y dia que eligio el usuario para que retiren su donacion
+  /// si es que eligio una.
+  PickupDropdownValue? get getPickupValue => _newDonationService.pickupValue;
+
+  /// Devuelve el punto de entrega que selecciono el usuario.
+  /// Si es que selecciono uno.
+  ReceptionPoint? get receptionPointSelected =>
+      _newDonationService.receptionPointValue;
 
   /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
   /// es a domicilio.
@@ -67,6 +78,8 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     );
   }
 
+  /// Devuelve una lista de opciones para un dropdown con la hora
+  /// y el dia disponible para que le retiren la donacion al usuario.
   List<CustomDropdownItems<PickupDropdownValue>> get getPickupOptions {
     List<CustomDropdownItems<PickupDropdownValue>> items = [];
 
@@ -77,13 +90,14 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     return items;
   }
 
-  ///
-  void setPickupRange<T>(T value) {
+  /// Setea la hora y dia en que se le retira la donacion al usuario.
+  void updatePickupRange<T>(T value) {
     final pickupValue = value as PickupDropdownValue;
     _newDonationService.updatePickupValue(pickupValue);
   }
 
-  PickupDropdownValue? getPickupValue() {
-    return _newDonationService.pickupValue;
+  /// Setea el punto de entrega que eligio el usuario.
+  void updateReceptionPoint<ReceptionPoint>(dynamic value) {
+    _newDonationService.updateReceptionPoint(value);
   }
 }

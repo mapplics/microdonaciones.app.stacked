@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/widgets/common/custom_radio_list_tile/custom_radio_list_tile.dart';
 import 'package:stacked/stacked.dart';
 
 import 'reception_point_list_model.dart';
 
 class ReceptionPointList extends StackedView<ReceptionPointListModel> {
   final List<ReceptionPoint> receptionPoints;
+  final OnChangeRadioButton onchange;
+  final ReceptionPoint? initialValue;
 
-  const ReceptionPointList({required this.receptionPoints, super.key});
+  const ReceptionPointList({
+    required this.receptionPoints,
+    required this.onchange,
+    this.initialValue,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -21,37 +30,23 @@ class ReceptionPointList extends StackedView<ReceptionPointListModel> {
       children: [
         ...receptionPoints
             .map(
-              (receptionPoint) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 4.0),
-                          child: Icon(
-                            Icons.circle,
-                            size: 8,
-                            color: CustomStylesTheme.tertiaryColor,
-                          ),
-                        ),
-                        Text(
-                          '${receptionPoint.name} | ${receptionPoint.address}',
-                          style: CustomStylesTheme.regular14_20.copyWith(
-                            color: CustomStylesTheme.blackColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      'Horarios: ${receptionPoint.extraInfo}',
-                      style: CustomStylesTheme.regular14_20.copyWith(
-                        color: CustomStylesTheme.blackColor,
-                      ),
-                    ),
-                  ],
+              (receptionPoint) => CustomRadioListTile<ReceptionPoint>(
+                title: Text(
+                  '${receptionPoint.name} | ${receptionPoint.address}',
+                  style: CustomStylesTheme.bold14_20.copyWith(
+                    color: CustomStylesTheme.blackColor,
+                  ),
                 ),
+                subtitle: Text(
+                  'Horarios: ${receptionPoint.extraInfo}',
+                  style: CustomStylesTheme.regular14_20.copyWith(
+                    color: CustomStylesTheme.blackColor,
+                  ),
+                ),
+                value: receptionPoint,
+                selectedValue: viewModel.selectedValue,
+                onchange: <ReceptionPoint>(dynamic newValue) =>
+                    viewModel.onchangeValue(newValue),
               ),
             )
             .toList()
@@ -63,5 +58,5 @@ class ReceptionPointList extends StackedView<ReceptionPointListModel> {
   ReceptionPointListModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ReceptionPointListModel();
+      ReceptionPointListModel(onchange, initialValue);
 }

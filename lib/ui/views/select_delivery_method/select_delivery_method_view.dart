@@ -63,8 +63,8 @@ class SelectDeliveryMethodView
                         ),
                         CustomDropdown(
                           items: viewModel.getPickupOptions,
-                          onchange: viewModel.setPickupRange,
-                          initialValue: viewModel.getPickupValue(),
+                          onchange: viewModel.updatePickupRange,
+                          initialValue: viewModel.getPickupValue,
                         ),
                       ],
                     ),
@@ -105,7 +105,12 @@ class SelectDeliveryMethodView
                     ],
                   )
                 else
-                  ReceptionPointList(receptionPoints: viewModel.receptionPoints)
+                  ReceptionPointList(
+                    receptionPoints: viewModel.receptionPoints,
+                    onchange: <ReceptionPoint>(newValue) =>
+                        viewModel.updateReceptionPoint(newValue),
+                    initialValue: viewModel.receptionPointSelected,
+                  )
               ],
             ),
           )

@@ -69,6 +69,8 @@ class NewDonation {
   /// Resetea [_receptionPoint] a null.
   void resetReceptionPoint() => _receptionPoint = null;
 
+  ReceptionPoint? get receptionPointValue => _receptionPoint;
+
   /// Recibe un [DonationItem] y la cantidad [quantity] que se le va a setear
   /// al mismo [DonationItem].
   void updateDonationItemQuality(DonationItem item, int quantity) {

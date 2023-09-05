@@ -27,6 +27,9 @@ class NewDonationService with ListenableServiceMixin {
 
   PickupDropdownValue? get pickupValue => _newDonation!.pickupValue;
 
+  /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
+  ReceptionPoint? get receptionPointValue => _newDonation!.receptionPointValue;
+
   /// Inicializa el proceso de donacion.
   /// Siempre se debe llamar este metodo antes que cualquier otro.
   Future<void> initNewDonationData(Ong ong) async {
