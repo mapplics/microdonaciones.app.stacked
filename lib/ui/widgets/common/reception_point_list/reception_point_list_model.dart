@@ -1,6 +1,5 @@
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 
 class ReceptionPointListModel extends BaseViewModel {
