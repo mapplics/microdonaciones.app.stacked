@@ -28,4 +28,8 @@ class HomeViewModel extends ReactiveViewModel {
       _navigationService.navigateToMakeADonationView();
     }
   }
+
+  void goToDonationHistory() {
+    _navigationService.navigateToDonationHistoryView();
+  }
 }

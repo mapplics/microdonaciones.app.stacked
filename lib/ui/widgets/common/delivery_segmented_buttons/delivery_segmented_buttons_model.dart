@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 enum TypeDelivery {
   delivery,
   pickup,
+  unknow,
 }
 
 class DeliverySegmentedButtonsModel extends BaseViewModel {

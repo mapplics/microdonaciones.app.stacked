@@ -30,7 +30,7 @@ class HomeView extends StackedView<HomeViewModel> {
           children: [
             CustomTile(
               label: 'Historial de donaciones',
-              action: () {},
+              action: viewModel.goToDonationHistory,
               count: 2,
               svgPath: 'assets/icons/ic_historialdedonaciones.svg',
             ),

@@ -21,6 +21,7 @@ import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_confirmed_view.dart';
+import 'package:microdonations/ui/views/donation_history/donation_history_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -34,6 +35,7 @@ import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_conf
     MaterialRoute(page: MakeADonationView),
     MaterialRoute(page: SelectDeliveryMethodView),
     MaterialRoute(page: NewDonationConfirmedView),
+    MaterialRoute(page: DonationHistoryView),
 // @stacked-route
   ],
   dependencies: [
