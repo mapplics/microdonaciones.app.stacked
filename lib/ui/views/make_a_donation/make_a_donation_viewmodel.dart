@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
+import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class MakeADonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
+  final _navigationService = locator<NavigationService>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
@@ -50,9 +54,22 @@ class MakeADonationViewModel extends ReactiveViewModel {
     }
   }
 
-  /// Devuelve el texto que debe tener el boton para pasar al siguiente slide.
-  String get nextSlideBtnText {
-    return ((numPages - 1) == currentSlide) ? 'Finalizar' : 'Siguiente';
+  /// Devuelve true si se esta mostrando la ultima slide.
+  bool get isLastSlide => ((numPages - 1) == currentSlide);
+
+  Future<void> createDonation(BuildContext context) async {
+    try {
+      context.loaderOverlay.show();
+      await Future.delayed(Duration(seconds: 1));
+      _navigationService.replaceWithNewDonationConfirmedView();
+    } catch (e) {
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'No se pudo crear la donacion. Por favor, volve a intentarlo mas tarde.',
+      );
+    } finally {
+      context.loaderOverlay.hide();
+    }
   }
 
   //// Navega a la siguiente pagina.

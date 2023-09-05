@@ -83,13 +83,24 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                                   dotIndicatorSize: DotIndicatorSize.small,
                                 ),
                               ),
-                              LinkButton(
-                                label: viewModel.nextSlideBtnText,
-                                action: () => viewModel.nextPage(context),
-                                textStyle: CustomStylesTheme.bold16_20.copyWith(
-                                  color: CustomStylesTheme.tertiaryColor,
-                                ),
-                              ),
+                              viewModel.isLastSlide
+                                  ? LinkButton(
+                                      label: 'Finalizar',
+                                      action: () =>
+                                          viewModel.createDonation(context),
+                                      textStyle:
+                                          CustomStylesTheme.bold16_20.copyWith(
+                                        color: CustomStylesTheme.tertiaryColor,
+                                      ),
+                                    )
+                                  : LinkButton(
+                                      label: 'Siguiente',
+                                      action: () => viewModel.nextPage(context),
+                                      textStyle:
+                                          CustomStylesTheme.bold16_20.copyWith(
+                                        color: CustomStylesTheme.tertiaryColor,
+                                      ),
+                                    ),
                             ],
                           ),
                         ],

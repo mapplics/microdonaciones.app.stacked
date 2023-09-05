@@ -7,6 +7,7 @@ import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
+import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
@@ -17,6 +18,7 @@ import '../app/app.locator.dart';
 
 class NewDonationService with ListenableServiceMixin {
   final _newDonationData = locator<NewDonationDataService>();
+  final _newDonationApi = locator<NewDonationApiService>();
 
   NewDonation? _newDonation;
 
@@ -165,6 +167,17 @@ class NewDonationService with ListenableServiceMixin {
           : null;
     } else {
       return null;
+    }
+  }
+
+  /// Crea una donacion.
+  Future<void> createDontaion() async {
+    try {
+      if (_newDonation != null) {
+        await _newDonationApi.createDonation(_newDonation!);
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 

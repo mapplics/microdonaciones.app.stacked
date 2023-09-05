@@ -5,18 +5,20 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart'
-    as _i12;
+    as _i13;
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
-    as _i11;
+    as _i12;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
 import 'package:microdonations/ui/views/make_a_donation/make_a_donation_view.dart'
     as _i8;
+import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_confirmed_view.dart'
+    as _i10;
 import 'package:microdonations/ui/views/onboarding/onboarding_view.dart' as _i5;
 import 'package:microdonations/ui/views/personal_information/personal_information_view.dart'
     as _i6;
@@ -24,7 +26,7 @@ import 'package:microdonations/ui/views/select_delivery_method/select_delivery_m
     as _i9;
 import 'package:microdonations/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i13;
+import 'package:stacked_services/stacked_services.dart' as _i14;
 
 class Routes {
   static const homeView = '/home-view';
@@ -43,6 +45,8 @@ class Routes {
 
   static const selectDeliveryMethodView = '/select-delivery-method-view';
 
+  static const newDonationConfirmedView = '/new-donation-confirmed-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -52,6 +56,7 @@ class Routes {
     createAccountView,
     makeADonationView,
     selectDeliveryMethodView,
+    newDonationConfirmedView,
   };
 }
 
@@ -89,29 +94,33 @@ class StackedRouter extends _i1.RouterBase {
       Routes.selectDeliveryMethodView,
       page: _i9.SelectDeliveryMethodView,
     ),
+    _i1.RouteDef(
+      Routes.newDonationConfirmedView,
+      page: _i10.NewDonationConfirmedView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.LoginView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.LoginView(),
         settings: data,
       );
     },
     _i5.OnboardingView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.OnboardingView(),
         settings: data,
       );
@@ -119,7 +128,7 @@ class StackedRouter extends _i1.RouterBase {
     _i6.PersonalInformationView: (data) {
       final args =
           data.getArgs<PersonalInformationViewArguments>(nullOk: false);
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.PersonalInformationView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
@@ -127,21 +136,27 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i7.CreateAccountView: (data) {
       final args = data.getArgs<CreateAccountViewArguments>(nullOk: false);
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.CreateAccountView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
       );
     },
     _i8.MakeADonationView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.MakeADonationView(),
         settings: data,
       );
     },
     _i9.SelectDeliveryMethodView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.SelectDeliveryMethodView(),
+        settings: data,
+      );
+    },
+    _i10.NewDonationConfirmedView: (data) {
+      return _i11.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.NewDonationConfirmedView(),
         settings: data,
       );
     },
@@ -159,9 +174,9 @@ class PersonalInformationViewArguments {
     this.key,
   });
 
-  final _i11.UserInformationFormParameters viewParameters;
+  final _i12.UserInformationFormParameters viewParameters;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -186,9 +201,9 @@ class CreateAccountViewArguments {
     this.key,
   });
 
-  final _i12.CreateAccountViewParameters viewParameters;
+  final _i13.CreateAccountViewParameters viewParameters;
 
-  final _i10.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
@@ -207,7 +222,7 @@ class CreateAccountViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i13.NavigationService {
+extension NavigatorStateExtension on _i14.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -265,8 +280,8 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> navigateToPersonalInformationView({
-    required _i11.UserInformationFormParameters viewParameters,
-    _i10.Key? key,
+    required _i12.UserInformationFormParameters viewParameters,
+    _i11.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -283,8 +298,8 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> navigateToCreateAccountView({
-    required _i12.CreateAccountViewParameters viewParameters,
-    _i10.Key? key,
+    required _i13.CreateAccountViewParameters viewParameters,
+    _i11.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -322,6 +337,20 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.selectDeliveryMethodView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNewDonationConfirmedView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.newDonationConfirmedView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -385,8 +414,8 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> replaceWithPersonalInformationView({
-    required _i11.UserInformationFormParameters viewParameters,
-    _i10.Key? key,
+    required _i12.UserInformationFormParameters viewParameters,
+    _i11.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -403,8 +432,8 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> replaceWithCreateAccountView({
-    required _i12.CreateAccountViewParameters viewParameters,
-    _i10.Key? key,
+    required _i13.CreateAccountViewParameters viewParameters,
+    _i11.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -442,6 +471,20 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.selectDeliveryMethodView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithNewDonationConfirmedView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.newDonationConfirmedView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -19,6 +19,8 @@ import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
+import 'package:microdonations/services/new_donation_api_service.dart';
+import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_confirmed_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -31,6 +33,7 @@ import 'package:microdonations/services/new_donation_data_service.dart';
     MaterialRoute(page: CreateAccountView),
     MaterialRoute(page: MakeADonationView),
     MaterialRoute(page: SelectDeliveryMethodView),
+    MaterialRoute(page: NewDonationConfirmedView),
 // @stacked-route
   ],
   dependencies: [
@@ -45,6 +48,7 @@ import 'package:microdonations/services/new_donation_data_service.dart';
     LazySingleton(classType: DonationItemApiService),
     LazySingleton(classType: ReceptionApiService),
     LazySingleton(classType: NewDonationDataService),
+    LazySingleton(classType: NewDonationApiService),
 // @stacked-service
   ],
   bottomsheets: [
