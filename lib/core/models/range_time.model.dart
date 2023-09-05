@@ -22,5 +22,5 @@ class RangeTime {
       '${_removeMiliseconds(start)} a ${_removeMiliseconds(end)}';
 
   /// Devuelve [start] o [end] sin los milisegundos.
-  static String _removeMiliseconds(String time) => time.substring(0, 4);
+  static String _removeMiliseconds(String time) => time.substring(0, 5);
 }
