@@ -47,6 +47,8 @@ class NewDonation {
   /// Se utiliza cuando la donacion se retira por la casa del donante.
   set userAddress(UserAddress userAddress) => _userAddress = userAddress;
 
+  UserAddress? get userAddressValue => _userAddress;
+
   /// Resetea [_userAddress] a null.
   void resetUserAddress() => _userAddress = null;
 

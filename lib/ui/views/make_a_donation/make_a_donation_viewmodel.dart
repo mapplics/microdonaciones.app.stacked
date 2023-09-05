@@ -3,7 +3,6 @@ import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,9 +43,16 @@ class MakeADonationViewModel extends ReactiveViewModel {
         return _newDonationService.itemsQuantityValid();
       case 2:
         return _newDonationService.deliveryValid();
+      case 3:
+        return null;
       default:
         return NewDonationError.unknow;
     }
+  }
+
+  /// Devuelve el texto que debe tener el boton para pasar al siguiente slide.
+  String get nextSlideBtnText {
+    return ((numPages - 1) == currentSlide) ? 'Finalizar' : 'Siguiente';
   }
 
   //// Navega a la siguiente pagina.
@@ -131,7 +137,6 @@ class MakeADonationViewModel extends ReactiveViewModel {
       );
     } catch (e) {
       _haveError = true;
-      logSucess('ACAAAAA');
     } finally {
       _isLoading = false;
       rebuildUi();

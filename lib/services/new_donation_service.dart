@@ -2,6 +2,7 @@ import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
+import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
@@ -23,9 +24,33 @@ class NewDonationService with ListenableServiceMixin {
   List<DonationItem> get selectedItems => _newDonation!.donationsItemsList;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
+  UserAddress? get userAddres => _newDonation!.userAddressValue;
+
+  /// Devuelve las opciones que el usuario puede elegir para donar.
   TypeDelivery get selectedTypeDelivery => _newDonation!.typeDelivery;
 
+  /// Devuelve una instancia con los id's que selecciono el usuario para que le
+  /// retiren la donacion.
   PickupDropdownValue? get pickupValue => _newDonation!.pickupValue;
+
+  /// Devuelve una instancia de [PickupWeekDayRangePresentation] que permite
+  /// detallar la hora y dia que el usuario selecciono para que retiren
+  /// su donación.
+  PickupWeekDayRangePresentation? get pickupPresentation {
+    if (_newDonation!.pickupValue == null) {
+      return null;
+    } else {
+      final pickupRange = _newDonationData.pickupRange;
+
+      return PickupWeekDayRangePresentation.createOne(
+        pickupRange,
+        _newDonation!.pickupValue!,
+      );
+    }
+  }
+
+  /// Devuelve el tipo de delivery que eligio el donante.
+  TypeDelivery get deliveryTypeValue => _newDonation!.typeDelivery;
 
   /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
   ReceptionPoint? get receptionPointValue => _newDonation!.receptionPointValue;

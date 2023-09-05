@@ -84,7 +84,7 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                                 ),
                               ),
                               LinkButton(
-                                label: 'Siguiente',
+                                label: viewModel.nextSlideBtnText,
                                 action: () => viewModel.nextPage(context),
                                 textStyle: CustomStylesTheme.bold16_20.copyWith(
                                   color: CustomStylesTheme.tertiaryColor,
