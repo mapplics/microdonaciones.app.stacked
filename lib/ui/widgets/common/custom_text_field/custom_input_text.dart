@@ -43,7 +43,7 @@ class CustomInputText extends StackedView<CustomTextFieldModel> {
             color: CustomStylesTheme.blackColor,
           ),
           decoration: CustomStylesTheme.inputDecoration(
-            label,
+            label: label,
             required: isRequired,
             hintText: hintText,
           ),

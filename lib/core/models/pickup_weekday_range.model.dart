@@ -63,9 +63,7 @@ class PickupWeekDayRange {
     List<CustomDropdownItems<PickupDropdownValue>> items = [];
 
     for (var range in ranges) {
-      items.add(
-        _getPickupDropdownItem(range),
-      );
+      items.add(_getPickupDropdownItem(range));
     }
 
     return items;
@@ -75,7 +73,7 @@ class PickupWeekDayRange {
   /// en una instancia para usar en un [DropdownButton]
   PickupDropdownItem _getPickupDropdownItem(RangeTime range) {
     return PickupDropdownItem(
-      label: '$weekday de ${range.fullTime}',
+      label: range.fullTime,
       value: PickupDropdownValue(
         rangeTimeId: range.id,
         weekdayId: id,

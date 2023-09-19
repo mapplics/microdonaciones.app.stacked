@@ -102,6 +102,9 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     _newDonationService.resetPickupAppointmentForm();
   }
 
+  bool get pickupAppointmentFormValid =>
+      _newDonationService.pickupAppointmentFormValid;
+
   /// Devuelve el formulario para retiro a domicilio
   FormGroup? get pickupAppointmentForm =>
       _newDonationService.pickupAppointmentForm;

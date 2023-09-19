@@ -12,7 +12,6 @@ typedef OnChangeDateTime = void Function(DateTime value);
 class WeekdayPicker extends StackedView<WeekdayPickerModel> {
   final String label;
   final String formControlName;
-  final DateTime? initialDate;
   final String? hintText;
   final bool required;
   final OnChangeWeekdayPicker onchange;
@@ -22,7 +21,6 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
     required this.label,
     required this.formControlName,
     required this.validationMessage,
-    required this.initialDate,
     required this.onchange,
     required this.required,
     this.hintText,
@@ -46,14 +44,17 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
           height: 8,
         ),
         ReactiveTextField(
+          formControlName: formControlName,
+          controller: viewModel.controller,
           onTap: (_) => viewModel.openDatePicker(context),
           style: CustomStylesTheme.regular16_24.copyWith(
             color: CustomStylesTheme.blackColor,
           ),
-          formControlName: formControlName,
-          controller: viewModel.controller,
           validationMessages: validationMessage,
-          decoration: CustomStylesTheme.inputDecoration('', hintText: hintText),
+          decoration: CustomStylesTheme.inputDecoration(
+            required: required,
+            hintText: 'Seleccioná una opción',
+          ),
           readOnly: true,
         ),
       ],

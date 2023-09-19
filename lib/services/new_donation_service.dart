@@ -139,11 +139,17 @@ class NewDonationService with ListenableServiceMixin {
     _newDonation!.resetUserAddress();
   }
 
+  /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) =>
       _pickupAppointmentForm = form;
 
+  /// Devuelve el formulario de delivery [_pickupAppointmentForm]
   FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
 
+  /// Devuelve true si el formulario delivery es valid [_pickupAppointmentForm]
+  bool get pickupAppointmentFormValid => _pickupAppointmentForm?.valid ?? false;
+
+  /// Limpia el formulario de delivery [_pickupAppointmentForm]
   void resetPickupAppointmentForm() {
     _pickupAppointmentForm = null;
   }

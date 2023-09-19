@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
+import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
 import 'package:stacked/stacked.dart';
@@ -70,24 +71,30 @@ class SelectDeliveryMethodView
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   viewModel.userAddress.fullAddress,
-                      //   style: CustomStylesTheme.regular14_20.copyWith(
-                      //     color: CustomStylesTheme.blackColor,
-                      //   ),
-                      // ),
-                      // LinkButton(
-                      //   label: 'Cambiar dirección',
-                      //   action: viewModel.navigateToPersonalInformation,
-                      //   buttonStyle: const ButtonStyle(
-                      //     padding: MaterialStatePropertyAll(
-                      //       EdgeInsets.all(0),
-                      //     ),
-                      //   ),
-                      //   textStyle: CustomStylesTheme.regular14_20.copyWith(
-                      //     color: CustomStylesTheme.tertiaryColor,
-                      //   ),
-                      // ),
+                      Text(
+                        viewModel.userAddress.fullAddress,
+                        style: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
+                      ),
+                      Text(
+                        viewModel.userAddress.fullAddress,
+                        style: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
+                      ),
+                      LinkButton(
+                        label: 'Cambiar dirección',
+                        action: viewModel.navigateToPersonalInformation,
+                        buttonStyle: const ButtonStyle(
+                          padding: MaterialStatePropertyAll(
+                            EdgeInsets.all(0),
+                          ),
+                        ),
+                        textStyle: CustomStylesTheme.regular14_20.copyWith(
+                          color: CustomStylesTheme.tertiaryColor,
+                        ),
+                      ),
                     ],
                   )
                 else

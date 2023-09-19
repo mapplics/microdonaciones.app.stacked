@@ -8,12 +8,9 @@ class CustomDropdownModel<T> extends BaseViewModel {
 
   CustomDropdownModel({required this.onchange});
 
-  late List<DropdownMenuItem<T>> _dropdownItems;
-
-  List<DropdownMenuItem<T>> get getDropdownItems => _dropdownItems;
-
-  void loadDropdownItems(List<CustomDropdownItems<T>> items) {
-    _dropdownItems = items
+  List<DropdownMenuItem<T>> getDropdownItems(
+      List<CustomDropdownItems<T>> items) {
+    return items
         .map(
           (e) => DropdownMenuItem<T>(
             child: Text(e.label),
@@ -22,6 +19,8 @@ class CustomDropdownModel<T> extends BaseViewModel {
         )
         .toList();
   }
+
+  void loadDropdownItems(List<CustomDropdownItems<T>> items) {}
 
   void onchangeValue(T? value) {
     onchange(value);

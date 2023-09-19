@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
+import 'package:microdonations/core/enums/weekday.enum.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +19,7 @@ enum PickupAppointmentFormFields {
 class PickupAppointmentFormModel extends BaseViewModel {
   final _newDonationDataService = locator<NewDonationDataService>();
   final OnChangeForm onchange;
+  final List<CustomDropdownItems<PickupDropdownValue>> _timeItems = [];
 
   PickupAppointmentFormModel(this.onchange);
 
@@ -26,6 +28,8 @@ class PickupAppointmentFormModel extends BaseViewModel {
   FormGroup get formGroup => _formGroup;
 
   final List<StreamSubscription<dynamic>> _formSubscriptions = [];
+
+  List<CustomDropdownItems<PickupDropdownValue>> get timeItems => _timeItems;
 
   void initForm(FormGroup? form) {
     _formGroup = form ??
@@ -52,19 +56,15 @@ class PickupAppointmentFormModel extends BaseViewModel {
   void updateDate(DateTime value) {
     _formGroup.control(PickupAppointmentFormFields.day.name).value = value;
 
-    final fieldValue = ReactiveFormHelper.getControlValue(
-      _formGroup,
-      PickupAppointmentFormFields.day.name,
-    );
+    loadTimeItems(value);
 
-    if (fieldValue != null) {
-      _formGroup.control(PickupAppointmentFormFields.time.name).markAsEnabled();
-      _formGroup
-          .control(PickupAppointmentFormFields.time.name)
-          .updateValueAndValidity();
-    }
-
+    _formGroup.control(PickupAppointmentFormFields.time.name).markAsEnabled();
+    _formGroup
+        .control(PickupAppointmentFormFields.time.name)
+        .updateValueAndValidity();
     _formGroup.updateValueAndValidity();
+
+    rebuildUi();
   }
 
   /// Setea la hora y dia en que se le retira la donacion al usuario.
@@ -74,21 +74,36 @@ class PickupAppointmentFormModel extends BaseViewModel {
         pickupValue;
   }
 
+  /// Devuelve true si el campo [PickupAppointmentFormFields.day] es requerido
+  bool get dayFieldIsRequired {
+    return ReactiveFormHelper.isRequiredField(
+      _formGroup,
+      PickupAppointmentFormFields.day.name,
+    );
+  }
+
+  /// Devuelve true si el campo [PickupAppointmentFormFields.time] es requerido
+  bool get timeFieldIsRequired {
+    return ReactiveFormHelper.isRequiredField(
+      _formGroup,
+      PickupAppointmentFormFields.time.name,
+    );
+  }
+
   /// Devuelve una lista de opciones para un dropdown con la hora
   /// y el dia disponible para que le retiren la donacion al usuario.
-  List<CustomDropdownItems<PickupDropdownValue>> get getPickupOptions {
-    List<CustomDropdownItems<PickupDropdownValue>> items = [];
+  void loadTimeItems(DateTime dateTime) {
+    final Weekday weekday = DateTimeHelper.getDayOfWeek(dateTime);
 
-    _newDonationDataService.pickupRange.forEach((element) {
-      items.addAll(element.prepareForDropdown());
-    });
+    final range = _newDonationDataService.pickupRange.firstWhere(
+      (element) => element.weekday.toLowerCase() == weekday.name.toLowerCase(),
+    );
 
-    return items;
+    _timeItems.addAll(range.prepareForDropdown());
   }
 
   /// Cancela todas las subscripciones del formulario.
   void disposeForm() {
-    logWarn('dISPOSE');
     for (var subscription in _formSubscriptions) {
       subscription.cancel();
     }

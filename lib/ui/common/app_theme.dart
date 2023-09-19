@@ -281,17 +281,21 @@ class CustomStylesTheme {
   );
 
   // Input styles
-  static InputDecoration inputDecoration(String label,
-      {bool required = false, String? hintText}) {
+  static InputDecoration inputDecoration(
+      {String? label, bool required = false, String? hintText}) {
+    // logInfo(hintText ?? 'no hay');
+
     const _borderRadius = BorderRadius.all(
       Radius.circular(4),
     );
 
     return InputDecoration(
-      label: LabelField(
-        label: label,
-        required: required,
-      ),
+      label: (label != null)
+          ? LabelField(
+              label: label,
+              required: required,
+            )
+          : null,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       errorMaxLines: 2,
       hintText: hintText,
@@ -313,6 +317,22 @@ class CustomStylesTheme {
       ),
       hintStyle: regular14_24.copyWith(color: gray300),
       errorStyle: regular14_24.copyWith(color: errorColor),
+    );
+  }
+
+  /// Devuelve el theme que debe usar el DateTimePicker
+  static ThemeData dateTimePicker() {
+    return ThemeData.dark().copyWith(
+      textTheme: const TextTheme(
+        headlineMedium: CustomStylesTheme.bold16_20,
+      ),
+      colorScheme: const ColorScheme.dark(
+        primary: CustomStylesTheme.secondaryColor,
+        surface: CustomStylesTheme.secondaryColor,
+        onSurface: CustomStylesTheme.blackColor,
+        onPrimary: Colors.white,
+      ),
+      dialogBackgroundColor: CustomStylesTheme.backgroundColor,
     );
   }
 
