@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
@@ -57,28 +58,28 @@ class SelectDeliveryMethodView
                     ),
                   ),
 
-                Text(
-                  viewModel.isHomeDelivery
-                      ? 'Vamos a retirar tu donación por'
-                      : 'Puntos de entrega para dejar tu donación',
-                  style: CustomStylesTheme.bold16_20.copyWith(
-                    color: CustomStylesTheme.blackColor,
-                  ),
-                ),
-
                 /// Instrucciones para retiro por domicilio
-                if (viewModel.isHomeDelivery)
+                if (viewModel.isHomeDelivery &&
+                    viewModel.pickupAppointmentFormValid)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        viewModel.userAddress.fullAddress,
+                        viewModel.isHomeDelivery
+                            ? 'Vamos a retirar tu donación por'
+                            : 'Puntos de entrega para dejar tu donación',
+                        style: CustomStylesTheme.bold16_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
+                      ),
+                      Text(
+                        viewModel.deliveryDetail,
                         style: CustomStylesTheme.regular14_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
                       ),
                       Text(
-                        viewModel.userAddress.fullAddress,
+                        'En calle ${viewModel.userAddress.fullAddress.capitalize()}',
                         style: CustomStylesTheme.regular14_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
@@ -96,8 +97,9 @@ class SelectDeliveryMethodView
                         ),
                       ),
                     ],
-                  )
-                else
+                  ),
+
+                if (!viewModel.isHomeDelivery)
                   ReceptionPointList(
                     receptionPoints: viewModel.receptionPoints,
                     onchange: <ReceptionPoint>(newValue) =>

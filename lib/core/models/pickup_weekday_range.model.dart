@@ -49,8 +49,8 @@ class PickupWeekDayRange {
       range.add(
         RangeTime(
           id: element['id'],
-          end: element['timeOpen'],
-          start: element['timeClose'],
+          end: element['timeClose'],
+          start: element['timeOpen'],
         ),
       );
     });

@@ -9,8 +9,11 @@ import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
+import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 import 'package:collection/collection.dart';
@@ -152,6 +155,30 @@ class NewDonationService with ListenableServiceMixin {
   /// Limpia el formulario de delivery [_pickupAppointmentForm]
   void resetPickupAppointmentForm() {
     _pickupAppointmentForm = null;
+  }
+
+  String get deliveryDetail {
+    if (_pickupAppointmentForm?.invalid ?? false) {
+      return 'DeliveryDetailInvalid';
+    } else {
+      final day = ReactiveFormHelper.getControlValue(
+        _pickupAppointmentForm!,
+        PickupAppointmentFormFields.day.name,
+      ) as DateTime;
+
+      final time = ReactiveFormHelper.getControlValue(
+        _pickupAppointmentForm!,
+        PickupAppointmentFormFields.time.name,
+      ) as PickupDropdownValue;
+
+      final weekday = _newDonationData.pickupRange
+          .firstWhere((element) => element.id == time.weekdayId);
+
+      final weekdayTime = weekday.ranges
+          .firstWhere((element) => element.id == time.rangeTimeId);
+
+      return 'El día ${weekday.weekday} ${DateTimeHelper.formatDateTime(day)} entre las ${weekdayTime.betweenTime}.';
+    }
   }
 
   /// Devuelve true si existe el [Product] en la lista de donacion.
