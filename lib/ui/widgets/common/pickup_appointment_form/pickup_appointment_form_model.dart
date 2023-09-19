@@ -38,7 +38,7 @@ class PickupAppointmentFormModel extends BaseViewModel {
             PickupAppointmentFormFields.time.name:
                 FormControl<PickupDropdownValue>(
               value: null,
-              // disabled: true,
+              disabled: true,
               validators: [Validators.required],
             ),
           },
