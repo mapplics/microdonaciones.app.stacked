@@ -32,6 +32,7 @@ class PickupAppointmentForm extends StackedView<PickupAppointmentFormModel> {
               onchange: viewModel.updateDate,
               required: viewModel.dayFieldIsRequired,
               validationMessage: ReactiveFormHelper.getValidationMessages,
+              initialDate: viewModel.deliveryDay,
             ),
           ),
           CustomDropdown(

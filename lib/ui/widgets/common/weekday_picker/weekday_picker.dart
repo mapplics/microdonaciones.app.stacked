@@ -15,12 +15,14 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
   final String? hintText;
   final bool required;
   final OnChangeWeekdayPicker onchange;
+  final DateTime? initialDate;
   final Map<String, String Function(Object)>? validationMessage;
 
   const WeekdayPicker({
     required this.label,
     required this.formControlName,
     required this.validationMessage,
+    required this.initialDate,
     required this.onchange,
     required this.required,
     this.hintText,
@@ -46,7 +48,7 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
         ReactiveTextField(
           formControlName: formControlName,
           controller: viewModel.controller,
-          onTap: (_) => viewModel.openDatePicker(context),
+          onTap: (_) => viewModel.openDatePicker(context, initialDate),
           style: CustomStylesTheme.regular16_24.copyWith(
             color: CustomStylesTheme.blackColor,
           ),

@@ -11,13 +11,13 @@ class WeekdayPickerModel extends BaseViewModel {
   TextEditingController controller = TextEditingController();
 
   /// Abre un datePicker.
-  openDatePicker(BuildContext ctx) {
+  openDatePicker(BuildContext ctx, DateTime? initialDate) {
     final minDate = DateTime.now().add(const Duration(days: 2));
     final maxDate = DateTime.now().add(const Duration(days: 32));
 
     showDatePicker(
       context: ctx,
-      initialDate: minDate,
+      initialDate: initialDate ?? minDate,
       firstDate: minDate,
       lastDate: maxDate,
       builder: (_, child) => Theme(
