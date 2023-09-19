@@ -19,7 +19,7 @@ enum PickupAppointmentFormFields {
 class PickupAppointmentFormModel extends BaseViewModel {
   final _newDonationDataService = locator<NewDonationDataService>();
   final OnChangeForm onchange;
-  final List<CustomDropdownItems<PickupDropdownValue>> _timeItems = [];
+  List<CustomDropdownItems<PickupDropdownValue>> _timeItems = [];
 
   PickupAppointmentFormModel(this.onchange);
 
@@ -30,6 +30,9 @@ class PickupAppointmentFormModel extends BaseViewModel {
   final List<StreamSubscription<dynamic>> _formSubscriptions = [];
 
   List<CustomDropdownItems<PickupDropdownValue>> get timeItems => _timeItems;
+
+  DateTime? get deliveryDay =>
+      _formGroup.control(PickupAppointmentFormFields.day.name).value;
 
   void initForm(FormGroup? form) {
     _formGroup = form ??
@@ -54,16 +57,10 @@ class PickupAppointmentFormModel extends BaseViewModel {
   }
 
   void updateDate(DateTime value) {
-    _formGroup.control(PickupAppointmentFormFields.day.name).value = value;
-
-    loadTimeItems(value);
-
+    _formGroup.control(PickupAppointmentFormFields.day.name).updateValue(value);
     _formGroup.control(PickupAppointmentFormFields.time.name).markAsEnabled();
-    _formGroup
-        .control(PickupAppointmentFormFields.time.name)
-        .updateValueAndValidity();
-    _formGroup.updateValueAndValidity();
-
+    _formGroup.control(PickupAppointmentFormFields.time.name).updateValue(null);
+    loadTimeItems(value);
     rebuildUi();
   }
 
@@ -93,6 +90,8 @@ class PickupAppointmentFormModel extends BaseViewModel {
   /// Devuelve una lista de opciones para un dropdown con la hora
   /// y el dia disponible para que le retiren la donacion al usuario.
   void loadTimeItems(DateTime dateTime) {
+    _timeItems = [];
+
     final Weekday weekday = DateTimeHelper.getDayOfWeek(dateTime);
 
     final range = _newDonationDataService.pickupRange.firstWhere(
