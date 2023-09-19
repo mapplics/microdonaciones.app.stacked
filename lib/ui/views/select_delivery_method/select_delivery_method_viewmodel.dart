@@ -1,6 +1,5 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
@@ -10,6 +9,7 @@ import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -39,7 +39,9 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
 
   /// Devuelve la hora y dia que eligio el usuario para que retiren su donacion
   /// si es que eligio una.
-  PickupDropdownValue? get getPickupValue => _newDonationService.pickupValue;
+  PickupDropdownValue? get getPickupValue {
+    return _newDonationService.pickupValue;
+  }
 
   /// Devuelve el punto de entrega que selecciono el usuario.
   /// Si es que selecciono uno.
@@ -59,6 +61,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
       _newDonationService.resetReceptionPoint();
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     } else {
+      resetPickupAppointmentForm();
       _newDonationService.resetPickupValue();
       _newDonationService.resetUserAddres();
       _newDonationService.updateReceptionPoint(
@@ -78,18 +81,6 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     );
   }
 
-  /// Devuelve una lista de opciones para un dropdown con la hora
-  /// y el dia disponible para que le retiren la donacion al usuario.
-  List<CustomDropdownItems<PickupDropdownValue>> get getPickupOptions {
-    List<CustomDropdownItems<PickupDropdownValue>> items = [];
-
-    _newDonationDataService.pickupRange.forEach((element) {
-      items.addAll(element.prepareForDropdown());
-    });
-
-    return items;
-  }
-
   /// Setea la hora y dia en que se le retira la donacion al usuario.
   void updatePickupRange<T>(T value) {
     final pickupValue = value as PickupDropdownValue;
@@ -100,4 +91,18 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   void updateReceptionPoint<ReceptionPoint>(dynamic value) {
     _newDonationService.updateReceptionPoint(value);
   }
+
+  /// Recibe el formulario para retiro a domicilio
+  void updatePickUpAppointmentForm(FormGroup form) {
+    _newDonationService.updatePickUpAppointmentForm(form);
+  }
+
+  /// Resetea el formulario para retiro a domicilio
+  void resetPickupAppointmentForm() {
+    _newDonationService.resetPickupAppointmentForm();
+  }
+
+  /// Devuelve el formulario para retiro a domicilio
+  FormGroup? get pickupAppointmentForm =>
+      _newDonationService.pickupAppointmentForm;
 }

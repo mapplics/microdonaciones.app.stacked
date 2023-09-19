@@ -11,6 +11,7 @@ import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 import 'package:collection/collection.dart';
 
@@ -21,6 +22,8 @@ class NewDonationService with ListenableServiceMixin {
   final _newDonationApi = locator<NewDonationApiService>();
 
   NewDonation? _newDonation;
+
+  FormGroup? _pickupAppointmentForm;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   List<DonationItem> get selectedItems => _newDonation!.donationsItemsList;
@@ -134,6 +137,15 @@ class NewDonationService with ListenableServiceMixin {
   /// Resetea la direccion del donante de retiro de la donacion por domicilio.
   void resetUserAddres() {
     _newDonation!.resetUserAddress();
+  }
+
+  void updatePickUpAppointmentForm(FormGroup form) =>
+      _pickupAppointmentForm = form;
+
+  FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
+
+  void resetPickupAppointmentForm() {
+    _pickupAppointmentForm = null;
   }
 
   /// Devuelve true si existe el [Product] en la lista de donacion.

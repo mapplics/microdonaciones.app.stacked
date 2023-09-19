@@ -18,3 +18,5 @@ typedef OnChangeTypeDelivery = void Function(TypeDelivery newValue);
 typedef OnChangeDropdownButton = void Function<T>(T newValue);
 
 typedef OnChangeRadioButton = void Function<T>(T newValue);
+
+typedef OnChangeWeekdayPicker = void Function(DateTime value);

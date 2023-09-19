@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.1.2
   scaffold_gradient_background: ^1.0.3+1

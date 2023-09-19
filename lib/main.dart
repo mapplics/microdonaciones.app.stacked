@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:microdonations/app/app.bottomsheets.dart';
 import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
@@ -70,6 +72,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
+        locale: const Locale(
+          'es',
+        ),
+        supportedLocales: const [
+          Locale('es'),
+        ],
+        localizationsDelegates: const [
+          DefaultMaterialLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         theme: CustomStylesTheme.mainTheme,
         initialRoute: Routes.startupView,
         onGenerateRoute: StackedRouter().onGenerateRoute,

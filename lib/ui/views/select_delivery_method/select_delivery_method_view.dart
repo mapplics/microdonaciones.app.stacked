@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/custom_dropdown/custom_dropdown.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
-import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
+import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
 import 'package:stacked/stacked.dart';
 
@@ -51,22 +50,9 @@ class SelectDeliveryMethodView
                 if (viewModel.isHomeDelivery)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 43.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 22.0),
-                          child: Text(
-                            'Seleccioná la fecha y horario para poder retirar la donación',
-                            style: CustomStylesTheme.regular14_20,
-                          ),
-                        ),
-                        CustomDropdown(
-                          items: viewModel.getPickupOptions,
-                          onchange: viewModel.updatePickupRange,
-                          initialValue: viewModel.getPickupValue,
-                        ),
-                      ],
+                    child: PickupAppointmentForm(
+                      onchange: viewModel.updatePickUpAppointmentForm,
+                      form: viewModel.pickupAppointmentForm,
                     ),
                   ),
 
@@ -84,24 +70,24 @@ class SelectDeliveryMethodView
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        viewModel.userAddress.fullAddress,
-                        style: CustomStylesTheme.regular14_20.copyWith(
-                          color: CustomStylesTheme.blackColor,
-                        ),
-                      ),
-                      LinkButton(
-                        label: 'Cambiar dirección',
-                        action: viewModel.navigateToPersonalInformation,
-                        buttonStyle: const ButtonStyle(
-                          padding: MaterialStatePropertyAll(
-                            EdgeInsets.all(0),
-                          ),
-                        ),
-                        textStyle: CustomStylesTheme.regular14_20.copyWith(
-                          color: CustomStylesTheme.tertiaryColor,
-                        ),
-                      ),
+                      // Text(
+                      //   viewModel.userAddress.fullAddress,
+                      //   style: CustomStylesTheme.regular14_20.copyWith(
+                      //     color: CustomStylesTheme.blackColor,
+                      //   ),
+                      // ),
+                      // LinkButton(
+                      //   label: 'Cambiar dirección',
+                      //   action: viewModel.navigateToPersonalInformation,
+                      //   buttonStyle: const ButtonStyle(
+                      //     padding: MaterialStatePropertyAll(
+                      //       EdgeInsets.all(0),
+                      //     ),
+                      //   ),
+                      //   textStyle: CustomStylesTheme.regular14_20.copyWith(
+                      //     color: CustomStylesTheme.tertiaryColor,
+                      //   ),
+                      // ),
                     ],
                   )
                 else

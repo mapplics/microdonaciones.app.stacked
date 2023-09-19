@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
 import 'custom_dropdown_model.dart';
 
 class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   final OnChangeDropdownButton onchange;
-  final T? initialValue;
   final List<CustomDropdownItems<T>> items;
+  final String formControlName;
+  // final T? initialValue;
 
   const CustomDropdown({
     required this.items,
     required this.onchange,
-    this.initialValue,
+    required this.formControlName,
+    // this.initialValue,
     super.key,
   });
 
@@ -25,37 +28,23 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
     CustomDropdownModel viewModel,
     Widget? child,
   ) {
-    items.map((e) => logWarn(e.label));
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ), // Define el color del borde
-        borderRadius: const BorderRadius.all(
-          Radius.circular(8.0),
-        ), // Define el radio del borde
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<T>(
-          isExpanded: true,
-          iconEnabledColor: CustomStylesTheme.tertiaryColor,
-          onChanged: (T? value) => viewModel.onchangeValue(value),
-          dropdownColor: Colors.white,
-          menuMaxHeight: 375,
-          value: viewModel.selectedValue as T?,
-          underline: const SizedBox(),
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          items: viewModel.getDropdownItems as List<DropdownMenuItem<T>>?,
-          hint: Text(
-            'Seleccioná una opción',
-            style: CustomStylesTheme.regular14_20.copyWith(
-              color: CustomStylesTheme.lightGreyColor,
-            ),
-          ),
-          style: CustomStylesTheme.regular14_20.copyWith(
-            color: CustomStylesTheme.tertiaryColor,
-          ),
+    return ReactiveDropdownField<T>(
+      formControlName: formControlName,
+      decoration: CustomStylesTheme.inputDecoration('', hintText: ''),
+      iconEnabledColor: CustomStylesTheme.tertiaryColor,
+      items: viewModel.getDropdownItems as List<DropdownMenuItem<T>>,
+      isExpanded: true,
+      dropdownColor: Colors.white,
+      menuMaxHeight: 375,
+      validationMessages: ReactiveFormHelper.getValidationMessages,
+      hint: Text(
+        'Seleccioná una opción',
+        style: CustomStylesTheme.regular14_24.copyWith(
+          color: CustomStylesTheme.gray300,
         ),
+      ),
+      style: CustomStylesTheme.regular14_20.copyWith(
+        color: CustomStylesTheme.tertiaryColor,
       ),
     );
   }
@@ -72,6 +61,6 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   ) =>
       CustomDropdownModel<T>(
         onchange: onchange,
-        initialValue: initialValue,
+        // initialValue: initialValue,
       );
 }

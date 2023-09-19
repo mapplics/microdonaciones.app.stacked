@@ -1,32 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 
 class CustomDropdownModel<T> extends BaseViewModel {
   final OnChangeDropdownButton onchange;
-  // final List<CustomDropdownItems<T>> items;
-  final T? _initialValue;
-  bool _firstTime = true;
 
-  CustomDropdownModel({
-    required this.onchange,
-    // required this.items,
-    T? initialValue,
-  }) : _initialValue = initialValue;
+  CustomDropdownModel({required this.onchange});
 
-  late T? _selectedValue;
   late List<DropdownMenuItem<T>> _dropdownItems;
-
-  T? get selectedValue {
-    if (_firstTime) {
-      _firstTime = false;
-      return _initialValue;
-    }
-
-    return _selectedValue;
-  }
 
   List<DropdownMenuItem<T>> get getDropdownItems => _dropdownItems;
 
@@ -42,8 +24,6 @@ class CustomDropdownModel<T> extends BaseViewModel {
   }
 
   void onchangeValue(T? value) {
-    _selectedValue = value;
-    logSucess('Nuevo valor ${value}');
     onchange(value);
     rebuildUi();
   }
