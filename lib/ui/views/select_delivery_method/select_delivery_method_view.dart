@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
+import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
@@ -65,21 +66,22 @@ class SelectDeliveryMethodView
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        viewModel.isHomeDelivery
-                            ? 'Vamos a retirar tu donación por'
-                            : 'Puntos de entrega para dejar tu donación',
+                        'Vamos a retirar tu donación por',
                         style: CustomStylesTheme.bold16_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
                       ),
-                      Text(
-                        viewModel.deliveryDetail,
-                        style: CustomStylesTheme.regular14_20.copyWith(
-                          color: CustomStylesTheme.blackColor,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
+                        child: Text(
+                          viewModel.deliveryDetail,
+                          style: CustomStylesTheme.regular14_20.copyWith(
+                            color: CustomStylesTheme.blackColor,
+                          ),
                         ),
                       ),
                       Text(
-                        'En calle ${viewModel.userAddress.fullAddress.capitalize()}',
+                        'Por la dirección ${viewModel.userAddress.fullAddress.capitalize()}',
                         style: CustomStylesTheme.regular14_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
@@ -100,11 +102,21 @@ class SelectDeliveryMethodView
                   ),
 
                 if (!viewModel.isHomeDelivery)
-                  ReceptionPointList(
-                    receptionPoints: viewModel.receptionPoints,
-                    onchange: <ReceptionPoint>(newValue) =>
-                        viewModel.updateReceptionPoint(newValue),
-                    initialValue: viewModel.receptionPointSelected,
+                  Column(
+                    children: [
+                      Text(
+                        'Puntos de entrega para dejar tu donación',
+                        style: CustomStylesTheme.bold16_20.copyWith(
+                          color: CustomStylesTheme.blackColor,
+                        ),
+                      ),
+                      ReceptionPointList(
+                        receptionPoints: viewModel.receptionPoints,
+                        onchange: <ReceptionPoint>(newValue) =>
+                            viewModel.updateReceptionPoint(newValue),
+                        initialValue: viewModel.receptionPointSelected,
+                      ),
+                    ],
                   )
               ],
             ),
@@ -112,6 +124,12 @@ class SelectDeliveryMethodView
         ],
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(SelectDeliveryMethodViewModel viewModel) {
+    viewModel.onChangeTypeDelivery(TypeDelivery.delivery);
+    super.onViewModelReady(viewModel);
   }
 
   @override

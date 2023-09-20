@@ -1,7 +1,6 @@
+import 'package:microdonations/core/models/delivery_new_donation.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
-
-import 'pickup_dropdown_value.model.dart';
 
 class PickupWeekDayRangePresentation {
   final String label;
@@ -9,16 +8,18 @@ class PickupWeekDayRangePresentation {
   PickupWeekDayRangePresentation(this.label);
 
   static PickupWeekDayRangePresentation createOne(
-      List<PickupWeekDayRange> options, PickupDropdownValue pickupValue) {
+    List<PickupWeekDayRange> options,
+    DeliveryNewDonation donation,
+  ) {
     final pickupRange = options;
     PickupWeekDayRange _weekDay;
     RangeTime _rangeTime;
 
-    _weekDay = pickupRange
-        .firstWhere((weekday) => weekday.id == pickupValue.weekdayId);
+    _weekDay =
+        pickupRange.firstWhere((weekday) => weekday.id == donation.weekday);
 
     _rangeTime = _weekDay.ranges.firstWhere(
-      (element) => element.id == pickupValue.rangeTimeId,
+      (element) => element.id == donation.rangeId,
     );
 
     return PickupWeekDayRangePresentation(

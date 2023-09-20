@@ -1,6 +1,5 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -18,7 +17,6 @@ class DonationDeliveryDetailModel extends BaseViewModel {
   }
 
   String get deliverDescription {
-    logSucess(_newDonationService.deliveryTypeValue.name);
     if (_newDonationService.deliveryTypeValue == TypeDelivery.delivery) {
       return 'Vamos a retirar tu donación por';
     } else {

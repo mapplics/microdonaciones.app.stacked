@@ -39,9 +39,9 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
 
   /// Devuelve la hora y dia que eligio el usuario para que retiren su donacion
   /// si es que eligio una.
-  PickupDropdownValue? get getPickupValue {
-    return _newDonationService.pickupValue;
-  }
+  // PickupDropdownValue? get getPickupValue {
+  //   return _newDonationService.pickupValue;
+  // }
 
   /// Devuelve el punto de entrega que selecciono el usuario.
   /// Si es que selecciono uno.
@@ -58,12 +58,9 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
     _newDonationService.updateTypeDelivery(type);
 
     if (TypeDelivery.delivery == type) {
-      _newDonationService.resetReceptionPoint();
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     } else {
       resetPickupAppointmentForm();
-      _newDonationService.resetPickupValue();
-      _newDonationService.resetUserAddres();
       _newDonationService.updateReceptionPoint(
         _newDonationDataService.receptionPoints.first,
       );
@@ -84,7 +81,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Setea la hora y dia en que se le retira la donacion al usuario.
   void updatePickupRange<T>(T value) {
     final pickupValue = value as PickupDropdownValue;
-    _newDonationService.updatePickupValue(pickupValue);
+    _newDonationService.updatePickupRange(pickupValue);
   }
 
   /// Setea el punto de entrega que eligio el usuario.

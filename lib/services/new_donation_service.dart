@@ -1,7 +1,10 @@
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
+import 'package:microdonations/core/models/delivery_new_donation.model.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/new_donations.model.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
+import 'package:microdonations/core/models/pickup_new_donation.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
@@ -24,52 +27,51 @@ class NewDonationService with ListenableServiceMixin {
   final _newDonationData = locator<NewDonationDataService>();
   final _newDonationApi = locator<NewDonationApiService>();
 
-  NewDonation? _newDonation;
+  DonationItemsDetail _donationItems = DonationItemsDetail();
+
+  TypeDelivery _deliveryType = TypeDelivery.pickup;
+
+  DeliveryNewDonation? _deliveryDonation;
+
+  PickupNewDonation? _pickupDonation;
 
   FormGroup? _pickupAppointmentForm;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  List<DonationItem> get selectedItems => _newDonation!.donationsItemsList;
+  List<DonationItem> get selectedItems => _donationItems.donationsItemsList;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  UserAddress? get userAddres => _newDonation!.userAddressValue;
+  UserAddress? get userAddres => _deliveryDonation?.userAddress;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  TypeDelivery get selectedTypeDelivery => _newDonation!.typeDelivery;
+  TypeDelivery get selectedTypeDelivery => _deliveryType;
 
   /// Devuelve una instancia con los id's que selecciono el usuario para que le
   /// retiren la donacion.
-  PickupDropdownValue? get pickupValue => _newDonation!.pickupValue;
+  // PickupDropdownValue? get pickupValue => _newDonation!.pickupValue;
 
   /// Devuelve una instancia de [PickupWeekDayRangePresentation] que permite
   /// detallar la hora y dia que el usuario selecciono para que retiren
   /// su donación.
   PickupWeekDayRangePresentation? get pickupPresentation {
-    if (_newDonation!.pickupValue == null) {
-      return null;
-    } else {
-      final pickupRange = _newDonationData.pickupRange;
+    final pickupRange = _newDonationData.pickupRange;
 
-      return PickupWeekDayRangePresentation.createOne(
-        pickupRange,
-        _newDonation!.pickupValue!,
-      );
-    }
+    return PickupWeekDayRangePresentation.createOne(
+      pickupRange,
+      _deliveryDonation!,
+    );
   }
 
   /// Devuelve el tipo de delivery que eligio el donante.
-  TypeDelivery get deliveryTypeValue => _newDonation!.typeDelivery;
+  TypeDelivery get deliveryTypeValue => _deliveryType;
 
   /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
-  ReceptionPoint? get receptionPointValue => _newDonation!.receptionPointValue;
+  ReceptionPoint? get receptionPointValue => _pickupDonation?.receptionPoint;
 
   /// Inicializa el proceso de donacion.
   /// Siempre se debe llamar este metodo antes que cualquier otro.
   Future<void> initNewDonationData(Ong ong) async {
     try {
-      /// Creo instancia de donacion.
-      _newDonation = NewDonation(ong: ong);
-
       /// Seteo la ong para recuperar datos de la misma.
       _newDonationData.setOng = ong;
 
@@ -89,62 +91,78 @@ class NewDonationService with ListenableServiceMixin {
   /// a la lista de donaciones [_selectedItems].
   void addDonationItem(Product product) {
     final asDonationItem = DonationItem.createFromProduct(product);
-    _newDonation!.addDonationItem(asDonationItem);
+    _donationItems.addDonationItem(asDonationItem);
     notifyListeners();
   }
 
   /// Recibe un [Product] y busca una coincidencia en [_selectedItems].
   /// Si encuentra una elimina el [DonationItem] de [_selectedItems]
   void removeDonationItem(Product product) {
-    _newDonation!.removeDonationItem(product);
+    _donationItems.removeDonationItem(product);
     notifyListeners();
   }
 
   /// Recibe un [DonationItem] y una cantidad [quantity]
   /// que se le va a asignar al mismo.
   void onChangeItemQuantity(DonationItem item, int quantity) {
-    _newDonation!.updateDonationItemQuality(item, quantity);
+    _donationItems.updateDonationItemQuality(item, quantity);
     notifyListeners();
   }
 
   /// Actualiza el tipo de delivery que se va a usar para la donacion.
   void updateTypeDelivery(TypeDelivery type) {
-    _newDonation!.updateTypeDelivery(type);
+    _deliveryType = type;
+
+    if (TypeDelivery.delivery == type) {
+      _deliveryDonation = DeliveryNewDonation();
+      _pickupDonation = null;
+    } else {
+      _pickupDonation = PickupNewDonation();
+      _deliveryDonation = null;
+    }
   }
 
   /// Actualiza el punto de entrega de la donacion.
   void updateReceptionPoint(ReceptionPoint receptionPoint) {
-    _newDonation!.receptionPoint = receptionPoint;
-  }
-
-  /// Resetea el punto de entrega de la donacion.
-  void resetReceptionPoint() {
-    _newDonation!.resetReceptionPoint();
+    _pickupDonation!.setReceptionPoint = receptionPoint;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void updatePickupValue(PickupDropdownValue pickupValue) {
-    _newDonation!.setPickupValue = pickupValue;
+  void updatePickupRange(PickupDropdownValue pickupValue) {
+    _deliveryDonation!.setRangeId = pickupValue.rangeTimeId;
   }
 
-  /// Resetea el horario de retiro de la donacion por domicilio.
-  void resetPickupValue() {
-    _newDonation!.resetPickupValue();
+  /// Actualiza el horario de retiro de la donacion por domicilio.
+  void updatePickupWeekday(PickupDropdownValue pickupValue) {
+    _deliveryDonation!.setWeekdayId = pickupValue.weekdayId;
+  }
+
+  /// Actualiza el que se le va a retirar la donacion.
+  void updatePickupDate(DateTime date) {
+    _deliveryDonation!.setPickupDate = date;
   }
 
   /// Actualiza la direccion del donante de retiro de la donacion por domicilio.
   void updateUserAddres(UserAddress userAddres) {
-    _newDonation!.userAddress = userAddres;
-  }
-
-  /// Resetea la direccion del donante de retiro de la donacion por domicilio.
-  void resetUserAddres() {
-    _newDonation!.resetUserAddress();
+    _deliveryDonation!.setUserAddress = userAddres;
   }
 
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
-  void updatePickUpAppointmentForm(FormGroup form) =>
-      _pickupAppointmentForm = form;
+  void updatePickUpAppointmentForm(FormGroup form) {
+    _pickupAppointmentForm = form;
+
+    if (_pickupAppointmentForm?.valid ?? false) {
+      final dayValue = ReactiveFormHelper.getControlValue(
+          _pickupAppointmentForm!, PickupAppointmentFormFields.day.name);
+      final pickupValue = ReactiveFormHelper.getControlValue(
+              _pickupAppointmentForm!, PickupAppointmentFormFields.time.name)
+          as PickupDropdownValue;
+
+      updatePickupRange(pickupValue);
+      updatePickupWeekday(pickupValue);
+      updatePickupDate(dayValue);
+    }
+  }
 
   /// Devuelve el formulario de delivery [_pickupAppointmentForm]
   FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
@@ -183,44 +201,42 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Devuelve true si existe el [Product] en la lista de donacion.
   bool checkIfItemExist(Product product) =>
-      _newDonation!.checkIfItemExist(product);
+      _donationItems.checkIfItemExist(product);
 
   /// Devuelve null si la persona selecciono al menos un item para donar.
   /// Sino devuelve un [NewDonationError]
   NewDonationError? selectedItemsValid() {
-    return _newDonation!.donationsItemsList.isNotEmpty
+    return _donationItems.donationsItemsList.isNotEmpty
         ? null
         : NewDonationError.noProductsSelected;
   }
 
-  /// Devuelve null si todos los items de [_selectedItems]
-  /// tienen una cantidad superior a 0.
+  /// Devuelve null si la cantidad de los items a donar es valida.
   NewDonationError? itemsQuantityValid() {
-    final _found = _newDonation!.donationsItemsList.firstWhereOrNull(
-      (selectedItem) =>
-          (selectedItem.quantity == 0 && !selectedItem.quantity.isNegative),
-    );
-
-    return (_found == null) ? null : NewDonationError.quantityProductsInvalid;
+    return _donationItems.checkEmptyItems()
+        ? NewDonationError.quantityProductsInvalid
+        : null;
   }
 
   /// Devuelve null si el metodo de entrega de la donacion es valido.
   NewDonationError? deliveryValid() {
-    if (_newDonation!.typeDelivery == TypeDelivery.delivery) {
-      return (_newDonation!.pickupValue == null)
-          ? NewDonationError.pickupRangeInvalid
-          : null;
+    if (TypeDelivery.delivery == _deliveryType) {
+      return (_deliveryDonation!.valid())
+          ? null
+          : NewDonationError.pickupRangeInvalid;
     } else {
-      return null;
+      return _pickupDonation!.valid()
+          ? null
+          : NewDonationError.receptionPointInvalid;
     }
   }
 
   /// Crea una donacion.
   Future<void> createDontaion() async {
     try {
-      if (_newDonation != null) {
-        await _newDonationApi.createDonation(_newDonation!);
-      }
+      // if (_newDonation != null) {
+      //   await _newDonationApi.createDonation(_newDonation!);
+      // }
     } catch (e) {
       rethrow;
     }
@@ -228,7 +244,11 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
-    _newDonation = null;
+    _donationItems = DonationItemsDetail();
+    _deliveryType = TypeDelivery.pickup;
+    _deliveryDonation = null;
+    _pickupDonation = null;
+    _pickupAppointmentForm = null;
     _newDonationData.resetNewDonationData();
     resetPickupAppointmentForm();
     logSucess('Dispose newDonation');

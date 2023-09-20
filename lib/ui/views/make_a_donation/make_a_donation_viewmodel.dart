@@ -104,6 +104,10 @@ class MakeADonationViewModel extends ReactiveViewModel {
         _message =
             'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación';
         break;
+      case NewDonationError.receptionPointInvalid:
+        _message =
+            'Para poder continuar debes elegir un punto de entrega para llevar tu donación';
+        break;
       case NewDonationError.unknow:
         _message =
             'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso';
