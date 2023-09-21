@@ -4,7 +4,6 @@ import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/services/reception_api_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../app/app.locator.dart';
 
