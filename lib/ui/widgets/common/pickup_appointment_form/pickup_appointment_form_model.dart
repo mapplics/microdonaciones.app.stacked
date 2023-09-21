@@ -29,7 +29,17 @@ class PickupAppointmentFormModel extends BaseViewModel {
 
   final List<StreamSubscription<dynamic>> _formSubscriptions = [];
 
-  List<CustomDropdownItems<PickupDropdownValue>> get timeItems => _timeItems;
+  List<CustomDropdownItems<PickupDropdownValue>> get timeItems {
+    final dateTime = ReactiveFormHelper.getControlValue(
+        _formGroup, PickupAppointmentFormFields.day.name);
+
+    if (dateTime != null) {
+      _loadTimeItems(dateTime);
+      return _timeItems;
+    } else {
+      return [];
+    }
+  }
 
   DateTime? get deliveryDay =>
       _formGroup.control(PickupAppointmentFormFields.day.name).value;
@@ -54,13 +64,14 @@ class PickupAppointmentFormModel extends BaseViewModel {
     _formSubscriptions.add(
       _formGroup.valueChanges.listen((_) => onchange(_formGroup)),
     );
+
+    onchange(_formGroup);
   }
 
   void updateDate(DateTime value) {
     _formGroup.control(PickupAppointmentFormFields.day.name).updateValue(value);
     _formGroup.control(PickupAppointmentFormFields.time.name).markAsEnabled();
     _formGroup.control(PickupAppointmentFormFields.time.name).updateValue(null);
-    loadTimeItems(value);
     rebuildUi();
   }
 
@@ -89,7 +100,7 @@ class PickupAppointmentFormModel extends BaseViewModel {
 
   /// Devuelve una lista de opciones para un dropdown con la hora
   /// y el dia disponible para que le retiren la donacion al usuario.
-  void loadTimeItems(DateTime dateTime) {
+  void _loadTimeItems(DateTime dateTime) {
     _timeItems = [];
 
     final Weekday weekday = DateTimeHelper.getDayOfWeek(dateTime);

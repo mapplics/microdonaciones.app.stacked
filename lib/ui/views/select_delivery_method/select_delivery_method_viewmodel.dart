@@ -85,7 +85,6 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Recibe el formulario para retiro a domicilio
   void updatePickUpAppointmentForm(FormGroup form) {
     _newDonationService.updatePickUpAppointmentForm(form);
-    rebuildUi();
   }
 
   /// Devuelve el detalle del delivery.

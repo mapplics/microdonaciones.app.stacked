@@ -10,7 +10,13 @@ abstract class BaseNewDonation {
 
   BaseNewDonation({required this.type});
 
+  /// Setea la ONG que recibe la donación
   set setOng(Ong ong);
 
+  /// Setea los productos que se van a donar.
   set setDonationItemsDetail(DonationItemsDetail items);
+
+  /// Devuelve un JSON para enviar a la API
+  /// y crear una donación.
+  Object toJson();
 }

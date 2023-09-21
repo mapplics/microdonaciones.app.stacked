@@ -5,7 +5,7 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 import 'reception_point.model.dart';
 
 class PickupNewDonation extends BaseNewDonation {
-  ReceptionPoint? _receptionPoint;
+  late ReceptionPoint? _receptionPoint;
 
   PickupNewDonation({super.type = TypeDelivery.pickup});
 
@@ -25,7 +25,30 @@ class PickupNewDonation extends BaseNewDonation {
 
   ReceptionPoint? get receptionPoint => _receptionPoint;
 
+  /// Devuelve true si la instancia [PickupNewDonation]
+  /// es valida como para crear una donacion.
   bool valid() {
     return (_receptionPoint != null);
+  }
+
+  /// Resetea todos los campos.
+  void resetFields() {
+    _receptionPoint = null;
+  }
+
+  @override
+  toJson() {
+    return {
+      "ong_id": ong.id,
+      "reception_point_id": _receptionPoint!.id,
+      "products": donationItemsDetail.donationsItemsList
+          .map(
+            (donationItem) => {
+              'id': donationItem.product.id,
+              'quantity': donationItem.quantity
+            },
+          )
+          .toList(),
+    };
   }
 }

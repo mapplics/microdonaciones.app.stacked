@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
-import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
@@ -124,12 +123,6 @@ class SelectDeliveryMethodView
         ],
       ),
     );
-  }
-
-  @override
-  void onViewModelReady(SelectDeliveryMethodViewModel viewModel) {
-    viewModel.onChangeTypeDelivery(TypeDelivery.delivery);
-    super.onViewModelReady(viewModel);
   }
 
   @override
