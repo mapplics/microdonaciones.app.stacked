@@ -17,12 +17,12 @@ enum PickupAppointmentFormFields {
   time,
 }
 
-class PickupAppointmentFormModel extends BaseViewModel {
+class DeliveryAppointmentFormModel extends BaseViewModel {
   final _newDonationDataService = locator<NewDonationDataService>();
   final OnChangeForm onchange;
   List<CustomDropdownItems<PickupDropdownValue>> _timeItems = [];
 
-  PickupAppointmentFormModel(this.onchange);
+  DeliveryAppointmentFormModel(this.onchange);
 
   late FormGroup _formGroup;
 

@@ -6,18 +6,19 @@ import 'package:microdonations/ui/widgets/common/weekday_picker/weekday_picker.d
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-import 'pickup_appointment_form_model.dart';
+import 'delivery_appointment_form_model.dart';
 
-class PickupAppointmentForm extends StackedView<PickupAppointmentFormModel> {
+class DeliveryAppointmentForm
+    extends StackedView<DeliveryAppointmentFormModel> {
   final OnChangeForm onchange;
   final FormGroup? form;
 
-  const PickupAppointmentForm({required this.onchange, this.form, super.key});
+  const DeliveryAppointmentForm({required this.onchange, this.form, super.key});
 
   @override
   Widget builder(
     BuildContext context,
-    PickupAppointmentFormModel viewModel,
+    DeliveryAppointmentFormModel viewModel,
     Widget? child,
   ) {
     return ReactiveForm(
@@ -49,19 +50,19 @@ class PickupAppointmentForm extends StackedView<PickupAppointmentFormModel> {
   }
 
   @override
-  void onViewModelReady(PickupAppointmentFormModel viewModel) {
+  void onViewModelReady(DeliveryAppointmentFormModel viewModel) {
     viewModel.initForm(form);
   }
 
   @override
-  void onDispose(PickupAppointmentFormModel viewModel) {
+  void onDispose(DeliveryAppointmentFormModel viewModel) {
     super.onDispose(viewModel);
     viewModel.disposeForm();
   }
 
   @override
-  PickupAppointmentFormModel viewModelBuilder(
+  DeliveryAppointmentFormModel viewModelBuilder(
     BuildContext context,
   ) =>
-      PickupAppointmentFormModel(onchange);
+      DeliveryAppointmentFormModel(onchange);
 }
