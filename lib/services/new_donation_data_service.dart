@@ -79,6 +79,5 @@ class NewDonationDataService {
     _receptionPoints = [];
     _pickupRange = [];
     _ongSelected = null;
-    logSucess('Dispose newDonationData');
   }
 }

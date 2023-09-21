@@ -252,6 +252,5 @@ class NewDonationService with ListenableServiceMixin {
     _pickupAppointmentForm = null;
     _newDonationData.resetNewDonationData();
     resetPickupAppointmentForm();
-    logSucess('Dispose newDonation');
   }
 }
