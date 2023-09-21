@@ -12,7 +12,7 @@ class DonationItemQuantityModel extends BaseViewModel {
   /// Recupera la lista de items [DonationItem] que seleciono
   /// el usuario para donar del [NewDonationService].
   List<DonationItem> getSelectedItems() =>
-      _selectedItems = _newDonationService.call().selectedItems;
+      _selectedItems = _newDonationService.call().donationsItems;
 
   /// Devuelve la lista de items [_selectedItems] que
   /// seleciono el usuario para donar.

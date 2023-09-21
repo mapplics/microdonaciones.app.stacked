@@ -38,13 +38,10 @@ class NewDonationService with ListenableServiceMixin {
   FormGroup? _pickupAppointmentForm;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  List<DonationItem> get selectedItems => _donationItems.donationsItemsList;
+  List<DonationItem> get donationsItems => _donationItems.donationsItemsList;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   UserAddress? get userAddres => _deliveryDonation?.userAddress;
-
-  /// Devuelve las opciones que el usuario puede elegir para donar.
-  TypeDelivery get selectedTypeDelivery => _deliveryType;
 
   /// Devuelve una instancia con los id's que selecciono el usuario para que le
   /// retiren la donacion.
@@ -61,12 +58,6 @@ class NewDonationService with ListenableServiceMixin {
       _deliveryDonation!,
     );
   }
-
-  /// Devuelve el tipo de delivery que eligio el donante.
-  TypeDelivery get deliveryTypeValue => _deliveryType;
-
-  /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
-  ReceptionPoint? get receptionPointValue => _pickupDonation?.receptionPoint;
 
   /// Inicializa el proceso de donacion.
   /// Siempre se debe llamar este metodo antes que cualquier otro.
@@ -109,6 +100,9 @@ class NewDonationService with ListenableServiceMixin {
     notifyListeners();
   }
 
+  /// Devuelve el tipo de delivery que eligio el donante.
+  TypeDelivery get deliveryTypeValue => _deliveryType;
+
   /// Actualiza el tipo de delivery que se va a usar para la donacion.
   void updateTypeDelivery(TypeDelivery type) {
     _deliveryType = type;
@@ -122,23 +116,26 @@ class NewDonationService with ListenableServiceMixin {
     }
   }
 
+  /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
+  ReceptionPoint? get receptionPointValue => _pickupDonation?.receptionPoint;
+
   /// Actualiza el punto de entrega de la donacion.
   void updateReceptionPoint(ReceptionPoint receptionPoint) {
     _pickupDonation!.setReceptionPoint = receptionPoint;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void updatePickupRange(PickupDropdownValue pickupValue) {
+  void _updatePickupRange(PickupDropdownValue pickupValue) {
     _deliveryDonation!.setRangeId = pickupValue.rangeTimeId;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void updatePickupWeekday(PickupDropdownValue pickupValue) {
+  void _updatePickupWeekday(PickupDropdownValue pickupValue) {
     _deliveryDonation!.setWeekdayId = pickupValue.weekdayId;
   }
 
   /// Actualiza el que se le va a retirar la donacion.
-  void updatePickupDate(DateTime date) {
+  void _updatePickupDate(DateTime date) {
     _deliveryDonation!.setPickupDate = date;
   }
 
@@ -146,6 +143,12 @@ class NewDonationService with ListenableServiceMixin {
   void updateUserAddres(UserAddress userAddres) {
     _deliveryDonation!.setUserAddress = userAddres;
   }
+
+  /// Devuelve el formulario de delivery [_pickupAppointmentForm]
+  FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
+
+  /// Devuelve true si el formulario delivery es valid [_pickupAppointmentForm]
+  bool get pickupAppointmentFormValid => _pickupAppointmentForm?.valid ?? false;
 
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) {
@@ -158,23 +161,18 @@ class NewDonationService with ListenableServiceMixin {
               _pickupAppointmentForm!, PickupAppointmentFormFields.time.name)
           as PickupDropdownValue;
 
-      updatePickupRange(pickupValue);
-      updatePickupWeekday(pickupValue);
-      updatePickupDate(dayValue);
+      _updatePickupRange(pickupValue);
+      _updatePickupWeekday(pickupValue);
+      _updatePickupDate(dayValue);
     }
   }
-
-  /// Devuelve el formulario de delivery [_pickupAppointmentForm]
-  FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
-
-  /// Devuelve true si el formulario delivery es valid [_pickupAppointmentForm]
-  bool get pickupAppointmentFormValid => _pickupAppointmentForm?.valid ?? false;
 
   /// Limpia el formulario de delivery [_pickupAppointmentForm]
   void resetPickupAppointmentForm() {
     _pickupAppointmentForm = null;
   }
 
+  ///
   String get deliveryDetail {
     if (_pickupAppointmentForm?.invalid ?? false) {
       return 'DeliveryDetailInvalid';

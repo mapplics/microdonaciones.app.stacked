@@ -7,12 +7,12 @@ class DonationItemListDetailModel extends BaseViewModel {
   final _newDonationService = locator<NewDonationService>();
 
   /// Devuelve los productos que selecciono el usuario para donar.
-  List<DonationItem> get products => _newDonationService.selectedItems;
+  List<DonationItem> get products => _newDonationService.donationsItems;
 
   /// Devuelve la cantidad total de productos que el usuario dono..
   int get totalProducts {
     int _totalProducts = 0;
-    for (var product in _newDonationService.selectedItems) {
+    for (var product in _newDonationService.donationsItems) {
       _totalProducts += product.quantity;
     }
     return _totalProducts;

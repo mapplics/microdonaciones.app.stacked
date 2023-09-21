@@ -1,6 +1,5 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
@@ -30,9 +29,14 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   List<PickupWeekDayRange> get pickupRange =>
       _newDonationDataService.pickupRange;
 
+  /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
+  /// es a domicilio.
+  bool get isHomeDelivery =>
+      _newDonationService.deliveryTypeValue == TypeDelivery.delivery;
+
   /// Devuelve el tipo de entrega que eligio el usuario.
   TypeDelivery get typeDeliverySelected =>
-      _newDonationService.selectedTypeDelivery;
+      _newDonationService.deliveryTypeValue;
 
   /// Devuelve la direccion del usuario.
   UserAddress get userAddress => _userService.loggedUser!.address;
@@ -47,11 +51,6 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Si es que selecciono uno.
   ReceptionPoint? get receptionPointSelected =>
       _newDonationService.receptionPointValue;
-
-  /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
-  /// es a domicilio.
-  bool get isHomeDelivery =>
-      _newDonationService.selectedTypeDelivery == TypeDelivery.delivery;
 
   /// Actualiza el tipo de delivery de la donacion.
   void onChangeTypeDelivery(TypeDelivery type) {
@@ -76,12 +75,6 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
         user: _userService.loggedUser!,
       ),
     );
-  }
-
-  /// Setea la hora y dia en que se le retira la donacion al usuario.
-  void updatePickupRange<T>(T value) {
-    final pickupValue = value as PickupDropdownValue;
-    _newDonationService.updatePickupRange(pickupValue);
   }
 
   /// Setea el punto de entrega que eligio el usuario.
