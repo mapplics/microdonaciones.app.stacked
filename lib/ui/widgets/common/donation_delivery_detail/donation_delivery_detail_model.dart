@@ -13,7 +13,7 @@ class DonationDeliveryDetailModel extends BaseViewModel {
 
   /// Devuelve la dirreccion a donde debe llevar el donante su donacion.
   String get _receptionPointAddress {
-    return '${_newDonationService.receptionPointValue?.name ?? 'Direccion invalida'} | ${_newDonationService.receptionPointValue?.address ?? 'Direccion invalida'}';
+    return '${_newDonationService.receptionPoint?.name ?? 'Direccion invalida'} | ${_newDonationService.receptionPoint?.address ?? 'Direccion invalida'}';
   }
 
   String get deliverDescription {
@@ -37,7 +37,7 @@ class DonationDeliveryDetailModel extends BaseViewModel {
     if (_newDonationService.deliveryTypeValue == TypeDelivery.delivery) {
       return _newDonationService.pickupPresentation!.label;
     } else {
-      return _newDonationService.receptionPointValue!.extraInfo;
+      return _newDonationService.receptionPoint!.extraInfo;
     }
   }
 }

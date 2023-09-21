@@ -1,9 +1,10 @@
+import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/delivery_new_donation.model.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
-import 'package:microdonations/core/models/pickup_new_donation.model.dart';
+import 'package:microdonations/core/models/drop_off_new_donation.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
@@ -18,7 +19,6 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
-import 'package:collection/collection.dart';
 
 import '../app/app.locator.dart';
 
@@ -32,7 +32,7 @@ class NewDonationService with ListenableServiceMixin {
 
   DeliveryNewDonation _deliveryDonation = DeliveryNewDonation();
 
-  PickupNewDonation _pickupDonation = PickupNewDonation();
+  DropOffDonation _dropOffDonation = DropOffDonation();
 
   FormGroup? _pickupAppointmentForm;
 
@@ -109,36 +109,36 @@ class NewDonationService with ListenableServiceMixin {
     _deliveryType = type;
 
     if (TypeDelivery.delivery == type) {
-      _pickupDonation.resetFields();
+      _dropOffDonation.resetFields();
     } else {
       _deliveryDonation.resetFields();
     }
   }
 
   /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
-  ReceptionPoint? get receptionPointValue => _pickupDonation.receptionPoint;
+  ReceptionPoint? get receptionPoint => _dropOffDonation.receptionPoint;
 
   /// Actualiza el punto de entrega de la donacion.
   void updateReceptionPoint(ReceptionPoint receptionPoint) {
-    _pickupDonation.setReceptionPoint = receptionPoint;
+    _dropOffDonation.setReceptionPoint = receptionPoint;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void _updatePickupRange(PickupDropdownValue pickupValue) {
-    _deliveryDonation.setRangeId = pickupValue.rangeTimeId;
+  void _updatePickupTime(PickupDropdownValue pickupValue) {
+    _deliveryDonation.setTimeId = pickupValue.rangeTimeId;
   }
 
-  /// Actualiza el horario de retiro de la donacion por domicilio.
+  /// Actualiza el dia de la semana que se va a retirar la donacion.
   void _updatePickupWeekday(PickupDropdownValue pickupValue) {
     _deliveryDonation.setWeekdayId = pickupValue.weekdayId;
   }
 
-  /// Actualiza el que se le va a retirar la donacion.
+  /// Actualiza el dia que se va a retirar la donacion.
   void _updatePickupDate(DateTime date) {
     _deliveryDonation.setPickupDate = date;
   }
 
-  /// Actualiza la direccion del donante de retiro de la donacion por domicilio.
+  /// Actualiza el domicilio del usuario que va a hacer la donacion.
   void updateUserAddres(UserAddress userAddres) {
     _deliveryDonation.setUserAddress = userAddres;
   }
@@ -147,7 +147,9 @@ class NewDonationService with ListenableServiceMixin {
   FormGroup? get pickupAppointmentForm => _pickupAppointmentForm;
 
   /// Devuelve true si el formulario delivery es valid [_pickupAppointmentForm]
-  bool get pickupAppointmentFormValid => _pickupAppointmentForm?.valid ?? false;
+  bool get pickupAppointmentFormValid {
+    return _pickupAppointmentForm?.valid ?? false;
+  }
 
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) {
@@ -160,7 +162,7 @@ class NewDonationService with ListenableServiceMixin {
               _pickupAppointmentForm!, PickupAppointmentFormFields.time.name)
           as PickupDropdownValue;
 
-      _updatePickupRange(pickupValue);
+      _updatePickupTime(pickupValue);
       _updatePickupWeekday(pickupValue);
       _updatePickupDate(dayValue);
     }
@@ -222,7 +224,7 @@ class NewDonationService with ListenableServiceMixin {
           ? null
           : NewDonationError.pickupRangeInvalid;
     } else {
-      return _pickupDonation.valid()
+      return _dropOffDonation.valid()
           ? null
           : NewDonationError.receptionPointInvalid;
     }
@@ -231,9 +233,11 @@ class NewDonationService with ListenableServiceMixin {
   /// Crea una donacion.
   Future<void> createDontaion() async {
     try {
-      // if (_newDonation != null) {
-      //   await _newDonationApi.createDonation(_newDonation!);
-      // }
+      BaseNewDonation donation = (TypeDelivery.delivery == _deliveryType)
+          ? _deliveryDonation
+          : _dropOffDonation;
+
+      await _newDonationApi.createDonation(donation);
     } catch (e) {
       rethrow;
     }
@@ -244,7 +248,7 @@ class NewDonationService with ListenableServiceMixin {
     _donationItems = DonationItemsDetail();
     _deliveryType = TypeDelivery.delivery;
     _deliveryDonation = DeliveryNewDonation();
-    _pickupDonation = PickupNewDonation();
+    _dropOffDonation = DropOffDonation();
     _pickupAppointmentForm = null;
     _newDonationData.resetNewDonationData();
     resetPickupAppointmentForm();

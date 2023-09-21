@@ -50,7 +50,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Devuelve el punto de entrega que selecciono el usuario.
   /// Si es que selecciono uno.
   ReceptionPoint? get receptionPointSelected =>
-      _newDonationService.receptionPointValue;
+      _newDonationService.receptionPoint;
 
   /// Actualiza el tipo de delivery de la donacion.
   void onChangeTypeDelivery(TypeDelivery type) {

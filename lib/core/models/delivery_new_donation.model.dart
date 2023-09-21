@@ -29,7 +29,7 @@ class DeliveryNewDonation extends BaseNewDonation {
 
   int? get weekday => _weekdayId;
 
-  set setRangeId(int id) {
+  set setTimeId(int id) {
     _rangeId = id;
   }
 
@@ -75,6 +75,7 @@ class DeliveryNewDonation extends BaseNewDonation {
       "address_id": _userAddress!.id,
       "range_time_id": _rangeId,
       "weekday_id": _weekdayId,
+      "date": '${_pickupDate!.year}${_pickupDate!.month}${_pickupDate!.day}',
       "products": donationItemsDetail.donationsItemsList
           .map(
             (donationItem) => {

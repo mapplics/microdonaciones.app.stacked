@@ -38,7 +38,7 @@ class DonationHistory {
   static TypeDelivery _parseTypeDelivery(type) {
     switch (type) {
       case 'pickup':
-        return TypeDelivery.pickup;
+        return TypeDelivery.dropoff;
       case 'delivery':
         return TypeDelivery.delivery;
       default:

@@ -15,7 +15,7 @@ class NewDonation {
 
   NewDonation({required this.ong});
 
-  TypeDelivery typeDelivery = TypeDelivery.pickup;
+  TypeDelivery typeDelivery = TypeDelivery.dropoff;
   UserAddress? _userAddress;
   PickupDropdownValue? _pickupValue;
   ReceptionPoint? _receptionPoint;

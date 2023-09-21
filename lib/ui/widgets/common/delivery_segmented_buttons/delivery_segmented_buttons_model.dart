@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 
 enum TypeDelivery {
   delivery,
-  pickup,
+  dropoff,
   unknow,
 }
 
@@ -22,7 +22,7 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
 
   final Map<TypeDelivery, String> _buttonsOptions = {
     TypeDelivery.delivery: 'Domicilio',
-    TypeDelivery.pickup: 'Punto de entrega',
+    TypeDelivery.dropoff: 'Punto de entrega',
   };
 
   /// Devuelve el tipo de delivery seleccionado [_selectedDelivery]

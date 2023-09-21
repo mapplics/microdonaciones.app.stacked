@@ -4,10 +4,10 @@ import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'reception_point.model.dart';
 
-class PickupNewDonation extends BaseNewDonation {
+class DropOffDonation extends BaseNewDonation {
   late ReceptionPoint? _receptionPoint;
 
-  PickupNewDonation({super.type = TypeDelivery.pickup});
+  DropOffDonation({super.type = TypeDelivery.dropoff});
 
   @override
   set setDonationItemsDetail(DonationItemsDetail items) {
@@ -25,7 +25,7 @@ class PickupNewDonation extends BaseNewDonation {
 
   ReceptionPoint? get receptionPoint => _receptionPoint;
 
-  /// Devuelve true si la instancia [PickupNewDonation]
+  /// Devuelve true si la instancia [DropOffDonation]
   /// es valida como para crear una donacion.
   bool valid() {
     return (_receptionPoint != null);
@@ -40,6 +40,7 @@ class PickupNewDonation extends BaseNewDonation {
   toJson() {
     return {
       "ong_id": ong.id,
+      "shipping_method": 'pickup',
       "reception_point_id": _receptionPoint!.id,
       "products": donationItemsDetail.donationsItemsList
           .map(
