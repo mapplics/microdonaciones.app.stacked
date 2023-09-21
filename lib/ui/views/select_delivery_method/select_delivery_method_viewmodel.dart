@@ -52,6 +52,12 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   ReceptionPoint? get receptionPointSelected =>
       _newDonationService.receptionPoint;
 
+  void init() {
+    if (TypeDelivery.delivery == typeDeliverySelected) {
+      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
+    }
+  }
+
   /// Actualiza el tipo de delivery de la donacion.
   void onChangeTypeDelivery(TypeDelivery type) {
     _newDonationService.updateTypeDelivery(type);
@@ -85,6 +91,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   /// Recibe el formulario para retiro a domicilio
   void updatePickUpAppointmentForm(FormGroup form) {
     _newDonationService.updatePickUpAppointmentForm(form);
+    rebuildUi();
   }
 
   /// Devuelve el detalle del delivery.

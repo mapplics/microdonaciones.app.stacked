@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/enums/weekday.enum.dart';
@@ -65,7 +66,9 @@ class PickupAppointmentFormModel extends BaseViewModel {
       _formGroup.valueChanges.listen((_) => onchange(_formGroup)),
     );
 
-    onchange(_formGroup);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      onchange(_formGroup);
+    });
   }
 
   void updateDate(DateTime value) {
