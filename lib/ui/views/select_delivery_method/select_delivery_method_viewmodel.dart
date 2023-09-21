@@ -52,7 +52,8 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   ReceptionPoint? get receptionPointSelected =>
       _newDonationService.receptionPoint;
 
-  void init() {
+  /// Inicializa la direccion del usuario si el tipo es [TypeDelivery.delivery]
+  void initUserAddress() {
     if (TypeDelivery.delivery == typeDeliverySelected) {
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     }

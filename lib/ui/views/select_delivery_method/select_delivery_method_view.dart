@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form.dart';
@@ -128,7 +127,7 @@ class SelectDeliveryMethodView
 
   @override
   void onViewModelReady(SelectDeliveryMethodViewModel viewModel) {
-    viewModel.init();
+    viewModel.initUserAddress();
     super.onViewModelReady(viewModel);
   }
 
