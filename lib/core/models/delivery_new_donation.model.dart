@@ -71,7 +71,7 @@ class DeliveryNewDonation extends BaseNewDonation {
   toJson() {
     return {
       "ong_id": ong.id,
-      "shipping_method": type.name,
+      "shipping_method": 'pickup',
       "address_id": _userAddress!.id,
       "range_time_id": _rangeId,
       "weekday_id": _weekdayId,

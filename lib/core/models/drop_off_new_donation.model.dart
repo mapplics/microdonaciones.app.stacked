@@ -40,7 +40,7 @@ class DropOffDonation extends BaseNewDonation {
   toJson() {
     return {
       "ong_id": ong.id,
-      "shipping_method": 'pickup',
+      "shipping_method": 'delivery',
       "reception_point_id": _receptionPoint!.id,
       "products": donationItemsDetail.donationsItemsList
           .map(
