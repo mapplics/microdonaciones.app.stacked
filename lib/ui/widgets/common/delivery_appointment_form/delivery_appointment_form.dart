@@ -28,7 +28,7 @@ class DeliveryAppointmentForm
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: WeekdayPicker(
-              formControlName: PickupAppointmentFormFields.day.name,
+              formControlName: DeliveryAppointmentFormFields.day.name,
               label: 'Seleccioná un día para el retiro',
               onchange: viewModel.updateDate,
               required: viewModel.dayFieldIsRequired,
@@ -39,7 +39,7 @@ class DeliveryAppointmentForm
           CustomDropdown(
             label: 'Seleccioná un horarío',
             required: viewModel.timeFieldIsRequired,
-            formControlName: PickupAppointmentFormFields.time.name,
+            formControlName: DeliveryAppointmentFormFields.time.name,
             items: viewModel.timeItems,
             onchange: viewModel.updateTime,
             // initialValue: null,

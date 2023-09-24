@@ -15,8 +15,8 @@ import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
+import 'package:microdonations/ui/widgets/common/delivery_appointment_form/delivery_appointment_form_model.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
-import 'package:microdonations/ui/widgets/common/pickup_appointment_form/pickup_appointment_form_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
@@ -25,6 +25,8 @@ import '../app/app.locator.dart';
 class NewDonationService with ListenableServiceMixin {
   final _newDonationData = locator<NewDonationDataService>();
   final _newDonationApi = locator<NewDonationApiService>();
+
+  late Ong _ongSelected;
 
   DonationItemsDetail _donationItems = DonationItemsDetail();
 
@@ -64,6 +66,8 @@ class NewDonationService with ListenableServiceMixin {
     try {
       /// Seteo la ong para recuperar datos de la misma.
       _newDonationData.setOng = ong;
+
+      _ongSelected = ong;
 
       /// Cargo toda la data necesaria.
       await Future.wait([
@@ -157,9 +161,9 @@ class NewDonationService with ListenableServiceMixin {
 
     if (_pickupAppointmentForm?.valid ?? false) {
       final dayValue = ReactiveFormHelper.getControlValue(
-          _pickupAppointmentForm!, PickupAppointmentFormFields.day.name);
+          _pickupAppointmentForm!, DeliveryAppointmentFormFields.day.name);
       final pickupValue = ReactiveFormHelper.getControlValue(
-              _pickupAppointmentForm!, PickupAppointmentFormFields.time.name)
+              _pickupAppointmentForm!, DeliveryAppointmentFormFields.time.name)
           as PickupDropdownValue;
 
       _updatePickupTime(pickupValue);
@@ -180,12 +184,12 @@ class NewDonationService with ListenableServiceMixin {
     } else {
       final day = ReactiveFormHelper.getControlValue(
         _pickupAppointmentForm!,
-        PickupAppointmentFormFields.day.name,
+        DeliveryAppointmentFormFields.day.name,
       ) as DateTime;
 
       final time = ReactiveFormHelper.getControlValue(
         _pickupAppointmentForm!,
-        PickupAppointmentFormFields.time.name,
+        DeliveryAppointmentFormFields.time.name,
       ) as PickupDropdownValue;
 
       final weekday = _newDonationData.pickupRange
@@ -236,6 +240,9 @@ class NewDonationService with ListenableServiceMixin {
       BaseNewDonation donation = (TypeDelivery.delivery == _deliveryType)
           ? _deliveryDonation
           : _dropOffDonation;
+
+      donation.setOng = _ongSelected;
+      donation.setDonationItemsDetail = _donationItems;
 
       await _newDonationApi.createDonation(donation);
     } catch (e) {

@@ -12,7 +12,7 @@ import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-enum PickupAppointmentFormFields {
+enum DeliveryAppointmentFormFields {
   day,
   time,
 }
@@ -32,7 +32,7 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
 
   List<CustomDropdownItems<PickupDropdownValue>> get timeItems {
     final dateTime = ReactiveFormHelper.getControlValue(
-        _formGroup, PickupAppointmentFormFields.day.name);
+        _formGroup, DeliveryAppointmentFormFields.day.name);
 
     if (dateTime != null) {
       _loadTimeItems(dateTime);
@@ -43,17 +43,17 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
   }
 
   DateTime? get deliveryDay =>
-      _formGroup.control(PickupAppointmentFormFields.day.name).value;
+      _formGroup.control(DeliveryAppointmentFormFields.day.name).value;
 
   void initForm(FormGroup? form) {
     _formGroup = form ??
         FormGroup(
           {
-            PickupAppointmentFormFields.day.name: FormControl<DateTime>(
+            DeliveryAppointmentFormFields.day.name: FormControl<DateTime>(
               value: null,
               validators: [Validators.required],
             ),
-            PickupAppointmentFormFields.time.name:
+            DeliveryAppointmentFormFields.time.name:
                 FormControl<PickupDropdownValue>(
               value: null,
               disabled: true,
@@ -72,32 +72,36 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
   }
 
   void updateDate(DateTime value) {
-    _formGroup.control(PickupAppointmentFormFields.day.name).updateValue(value);
-    _formGroup.control(PickupAppointmentFormFields.time.name).markAsEnabled();
-    _formGroup.control(PickupAppointmentFormFields.time.name).updateValue(null);
+    _formGroup
+        .control(DeliveryAppointmentFormFields.day.name)
+        .updateValue(value);
+    _formGroup.control(DeliveryAppointmentFormFields.time.name).markAsEnabled();
+    _formGroup
+        .control(DeliveryAppointmentFormFields.time.name)
+        .updateValue(null);
     rebuildUi();
   }
 
   /// Setea la hora y dia en que se le retira la donacion al usuario.
   void updateTime<T>(T value) {
     final pickupValue = value as PickupDropdownValue;
-    _formGroup.control(PickupAppointmentFormFields.time.name).value =
+    _formGroup.control(DeliveryAppointmentFormFields.time.name).value =
         pickupValue;
   }
 
-  /// Devuelve true si el campo [PickupAppointmentFormFields.day] es requerido
+  /// Devuelve true si el campo [DeliveryAppointmentFormFields.day] es requerido
   bool get dayFieldIsRequired {
     return ReactiveFormHelper.isRequiredField(
       _formGroup,
-      PickupAppointmentFormFields.day.name,
+      DeliveryAppointmentFormFields.day.name,
     );
   }
 
-  /// Devuelve true si el campo [PickupAppointmentFormFields.time] es requerido
+  /// Devuelve true si el campo [DeliveryAppointmentFormFields.time] es requerido
   bool get timeFieldIsRequired {
     return ReactiveFormHelper.isRequiredField(
       _formGroup,
-      PickupAppointmentFormFields.time.name,
+      DeliveryAppointmentFormFields.time.name,
     );
   }
 

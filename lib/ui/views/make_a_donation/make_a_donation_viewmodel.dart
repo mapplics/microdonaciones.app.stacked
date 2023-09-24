@@ -60,7 +60,7 @@ class MakeADonationViewModel extends ReactiveViewModel {
   Future<void> createDonation(BuildContext context) async {
     try {
       context.loaderOverlay.show();
-      await Future.delayed(Duration(seconds: 1));
+      await _newDonationService.createDontaion();
       _navigationService.replaceWithNewDonationConfirmedView();
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
