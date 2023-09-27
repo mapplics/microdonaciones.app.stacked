@@ -26,6 +26,34 @@ class DonationItem {
     return DonationItem(product: product, quantity: 0);
   }
 
+  /// Crea la instancia de un [DonationItem]
+  static DonationItem createOne(Map<String, dynamic> data) {
+    return DonationItem(
+      product: Product(
+        id: data['id'],
+        name: data['name'],
+        urlImg: data['image'],
+      ),
+      quantity: data['quantity'] ?? 0,
+    );
+  }
+
+  static List<DonationItem> createArray(List<dynamic> data) {
+    final List<DonationItem> items = [];
+
+    for (var item in data) {
+      try {
+        items.add(
+          DonationItem.createOne(item),
+        );
+      } catch (e) {
+        continue;
+      }
+    }
+
+    return items;
+  }
+
   /// Devuelve el titulo del producto a donar.
   String get title => product.name;
 

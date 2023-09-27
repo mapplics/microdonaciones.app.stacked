@@ -30,4 +30,11 @@ class DateTimeHelper {
     final String formattedDate = formatter.format(dateTime);
     return formattedDate;
   }
+
+  /// Recibe un [DateTime] y lo devuelve en formato hh:mm
+  static String formatTime(DateTime dateTime) {
+    final DateFormat formatter = DateFormat('HH:mm');
+    final String formattedDate = formatter.format(dateTime);
+    return formattedDate;
+  }
 }

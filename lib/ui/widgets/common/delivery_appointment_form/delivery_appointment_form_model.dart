@@ -113,7 +113,8 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
     final Weekday weekday = DateTimeHelper.getDayOfWeek(dateTime);
 
     final range = _newDonationDataService.pickupRange.firstWhere(
-      (element) => element.weekday.toLowerCase() == weekday.name.toLowerCase(),
+      (element) =>
+          element.weekday.name.toLowerCase() == weekday.name.toLowerCase(),
     );
 
     _timeItems.addAll(range.prepareForDropdown());

@@ -15,8 +15,8 @@ class PickupWeekDayRangePresentation {
     PickupWeekDayRange _weekDay;
     RangeTime _rangeTime;
 
-    _weekDay =
-        pickupRange.firstWhere((weekday) => weekday.id == donation.weekday);
+    _weekDay = pickupRange
+        .firstWhere((weekday) => weekday.weekday.id == donation.weekday);
 
     _rangeTime = _weekDay.ranges.firstWhere(
       (element) => element.id == donation.rangeId,

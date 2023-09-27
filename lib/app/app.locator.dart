@@ -17,6 +17,7 @@ import '../services/donation_item_api_service.dart';
 import '../services/new_donation_api_service.dart';
 import '../services/new_donation_data_service.dart';
 import '../services/new_donation_service.dart';
+import '../services/order_history_service.dart';
 import '../services/reception_api_service.dart';
 import '../services/user_api_service.dart';
 import '../services/user_service.dart';
@@ -44,4 +45,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ReceptionApiService());
   locator.registerLazySingleton(() => NewDonationDataService());
   locator.registerLazySingleton(() => NewDonationApiService());
+  locator.registerLazySingleton(() => OrderHistoryService());
 }

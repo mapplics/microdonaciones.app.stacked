@@ -193,7 +193,7 @@ class NewDonationService with ListenableServiceMixin {
       ) as PickupDropdownValue;
 
       final weekday = _newDonationData.pickupRange
-          .firstWhere((element) => element.id == time.weekdayId);
+          .firstWhere((element) => element.weekday.id == time.weekdayId);
 
       final weekdayTime = weekday.ranges
           .firstWhere((element) => element.id == time.rangeTimeId);

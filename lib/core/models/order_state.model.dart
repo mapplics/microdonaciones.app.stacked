@@ -5,19 +5,19 @@ import 'package:microdonations/core/enums/order_state_type.enum.dart';
 class OrderState {
   final int id;
   final OrderStateType orderStateType;
-  final String type;
+  final String name;
 
   OrderState({
     required this.id,
     required this.orderStateType,
-    required this.type,
+    required this.name,
   });
 
   static OrderState createOne(Map<String, dynamic> data) {
     return OrderState(
       id: data['id'],
       orderStateType: _parseOrderStateType(data['tag']),
-      type: data['name'],
+      name: data['name'],
     );
   }
 

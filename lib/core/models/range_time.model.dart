@@ -1,7 +1,9 @@
+import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
+
 class RangeTime {
   final int id;
-  final String start;
-  final String end;
+  final DateTime start;
+  final DateTime end;
 
   RangeTime({
     required this.id,
@@ -12,19 +14,16 @@ class RangeTime {
   static RangeTime createOne(Map<String, dynamic> data) {
     return RangeTime(
       id: data['id'],
-      end: data['timeClose'],
-      start: data['timeOpen'],
+      end: DateTime.parse("2023-09-25T17:14:10.000000Z"),
+      start: DateTime.parse("2023-09-25T17:14:10.000000Z"),
     );
   }
 
   /// Devuelve como String el rango de tiempo en formato 'hh:mm a hh:mm'
   String get fullTime =>
-      '${_removeMiliseconds(start)} a ${_removeMiliseconds(end)}';
+      '${DateTimeHelper.formatTime(start)} a ${DateTimeHelper.formatTime(end)}';
 
   /// Devuelve como String el rango de tiempo en formato 'hh:mm y las hh:mm'
   String get betweenTime =>
-      '${_removeMiliseconds(start)} y las ${_removeMiliseconds(end)}';
-
-  /// Devuelve [start] o [end] sin los milisegundos.
-  static String _removeMiliseconds(String time) => time.substring(0, 5);
+      '${DateTimeHelper.formatTime(start)} y las ${DateTimeHelper.formatTime(end)}';
 }

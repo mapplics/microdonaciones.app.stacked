@@ -11,6 +11,9 @@ import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
+import 'package:microdonations/services/order_service.dart';
+import 'package:microdonations/services/history_order_service.dart';
+import 'package:microdonations/services/order_history_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -28,6 +31,9 @@ import 'test_helpers.mocks.dart';
   MockSpec<ReceptionApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationDataService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationApiService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<OrderService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<HistoryOrderService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<OrderHistoryService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -44,6 +50,9 @@ void registerServices() {
   getAndRegisterReceptionApiService();
   getAndRegisterNewDonationDataService();
   getAndRegisterNewDonationApiService();
+  getAndRegisterOrderService();
+  getAndRegisterHistoryOrderService();
+  getAndRegisterOrderHistoryService();
 // @stacked-mock-register
 }
 
@@ -164,6 +173,27 @@ MockNewDonationApiService getAndRegisterNewDonationApiService() {
   _removeRegistrationIfExists<NewDonationApiService>();
   final service = MockNewDonationApiService();
   locator.registerSingleton<NewDonationApiService>(service);
+  return service;
+}
+
+MockOrderService getAndRegisterOrderService() {
+  _removeRegistrationIfExists<OrderService>();
+  final service = MockOrderService();
+  locator.registerSingleton<OrderService>(service);
+  return service;
+}
+
+MockHistoryOrderService getAndRegisterHistoryOrderService() {
+  _removeRegistrationIfExists<HistoryOrderService>();
+  final service = MockHistoryOrderService();
+  locator.registerSingleton<HistoryOrderService>(service);
+  return service;
+}
+
+MockOrderHistoryService getAndRegisterOrderHistoryService() {
+  _removeRegistrationIfExists<OrderHistoryService>();
+  final service = MockOrderHistoryService();
+  locator.registerSingleton<OrderHistoryService>(service);
   return service;
 }
 // @stacked-mock-create

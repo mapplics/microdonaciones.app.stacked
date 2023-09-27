@@ -1,17 +1,16 @@
 import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
+import 'package:microdonations/core/models/weekday.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import 'pickup_dropdown_item.model.dart';
 
 class PickupWeekDayRange {
-  final int id;
-  final String weekday;
   final List<RangeTime> ranges;
+  final Weekday weekday;
 
   PickupWeekDayRange({
-    required this.id,
     required this.weekday,
     required this.ranges,
   });
@@ -19,8 +18,11 @@ class PickupWeekDayRange {
   /// Crea una instancia de [PickupWeekDayRange]
   static PickupWeekDayRange createOne(Map<String, dynamic> data) {
     return PickupWeekDayRange(
-      id: data['id'],
-      weekday: data['name'],
+      weekday: Weekday(
+        id: data['id'],
+        tag: data['tag'],
+        name: data['name'],
+      ),
       ranges: _parseRangeTimes(data['rangeTimes']),
     );
   }
@@ -46,13 +48,7 @@ class PickupWeekDayRange {
     List<RangeTime> range = [];
 
     data.forEach((element) {
-      range.add(
-        RangeTime(
-          id: element['id'],
-          end: element['timeClose'],
-          start: element['timeOpen'],
-        ),
-      );
+      range.add(RangeTime.createOne(element));
     });
 
     return range;
@@ -76,7 +72,7 @@ class PickupWeekDayRange {
       label: range.fullTime,
       value: PickupDropdownValue(
         rangeTimeId: range.id,
-        weekdayId: id,
+        weekdayId: weekday.id,
       ),
     );
   }
