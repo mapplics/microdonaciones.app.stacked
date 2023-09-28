@@ -34,6 +34,7 @@ class DeliveryAppointmentForm
               required: viewModel.dayFieldIsRequired,
               validationMessage: ReactiveFormHelper.getValidationMessages,
               initialDate: viewModel.deliveryDay,
+              enabledDays: viewModel.enabledDays,
             ),
           ),
           CustomDropdown(

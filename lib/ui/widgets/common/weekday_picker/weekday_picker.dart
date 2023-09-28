@@ -17,6 +17,7 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
   final OnChangeWeekdayPicker onchange;
   final DateTime? initialDate;
   final Map<String, String Function(Object)>? validationMessage;
+  final List<int>? enabledDays;
 
   const WeekdayPicker({
     required this.label,
@@ -25,6 +26,7 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
     required this.initialDate,
     required this.onchange,
     required this.required,
+    this.enabledDays,
     this.hintText,
     super.key,
   });
@@ -48,7 +50,7 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
         ReactiveTextField(
           formControlName: formControlName,
           controller: viewModel.controller,
-          onTap: (_) => viewModel.openDatePicker(context, initialDate),
+          onTap: (_) => viewModel.openDatePicker(context),
           style: CustomStylesTheme.regular16_24.copyWith(
             color: CustomStylesTheme.blackColor,
           ),
@@ -67,5 +69,9 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
   WeekdayPickerModel viewModelBuilder(
     BuildContext context,
   ) =>
-      WeekdayPickerModel(onchange);
+      WeekdayPickerModel(
+        onchange: onchange,
+        enabledDay: enabledDays,
+        initialDate: initialDate,
+      );
 }
