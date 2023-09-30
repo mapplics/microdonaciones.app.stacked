@@ -24,11 +24,18 @@ class DateTimeHelper {
     }
   }
 
+  /// Devuelve true si el año de [date] es el año actual.
+  static bool isActualYear(DateTime date) {
+    final now = DateTime.now();
+    return now.year == date.year;
+  }
+
   /// Recibe un [DateTime] y lo devuelve en formato 'dd/MM/yyyy'
   static String formatDateTime(DateTime dateTime) {
-    final DateFormat formatter = DateFormat('dd/MM/yyyy');
-    final String formattedDate = formatter.format(dateTime);
-    return formattedDate;
+    final formatedDate =
+        isActualYear(dateTime) ? DateFormat('dd/MM') : DateFormat('dd/MM/yyyy');
+
+    return formatedDate.format(dateTime);
   }
 
   /// Recibe un [DateTime] y lo devuelve en formato hh:mm
