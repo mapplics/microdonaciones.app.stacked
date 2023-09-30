@@ -11,6 +11,7 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
   final String textButton;
   final Function buttonAction;
   final IconData icon;
+  final Color colorIcon;
 
   const EmptyStateWithButton({
     Key? key,
@@ -19,6 +20,7 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
     required this.textButton,
     required this.buttonAction,
     required this.icon,
+    required this.colorIcon,
   }) : super(key: key);
 
   @override
@@ -34,15 +36,17 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: CustomStylesTheme.tertiaryColor,
               borderRadius: BorderRadius.circular(100),
             ),
-            child: Icon(
-              icon,
-              color: CustomStylesTheme.errorColor,
-              size: 70.0,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Icon(
+                icon,
+                color: colorIcon,
+                size: 45.0,
+              ),
             ),
           ),
           const SizedBox(height: 24),

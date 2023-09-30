@@ -6,18 +6,16 @@ import 'package:stacked/stacked.dart';
 
 class DonationHistoryViewModel extends BaseViewModel {
   final _orderHistoryService = locator<OrderHistoryService>();
-  bool haveError = false;
-  bool isLoading = false;
-  // List<BaseHistoryOrder> ordersHistory = [];
 
   final PagingController<int, BaseHistoryOrder> pagingController =
       PagingController(firstPageKey: 0);
 
+  /// Inicializa el paging controller.
   init() {
     pagingController.addPageRequestListener((pageKey) => _fetchPage(pageKey));
   }
 
-  /// Trae una nueva pagina de notificaciones.
+  /// Trae una nueva pagina de donaciones.
   Future<void> _fetchPage(int pageKey) async {
     try {
       final ordersHistory = await getHistory(pageKey);
@@ -34,6 +32,7 @@ class DonationHistoryViewModel extends BaseViewModel {
     }
   }
 
+  /// Vuelva a cargar el historial de donaciones.
   Future<void> refresHistoy() async {
     await Future.sync(() => pagingController.refresh());
   }
@@ -41,16 +40,10 @@ class DonationHistoryViewModel extends BaseViewModel {
   /// Recuper el historial de donaciones.
   Future<List<BaseHistoryOrder>> getHistory(int pageNumber) async {
     try {
-      isLoading = true;
-
-      rebuildUi();
-
       return await _orderHistoryService.getOrdersHistory(pageNumber);
     } catch (e) {
-      haveError = true;
-      return [];
+      rethrow;
     } finally {
-      isLoading = false;
       rebuildUi();
     }
   }

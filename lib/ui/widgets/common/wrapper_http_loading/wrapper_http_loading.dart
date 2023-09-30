@@ -52,6 +52,7 @@ class WrapperHttpLoading extends StackedView<WrapperHttpLoadingModel> {
                 textButton: 'Volver a intentar',
                 buttonAction: retryFunction,
                 icon: PhosphorIcons.bold.xCircle,
+                colorIcon: CustomStylesTheme.errorColor,
               )
             : mainContent;
   }
