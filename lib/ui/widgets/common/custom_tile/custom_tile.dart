@@ -10,13 +10,11 @@ class CustomTile extends StackedView<CustomTileModel> {
   final Function action;
   final String label;
   final String svgPath;
-  final int count;
 
   const CustomTile({
     required this.action,
     required this.label,
     required this.svgPath,
-    required this.count,
     super.key,
   });
 
@@ -43,28 +41,6 @@ class CustomTile extends StackedView<CustomTileModel> {
                     svgPath,
                   ),
                 ),
-                (count > 0)
-                    ? Positioned(
-                        right: -12,
-                        top: -8,
-                        child: Container(
-                          width: 22,
-                          height: 22,
-                          decoration: const BoxDecoration(
-                            color: CustomStylesTheme.primaryColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          child: Text(
-                            count.toString(),
-                            textAlign: TextAlign.center,
-                            style: CustomStylesTheme.regular12_20
-                                .copyWith(color: Colors.white),
-                          ),
-                        ),
-                      )
-                    : const SizedBox()
               ],
             ),
           ),

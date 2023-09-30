@@ -19,38 +19,6 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    /// Construye la seccion historial y notificaciones.
-    Widget _buildTiles() {
-      return Padding(
-        padding: const EdgeInsets.only(
-          left: 30,
-          right: 30,
-        ),
-        child: Column(
-          children: [
-            CustomTile(
-              label: 'Historial de donaciones',
-              action: viewModel.goToDonationHistory,
-              count: 2,
-              svgPath: 'assets/icons/ic_historialdedonaciones.svg',
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 22.0),
-            //   child: Divider(
-            //     color: CustomStylesTheme.lightGreyColor.withOpacity(0.34),
-            //   ),
-            // ),
-            // CustomTile(
-            //   label: 'Historial de donaciones',
-            //   action: () {},
-            //   count: 2,
-            //   svgPath: 'assets/icons/ic_notificaciones.svg',
-            // ),
-          ],
-        ),
-      );
-    }
-
     return CustomScaffold(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       appbar: const CustomAppbar(title: 'Microdonaciones'),
@@ -104,8 +72,23 @@ class HomeView extends StackedView<HomeViewModel> {
             ),
           ),
 
-          /// Seccion notificaciones y historial donaciones.
-          if (viewModel.isUserLogged) _buildTiles(),
+          /// Seccion historial donaciones.
+          if (viewModel.isUserLogged)
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                right: 30,
+              ),
+              child: Column(
+                children: [
+                  CustomTile(
+                    label: 'Historial de donaciones',
+                    svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+                    action: viewModel.goToDonationHistory,
+                  ),
+                ],
+              ),
+            ),
           const Spacer(),
 
           /// Seccion para ser colaborador logistico.
