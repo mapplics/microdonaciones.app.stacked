@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/empty_state_with_button/empty_state_with_button.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import 'wrapper_http_loading_model.dart';
@@ -50,6 +51,7 @@ class WrapperHttpLoading extends StackedView<WrapperHttpLoadingModel> {
                 body: 'Por favor, volver a intentarlo.',
                 textButton: 'Volver a intentar',
                 buttonAction: retryFunction,
+                icon: PhosphorIcons.bold.xCircle,
               )
             : mainContent;
   }

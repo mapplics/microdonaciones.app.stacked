@@ -12,11 +12,13 @@ class OrderHistoryService {
 
   final String? _apiUrl = dotenv.env['API_URL'];
 
+  static const pageSize = 10;
+
   /// Devuelve los puntos de entrega de la [ong].
-  Future<List<BaseHistoryOrder>> getOrdersHistory() async {
+  Future<List<BaseHistoryOrder>> getOrdersHistory(int pageNumber) async {
     try {
       final response = await _dio.get(
-        '${_apiUrl}orders-history?page[number]=1&page[size]=10&include=orderState,receptionPoint,rangeTime,weekday,products',
+        '${_apiUrl}orders-history?page[number]=$pageNumber&page[size]=$pageSize&include=orderState,receptionPoint,rangeTime,weekday,products',
         options: Options(responseType: ResponseType.json),
       );
 

@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/custom_fill_button/custom_fill_button.dart';
 import 'package:stacked/stacked.dart';
 
-import 'empty_state_with_button_model.dart';
+import 'empty_state_model.dart';
 
-class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
+class EmptyState extends StackedView<EmptyStateModel> {
   final String title;
   final String body;
-  final String textButton;
-  final Function buttonAction;
   final IconData icon;
 
-  const EmptyStateWithButton({
+  const EmptyState({
     Key? key,
     required this.title,
     required this.body,
-    required this.textButton,
-    required this.buttonAction,
     required this.icon,
   }) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    EmptyStateWithButtonModel viewModel,
+    EmptyStateModel viewModel,
     Widget? child,
   ) {
     return Padding(
@@ -61,22 +56,14 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
               color: CustomStylesTheme.lightGreyColor,
             ),
           ),
-          const SizedBox(height: 18),
-          CustomFillButton(
-            label: textButton,
-            action: buttonAction,
-            textStyle: CustomStylesTheme.regular16_20.copyWith(
-              color: Colors.white,
-            ),
-          ),
         ],
       ),
     );
   }
 
   @override
-  EmptyStateWithButtonModel viewModelBuilder(
+  EmptyStateModel viewModelBuilder(
     BuildContext context,
   ) =>
-      EmptyStateWithButtonModel();
+      EmptyStateModel();
 }
