@@ -11,12 +11,8 @@ import 'package:microdonations/services/donation_item_api_service.dart';
 import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
-import 'package:microdonations/services/order_service.dart';
-import 'package:microdonations/services/history_order_service.dart';
 import 'package:microdonations/services/order_history_service.dart';
 // @stacked-import
-
-import 'test_helpers.mocks.dart';
 
 @GenerateMocks([], customMocks: [
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
@@ -31,8 +27,6 @@ import 'test_helpers.mocks.dart';
   MockSpec<ReceptionApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationDataService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationApiService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<OrderService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<HistoryOrderService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<OrderHistoryService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])

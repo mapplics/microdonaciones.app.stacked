@@ -5,9 +5,11 @@ import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/drop_off_new_donation.model.dart';
+import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
@@ -53,10 +55,19 @@ class NewDonationService with ListenableServiceMixin {
   /// su donación.
   PickupWeekDayRangePresentation? get pickupPresentation {
     final pickupRange = _newDonationData.pickupRange;
+    PickupWeekDayRange _weekDay;
+    RangeTime _rangeTime;
+
+    _weekDay = pickupRange.firstWhere(
+        (weekday) => weekday.weekday.id == _deliveryDonation.weekday);
+
+    _rangeTime = _weekDay.ranges.firstWhere(
+      (element) => element.id == _deliveryDonation.rangeId,
+    );
 
     return PickupWeekDayRangePresentation.createOne(
-      pickupRange,
-      _deliveryDonation,
+      _weekDay,
+      _rangeTime,
     );
   }
 

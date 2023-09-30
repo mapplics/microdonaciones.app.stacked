@@ -15,9 +15,9 @@ class NewDonationDetail extends StackedView<NewDonationDetailModel> {
     NewDonationDetailModel viewModel,
     Widget? child,
   ) {
-    return const Column(
+    return Column(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(bottom: 37.0),
           child: Text(
             'Va a ingresar la siguiente donación',
@@ -27,10 +27,10 @@ class NewDonationDetail extends StackedView<NewDonationDetailModel> {
         ),
 
         /// Detalle con los items que se van a donar.
-        DonationItemListDetail(),
+        DonationItemListDetail(donationItems: viewModel.products),
 
         /// Detalle de como se va a entregar la donación.
-        DonationDeliveryDetail(),
+        const DonationDeliveryDetail(),
       ],
     );
   }

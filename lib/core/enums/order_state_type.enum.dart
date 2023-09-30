@@ -1,5 +1,6 @@
 enum OrderStateType {
   pending,
-  delivered,
+  completed,
+  cancelled,
   unknow,
 }

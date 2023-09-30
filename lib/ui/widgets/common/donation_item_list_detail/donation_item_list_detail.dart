@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
+import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'donation_item_list_detail_model.dart';
 
 class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
-  const DonationItemListDetail({super.key});
+  final List<DonationItem> donationItems;
+
+  const DonationItemListDetail({required this.donationItems, super.key});
 
   @override
   Widget builder(
@@ -91,5 +94,5 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
   DonationItemListDetailModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DonationItemListDetailModel();
+      DonationItemListDetailModel(donationItems);
 }

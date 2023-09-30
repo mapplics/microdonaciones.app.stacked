@@ -44,8 +44,8 @@ class DonationHistoryView extends StackedView<DonationHistoryViewModel> {
                   ),
                   child: Icon(
                     viewModel.isDeliveryOrder(viewModel.ordersHistory[index])
-                        ? PhosphorIcons.light.houseLine
-                        : PhosphorIcons.light.mapPinLine,
+                        ? PhosphorIcons.light.mapPinLine
+                        : PhosphorIcons.light.houseLine,
                     color: CustomStylesTheme.backgroundColor,
                     size: CustomStylesTheme.iconSizeLg,
                   ),
@@ -61,7 +61,9 @@ class DonationHistoryView extends StackedView<DonationHistoryViewModel> {
                 trailing: Icon(
                   PhosphorIcons.light.caretRight,
                 ),
-                onTap: () {},
+                onTap: () {
+                  viewModel.showOrderDetail(viewModel.ordersHistory[index]);
+                },
               ),
             ),
           ),

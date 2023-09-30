@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:microdonations/core/enums/order_state_type.enum.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 
 /// Representa el estado de una donación.
 
@@ -25,10 +27,26 @@ class OrderState {
     switch (state) {
       case 'pending':
         return OrderStateType.pending;
-      case 'delivered':
-        return OrderStateType.delivered;
+      case 'completed':
+        return OrderStateType.completed;
+      case 'cancelled':
+        return OrderStateType.cancelled;
       default:
         return OrderStateType.unknow;
+    }
+  }
+
+  /// Devuelve un color segun el [OrderStateType]
+  Color get getStatusColor {
+    switch (orderStateType.name) {
+      case 'pending':
+        return CustomStylesTheme.warningColor;
+      case 'completed':
+        return CustomStylesTheme.sucessColor;
+      case 'cancelled':
+        return CustomStylesTheme.errorColor;
+      default:
+        return CustomStylesTheme.gray400;
     }
   }
 }
