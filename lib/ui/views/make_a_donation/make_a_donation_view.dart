@@ -55,55 +55,66 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
-                        mainAxisAlignment: viewModel.canShowGoBackBtn
-                            ? MainAxisAlignment.spaceBetween
-                            : MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (viewModel.canShowGoBackBtn)
-                            Expanded(
-                              child: LinkButton(
-                                label: 'Atras',
-                                action: viewModel.previousPage,
-                                textStyle:
-                                    CustomStylesTheme.regular16_20.copyWith(
-                                  color: CustomStylesTheme.lightGreyColor,
-                                ),
-                              ),
-                            ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 26.0),
-                                child: PageIndicator(
-                                  totalSlides: viewModel.numPages,
-                                  currentSlide: viewModel.currentSlide,
-                                  dotIndicatorSize: DotIndicatorSize.small,
-                                ),
-                              ),
-                              viewModel.isLastSlide
-                                  ? LinkButton(
-                                      label: 'Finalizar',
-                                      action: () =>
-                                          viewModel.createDonation(context),
-                                      textStyle:
-                                          CustomStylesTheme.bold16_20.copyWith(
-                                        color: CustomStylesTheme.tertiaryColor,
-                                      ),
-                                    )
-                                  : LinkButton(
-                                      label: 'Siguiente',
-                                      action: () => viewModel.nextPage(context),
-                                      textStyle:
-                                          CustomStylesTheme.bold16_20.copyWith(
-                                        color: CustomStylesTheme.tertiaryColor,
-                                      ),
-                                    ),
-                            ],
+                      Container(
+                        decoration: const BoxDecoration(
+                          color: CustomStylesTheme.gray400,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
                           ),
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: viewModel.canShowGoBackBtn
+                              ? MainAxisAlignment.spaceBetween
+                              : MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (viewModel.canShowGoBackBtn)
+                              Expanded(
+                                child: LinkButton(
+                                  label: 'Atras',
+                                  action: viewModel.previousPage,
+                                  textStyle:
+                                      CustomStylesTheme.regular16_20.copyWith(
+                                    color: CustomStylesTheme.lightGreyColor,
+                                  ),
+                                ),
+                              ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 26.0),
+                                  child: PageIndicator(
+                                    totalSlides: viewModel.numPages,
+                                    currentSlide: viewModel.currentSlide,
+                                    dotIndicatorSize: DotIndicatorSize.small,
+                                  ),
+                                ),
+                                viewModel.isLastSlide
+                                    ? LinkButton(
+                                        label: 'Finalizar',
+                                        action: () =>
+                                            viewModel.createDonation(context),
+                                        textStyle: CustomStylesTheme.bold16_20
+                                            .copyWith(
+                                          color:
+                                              CustomStylesTheme.tertiaryColor,
+                                        ),
+                                      )
+                                    : LinkButton(
+                                        label: 'Siguiente',
+                                        action: () =>
+                                            viewModel.nextPage(context),
+                                        textStyle: CustomStylesTheme.bold16_20
+                                            .copyWith(
+                                          color:
+                                              CustomStylesTheme.tertiaryColor,
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
