@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_init_to_null
+
 import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
@@ -6,7 +8,7 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 import 'reception_point.model.dart';
 
 class DeliveryNewDonation extends BaseNewDonation {
-  late ReceptionPoint? _receptionPoint;
+  late ReceptionPoint? _receptionPoint = null;
 
   DeliveryNewDonation({super.type = ShippingMethod.pickup});
 

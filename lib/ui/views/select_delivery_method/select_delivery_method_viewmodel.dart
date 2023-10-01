@@ -55,7 +55,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
 
   /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]
   void initUserAddress() {
-    if (ShippingMethod.delivery == typeDeliverySelected) {
+    if (ShippingMethod.pickup == typeDeliverySelected) {
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     }
   }
