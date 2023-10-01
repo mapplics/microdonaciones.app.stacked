@@ -33,6 +33,9 @@ class OrderHistoryService {
         ordersHistory.add(order);
       }
 
+      /// Ordeno las clases por fecha.
+      ordersHistory.sort((a, b) => b.createAt.compareTo(a.createAt));
+
       return ordersHistory;
     } catch (e) {
       logError('No se pudo recuperar el historial de ordenes! ${e.toString()}');
