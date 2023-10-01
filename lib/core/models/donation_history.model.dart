@@ -6,7 +6,7 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 
 class DonationHistory {
   final int id;
-  final TypeDelivery shippingMethod;
+  final ShippingMethod shippingMethod;
   final ReceptionPoint? receptionPoint;
   final RangeTime? rangeTime;
   final String? weekday;
@@ -35,14 +35,14 @@ class DonationHistory {
     );
   }
 
-  static TypeDelivery _parseTypeDelivery(type) {
+  static ShippingMethod _parseTypeDelivery(type) {
     switch (type) {
       case 'pickup':
-        return TypeDelivery.dropoff;
+        return ShippingMethod.pickup;
       case 'delivery':
-        return TypeDelivery.delivery;
+        return ShippingMethod.delivery;
       default:
-        return TypeDelivery.unknow;
+        return ShippingMethod.unknow;
     }
   }
 }

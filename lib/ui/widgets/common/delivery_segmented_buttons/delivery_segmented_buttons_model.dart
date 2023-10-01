@@ -1,56 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-enum TypeDelivery {
+enum ShippingMethod {
   delivery,
-  dropoff,
+  pickup,
   unknow,
 }
 
 class DeliverySegmentedButtonsModel extends BaseViewModel {
   final OnChangeTypeDelivery onChangeTypeDelivery;
-  final TypeDelivery initialValue;
+  final ShippingMethod initialValue;
 
   DeliverySegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
     _selectedDelivery = initialValue;
   }
 
-  late TypeDelivery _selectedDelivery;
+  late ShippingMethod _selectedDelivery;
 
-  final Map<TypeDelivery, String> _buttonsOptions = {
-    TypeDelivery.delivery: 'Domicilio',
-    TypeDelivery.dropoff: 'Punto de entrega',
+  final Map<ShippingMethod, String> _buttonsOptions = {
+    ShippingMethod.pickup: 'Domicilio',
+    ShippingMethod.delivery: 'Punto de entrega',
   };
 
   /// Devuelve el tipo de delivery seleccionado [_selectedDelivery]
-  TypeDelivery get deliverySelected => _selectedDelivery;
+  ShippingMethod get deliverySelected => _selectedDelivery;
 
-  /// Recibe un [TypeDelivery] y actualiza el tipo de delivery de la donacion.
-  void onChangeSelected(TypeDelivery newValue) {
+  /// Recibe un [ShippingMethod] y actualiza el tipo de delivery de la donacion.
+  void onChangeSelected(ShippingMethod newValue) {
+    logWarn('SegmentedButton Envio ${newValue.name}');
     _selectedDelivery = newValue;
     onChangeTypeDelivery(_selectedDelivery);
     rebuildUi();
   }
 
-  Map<TypeDelivery, Widget> buildSegmentedButtons() {
-    Map<TypeDelivery, Widget> segmentedButtons = {};
+  Map<ShippingMethod, Widget> buildSegmentedButtons() {
+    Map<ShippingMethod, Widget> segmentedButtons = {};
 
     _buttonsOptions.forEach(
-      (key, value) {
+      (shippingType, label) {
         segmentedButtons.putIfAbsent(
-          key,
+          shippingType,
           () => Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                (TypeDelivery.delivery == key)
-                    ? PhosphorIcons.bold.houseLine
-                    : PhosphorIcons.bold.mapPinLine,
+                (ShippingMethod.delivery == shippingType)
+                    ? PhosphorIcons.bold.mapPinLine
+                    : PhosphorIcons.bold.houseLine,
                 size: 18,
-                color: (key == _selectedDelivery)
+                color: (shippingType == _selectedDelivery)
                     ? Colors.white
                     : CustomStylesTheme.blackColor,
               ),
@@ -58,9 +60,9 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
                 width: 4,
               ),
               Text(
-                value,
+                label,
                 style: CustomStylesTheme.bold14_20.copyWith(
-                  color: (key == _selectedDelivery)
+                  color: (shippingType == _selectedDelivery)
                       ? Colors.white
                       : CustomStylesTheme.blackColor,
                 ),

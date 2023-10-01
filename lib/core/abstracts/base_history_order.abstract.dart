@@ -4,7 +4,7 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 
 abstract class BaseHistoryOrder {
   final int orderId;
-  final TypeDelivery shippingMethod;
+  final ShippingMethod shippingMethod;
   final OrderState orderState;
   final List<DonationItem> products;
   final DateTime createAt;

@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 class DonationShippingDetailModel extends BaseViewModel {
   final String? userAddress;
   final ReceptionPoint? receptionPoint;
-  final TypeDelivery type;
+  final ShippingMethod type;
   final PickupWeekDayRangePresentation? pickupPresentation;
 
   DonationShippingDetailModel({
@@ -23,7 +23,7 @@ class DonationShippingDetailModel extends BaseViewModel {
   }
 
   String get deliverDescription {
-    if (type == TypeDelivery.dropoff) {
+    if (type == ShippingMethod.pickup) {
       return 'Vamos a retirar tu donación por';
     } else {
       return 'Elegiste llevar tu donación a';
@@ -32,7 +32,7 @@ class DonationShippingDetailModel extends BaseViewModel {
 
   /// Devuelve la direccion en donde se retira/lleva la donacion.
   String get deliveryAddress {
-    if (type == TypeDelivery.dropoff) {
+    if (type == ShippingMethod.pickup) {
       return userAddress?.capitalize() ?? 'Direccion invalida';
     } else {
       return _receptionPointAddress;
@@ -40,7 +40,7 @@ class DonationShippingDetailModel extends BaseViewModel {
   }
 
   String get deliveryTime {
-    if (type == TypeDelivery.dropoff) {
+    if (type == ShippingMethod.pickup) {
       return pickupPresentation!.label.capitalize();
     } else {
       return receptionPoint!.extraInfo.capitalize();

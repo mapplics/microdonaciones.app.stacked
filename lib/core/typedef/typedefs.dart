@@ -13,7 +13,7 @@ typedef OnChangeCheckbox = void Function(bool newValue);
 typedef OnChangeQuantityPicker = void Function(int newValue);
 
 /// Lo utilizamos para enviar el valor [newValue] a un widget padre.
-typedef OnChangeTypeDelivery = void Function(TypeDelivery newValue);
+typedef OnChangeTypeDelivery = void Function(ShippingMethod newValue);
 
 typedef OnChangeDropdownButton = void Function<T>(T newValue);
 

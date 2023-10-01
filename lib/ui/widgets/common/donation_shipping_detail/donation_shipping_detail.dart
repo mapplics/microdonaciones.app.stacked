@@ -10,7 +10,7 @@ import 'donation_shipping_detail_model.dart';
 class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
   final String? userAddress;
   final ReceptionPoint? receptionPoint;
-  final TypeDelivery type;
+  final ShippingMethod type;
   final PickupWeekDayRangePresentation? range;
 
   const DonationShippingDetail({

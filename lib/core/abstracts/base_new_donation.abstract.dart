@@ -6,7 +6,7 @@ import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/deli
 abstract class BaseNewDonation {
   late Ong ong;
   late DonationItemsDetail donationItemsDetail;
-  TypeDelivery type;
+  ShippingMethod type;
 
   BaseNewDonation({required this.type});
 

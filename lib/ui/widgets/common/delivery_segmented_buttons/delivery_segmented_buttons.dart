@@ -9,7 +9,7 @@ import 'delivery_segmented_buttons_model.dart';
 class DeliverySegmentedButtons
     extends StackedView<DeliverySegmentedButtonsModel> {
   final OnChangeTypeDelivery onChangeTypeDelivery;
-  final TypeDelivery initialValue;
+  final ShippingMethod initialValue;
 
   const DeliverySegmentedButtons({
     required this.initialValue,
@@ -23,7 +23,7 @@ class DeliverySegmentedButtons
     DeliverySegmentedButtonsModel viewModel,
     Widget? child,
   ) {
-    return MaterialSegmentedControl<TypeDelivery>(
+    return MaterialSegmentedControl<ShippingMethod>(
       children: viewModel.buildSegmentedButtons(),
       selectionIndex: viewModel.deliverySelected,
       onSegmentTapped: viewModel.onChangeSelected,

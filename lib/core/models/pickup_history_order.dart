@@ -19,7 +19,7 @@ class PickupHistoryOrder extends BaseHistoryOrder {
     required super.orderState,
     required super.products,
     required super.createAt,
-    super.shippingMethod = TypeDelivery.dropoff,
+    super.shippingMethod = ShippingMethod.pickup,
   });
 
   static PickupHistoryOrder createOne(Map<String, dynamic> data) {

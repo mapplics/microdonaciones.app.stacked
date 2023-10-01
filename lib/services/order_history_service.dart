@@ -26,7 +26,7 @@ class OrderHistoryService {
       final dataList = response.data['data'] as List<dynamic>;
 
       for (var element in dataList) {
-        final order = element['shippingMethod'] == TypeDelivery.delivery.name
+        final order = element['shippingMethod'] == ShippingMethod.delivery.name
             ? DeliveryHistoryOrder.createOne(element)
             : PickupHistoryOrder.createOne(element);
 

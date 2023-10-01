@@ -10,7 +10,7 @@ class OrderHistoryTileModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   bool isDeliveryOrder(BaseHistoryOrder order) {
-    return order.shippingMethod == TypeDelivery.delivery;
+    return order.shippingMethod == ShippingMethod.delivery;
   }
 
   void showOrderDetail(BaseHistoryOrder historyOrder) {

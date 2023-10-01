@@ -15,7 +15,7 @@ class NewDonation {
 
   NewDonation({required this.ong});
 
-  TypeDelivery typeDelivery = TypeDelivery.dropoff;
+  ShippingMethod typeDelivery = ShippingMethod.pickup;
   UserAddress? _userAddress;
   PickupDropdownValue? _pickupValue;
   ReceptionPoint? _receptionPoint;
@@ -40,8 +40,8 @@ class NewDonation {
     _donationsList.removeAt(_index);
   }
 
-  /// Actualiza el tipo de delivery [TypeDelivery] de la donacion
-  void updateTypeDelivery(TypeDelivery type) => typeDelivery = type;
+  /// Actualiza el tipo de delivery [ShippingMethod] de la donacion
+  void updateTypeDelivery(ShippingMethod type) => typeDelivery = type;
 
   /// Setea el [_userAddress].
   /// Se utiliza cuando la donacion se retira por la casa del donante.
@@ -98,7 +98,7 @@ class NewDonation {
   }
 
   /// Devuelve true si el metodo de entrega de la donacion es a domicilio.
-  bool get _isDelivery => (TypeDelivery.delivery == typeDelivery);
+  bool get _isDelivery => (ShippingMethod.delivery == typeDelivery);
 
   toJson() {
     return {

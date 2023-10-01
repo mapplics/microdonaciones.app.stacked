@@ -17,7 +17,7 @@ class DonationDeliveryDetailModel extends BaseViewModel {
   }
 
   String get deliverDescription {
-    if (_newDonationService.deliveryTypeValue == TypeDelivery.delivery) {
+    if (_newDonationService.deliveryTypeValue == ShippingMethod.delivery) {
       return 'Vamos a retirar tu donación por';
     } else {
       return 'Elegiste llevar tu donación a';
@@ -26,7 +26,7 @@ class DonationDeliveryDetailModel extends BaseViewModel {
 
   /// Devuelve la direccion en donde se retira/lleva la donacion.
   String get deliveryAddress {
-    if (_newDonationService.deliveryTypeValue == TypeDelivery.delivery) {
+    if (_newDonationService.deliveryTypeValue == ShippingMethod.delivery) {
       return _userAddress;
     } else {
       return _receptionPointAddress;
@@ -34,7 +34,7 @@ class DonationDeliveryDetailModel extends BaseViewModel {
   }
 
   String get deliveryTime {
-    if (_newDonationService.deliveryTypeValue == TypeDelivery.delivery) {
+    if (_newDonationService.deliveryTypeValue == ShippingMethod.delivery) {
       return _newDonationService.pickupPresentation!.label;
     } else {
       return _newDonationService.receptionPoint!.extraInfo;

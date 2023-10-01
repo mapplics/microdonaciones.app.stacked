@@ -7,6 +7,7 @@ import 'package:microdonations/core/parameters/personal_information_view.paramet
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
@@ -29,13 +30,13 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   List<PickupWeekDayRange> get pickupRange =>
       _newDonationDataService.pickupRange;
 
-  /// Devuelve true si el tipo de delivery [TypeDelivery] seleccionado
+  /// Devuelve true si el tipo de delivery [ShippingMethod] seleccionado
   /// es a domicilio.
-  bool get isHomeDelivery =>
-      _newDonationService.deliveryTypeValue == TypeDelivery.delivery;
+  bool get isDelivery =>
+      _newDonationService.deliveryTypeValue == ShippingMethod.delivery;
 
   /// Devuelve el tipo de entrega que eligio el usuario.
-  TypeDelivery get typeDeliverySelected =>
+  ShippingMethod get typeDeliverySelected =>
       _newDonationService.deliveryTypeValue;
 
   /// Devuelve la direccion del usuario.
@@ -52,24 +53,30 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
   ReceptionPoint? get receptionPointSelected =>
       _newDonationService.receptionPoint;
 
-  /// Inicializa la direccion del usuario si el tipo es [TypeDelivery.delivery]
+  /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]
   void initUserAddress() {
-    if (TypeDelivery.delivery == typeDeliverySelected) {
+    if (ShippingMethod.delivery == typeDeliverySelected) {
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     }
   }
 
   /// Actualiza el tipo de delivery de la donacion.
-  void onChangeTypeDelivery(TypeDelivery type) {
+  void onChangeTypeDelivery(ShippingMethod type) {
     _newDonationService.updateTypeDelivery(type);
 
-    if (TypeDelivery.delivery == type) {
-      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
-    } else {
+    logWarn(
+      '(selectDeliveryMethodViewModel) onChangeTypeDelivery ${type.name}',
+    );
+
+    if (ShippingMethod.delivery == type) {
+      logWarn('Reseteo formulario de appointment.');
       resetPickupAppointmentForm();
       _newDonationService.updateReceptionPoint(
         _newDonationDataService.receptionPoints.first,
       );
+    } else {
+      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
+      logWarn('Seteo user address');
     }
 
     rebuildUi();
@@ -86,6 +93,7 @@ class SelectDeliveryMethodViewModel extends ReactiveViewModel {
 
   /// Setea el punto de entrega que eligio el usuario.
   void updateReceptionPoint<ReceptionPoint>(dynamic value) {
+    logWarn('Actualizo reception point ${value}');
     _newDonationService.updateReceptionPoint(value);
   }
 

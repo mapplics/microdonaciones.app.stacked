@@ -12,7 +12,7 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
   BaseHistoryOrder get order => orderHistory;
 
   DeliveryHistoryOrder? get deliveryOrder {
-    if (TypeDelivery.delivery == orderHistory.shippingMethod) {
+    if (ShippingMethod.delivery == orderHistory.shippingMethod) {
       return orderHistory as DeliveryHistoryOrder;
     } else {
       return null;
@@ -20,7 +20,7 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
   }
 
   PickupHistoryOrder? get pickupDonation {
-    if (TypeDelivery.dropoff == orderHistory.shippingMethod) {
+    if (ShippingMethod.pickup == orderHistory.shippingMethod) {
       return orderHistory as PickupHistoryOrder;
     } else {
       return null;

@@ -49,7 +49,7 @@ class SelectDeliveryMethodView
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (viewModel.isHomeDelivery)
+                if (!viewModel.isDelivery)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 43.0),
                     child: DeliveryAppointmentForm(
@@ -59,7 +59,7 @@ class SelectDeliveryMethodView
                   ),
 
                 /// Instrucciones para retiro por domicilio
-                if (viewModel.isHomeDelivery &&
+                if (viewModel.isDelivery &&
                     viewModel.pickupAppointmentFormValid)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,7 @@ class SelectDeliveryMethodView
                     ],
                   ),
 
-                if (!viewModel.isHomeDelivery)
+                if (viewModel.isDelivery)
                   Column(
                     children: [
                       Text(
