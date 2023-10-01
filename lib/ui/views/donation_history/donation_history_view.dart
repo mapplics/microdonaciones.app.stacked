@@ -31,6 +31,7 @@ class DonationHistoryView extends StackedView<DonationHistoryViewModel> {
         onRefresh: viewModel.refresHistoy,
         child: PagedListView<int, BaseHistoryOrder>(
           pagingController: viewModel.pagingController,
+          padding: const EdgeInsets.only(bottom: 50),
           builderDelegate: PagedChildBuilderDelegate<BaseHistoryOrder>(
             itemBuilder: (_, item, __) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
