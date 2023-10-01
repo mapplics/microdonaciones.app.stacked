@@ -240,11 +240,11 @@ class NewDonationService with ListenableServiceMixin {
     if (ShippingMethod.delivery == _shippingMethod) {
       return (_deliveryDonation.valid())
           ? null
-          : NewDonationError.pickupRangeInvalid;
+          : NewDonationError.receptionPointInvalid;
     } else {
       return _pickupDonation.valid()
           ? null
-          : NewDonationError.receptionPointInvalid;
+          : NewDonationError.pickupRangeInvalid;
     }
   }
 
@@ -267,7 +267,7 @@ class NewDonationService with ListenableServiceMixin {
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
     _donationItems = DonationItemsDetail();
-    _shippingMethod = ShippingMethod.delivery;
+    _shippingMethod = ShippingMethod.pickup;
     _deliveryDonation = DeliveryNewDonation();
     _pickupDonation = PickupDonation();
     _pickupAppointmentForm = null;

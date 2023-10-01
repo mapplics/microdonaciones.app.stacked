@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_init_to_null
+
 import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
@@ -5,10 +7,10 @@ import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 
 class PickupDonation extends BaseNewDonation {
-  late int? _weekdayId;
-  late int? _rangeId;
-  late DateTime? _pickupDate;
-  late UserAddress? _userAddress;
+  late int? _weekdayId = null;
+  late int? _rangeId = null;
+  late DateTime? _pickupDate = null;
+  late UserAddress? _userAddress = null;
 
   PickupDonation({super.type = ShippingMethod.pickup});
 

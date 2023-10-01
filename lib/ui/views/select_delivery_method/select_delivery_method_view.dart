@@ -59,7 +59,7 @@ class SelectDeliveryMethodView
                   ),
 
                 /// Instrucciones para retiro por domicilio
-                if (viewModel.isDelivery &&
+                if (!viewModel.isDelivery &&
                     viewModel.pickupAppointmentFormValid)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
