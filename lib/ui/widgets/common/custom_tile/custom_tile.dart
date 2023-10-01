@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../common/app_theme.dart';
 import 'custom_tile_model.dart';
 
 class CustomTile extends StackedView<CustomTileModel> {
@@ -24,37 +24,21 @@ class CustomTile extends StackedView<CustomTileModel> {
     CustomTileModel viewModel,
     Widget? child,
   ) {
-    return InkWell(
-      onTap: () => action(),
-      splashColor: CustomStylesTheme.primaryColor,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                SizedBox(
-                  height: 37,
-                  width: 37,
-                  child: SvgPicture.asset(
-                    svgPath,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Text(
-            label,
-            style: CustomStylesTheme.regular14_20,
-          ),
-          const Spacer(),
-          Icon(
-            PhosphorIcons.bold.caretRight,
-            size: 14,
-          )
-        ],
+    return ListTile(
+      leading: SizedBox(
+        height: 37,
+        width: 37,
+        child: SvgPicture.asset(svgPath),
       ),
+      title: Text(
+        label,
+        style: CustomStylesTheme.regular14_20,
+      ),
+      trailing: Icon(
+        PhosphorIcons.light.caretRight,
+        color: CustomStylesTheme.blackColor,
+      ),
+      onTap: () => action(),
     );
   }
 
