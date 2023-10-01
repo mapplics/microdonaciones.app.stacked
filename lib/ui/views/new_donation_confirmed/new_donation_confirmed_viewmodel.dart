@@ -7,6 +7,6 @@ class NewDonationConfirmedViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   void goHome() {
-    _navigationService.replaceWithHomeView();
+    _navigationService.popUntil((route) => route.isFirst);
   }
 }
