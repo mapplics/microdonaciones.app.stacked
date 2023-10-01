@@ -12,6 +12,7 @@ import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/order_history_service.dart';
+import 'package:microdonations/services/ong_service.dart';
 // @stacked-import
 
 @GenerateMocks([], customMocks: [
@@ -28,6 +29,7 @@ import 'package:microdonations/services/order_history_service.dart';
   MockSpec<NewDonationDataService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<OrderHistoryService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<OngService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -47,6 +49,7 @@ void registerServices() {
   getAndRegisterOrderService();
   getAndRegisterHistoryOrderService();
   getAndRegisterOrderHistoryService();
+  getAndRegisterOngService();
 // @stacked-mock-register
 }
 
@@ -188,6 +191,13 @@ MockOrderHistoryService getAndRegisterOrderHistoryService() {
   _removeRegistrationIfExists<OrderHistoryService>();
   final service = MockOrderHistoryService();
   locator.registerSingleton<OrderHistoryService>(service);
+  return service;
+}
+
+MockOngService getAndRegisterOngService() {
+  _removeRegistrationIfExists<OngService>();
+  final service = MockOngService();
+  locator.registerSingleton<OngService>(service);
   return service;
 }
 // @stacked-mock-create

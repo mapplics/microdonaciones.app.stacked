@@ -24,6 +24,7 @@ import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_conf
 import 'package:microdonations/ui/views/donation_history/donation_history_view.dart';
 import 'package:microdonations/services/order_history_service.dart';
 import 'package:microdonations/ui/views/order_history_detail/order_history_detail_view.dart';
+import 'package:microdonations/services/ong_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -55,6 +56,7 @@ import 'package:microdonations/ui/views/order_history_detail/order_history_detai
     LazySingleton(classType: NewDonationDataService),
     LazySingleton(classType: NewDonationApiService),
     LazySingleton(classType: OrderHistoryService),
+    LazySingleton(classType: OngService),
 // @stacked-service
   ],
   bottomsheets: [

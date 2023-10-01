@@ -3,8 +3,8 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
-import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
+import 'package:microdonations/services/ong_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,6 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 class MakeADonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _navigationService = locator<NavigationService>();
+  final _ongService = locator<OngService>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
@@ -144,18 +145,9 @@ class MakeADonationViewModel extends ReactiveViewModel {
 
       rebuildUi();
 
-      await _newDonationService.initNewDonationData(
-        Ong(
-          id: 1,
-          name: 'ONG',
-          web: '',
-          mision: '',
-          vision: '',
-          phone: '',
-          email: '',
-          enabled: true,
-        ),
-      );
+      final ongs = await _ongService.getOngs();
+
+      await _newDonationService.initNewDonationData(ongs.first);
     } catch (e) {
       _haveError = true;
     } finally {

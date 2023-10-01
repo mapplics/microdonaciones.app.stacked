@@ -32,4 +32,21 @@ class Ong {
       enabled: (data['enabled'] == 1) ? true : false,
     );
   }
+
+  /// Devuelve una lista de ongs
+  static List<Ong> createArray(List<dynamic> data) {
+    final List<Ong> items = [];
+
+    for (var item in data) {
+      try {
+        items.add(
+          Ong.createOne(item),
+        );
+      } catch (e) {
+        continue;
+      }
+    }
+
+    return items;
+  }
 }
