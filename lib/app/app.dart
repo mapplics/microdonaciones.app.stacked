@@ -21,7 +21,7 @@ import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_confirmed_view.dart';
-import 'package:microdonations/ui/views/donation_history/donation_history_view.dart';
+import 'package:microdonations/ui/views/orders_history/orders_history_view.dart';
 import 'package:microdonations/services/order_history_service.dart';
 import 'package:microdonations/ui/views/order_history_detail/order_history_detail_view.dart';
 import 'package:microdonations/services/ong_service.dart';
@@ -38,7 +38,7 @@ import 'package:microdonations/services/ong_service.dart';
     MaterialRoute(page: NewDonationView),
     MaterialRoute(page: SelectDeliveryMethodView),
     MaterialRoute(page: NewDonationConfirmedView),
-    MaterialRoute(page: DonationHistoryView),
+    MaterialRoute(page: OrdersHistoryView),
     MaterialRoute(page: OrderHistoryDetailView),
 // @stacked-route
   ],

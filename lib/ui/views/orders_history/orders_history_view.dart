@@ -10,15 +10,15 @@ import 'package:microdonations/ui/widgets/order_history/order_history_tile/order
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-import 'donation_history_viewmodel.dart';
+import 'orders_history_viewmodel.dart';
 
-class DonationHistoryView extends StackedView<DonationHistoryViewModel> {
-  const DonationHistoryView({Key? key}) : super(key: key);
+class OrdersHistoryView extends StackedView<OrdersHistoryViewModel> {
+  const OrdersHistoryView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    DonationHistoryViewModel viewModel,
+    OrdersHistoryViewModel viewModel,
     Widget? child,
   ) {
     return CustomScaffold(
@@ -59,14 +59,14 @@ class DonationHistoryView extends StackedView<DonationHistoryViewModel> {
   }
 
   @override
-  void onViewModelReady(DonationHistoryViewModel viewModel) {
+  void onViewModelReady(OrdersHistoryViewModel viewModel) {
     viewModel.init();
     super.onViewModelReady(viewModel);
   }
 
   @override
-  DonationHistoryViewModel viewModelBuilder(
+  OrdersHistoryViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DonationHistoryViewModel();
+      OrdersHistoryViewModel();
 }

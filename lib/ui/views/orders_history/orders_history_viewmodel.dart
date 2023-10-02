@@ -4,7 +4,7 @@ import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/services/order_history_service.dart';
 import 'package:stacked/stacked.dart';
 
-class DonationHistoryViewModel extends BaseViewModel {
+class OrdersHistoryViewModel extends BaseViewModel {
   final _orderHistoryService = locator<OrderHistoryService>();
 
   final PagingController<int, BaseHistoryOrder> pagingController =

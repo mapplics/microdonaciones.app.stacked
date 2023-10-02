@@ -13,7 +13,7 @@ import 'package:microdonations/core/parameters/personal_information_view.paramet
     as _i14;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
-import 'package:microdonations/ui/views/donation_history/donation_history_view.dart'
+import 'package:microdonations/ui/views/orders_history/orders_history_view.dart'
     as _i11;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
@@ -110,7 +110,7 @@ class StackedRouter extends _i1.RouterBase {
     ),
     _i1.RouteDef(
       Routes.donationHistoryView,
-      page: _i11.DonationHistoryView,
+      page: _i11.OrdersHistoryView,
     ),
     _i1.RouteDef(
       Routes.orderHistoryDetailView,
@@ -178,9 +178,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i11.DonationHistoryView: (data) {
+    _i11.OrdersHistoryView: (data) {
       return _i13.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.DonationHistoryView(),
+        builder: (context) => const _i11.OrdersHistoryView(),
         settings: data,
       );
     },
