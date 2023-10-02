@@ -25,7 +25,7 @@ class DeliverySegmentedButtons
   ) {
     return MaterialSegmentedControl<ShippingMethod>(
       children: viewModel.buildSegmentedButtons(),
-      selectionIndex: viewModel.deliverySelected,
+      selectionIndex: viewModel.selectedDelivery,
       onSegmentTapped: viewModel.onChangeSelected,
       selectedColor: CustomStylesTheme.tertiaryColor,
       borderColor: CustomStylesTheme.gray100,

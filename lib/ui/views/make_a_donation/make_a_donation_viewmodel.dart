@@ -17,13 +17,9 @@ class MakeADonationViewModel extends ReactiveViewModel {
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
 
-  bool _isLoading = false;
+  bool isLoading = false;
 
-  bool get isLoading => _isLoading;
-
-  bool _haveError = false;
-
-  bool get haveError => _haveError;
+  bool haveError = false;
 
   final PageController pageController = PageController(initialPage: 0);
   final int numPages = 4;
@@ -140,8 +136,8 @@ class MakeADonationViewModel extends ReactiveViewModel {
 
   Future<void> initNewDonation() async {
     try {
-      _isLoading = true;
-      _haveError = false;
+      isLoading = true;
+      haveError = false;
 
       rebuildUi();
 
@@ -149,9 +145,9 @@ class MakeADonationViewModel extends ReactiveViewModel {
 
       await _newDonationService.initNewDonationData(ongs.first);
     } catch (e) {
-      _haveError = true;
+      haveError = true;
     } finally {
-      _isLoading = false;
+      isLoading = false;
       rebuildUi();
     }
   }

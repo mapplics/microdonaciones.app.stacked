@@ -1,5 +1,3 @@
 import 'package:stacked/stacked.dart';
 
-class CustomTileModel extends BaseViewModel {
-  zarasa() {}
-}
+class CustomTileModel extends BaseViewModel {}

@@ -6,9 +6,6 @@ class DonationItemListDetailModel extends BaseViewModel {
 
   DonationItemListDetailModel(this.donationItems);
 
-  /// Devuelve los productos que selecciono el usuario para donar.
-  List<DonationItem> get products => donationItems;
-
   /// Devuelve la cantidad total de productos que el usuario dono..
   int get totalProducts {
     int _totalProducts = 0;

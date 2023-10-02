@@ -9,20 +9,14 @@ import '../../../app/app.locator.dart';
 class OnboardingViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final PageController _pageController = PageController(initialPage: 0);
-  final int _numSlides = 3;
-  int _currentPage = 0;
-
-  /// Devuelve la cantidad total de slides.
-  int get numSlides => _numSlides;
-
-  /// Devuelve la pagina actual del slide que se esta mostrando.
-  int get currentPage => _currentPage;
+  final int numSlides = 3;
+  int currentPage = 0;
 
   PageController get pageController => _pageController;
 
-  /// Actualiza la referencia de [_currentPage]
+  /// Actualiza la referencia de [currentPage]
   void onPageChange(int page) {
-    _currentPage = page;
+    currentPage = page;
     rebuildUi();
   }
 
@@ -35,5 +29,5 @@ class OnboardingViewModel extends BaseViewModel {
   }
 
   /// Devuelve true si la slide que se esta mostrando es la ultima.
-  bool get isLastPage => (_currentPage != (_numSlides - 1));
+  bool get isLastPage => (currentPage != (numSlides - 1));
 }

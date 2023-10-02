@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,24 +15,20 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
   final ShippingMethod initialValue;
 
   DeliverySegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
-    _selectedDelivery = initialValue;
+    selectedDelivery = initialValue;
   }
 
-  late ShippingMethod _selectedDelivery;
+  late ShippingMethod selectedDelivery;
 
   final Map<ShippingMethod, String> _buttonsOptions = {
     ShippingMethod.pickup: 'Domicilio',
     ShippingMethod.delivery: 'Punto de entrega',
   };
 
-  /// Devuelve el tipo de delivery seleccionado [_selectedDelivery]
-  ShippingMethod get deliverySelected => _selectedDelivery;
-
   /// Recibe un [ShippingMethod] y actualiza el tipo de delivery de la donacion.
   void onChangeSelected(ShippingMethod newValue) {
-    logWarn('SegmentedButton Envio ${newValue.name}');
-    _selectedDelivery = newValue;
-    onChangeTypeDelivery(_selectedDelivery);
+    selectedDelivery = newValue;
+    onChangeTypeDelivery(selectedDelivery);
     rebuildUi();
   }
 
@@ -52,7 +47,7 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
                     ? PhosphorIcons.bold.mapPinLine
                     : PhosphorIcons.bold.houseLine,
                 size: 18,
-                color: (shippingType == _selectedDelivery)
+                color: (shippingType == selectedDelivery)
                     ? Colors.white
                     : CustomStylesTheme.blackColor,
               ),
@@ -62,7 +57,7 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
               Text(
                 label,
                 style: CustomStylesTheme.bold14_20.copyWith(
-                  color: (shippingType == _selectedDelivery)
+                  color: (shippingType == selectedDelivery)
                       ? Colors.white
                       : CustomStylesTheme.blackColor,
                 ),

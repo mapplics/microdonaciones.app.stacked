@@ -25,7 +25,7 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
           style: CustomStylesTheme.bold16_20,
           textAlign: TextAlign.left,
         ),
-        ...viewModel.products
+        ...viewModel.donationItems
             .map((e) => Column(
                   children: [
                     const Padding(

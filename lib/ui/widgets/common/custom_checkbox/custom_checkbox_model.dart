@@ -6,18 +6,15 @@ class CustomCheckboxModel extends BaseViewModel {
 
   CustomCheckboxModel(this.onchange);
 
-  bool _checkboxValue = false;
-
-  /// Devuelve el valor del checkbox [_checkboxValue]
-  bool get checkboxValue => _checkboxValue;
+  bool checkboxValue = false;
 
   /// Invierte el valor del checkbox y envia el nuevo valor al padre.
   void toggleCheckbox() {
-    _checkboxValue = !_checkboxValue;
+    checkboxValue = !checkboxValue;
 
     rebuildUi();
 
     /// Envio el nuevo valor al padre.
-    onchange(_checkboxValue);
+    onchange(checkboxValue);
   }
 }

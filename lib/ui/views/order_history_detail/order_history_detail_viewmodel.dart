@@ -9,8 +9,10 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
 
   OrderHistoryDetailViewModel(this.orderHistory);
 
+  /// Devuelve el historial de ordenes.
   BaseHistoryOrder get order => orderHistory;
 
+  /// Devuelve el historial de ordenes.
   DeliveryHistoryOrder? get deliveryOrder {
     if (ShippingMethod.delivery == orderHistory.shippingMethod) {
       return orderHistory as DeliveryHistoryOrder;
