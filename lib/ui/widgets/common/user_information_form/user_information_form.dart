@@ -5,7 +5,7 @@ import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-import '../custom_text_field/custom_input_text.dart';
+import '../../forms/custom_text_field/custom_input_text.dart';
 import '../user_avatar/user_avatar.dart';
 import 'user_information_form_model.dart';
 

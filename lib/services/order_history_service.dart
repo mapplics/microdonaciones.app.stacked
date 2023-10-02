@@ -5,7 +5,7 @@ import 'package:microdonations/core/interceptor/dio.interceptor.dart';
 import 'package:microdonations/core/models/delivery_history_order.model.dart';
 import 'package:microdonations/core/models/pickup_history_order.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
-import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 
 class OrderHistoryService {
   final _dio = DioClient().dio;

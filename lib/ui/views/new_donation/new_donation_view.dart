@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
-import 'package:microdonations/ui/widgets/common/donation_item_quantity/donation_item_quantity.dart';
-import 'package:microdonations/ui/widgets/common/donation_items_selector/donation_items_selector.dart';
 import 'package:microdonations/ui/widgets/common/dot_indicator/dot_indicator_model.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
-import 'package:microdonations/ui/widgets/common/new_donation_detail/new_donation_detail.dart';
+import 'package:microdonations/ui/widgets/new_donation/new_donation_detail/new_donation_detail.dart';
+import 'package:microdonations/ui/widgets/new_donation/new_donation_item_quantity/new_donation_item_quantity.dart';
+import 'package:microdonations/ui/widgets/new_donation/new_donation_items_selector/new_donation_items_selector.dart';
+import 'package:microdonations/ui/widgets/new_donation/new_donation_shipping_method/new_donation_shipping_method.dart';
 import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.dart';
 import 'package:microdonations/ui/widgets/common/wrapper_http_loading/wrapper_http_loading.dart';
 import 'package:stacked/stacked.dart';
@@ -41,10 +41,10 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                 controller: viewModel.pageController,
                 onPageChanged: viewModel.onPageChange,
                 children: const [
-                  DonationItemsSelector(),
-                  DonationItemQuantity(),
-                  SelectDeliveryMethodView(),
-                  NewDonationDetail(),
+                  NewDonationItemsSelector(),
+                  NewDonationItemQuantity(),
+                  NewDonationShippingMethod(),
+                  NewDonationSummary(),
                 ],
               ),
               Padding(

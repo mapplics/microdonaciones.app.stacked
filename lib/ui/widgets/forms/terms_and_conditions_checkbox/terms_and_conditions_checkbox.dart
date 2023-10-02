@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
-import 'package:microdonations/ui/widgets/common/custom_checkbox/custom_checkbox.dart';
-import 'package:microdonations/ui/widgets/common/terms_and_conditions_checkbox/terms_and_conditions_checkbox_model.dart';
+import 'package:microdonations/ui/widgets/forms/custom_checkbox/custom_checkbox.dart';
+import 'package:microdonations/ui/widgets/forms/terms_and_conditions_checkbox/terms_and_conditions_checkbox_model.dart';
 import 'package:stacked/stacked.dart';
 
 class TermsAndConditionsCheckbox

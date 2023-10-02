@@ -1,3 +1,4 @@
+import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
@@ -9,10 +10,9 @@ import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SelectDeliveryMethodViewModel extends ReactiveViewModel {
+class DonationShippingMethodModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _newDonationDataService = locator<NewDonationDataService>();
   final _userService = locator<UserService>();

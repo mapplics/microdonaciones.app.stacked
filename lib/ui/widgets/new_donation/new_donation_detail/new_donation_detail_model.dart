@@ -5,7 +5,7 @@ import 'package:microdonations/core/models/pickup_new_donation.model.dart';
 import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
 class NewDonationDetailModel extends BaseViewModel {

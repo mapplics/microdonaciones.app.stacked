@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/widgets/common/terms_and_conditions_checkbox/terms_and_conditions_checkbox.dart';
+import 'package:microdonations/ui/widgets/forms/terms_and_conditions_checkbox/terms_and_conditions_checkbox.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../core/parameters/create_account_view.parameters.model.dart';

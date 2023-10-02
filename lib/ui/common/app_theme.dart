@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/common/label_field/label_field.dart';
+import 'package:microdonations/ui/widgets/forms/label_field/label_field.dart';
 
 class CustomStylesTheme {
   /// Colors

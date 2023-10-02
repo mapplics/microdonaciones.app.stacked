@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/delivery_appointment_form/delivery_appointment_form.dart';
-import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons.dart';
+import 'package:microdonations/ui/widgets/new_donation/delivery_appointment_form/delivery_appointment_form.dart';
+import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
 import 'package:stacked/stacked.dart';

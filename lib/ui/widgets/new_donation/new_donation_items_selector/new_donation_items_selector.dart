@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/ui/widgets/common/donation_item_card/donation_item_card.dart';
+import 'package:microdonations/ui/widgets/new_donation/donation_item_card/donation_item_card.dart';
 import 'package:stacked/stacked.dart';
 
-import 'donation_items_selector_model.dart';
+import 'new_donation_items_selector_model.dart';
 
-class DonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
-  const DonationItemsSelector({super.key});
+class NewDonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
+  const NewDonationItemsSelector({super.key});
 
   @override
   Widget builder(

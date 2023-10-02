@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/quantity_picker/quantity_picker.dart';
+import 'package:microdonations/ui/widgets/new_donation/quantity_picker/quantity_picker.dart';
 import 'package:stacked/stacked.dart';
 
-import 'donation_item_quantity_model.dart';
+import 'new_donation_item_quantity_model.dart';
 
-class DonationItemQuantity extends StackedView<DonationItemQuantityModel> {
-  const DonationItemQuantity({super.key});
+class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
+  const NewDonationItemQuantity({super.key});
 
   @override
   Widget builder(

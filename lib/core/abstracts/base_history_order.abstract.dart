@@ -1,6 +1,6 @@
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/order_state.model.dart';
-import 'package:microdonations/ui/widgets/common/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 
 abstract class BaseHistoryOrder {
   final int orderId;

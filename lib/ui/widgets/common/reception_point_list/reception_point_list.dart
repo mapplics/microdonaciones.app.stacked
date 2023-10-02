@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/custom_radio_list_tile/custom_radio_list_tile.dart';
+import 'package:microdonations/ui/widgets/forms/custom_radio_list_tile/custom_radio_list_tile.dart';
 import 'package:stacked/stacked.dart';
 
 import 'reception_point_list_model.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/common/label_field/label_field.dart';
+import 'package:microdonations/ui/widgets/forms/label_field/label_field.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 

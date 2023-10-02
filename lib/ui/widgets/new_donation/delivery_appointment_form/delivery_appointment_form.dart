@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
-import 'package:microdonations/ui/widgets/common/custom_dropdown/custom_dropdown.dart';
-import 'package:microdonations/ui/widgets/common/weekday_picker/weekday_picker.dart';
+import 'package:microdonations/ui/widgets/forms/custom_dropdown/custom_dropdown.dart';
+import 'package:microdonations/ui/widgets/forms/weekday_picker/weekday_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 

@@ -4,9 +4,9 @@ import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
-import 'package:microdonations/ui/widgets/common/empty_state/empty_state.dart';
-import 'package:microdonations/ui/widgets/common/empty_state_with_button/empty_state_with_button.dart';
-import 'package:microdonations/ui/widgets/common/order_history_tile/order_history_tile.dart';
+import 'package:microdonations/ui/widgets/empty_states/empty_state/empty_state.dart';
+import 'package:microdonations/ui/widgets/empty_states/empty_state_with_button/empty_state_with_button.dart';
+import 'package:microdonations/ui/widgets/order_history/order_history_tile/order_history_tile.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
