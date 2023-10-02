@@ -12,15 +12,15 @@ import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.d
 import 'package:microdonations/ui/widgets/common/wrapper_http_loading/wrapper_http_loading.dart';
 import 'package:stacked/stacked.dart';
 
-import 'make_a_donation_viewmodel.dart';
+import 'new_donation_viewmodel.dart';
 
-class MakeADonationView extends StackedView<MakeADonationViewModel> {
-  const MakeADonationView({Key? key}) : super(key: key);
+class NewDonationView extends StackedView<NewDonationViewModel> {
+  const NewDonationView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    MakeADonationViewModel viewModel,
+    NewDonationViewModel viewModel,
     Widget? child,
   ) {
     return WillPopScope(
@@ -128,20 +128,20 @@ class MakeADonationView extends StackedView<MakeADonationViewModel> {
   }
 
   @override
-  void onViewModelReady(MakeADonationViewModel viewModel) {
+  void onViewModelReady(NewDonationViewModel viewModel) {
     viewModel.initNewDonation();
     super.onViewModelReady(viewModel);
   }
 
   @override
-  void onDispose(MakeADonationViewModel viewModel) {
+  void onDispose(NewDonationViewModel viewModel) {
     viewModel.disposeService();
     super.onDispose(viewModel);
   }
 
   @override
-  MakeADonationViewModel viewModelBuilder(
+  NewDonationViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      MakeADonationViewModel();
+      NewDonationViewModel();
 }

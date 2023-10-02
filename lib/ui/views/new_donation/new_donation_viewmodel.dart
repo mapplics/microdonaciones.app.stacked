@@ -9,7 +9,7 @@ import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class MakeADonationViewModel extends ReactiveViewModel {
+class NewDonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _navigationService = locator<NavigationService>();
   final _ongService = locator<OngService>();

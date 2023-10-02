@@ -17,7 +17,7 @@ import 'package:microdonations/ui/views/donation_history/donation_history_view.d
     as _i11;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
-import 'package:microdonations/ui/views/make_a_donation/make_a_donation_view.dart'
+import 'package:microdonations/ui/views/new_donation/new_donation_view.dart'
     as _i8;
 import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_confirmed_view.dart'
     as _i10;
@@ -45,7 +45,7 @@ class Routes {
 
   static const createAccountView = '/create-account-view';
 
-  static const makeADonationView = '/make-adonation-view';
+  static const newDonationView = '/new-donation-view';
 
   static const selectDeliveryMethodView = '/select-delivery-method-view';
 
@@ -62,7 +62,7 @@ class Routes {
     onboardingView,
     personalInformationView,
     createAccountView,
-    makeADonationView,
+    newDonationView,
     selectDeliveryMethodView,
     newDonationConfirmedView,
     donationHistoryView,
@@ -97,8 +97,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i7.CreateAccountView,
     ),
     _i1.RouteDef(
-      Routes.makeADonationView,
-      page: _i8.MakeADonationView,
+      Routes.newDonationView,
+      page: _i8.NewDonationView,
     ),
     _i1.RouteDef(
       Routes.selectDeliveryMethodView,
@@ -160,9 +160,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i8.MakeADonationView: (data) {
+    _i8.NewDonationView: (data) {
       return _i13.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.MakeADonationView(),
+        builder: (context) => const _i8.NewDonationView(),
         settings: data,
       );
     },
@@ -374,14 +374,14 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToMakeADonationView([
+  Future<dynamic> navigateToNewDonationView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.makeADonationView,
+    return navigateTo<dynamic>(Routes.newDonationView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -540,14 +540,14 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithMakeADonationView([
+  Future<dynamic> replaceWithNewDonationView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.makeADonationView,
+    return replaceWith<dynamic>(Routes.newDonationView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
