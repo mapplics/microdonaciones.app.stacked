@@ -10,7 +10,6 @@ class RangeTime {
   });
 
   static RangeTime createOne(Map<String, dynamic> data) {
-    print(data);
     return RangeTime(
       id: data['id'],
       start: data['timeOpen'],

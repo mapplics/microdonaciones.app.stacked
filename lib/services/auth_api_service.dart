@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:microdonations/core/interceptor/dio.interceptor.dart';
 import 'package:microdonations/core/models/social_login_response.model.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 class AuthApiService {
   final dio = DioClient().dio;
@@ -12,6 +13,7 @@ class AuthApiService {
   /// Envia el email y el token de Google.
   Future<SocialLoginResponse> login(String email, String token) async {
     try {
+      logWarn('${_apiUrl}social-login');
       final response = await dio.post(
         '${_apiUrl}social-login',
         data: {

@@ -34,8 +34,8 @@ class CustomTile extends StackedView<CustomTileModel> {
         label,
         style: CustomStylesTheme.regular14_20,
       ),
-      trailing: Icon(
-        PhosphorIcons.light.caretRight,
+      trailing: const Icon(
+        PhosphorIcons.caretRightLight,
         color: CustomStylesTheme.blackColor,
       ),
       onTap: () => action(),

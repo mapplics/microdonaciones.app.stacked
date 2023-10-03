@@ -44,8 +44,8 @@ class DeliverySegmentedButtonsModel extends BaseViewModel {
             children: [
               Icon(
                 (ShippingMethod.delivery == shippingType)
-                    ? PhosphorIcons.bold.mapPinLine
-                    : PhosphorIcons.bold.houseLine,
+                    ? PhosphorIcons.mapPinLineBold
+                    : PhosphorIcons.houseLineBold,
                 size: 18,
                 color: (shippingType == selectedDelivery)
                     ? Colors.white

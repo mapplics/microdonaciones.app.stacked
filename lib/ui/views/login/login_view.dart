@@ -48,8 +48,8 @@ class LoginView extends StackedView<LoginViewModel> {
                 width: 260,
                 child: CustomOutlineButton(
                   label: 'Ingresar con Google',
-                  icon: Icon(
-                    PhosphorIcons.fill.googleLogo,
+                  icon: const Icon(
+                    PhosphorIcons.googleLogoFill,
                     color: CustomStylesTheme.tertiaryColor,
                     size: 30.0,
                   ),

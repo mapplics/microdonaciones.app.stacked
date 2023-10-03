@@ -209,8 +209,8 @@ class MessegeHelper {
                     onTap: () {
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     },
-                    child: Icon(
-                      PhosphorIcons.light.x, //,
+                    child: const Icon(
+                      PhosphorIcons.xLight, //,
                       color: CustomStylesTheme.gray100,
                     ),
                   ),
@@ -241,7 +241,7 @@ class MessegeHelper {
       context,
       message,
       CustomStylesTheme.errorColor,
-      PhosphorIcons.bold.warningOctagon,
+      PhosphorIcons.warningOctagonBold,
       marginBottom: marginBottom,
     );
   }
@@ -256,7 +256,7 @@ class MessegeHelper {
       context,
       message,
       CustomStylesTheme.secondaryColor,
-      PhosphorIcons.bold.info,
+      PhosphorIcons.infoBold,
       marginBottom: marginBottom,
     );
   }
@@ -271,7 +271,7 @@ class MessegeHelper {
       context,
       message,
       CustomStylesTheme.sucessColor,
-      PhosphorIcons.bold.checkCircle,
+      PhosphorIcons.checkCircleBold,
       marginBottom: marginBottom,
     );
   }

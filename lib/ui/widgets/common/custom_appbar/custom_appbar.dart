@@ -64,15 +64,15 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
                           ),
                           child: InkWell(
                             onTap: viewModel.navigateToLogin,
-                            child: IconButton.filled(
+                            child: const IconButton.filled(
                               onPressed: null,
-                              style: const ButtonStyle(
+                              style: ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(
                                   CustomStylesTheme.secondaryColor,
                                 ),
                               ),
                               icon: Icon(
-                                PhosphorIcons.bold.user,
+                                PhosphorIcons.userBold,
                                 color: Colors.white,
                               ),
                             ),

@@ -46,7 +46,9 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: CustomOutlineButton(
                       label: 'MÁS INFORMACIÓN',
-                      action: () {},
+                      action: () {
+                        // https://docs.google.com/forms/d/1xu6Dbfp6M_SUyJBCMQLIsNnx28uBQxiGQU9vdoXx8qY/viewform?edit_requested=true
+                      },
                       mainColor: Colors.white,
                       textStyle: CustomStylesTheme.regular14_16.copyWith(
                         color: Colors.white,

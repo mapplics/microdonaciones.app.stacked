@@ -37,8 +37,8 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
                 CustomStylesTheme.gray400,
               ),
             ),
-            icon: Icon(
-              PhosphorIcons.bold.minus,
+            icon: const Icon(
+              PhosphorIcons.minusBold,
               color: CustomStylesTheme.lightGreyColor,
               size: 12.0,
             ),
@@ -66,8 +66,8 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
                 CustomStylesTheme.gray400,
               ),
             ),
-            icon: Icon(
-              PhosphorIcons.bold.plus,
+            icon: const Icon(
+              PhosphorIcons.plusBold,
               color: CustomStylesTheme.lightGreyColor,
               size: 12.0,
             ),

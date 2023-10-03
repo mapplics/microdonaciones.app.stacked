@@ -41,10 +41,10 @@ class NewDonationConfirmedView
               style: CustomStylesTheme.regular14_16,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 45.0),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 45.0),
             child: Icon(
-              PhosphorIcons.bold.checkCircle,
+              PhosphorIcons.checkCircleBold,
               color: CustomStylesTheme.tertiaryColor,
               size: 140,
             ),

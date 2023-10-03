@@ -47,9 +47,9 @@ class PickupWeekDayRange {
   static List<RangeTime> _parseRangeTimes(List<dynamic> data) {
     List<RangeTime> range = [];
 
-    data.forEach((element) {
+    for (var element in data) {
       range.add(RangeTime.createOne(element));
-    });
+    }
 
     return range;
   }

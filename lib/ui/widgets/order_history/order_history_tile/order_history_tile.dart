@@ -32,8 +32,8 @@ class OrderHistoryTile extends StackedView<OrderHistoryTileModel> {
           ),
           child: Icon(
             viewModel.isDeliveryOrder(orderHistory)
-                ? PhosphorIcons.light.mapPinLine
-                : PhosphorIcons.light.houseLine,
+                ? PhosphorIcons.mapPinLineLight
+                : PhosphorIcons.houseLineLight,
             color: CustomStylesTheme.backgroundColor,
             size: CustomStylesTheme.iconSizeLg,
           ),
@@ -46,8 +46,8 @@ class OrderHistoryTile extends StackedView<OrderHistoryTileModel> {
           orderHistory.orderState.name,
           style: CustomStylesTheme.regular14_16,
         ),
-        trailing: Icon(
-          PhosphorIcons.light.caretRight,
+        trailing: const Icon(
+          PhosphorIcons.caretRightLight,
         ),
         onTap: () {
           viewModel.showOrderDetail(orderHistory);

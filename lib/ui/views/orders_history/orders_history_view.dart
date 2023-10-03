@@ -37,17 +37,17 @@ class OrdersHistoryView extends StackedView<OrdersHistoryViewModel> {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: OrderHistoryTile(orderHistory: item),
             ),
-            noItemsFoundIndicatorBuilder: (_) => EmptyState(
+            noItemsFoundIndicatorBuilder: (_) => const EmptyState(
               title: 'No hay donaciones para mostrar',
               body:
                   'Cuando hayas realizado alguna donación te las mostraremos aqui.',
-              icon: PhosphorIcons.light.question,
+              icon: PhosphorIcons.questionLight,
               colorIcon: CustomStylesTheme.warningColor,
             ),
             firstPageErrorIndicatorBuilder: (_) => EmptyStateWithButton(
               title: 'Tuvimos un problema para mostrar tus donaciones',
               body: 'Por favor, volve a intentarlo mas tarde.',
-              icon: PhosphorIcons.light.xCircle,
+              icon: PhosphorIcons.xCircleLight,
               colorIcon: CustomStylesTheme.errorColor,
               textButton: 'Volver a intentar',
               buttonAction: viewModel.refresHistoy,
