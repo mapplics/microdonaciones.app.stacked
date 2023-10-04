@@ -122,6 +122,7 @@ class NewDonationShippingMethod
                   ),
                 if (viewModel.isDelivery)
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Puntos de entrega para dejar tu donación',
