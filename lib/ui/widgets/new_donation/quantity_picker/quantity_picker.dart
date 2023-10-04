@@ -25,8 +25,8 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
     return Row(
       children: [
         SizedBox(
-          width: 30,
-          height: 30,
+          width: 35,
+          height: 35,
           child: IconButton.filled(
             onPressed: viewModel.substractOne,
             style: const ButtonStyle(
@@ -54,8 +54,8 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
           ),
         ),
         SizedBox(
-          width: 30,
-          height: 30,
+          width: 35,
+          height: 35,
           child: IconButton.filled(
             onPressed: viewModel.addOne,
             style: const ButtonStyle(
