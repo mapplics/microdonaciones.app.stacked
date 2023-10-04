@@ -68,6 +68,10 @@ class PickupDonation extends BaseNewDonation {
     _userAddress = null;
   }
 
+  String _formatearNumero(int day) {
+    return (day < 10) ? '0$day' : day.toString();
+  }
+
   @override
   toJson() {
     return {
@@ -76,7 +80,8 @@ class PickupDonation extends BaseNewDonation {
       "address_id": _userAddress!.id,
       "range_time_id": _rangeId,
       "weekday_id": _weekdayId,
-      "date": '${_pickupDate!.year}${_pickupDate!.month}${_pickupDate!.day}',
+      "date":
+          '${_pickupDate!.year}${_pickupDate!.month}${_formatearNumero(_pickupDate!.day)}',
       "products": donationItemsDetail.donationsItemsList
           .map(
             (donationItem) => {
