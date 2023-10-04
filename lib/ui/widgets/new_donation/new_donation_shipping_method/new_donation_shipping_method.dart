@@ -52,7 +52,7 @@ class NewDonationShippingMethod
                   Column(
                     children: [
                       Text(
-                        'Te informamos que de momento solamente podemos retirar tu donación si te encuentras dentro de la siguiente zona.\nCaso contrario te pedimos que envies tu donación a un punto de entrega.',
+                        'Te informamos que, de momento, solamente podemos retirar tu donación si te encuentras dentro de la siguiente zona. Caso contrario, te pedimos que envíes tu donación a un punto de entrega.',
                         style: CustomStylesTheme.regular14_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
