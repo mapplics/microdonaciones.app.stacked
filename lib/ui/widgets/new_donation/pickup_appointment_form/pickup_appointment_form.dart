@@ -6,14 +6,13 @@ import 'package:microdonations/ui/widgets/forms/weekday_picker/weekday_picker.da
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
-import 'delivery_appointment_form_model.dart';
+import 'pickup_appointment_form_model.dart';
 
-class DeliveryAppointmentForm
-    extends StackedView<DeliveryAppointmentFormModel> {
+class PickupAppointmentForm extends StackedView<DeliveryAppointmentFormModel> {
   final OnChangeForm onchange;
   final FormGroup? form;
 
-  const DeliveryAppointmentForm({required this.onchange, this.form, super.key});
+  const PickupAppointmentForm({required this.onchange, this.form, super.key});
 
   @override
   Widget builder(
