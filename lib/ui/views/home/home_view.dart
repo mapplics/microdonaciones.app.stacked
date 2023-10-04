@@ -41,11 +41,12 @@ class HomeView extends StackedView<HomeViewModel> {
                     'assets/logos/ic_logorosa.svg',
                   ),
                 ),
-                SizedBox(
-                  width: (MediaQuery.of(context).size.width / 1.7),
-                  child: const Text(
+                const Flexible(
+                  child: Text(
                     'Aporta tu microdonacion y empezamos a generar un cambio',
                     style: CustomStylesTheme.regular14_20,
+                    overflow: TextOverflow.visible,
+                    maxLines: 5,
                   ),
                 ),
               ],
@@ -61,7 +62,7 @@ class HomeView extends StackedView<HomeViewModel> {
               right: 30,
             ),
             child: SizedBox(
-              width: (MediaQuery.of(context).size.width / 1.5),
+              width: double.infinity,
               child: CustomFillButton(
                 label: 'QUIERO DONAR',
                 textStyle: CustomStylesTheme.bold14_20.copyWith(
