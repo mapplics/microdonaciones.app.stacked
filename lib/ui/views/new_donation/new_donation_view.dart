@@ -63,56 +63,93 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                           ),
                         ),
                         child: Row(
-                          mainAxisAlignment: viewModel.canShowGoBackBtn
-                              ? MainAxisAlignment.spaceBetween
-                              : MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            if (viewModel.canShowGoBackBtn)
-                              Expanded(
-                                child: LinkButton(
-                                  label: 'Atras',
-                                  action: viewModel.previousPage,
-                                  textStyle:
-                                      CustomStylesTheme.regular16_20.copyWith(
-                                    color: CustomStylesTheme.lightGreyColor,
-                                  ),
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
+                              child: viewModel.canShowGoBackBtn
+                                  ? LinkButton(
+                                      label: 'Atras',
+                                      action: viewModel.previousPage,
+                                      textStyle: CustomStylesTheme.regular16_20
+                                          .copyWith(
+                                        color: CustomStylesTheme.lightGreyColor,
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                            ),
+                            Flexible(
+                              flex: 2,
+                              fit: FlexFit.tight,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 26.0),
+                                child: PageIndicator(
+                                  totalSlides: viewModel.numPages,
+                                  currentSlide: viewModel.currentSlide,
+                                  dotIndicatorSize: DotIndicatorSize.small,
                                 ),
                               ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 26.0),
-                                  child: PageIndicator(
-                                    totalSlides: viewModel.numPages,
-                                    currentSlide: viewModel.currentSlide,
-                                    dotIndicatorSize: DotIndicatorSize.small,
-                                  ),
-                                ),
-                                viewModel.isLastSlide
-                                    ? LinkButton(
-                                        label: 'Finalizar',
-                                        action: () =>
-                                            viewModel.createDonation(context),
-                                        textStyle: CustomStylesTheme.bold16_20
-                                            .copyWith(
-                                          color:
-                                              CustomStylesTheme.tertiaryColor,
-                                        ),
-                                      )
-                                    : LinkButton(
-                                        label: 'Siguiente',
-                                        action: () =>
-                                            viewModel.nextPage(context),
-                                        textStyle: CustomStylesTheme.bold16_20
-                                            .copyWith(
-                                          color:
-                                              CustomStylesTheme.tertiaryColor,
-                                        ),
-                                      ),
-                              ],
                             ),
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
+                              child: viewModel.isLastSlide
+                                  ? LinkButton(
+                                      label: 'Finalizar',
+                                      action: () =>
+                                          viewModel.createDonation(context),
+                                      textStyle:
+                                          CustomStylesTheme.bold16_20.copyWith(
+                                        color: CustomStylesTheme.tertiaryColor,
+                                      ),
+                                    )
+                                  : LinkButton(
+                                      label: 'Siguiente',
+                                      action: () => viewModel.nextPage(context),
+                                      textStyle:
+                                          CustomStylesTheme.bold16_20.copyWith(
+                                        color: CustomStylesTheme.tertiaryColor,
+                                      ),
+                                    ),
+                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //     Padding(
+                            //       padding: const EdgeInsets.symmetric(
+                            //           horizontal: 26.0),
+                            //       child: PageIndicator(
+                            //         totalSlides: viewModel.numPages,
+                            //         currentSlide: viewModel.currentSlide,
+                            //         dotIndicatorSize: DotIndicatorSize.small,
+                            //       ),
+                            //     ),
+                            //     viewModel.isLastSlide
+                            //         ? LinkButton(
+                            //             label: 'Finalizar',
+                            //             action: () =>
+                            //                 viewModel.createDonation(context),
+                            //             textStyle: CustomStylesTheme.bold16_20
+                            //                 .copyWith(
+                            //               color:
+                            //                   CustomStylesTheme.tertiaryColor,
+                            //             ),
+                            //           )
+                            //         : LinkButton(
+                            //             label: 'Siguiente',
+                            //             action: () =>
+                            //                 viewModel.nextPage(context),
+                            //             textStyle: CustomStylesTheme.bold16_20
+                            //                 .copyWith(
+                            //               color:
+                            //                   CustomStylesTheme.tertiaryColor,
+                            //             ),
+                            //           ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),
