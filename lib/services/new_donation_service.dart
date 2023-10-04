@@ -180,9 +180,6 @@ class NewDonationService with ListenableServiceMixin {
       _updatePickupTime(pickupValue);
       _updatePickupWeekday(pickupValue);
       _updatePickupDate(dayValue);
-
-      logSucess(_pickupDonation.weekday ?? 'no hay');
-      logSucess(_pickupDonation.pickupDate ?? 'no hay');
     }
   }
 
