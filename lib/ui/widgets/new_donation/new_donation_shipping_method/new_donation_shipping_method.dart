@@ -79,7 +79,7 @@ class NewDonationShippingMethod
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Vamos a retirar tu donación por',
+                              'Vamos a retirar tu donación',
                               style: CustomStylesTheme.bold16_20.copyWith(
                                 color: CustomStylesTheme.blackColor,
                               ),
