@@ -30,6 +30,6 @@ class HomeViewModel extends ReactiveViewModel {
   }
 
   void goToDonationHistory() {
-    _navigationService.replaceWithOrdersHistoryView();
+    _navigationService.navigateToOrdersHistoryView();
   }
 }
