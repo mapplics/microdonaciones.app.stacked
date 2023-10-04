@@ -35,8 +35,6 @@ class StartupViewModel extends BaseViewModel {
         if (_authService.authModel != null) {
           /// Recupero el perfil
           _userService.setLoggedUser = await _userService.getProfile();
-
-          logInfo('Autologin Exitoso');
         }
       } catch (e) {
         logError('Fallo AutoLogin ${e.toString()}');
