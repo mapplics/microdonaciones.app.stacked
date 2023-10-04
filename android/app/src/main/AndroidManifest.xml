@@ -20,7 +20,7 @@
     </intent>
     </queries>
     <application
-        android:label="microdonations"
+        android:label="MicroDonaciones"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
