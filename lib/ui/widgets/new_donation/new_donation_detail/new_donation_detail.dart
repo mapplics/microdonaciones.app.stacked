@@ -35,7 +35,7 @@ class NewDonationSummary extends StackedView<NewDonationDetailModel> {
           receptionPoint: viewModel.receptionPoint,
           type: viewModel.shippingMethod,
           userAddress: viewModel.userAddres,
-          range: viewModel.shippingMethod == ShippingMethod.pickup
+          pickupDetail: viewModel.shippingMethod == ShippingMethod.pickup
               ? viewModel.presentation
               : null,
         ),

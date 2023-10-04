@@ -72,15 +72,8 @@ class OrderHistoryDetailView extends StackedView<OrderHistoryDetailViewModel> {
             receptionPoint: viewModel.deliveryOrder?.receptionPoint,
             type: viewModel.order.shippingMethod,
             userAddress: viewModel.pickupDonation?.address,
-            range: viewModel.pickupDonation != null
-                ? PickupWeekDayRangePresentation.createOne(
-                    PickupWeekDayRange(
-                      weekday: viewModel.pickupDonation!.weekday,
-                      ranges: [viewModel.pickupDonation!.range],
-                    ),
-                    viewModel.pickupDonation!.range,
-                  )
-                : null,
+            pickupDetail:
+                viewModel.pickupDonation != null ? 'Dato no disponible' : null,
           ),
         ],
       ),

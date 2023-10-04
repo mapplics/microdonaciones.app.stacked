@@ -97,7 +97,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Devuelve el detalle del delivery.
   /// Muestra el dia, horario y direccion en donde se va a hacer.
-  String get deliveryDetail => _newDonationService.deliveryDetail;
+  String get deliveryDetail => _newDonationService.pickupTimeDetail;
 
   /// Resetea el formulario para retiro a domicilio
   void resetPickupAppointmentForm() {

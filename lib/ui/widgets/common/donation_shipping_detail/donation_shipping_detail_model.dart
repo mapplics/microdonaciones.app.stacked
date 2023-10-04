@@ -1,5 +1,4 @@
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
@@ -8,7 +7,7 @@ class DonationShippingDetailModel extends BaseViewModel {
   final String? userAddress;
   final ReceptionPoint? receptionPoint;
   final ShippingMethod type;
-  final PickupWeekDayRangePresentation? pickupPresentation;
+  final String? pickupPresentation;
 
   DonationShippingDetailModel({
     required this.userAddress,
@@ -41,7 +40,7 @@ class DonationShippingDetailModel extends BaseViewModel {
 
   String get deliveryTime {
     if (type == ShippingMethod.pickup) {
-      return pickupPresentation!.label.capitalize();
+      return pickupPresentation!.capitalize();
     } else {
       return receptionPoint!.extraInfo.capitalize();
     }

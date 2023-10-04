@@ -5,11 +5,8 @@ import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_new_donation.model.dart';
-import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
-import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
-import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
@@ -54,27 +51,6 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Devuelve el tipo de delivery que eligio el donante.
   ShippingMethod get deliveryTypeValue => _shippingMethod;
-
-  /// Devuelve una instancia de [PickupWeekDayRangePresentation] que permite
-  /// detallar la hora y dia que el usuario selecciono para que retiren
-  /// su donación.
-  PickupWeekDayRangePresentation? get pickupPresentation {
-    final pickupRange = _newDonationData.pickupRange;
-    PickupWeekDayRange _weekDay;
-    RangeTime _rangeTime;
-
-    _weekDay = pickupRange
-        .firstWhere((weekday) => weekday.weekday.id == _pickupDonation.weekday);
-
-    _rangeTime = _weekDay.ranges.firstWhere(
-      (element) => element.id == _pickupDonation.rangeId,
-    );
-
-    return PickupWeekDayRangePresentation.createOne(
-      _weekDay,
-      _rangeTime,
-    );
-  }
 
   /// Inicializa el proceso de donacion.
   /// Siempre se debe llamar este metodo antes que cualquier otro.
@@ -189,7 +165,7 @@ class NewDonationService with ListenableServiceMixin {
   }
 
   ///
-  String get deliveryDetail {
+  String get pickupTimeDetail {
     if (_pickupAppointmentForm?.invalid ?? false) {
       return 'DeliveryDetailInvalid';
     } else {

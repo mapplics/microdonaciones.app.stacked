@@ -28,4 +28,26 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
       return null;
     }
   }
+
+//   String get pickupTimeDetail {
+//     // final day = ReactiveFormHelper.getControlValue(
+//     //   _pickupAppointmentForm!,
+//   //   DeliveryAppointmentFormFields.day.name,
+//     // ) as DateTime;
+
+//     // final time = ReactiveFormHelper.getControlValue(
+//     //   _pickupAppointmentForm!,
+//     //   DeliveryAppointmentFormFields.time.name,
+//     // ) as PickupDropdownValue;
+
+//     final weekday = _newDonationData.pickupRange
+//         .firstWhere((element) => element.weekday.id == time.weekdayId);
+
+//     final weekdayTime =
+//         weekday.ranges.firstWhere((element) => element.id == time.rangeTimeId);
+
+// pickupDonation!.
+
+//     return 'El día ${pickupDonation!.weekday.name} ${DateTimeHelper.formatDateTime(day)} entre las ${weekdayTime.betweenTime}.';
+//   }
 }

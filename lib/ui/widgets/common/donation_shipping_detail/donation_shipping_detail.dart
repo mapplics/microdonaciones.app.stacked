@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
@@ -11,13 +10,13 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
   final String? userAddress;
   final ReceptionPoint? receptionPoint;
   final ShippingMethod type;
-  final PickupWeekDayRangePresentation? range;
+  final String? pickupDetail;
 
   const DonationShippingDetail({
     required this.userAddress,
     required this.receptionPoint,
     required this.type,
-    required this.range,
+    required this.pickupDetail,
     super.key,
   });
 
@@ -67,7 +66,7 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
     BuildContext context,
   ) =>
       DonationShippingDetailModel(
-        pickupPresentation: range,
+        pickupPresentation: pickupDetail,
         receptionPoint: receptionPoint,
         type: type,
         userAddress: userAddress,
