@@ -50,7 +50,7 @@ class NewDonationConfirmedView
             ),
           ),
           SizedBox(
-            width: 220,
+            width: double.infinity,
             child: CustomFillButton(
               label: 'Ir al inicio',
               action: viewModel.goHome,
