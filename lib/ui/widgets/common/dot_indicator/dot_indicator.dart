@@ -26,7 +26,6 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
   ) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
       height: viewModel.getIndicatorSize,
       width: viewModel.getIndicatorSize,
       decoration: BoxDecoration(

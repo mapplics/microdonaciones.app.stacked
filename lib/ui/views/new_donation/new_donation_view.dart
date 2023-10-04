@@ -81,16 +81,12 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                                   : const SizedBox(),
                             ),
                             Flexible(
-                              flex: 2,
+                              flex: 1,
                               fit: FlexFit.tight,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 26.0),
-                                child: PageIndicator(
-                                  totalSlides: viewModel.numPages,
-                                  currentSlide: viewModel.currentSlide,
-                                  dotIndicatorSize: DotIndicatorSize.small,
-                                ),
+                              child: PageIndicator(
+                                totalSlides: viewModel.numPages,
+                                currentSlide: viewModel.currentSlide,
+                                dotIndicatorSize: DotIndicatorSize.small,
                               ),
                             ),
                             Flexible(
