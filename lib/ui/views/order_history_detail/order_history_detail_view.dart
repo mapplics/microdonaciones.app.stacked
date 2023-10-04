@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
-import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
-import 'package:microdonations/core/models/pickup_weekday_range_presentation.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';

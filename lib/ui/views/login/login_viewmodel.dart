@@ -5,7 +5,6 @@ import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/models/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/views/home/home_view.dart';
 import 'package:stacked/stacked.dart';
