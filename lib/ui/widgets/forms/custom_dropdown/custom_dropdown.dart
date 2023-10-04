@@ -57,7 +57,7 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
             ),
           ),
           style: CustomStylesTheme.regular14_20.copyWith(
-            color: CustomStylesTheme.tertiaryColor,
+            color: CustomStylesTheme.blackColor,
           ),
         )
       ],
