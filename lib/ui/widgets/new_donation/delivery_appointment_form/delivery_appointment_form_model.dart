@@ -138,7 +138,7 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
           numberDay = 3;
           break;
         case 'j':
-          numberDay = -4;
+          numberDay = 4;
           break;
         case 'v':
           numberDay = 5;
