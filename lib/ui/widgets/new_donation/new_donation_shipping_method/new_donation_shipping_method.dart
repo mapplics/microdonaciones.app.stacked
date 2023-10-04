@@ -50,6 +50,7 @@ class NewDonationShippingMethod
               children: [
                 if (!viewModel.isDelivery)
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Te informamos que, de momento, solamente podemos retirar tu donación si te encuentras dentro de la siguiente zona. Caso contrario, te pedimos que envíes tu donación a un punto de entrega.',
