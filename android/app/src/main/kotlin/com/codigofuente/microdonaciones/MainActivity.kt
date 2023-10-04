@@ -1,4 +1,4 @@
-package com.example.microdonations
+package com.codigofuente.microdonaciones
 
 import io.flutter.embedding.android.FlutterActivity
 
