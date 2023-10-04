@@ -16,7 +16,6 @@ import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/ui/views/new_donation/new_donation_view.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/donation_item_api_service.dart';
-import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart';
 import 'package:microdonations/services/reception_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
@@ -36,7 +35,6 @@ import 'package:microdonations/services/ong_service.dart';
     MaterialRoute(page: PersonalInformationView),
     MaterialRoute(page: CreateAccountView),
     MaterialRoute(page: NewDonationView),
-    MaterialRoute(page: SelectDeliveryMethodView),
     MaterialRoute(page: NewDonationConfirmedView),
     MaterialRoute(page: OrdersHistoryView),
     MaterialRoute(page: OrderHistoryDetailView),
