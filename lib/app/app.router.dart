@@ -13,8 +13,6 @@ import 'package:microdonations/core/parameters/personal_information_view.paramet
     as _i14;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
-import 'package:microdonations/ui/views/orders_history/orders_history_view.dart'
-    as _i11;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
 import 'package:microdonations/ui/views/login/login_view.dart' as _i4;
 import 'package:microdonations/ui/views/new_donation/new_donation_view.dart'
@@ -24,6 +22,8 @@ import 'package:microdonations/ui/views/new_donation_confirmed/new_donation_conf
 import 'package:microdonations/ui/views/onboarding/onboarding_view.dart' as _i5;
 import 'package:microdonations/ui/views/order_history_detail/order_history_detail_view.dart'
     as _i12;
+import 'package:microdonations/ui/views/orders_history/orders_history_view.dart'
+    as _i11;
 import 'package:microdonations/ui/views/personal_information/personal_information_view.dart'
     as _i6;
 import 'package:microdonations/ui/views/select_delivery_method/select_delivery_method_view.dart'
@@ -51,7 +51,7 @@ class Routes {
 
   static const newDonationConfirmedView = '/new-donation-confirmed-view';
 
-  static const donationHistoryView = '/donation-history-view';
+  static const ordersHistoryView = '/orders-history-view';
 
   static const orderHistoryDetailView = '/order-history-detail-view';
 
@@ -65,7 +65,7 @@ class Routes {
     newDonationView,
     selectDeliveryMethodView,
     newDonationConfirmedView,
-    donationHistoryView,
+    ordersHistoryView,
     orderHistoryDetailView,
   };
 }
@@ -109,7 +109,7 @@ class StackedRouter extends _i1.RouterBase {
       page: _i10.NewDonationConfirmedView,
     ),
     _i1.RouteDef(
-      Routes.donationHistoryView,
+      Routes.ordersHistoryView,
       page: _i11.OrdersHistoryView,
     ),
     _i1.RouteDef(
@@ -416,14 +416,14 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToDonationHistoryView([
+  Future<dynamic> navigateToOrdersHistoryView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.donationHistoryView,
+    return navigateTo<dynamic>(Routes.ordersHistoryView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -582,14 +582,14 @@ extension NavigatorStateExtension on _i16.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithDonationHistoryView([
+  Future<dynamic> replaceWithOrdersHistoryView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.donationHistoryView,
+    return replaceWith<dynamic>(Routes.ordersHistoryView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
