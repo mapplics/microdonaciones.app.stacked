@@ -6,7 +6,7 @@ class RequiredOnlyText extends Validator<dynamic> {
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    RegExp regex = RegExp(r'^[a-zA-Z]+$');
+    final regex = RegExp(r'^[a-zA-Z\s]+$');
     return regex.hasMatch(control.value) ? null : {'onlyText': true};
   }
 }
