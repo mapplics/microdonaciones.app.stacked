@@ -70,8 +70,9 @@ class OrderHistoryDetailView extends StackedView<OrderHistoryDetailViewModel> {
             receptionPoint: viewModel.deliveryOrder?.receptionPoint,
             type: viewModel.order.shippingMethod,
             userAddress: viewModel.pickupDonation?.address,
-            pickupDetail:
-                viewModel.pickupDonation != null ? 'Dato no disponible' : null,
+            pickupDetail: viewModel.pickupDonation != null
+                ? viewModel.pickupTimeDetail
+                : null,
           ),
         ],
       ),

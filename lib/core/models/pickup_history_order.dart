@@ -10,11 +10,13 @@ class PickupHistoryOrder extends BaseHistoryOrder {
   final String address;
   final RangeTime range;
   final Weekday weekday;
+  final DateTime pickupDate;
 
   PickupHistoryOrder({
     required this.address,
     required this.range,
     required this.weekday,
+    required this.pickupDate,
     required super.orderId,
     required super.orderState,
     required super.products,
@@ -24,12 +26,14 @@ class PickupHistoryOrder extends BaseHistoryOrder {
 
   static PickupHistoryOrder createOne(Map<String, dynamic> data) {
     return PickupHistoryOrder(
-        orderId: data['id'],
-        address: data['address'],
-        products: DonationItem.createArray(data['products']),
-        range: RangeTime.createOne(data['rangeTime']),
-        orderState: OrderState.createOne(data['orderState']),
-        weekday: Weekday.createOne(data['weekday']),
-        createAt: DateTime.parse(data['createdAt']));
+      orderId: data['id'],
+      address: data['address'],
+      products: DonationItem.createArray(data['products']),
+      range: RangeTime.createOne(data['rangeTime']),
+      orderState: OrderState.createOne(data['orderState']),
+      weekday: Weekday.createOne(data['weekday']),
+      createAt: DateTime.parse(data['createdAt']),
+      pickupDate: DateTime.parse(data['date']),
+    );
   }
 }
