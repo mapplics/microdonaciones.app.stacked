@@ -1,3 +1,4 @@
+import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/core/models/update_address_request.model.dart';
 
 class UpdateUserRequest {
@@ -18,9 +19,9 @@ class UpdateUserRequest {
   /// Devuelve el JSON que se debe enviar a la API
   /// para actualizar los datos del usuario.
   Map<String, dynamic> toJson() => {
-        "firstname": firstname,
-        "lastname": lastname,
-        "phone": phone,
+        "firstname": firstname.superTrim(),
+        "lastname": lastname.superTrim(),
+        "phone": phone?.superTrim(),
         "address": address.toJson(),
         "image_base64": imageBase54
       };

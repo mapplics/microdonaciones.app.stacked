@@ -1,3 +1,5 @@
+import 'package:microdonations/core/extensions/string.extension.dart';
+
 import 'base_address.abstract.dart';
 
 /// Clase para enviar a la API y actualizar la direccion del usuario
@@ -38,10 +40,10 @@ class UpdateAddressRequest implements BaseAddress {
   /// direccion de un usuario.
   /// Este json se envia junto con la clase [UpdateUserRequest]
   Map<String, dynamic> toJson() => {
-        'address': address,
-        'floor': floor,
-        'apartment': apartment,
-        'latitude': latitude,
-        'longitude': longitude,
+        'address': address.superTrim(),
+        'floor': floor?.superTrim(),
+        'apartment': apartment?.superTrim(),
+        'latitude': latitude?.superTrim(),
+        'longitude': longitude?.superTrim(),
       };
 }

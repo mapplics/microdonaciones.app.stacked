@@ -22,4 +22,10 @@ extension StringExtension on String {
 
     return _normalized;
   }
+
+  /// Elimina el exceso de espacios y los remplaza por uno solo.
+  String superTrim() {
+    final regex = RegExp(r'\s+');
+    return replaceAll(regex, ' ');
+  }
 }
