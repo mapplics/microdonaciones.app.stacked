@@ -58,19 +58,14 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                       withPositionsColors: true,
                     ),
                   ),
-                  Column(
-                    children: [
-                      CustomOutlineButton(
-                        label: viewModel.isLastPage
-                            ? 'Omitir introducción'
-                            : 'Comenzar!',
-                        action: viewModel.navigateToHome,
-                        textStyle: CustomStylesTheme.bold14_20.copyWith(
-                          color: CustomStylesTheme.tertiaryColor,
-                        ),
+                  if (viewModel.isLastPage)
+                    CustomOutlineButton(
+                      label: 'Comenzar!',
+                      action: viewModel.navigateToHome,
+                      textStyle: CustomStylesTheme.bold14_20.copyWith(
+                        color: CustomStylesTheme.tertiaryColor,
                       ),
-                    ],
-                  ),
+                    ),
                 ],
               ),
             ),

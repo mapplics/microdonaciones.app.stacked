@@ -29,5 +29,5 @@ class OnboardingViewModel extends BaseViewModel {
   }
 
   /// Devuelve true si la slide que se esta mostrando es la ultima.
-  bool get isLastPage => (currentPage != (numSlides - 1));
+  bool get isLastPage => (currentPage == (numSlides - 1));
 }
