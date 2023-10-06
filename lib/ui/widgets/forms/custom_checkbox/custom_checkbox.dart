@@ -27,9 +27,12 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
       onTap: viewModel.toggleCheckbox,
       child: Row(
         children: [
-          Checkbox(
-            value: viewModel.checkboxValue,
-            onChanged: (_) => viewModel.toggleCheckbox(),
+          SizedBox(
+            width: 24,
+            child: Checkbox(
+              value: viewModel.checkboxValue,
+              onChanged: (_) => viewModel.toggleCheckbox(),
+            ),
           ),
           content ??
               Text(
