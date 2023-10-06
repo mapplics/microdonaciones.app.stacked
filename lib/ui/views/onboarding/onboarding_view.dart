@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
+import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
-import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/page_indicator/page_indicator.dart';
 import 'package:stacked/stacked.dart';
 
@@ -29,46 +29,50 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_uno.png',
                 description:
-                    'Bienvenidos! MicroDonaciones es un desarrollo de la Asociación Civil Código Fuente.',
+                    'Bienvenidos!\nMicroDonaciones es un desarrollo\nde la Asociación Civil Código Fuente.',
               ),
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_dos.png',
                 description:
-                    'Somos una asociación sin fines de lucro que tiene por objetivo la creación de soluciones digitales como respuesta a distintas problemáticas sociales. Donamos nuestro tiempo para la coordinación de equipos y el desarrollo de tecnologías que generen impacto en nuestra sociedad.',
+                    'Nuestro objetivo es crear soluciones digitales. Donamos nuestro tiempo, coordinamos equipos, desarrollamos tecnologías que generen impacto en la sociedad.',
               ),
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_tres.png',
                 description:
-                    'A través de MicroDonaciones vas a poder publicar tu donación especificando qué vas a donar junto con tu dirección, horario y fecha en que podrían pasar a retirarla. También podrás hacer el seguimiento de tus donaciones, las cuales tendrán como destino distintos merenderos de la ciudad.',
+                    'A través de MicroDonaciones vas a poder publicar y hacer el seguimiento de tu donación destinada a distintos merenderos de la ciudad.',
               ),
             ],
           ),
           SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                PageIndicator(
-                  totalSlides: viewModel.numSlides,
-                  currentSlide: viewModel.currentPage,
-                  withPositionsColors: true,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 40.0),
-                  child: Column(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height / 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 18.0),
+                    child: PageIndicator(
+                      totalSlides: viewModel.numSlides,
+                      currentSlide: viewModel.currentPage,
+                      withPositionsColors: true,
+                    ),
+                  ),
+                  Column(
                     children: [
-                      LinkButton(
+                      CustomOutlineButton(
                         label: viewModel.isLastPage
                             ? 'Omitir introducción'
                             : 'Comenzar!',
                         action: viewModel.navigateToHome,
-                        textStyle: CustomStylesTheme.regular14_20.copyWith(
+                        textStyle: CustomStylesTheme.bold14_20.copyWith(
                           color: CustomStylesTheme.tertiaryColor,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         ],
@@ -109,7 +113,9 @@ class OnboardingPage extends StatelessWidget {
               ),
               Text(
                 description,
-                style: CustomStylesTheme.regular14_16,
+                style: CustomStylesTheme.bold14_16.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],
