@@ -15,7 +15,7 @@ class PageIndicatorModel extends BaseViewModel {
     double _rigthPadding = 0.0;
 
     if ((index != (totalSlides - 1))) {
-      _rigthPadding = DotIndicatorSize.big == size ? 26.0 : 10.0;
+      _rigthPadding = DotIndicatorSize.big == size ? 10.0 : 10.0;
     }
 
     return EdgeInsets.only(right: _rigthPadding);
