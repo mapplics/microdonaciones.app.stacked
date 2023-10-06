@@ -9,10 +9,12 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
   final String label;
   final OnChangeCheckbox onchange;
   final Widget? content;
+  final bool initialValue;
 
   const CustomCheckbox({
     required this.onchange,
     required this.label,
+    this.initialValue = false,
     this.content,
     super.key,
   });
@@ -30,7 +32,7 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
           SizedBox(
             width: 24,
             child: Checkbox(
-              value: viewModel.checkboxValue,
+              value: viewModel.selectedValue,
               onChanged: (_) => viewModel.toggleCheckbox(),
             ),
           ),
@@ -50,5 +52,5 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
   CustomCheckboxModel viewModelBuilder(
     BuildContext context,
   ) =>
-      CustomCheckboxModel(onchange);
+      CustomCheckboxModel(onchange, initialValue);
 }

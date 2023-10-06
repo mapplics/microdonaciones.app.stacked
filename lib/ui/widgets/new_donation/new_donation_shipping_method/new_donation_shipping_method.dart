@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
+import 'package:microdonations/ui/widgets/forms/custom_checkbox/custom_checkbox.dart';
 import 'package:stacked/stacked.dart';
 import 'new_donation_shipping_method_model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
@@ -52,21 +53,35 @@ class NewDonationShippingMethod
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(
+                          'Retiramos la donación por tu domicilio',
+                          style: CustomStylesTheme.bold16_20.copyWith(
+                            color: CustomStylesTheme.blackColor,
+                          ),
+                        ),
+                      ),
                       Text(
-                        'Te informamos que, de momento, solamente podemos retirar tu donación si te encuentras dentro de la siguiente zona. Caso contrario, te pedimos que envíes tu donación a un punto de entrega.',
+                        'En esta primera etapa solo podremos retirar tu donación si estás dentro de la siguiente zona.',
                         style: CustomStylesTheme.regular14_20.copyWith(
                           color: CustomStylesTheme.blackColor,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 18.0),
+                        padding: const EdgeInsets.only(top: 18.0),
                         child: Image.asset(
                           'assets/img/pickup_map.png',
                           scale: 0.1,
                         ),
                       ),
+                      CustomCheckbox(
+                        label: 'Confirmo que estoy dentro de la zona de retiro',
+                        onchange: viewModel.toggleAreaConfirm,
+                        initialValue: viewModel.areaConfirm,
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 43.0),
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 43.0),
                         child: PickupAppointmentForm(
                           onchange: viewModel.updatePickUpAppointmentForm,
                           form: viewModel.pickupAppointmentForm,

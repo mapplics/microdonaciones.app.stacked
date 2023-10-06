@@ -68,6 +68,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       _newDonationService.updateReceptionPoint(
         _newDonationDataService.receptionPoints.first,
       );
+      _newDonationService.updatePickupAreaConfirm(false);
     } else {
       _newDonationService.updateUserAddres(_userService.loggedUser!.address);
     }
@@ -89,17 +90,25 @@ class DonationShippingMethodModel extends ReactiveViewModel {
     _newDonationService.updateReceptionPoint(value);
   }
 
-  /// Recibe el formulario para retiro a domicilio
+  /// Actualiza el formulario para retiro
   void updatePickUpAppointmentForm(FormGroup form) {
     _newDonationService.updatePickUpAppointmentForm(form);
     rebuildUi();
   }
 
+  /// Actualiza el valor de area de retiro.
+  void toggleAreaConfirm(bool newValue) {
+    _newDonationService.updatePickupAreaConfirm(newValue);
+  }
+
+  /// Devuelve true si el usuario confirmo que esta dentro del area de retiro
+  bool get areaConfirm => _newDonationService.pickupAreaConfirmValue;
+
   /// Devuelve el detalle del delivery.
   /// Muestra el dia, horario y direccion en donde se va a hacer.
   String get deliveryDetail => _newDonationService.pickupTimeDetail;
 
-  /// Resetea el formulario para retiro a domicilio
+  /// Resetea el formulario para retiro
   void resetPickupAppointmentForm() {
     _newDonationService.resetPickupAppointmentForm();
   }
@@ -107,7 +116,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
   bool get pickupAppointmentFormValid =>
       _newDonationService.pickupAppointmentFormValid;
 
-  /// Devuelve el formulario para retiro a domicilio
+  /// Devuelve el formulario para retiro.
   FormGroup? get pickupAppointmentForm =>
       _newDonationService.pickupAppointmentForm;
 }

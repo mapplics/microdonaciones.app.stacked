@@ -95,23 +95,27 @@ class NewDonationViewModel extends ReactiveViewModel {
         break;
       case NewDonationError.quantityProductsInvalid:
         _message =
-            'Para poder continuar todos tus productos deben tener una cantidad mayor a cero';
+            'Para poder continuar todos tus productos deben tener una cantidad mayor a cero.';
         break;
       case NewDonationError.pickupRangeInvalid:
         _message =
-            'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación';
+            'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación.';
         break;
       case NewDonationError.receptionPointInvalid:
         _message =
-            'Para poder continuar debes elegir un punto de entrega para llevar tu donación';
+            'Para poder continuar debes elegir un punto de entrega para llevar tu donación.';
+        break;
+      case NewDonationError.pickupAreaInvalid:
+        _message =
+            'Para poder continuar debes confirmar que te encuentras dentro de la zona de retiro.';
         break;
       case NewDonationError.unknow:
         _message =
-            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso';
+            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso.';
         break;
       default:
         _message =
-            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso';
+            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso.';
     }
 
     MessegeHelper.showInfoSnackBar(context, _message);

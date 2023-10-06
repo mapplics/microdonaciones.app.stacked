@@ -3,5 +3,6 @@ enum NewDonationError {
   receptionPointInvalid,
   quantityProductsInvalid,
   pickupRangeInvalid,
+  pickupAreaInvalid,
   unknow,
 }
