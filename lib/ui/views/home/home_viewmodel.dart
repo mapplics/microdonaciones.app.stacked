@@ -1,20 +1,15 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends ReactiveViewModel {
-  final _userService = locator<UserService>();
   final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
 
   @override
-  List<ListenableServiceMixin> get listenableServices => [
-        _userService,
-        _authService,
-      ];
+  List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve true si el usuario esta logueado.
   bool get isUserLogged => _authService.isUserLogged;
