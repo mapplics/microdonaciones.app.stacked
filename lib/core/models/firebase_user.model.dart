@@ -36,9 +36,15 @@ class FirebaseUser implements BaseUser {
   String get fullName => '$firstname $lastname';
 
   @override
-  String getInitials() {
-    List<String> partesNombre = fullName.split(" ");
+  String get getInitials {
+    List<String> partesNombre = fullName.split(" ").take(2).toList();
     String iniciales = "";
+
+    /// Si la persona puso mas de un nombre/apellido
+    /// solamente tomo los dos primeros
+    if (partesNombre.length > 2) {
+      partesNombre = partesNombre.take(2).toList();
+    }
 
     for (var parte in partesNombre) {
       if (parte.isNotEmpty) {

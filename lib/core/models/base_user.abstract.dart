@@ -5,7 +5,7 @@ abstract class BaseUser {
   String? avatarUrl;
 
   /// Devuelve las iniciales del usuario.
-  String getInitials();
+  String get getInitials;
 
   /// Devuelve el nombre completo del usuario.
   String get fullName;
