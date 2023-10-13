@@ -10,10 +10,12 @@ class ShippingSegmentedButtons
     extends StackedView<ShippingSegmentedButtonsModel> {
   final OnChangeTypeDelivery onChangeTypeDelivery;
   final ShippingMethod initialValue;
+  final bool showReceptionPoint;
 
   const ShippingSegmentedButtons({
     required this.initialValue,
     required this.onChangeTypeDelivery,
+    required this.showReceptionPoint,
     super.key,
   });
 
@@ -40,5 +42,9 @@ class ShippingSegmentedButtons
   ShippingSegmentedButtonsModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ShippingSegmentedButtonsModel(initialValue, onChangeTypeDelivery);
+      ShippingSegmentedButtonsModel(
+        initialValue: initialValue,
+        onChangeTypeDelivery: onChangeTypeDelivery,
+        showReceptionPoint: showReceptionPoint,
+      );
 }

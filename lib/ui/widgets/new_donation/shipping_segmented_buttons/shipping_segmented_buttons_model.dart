@@ -13,16 +13,27 @@ enum ShippingMethod {
 class ShippingSegmentedButtonsModel extends BaseViewModel {
   final OnChangeTypeDelivery onChangeTypeDelivery;
   final ShippingMethod initialValue;
+  final bool showReceptionPoint;
 
-  ShippingSegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
+  ShippingSegmentedButtonsModel({
+    required this.initialValue,
+    required this.onChangeTypeDelivery,
+    required this.showReceptionPoint,
+  }) {
     selectedDelivery = initialValue;
+
+    if (showReceptionPoint) {
+      _buttonsOptions.putIfAbsent(
+        ShippingMethod.delivery,
+        () => 'Punto de entrega',
+      );
+    }
   }
 
   late ShippingMethod selectedDelivery;
 
   final Map<ShippingMethod, String> _buttonsOptions = {
     ShippingMethod.pickup: 'Domicilio',
-    ShippingMethod.delivery: 'Punto de entrega',
   };
 
   /// Recibe un [ShippingMethod] y actualiza el tipo de delivery de la donacion.

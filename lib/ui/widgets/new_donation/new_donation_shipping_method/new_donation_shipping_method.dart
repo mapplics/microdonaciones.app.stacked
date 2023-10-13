@@ -38,8 +38,9 @@ class NewDonationShippingMethod
             child: SizedBox(
               width: double.infinity,
               child: ShippingSegmentedButtons(
-                onChangeTypeDelivery: viewModel.onChangeTypeDelivery,
                 initialValue: viewModel.typeDeliverySelected,
+                onChangeTypeDelivery: viewModel.onChangeTypeDelivery,
+                showReceptionPoint: viewModel.receptionPoints.isNotEmpty,
               ),
             ),
           ),
