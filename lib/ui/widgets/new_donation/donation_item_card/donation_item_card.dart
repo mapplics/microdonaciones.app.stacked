@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/core/models/product.model.dart';
@@ -28,15 +29,34 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
+        SizedBox(
+          width: double.infinity,
           height: 110,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(product.urlImg),
+          child: CachedNetworkImage(
+            imageUrl: product.urlImg,
+            errorWidget: (_, __, ___) => Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/img/image_error_placeholder.jpg',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
             ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
+            imageBuilder: (_, imageProvider) => Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
             ),
           ),
         ),
@@ -85,3 +105,15 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
   ) =>
       DonationItemCardModel(onChange, initialValue);
 }
+
+// class ErrorImage extends StatelessWidget {
+//   const ErrorImage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+// Image.asset(
+//                   pathImg,
+//                 )
