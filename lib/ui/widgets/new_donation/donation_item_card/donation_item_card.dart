@@ -105,15 +105,3 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
   ) =>
       DonationItemCardModel(onChange, initialValue);
 }
-
-// class ErrorImage extends StatelessWidget {
-//   const ErrorImage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
-// Image.asset(
-//                   pathImg,
-//                 )
