@@ -3,7 +3,7 @@ import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/order_state.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/weekday.model.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
 /// Representa en el historial una donacion que le retiraron al usuario
 class PickupHistoryOrder extends BaseHistoryOrder {

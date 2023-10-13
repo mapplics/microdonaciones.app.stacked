@@ -1,4 +1,4 @@
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 /// Funcion que espera un [FormGroup].

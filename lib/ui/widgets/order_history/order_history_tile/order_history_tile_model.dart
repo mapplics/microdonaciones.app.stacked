@@ -2,7 +2,7 @@ import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/ui/views/order_history_detail/order_history_detail_view.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

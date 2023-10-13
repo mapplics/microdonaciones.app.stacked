@@ -4,7 +4,7 @@ import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:collection/collection.dart';
 
 import 'pickup_dropdown_value.model.dart';

@@ -16,7 +16,7 @@ import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/pickup_appointment_form/pickup_appointment_form_model.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 

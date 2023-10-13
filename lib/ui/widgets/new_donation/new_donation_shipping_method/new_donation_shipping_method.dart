@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'new_donation_shipping_method_model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/new_donation/pickup_appointment_form/pickup_appointment_form.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons.dart';
 import 'package:microdonations/ui/widgets/common/link_button/link_button.dart';
 import 'package:microdonations/ui/widgets/common/reception_point_list/reception_point_list.dart';
 
@@ -37,7 +37,7 @@ class NewDonationShippingMethod
             padding: const EdgeInsets.only(bottom: 50.0),
             child: SizedBox(
               width: double.infinity,
-              child: DeliverySegmentedButtons(
+              child: ShippingSegmentedButtons(
                 onChangeTypeDelivery: viewModel.onChangeTypeDelivery,
                 initialValue: viewModel.typeDeliverySelected,
               ),

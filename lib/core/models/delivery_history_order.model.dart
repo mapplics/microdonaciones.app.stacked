@@ -2,7 +2,7 @@ import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/order_state.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
 /// Representa en el historial una donacion por delivery que hizo el usuario
 class DeliveryHistoryOrder extends BaseHistoryOrder {

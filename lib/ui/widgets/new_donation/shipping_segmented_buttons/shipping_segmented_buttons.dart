@@ -4,14 +4,14 @@ import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:stacked/stacked.dart';
 
-import 'delivery_segmented_buttons_model.dart';
+import 'shipping_segmented_buttons_model.dart';
 
-class DeliverySegmentedButtons
-    extends StackedView<DeliverySegmentedButtonsModel> {
+class ShippingSegmentedButtons
+    extends StackedView<ShippingSegmentedButtonsModel> {
   final OnChangeTypeDelivery onChangeTypeDelivery;
   final ShippingMethod initialValue;
 
-  const DeliverySegmentedButtons({
+  const ShippingSegmentedButtons({
     required this.initialValue,
     required this.onChangeTypeDelivery,
     super.key,
@@ -20,7 +20,7 @@ class DeliverySegmentedButtons
   @override
   Widget builder(
     BuildContext context,
-    DeliverySegmentedButtonsModel viewModel,
+    ShippingSegmentedButtonsModel viewModel,
     Widget? child,
   ) {
     return MaterialSegmentedControl<ShippingMethod>(
@@ -37,8 +37,8 @@ class DeliverySegmentedButtons
   }
 
   @override
-  DeliverySegmentedButtonsModel viewModelBuilder(
+  ShippingSegmentedButtonsModel viewModelBuilder(
     BuildContext context,
   ) =>
-      DeliverySegmentedButtonsModel(initialValue, onChangeTypeDelivery);
+      ShippingSegmentedButtonsModel(initialValue, onChangeTypeDelivery);
 }

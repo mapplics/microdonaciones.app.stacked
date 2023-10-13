@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
 import 'donation_shipping_detail_model.dart';

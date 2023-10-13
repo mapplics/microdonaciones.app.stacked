@@ -2,7 +2,7 @@ import 'package:microdonations/core/models/order_state.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
 class DonationHistory {
   final int id;

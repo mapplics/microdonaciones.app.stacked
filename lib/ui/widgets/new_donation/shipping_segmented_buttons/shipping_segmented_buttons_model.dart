@@ -10,11 +10,11 @@ enum ShippingMethod {
   unknow,
 }
 
-class DeliverySegmentedButtonsModel extends BaseViewModel {
+class ShippingSegmentedButtonsModel extends BaseViewModel {
   final OnChangeTypeDelivery onChangeTypeDelivery;
   final ShippingMethod initialValue;
 
-  DeliverySegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
+  ShippingSegmentedButtonsModel(this.initialValue, this.onChangeTypeDelivery) {
     selectedDelivery = initialValue;
   }
 

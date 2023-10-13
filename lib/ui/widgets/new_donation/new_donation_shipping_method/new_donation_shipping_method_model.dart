@@ -8,7 +8,7 @@ import 'package:microdonations/core/parameters/personal_information_view.paramet
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/services/user_service.dart';
-import 'package:microdonations/ui/widgets/new_donation/delivery_segmented_buttons/delivery_segmented_buttons_model.dart';
+import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked_services/stacked_services.dart';
 
