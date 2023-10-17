@@ -11,6 +11,7 @@ class PickupDonation extends BaseNewDonation {
   late int? _rangeId = null;
   late DateTime? _pickupDate = null;
   late UserAddress? _userAddress = null;
+  late String? _observations = null;
 
   PickupDonation({super.type = ShippingMethod.pickup});
 
@@ -38,6 +39,12 @@ class PickupDonation extends BaseNewDonation {
 
   set setPickupDate(DateTime date) {
     _pickupDate = date;
+  }
+
+  String? get observations => _observations;
+
+  set setObservations(String observations) {
+    _observations = observations;
   }
 
   /// Devuelve la direccion del usuario.
@@ -80,6 +87,7 @@ class PickupDonation extends BaseNewDonation {
       "address_id": _userAddress!.id,
       "range_time_id": _rangeId,
       "weekday_id": _weekdayId,
+      "observations": _observations,
       "date":
           '${_pickupDate!.year}${_pickupDate!.month}${_formatearNumero(_pickupDate!.day)}',
       "products": donationItemsDetail.donationsItemsList

@@ -121,6 +121,11 @@ class NewDonationService with ListenableServiceMixin {
     _pickupDonation.setTimeId = pickupValue.rangeTimeId;
   }
 
+  /// Actualiza el horario de retiro de la donacion por domicilio.
+  void _updatePickupObservations(String obs) {
+    _pickupDonation.setObservations = obs;
+  }
+
   /// Actualiza el dia de la semana que se va a retirar la donacion.
   void _updatePickupWeekday(PickupDropdownValue pickupValue) {
     _pickupDonation.setWeekdayId = pickupValue.weekdayId;
@@ -158,6 +163,11 @@ class NewDonationService with ListenableServiceMixin {
       _updatePickupWeekday(pickupValue);
       _updatePickupDate(dayValue);
     }
+
+    final obs = ReactiveFormHelper.getControlValue(
+        form, DeliveryAppointmentFormFields.observations.name);
+
+    _updatePickupObservations(obs);
 
     _pickupShippingValidation.updateForm = form;
   }

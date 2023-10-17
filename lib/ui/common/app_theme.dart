@@ -281,7 +281,10 @@ class CustomStylesTheme {
 
   // Input styles
   static InputDecoration inputDecoration(
-      {String? label, bool required = false, String? hintText}) {
+      {String? label,
+      bool required = false,
+      String? hintText,
+      EdgeInsets? contentPadding}) {
     // logInfo(hintText ?? 'no hay');
 
     const _borderRadius = BorderRadius.all(
@@ -295,7 +298,11 @@ class CustomStylesTheme {
               required: required,
             )
           : null,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      contentPadding: contentPadding ??
+          const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
       errorMaxLines: 2,
       hintText: hintText,
       border: const OutlineInputBorder(borderRadius: _borderRadius),

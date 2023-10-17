@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
+import 'package:microdonations/ui/widgets/common/custom_text_area/custom_text_area.dart';
 import 'package:microdonations/ui/widgets/forms/custom_dropdown/custom_dropdown.dart';
 import 'package:microdonations/ui/widgets/forms/weekday_picker/weekday_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -24,26 +25,30 @@ class PickupAppointmentForm extends StackedView<DeliveryAppointmentFormModel> {
       formGroup: viewModel.formGroup,
       child: Column(
         children: [
+          WeekdayPicker(
+            formControlName: DeliveryAppointmentFormFields.day.name,
+            label: 'Seleccioná un día para el retiro',
+            onchange: viewModel.updateDate,
+            required: viewModel.dayFieldIsRequired,
+            validationMessage: ReactiveFormHelper.getValidationMessages,
+            initialDate: viewModel.deliveryDay,
+            enabledDays: viewModel.enabledDays,
+          ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 24.0),
-            child: WeekdayPicker(
-              formControlName: DeliveryAppointmentFormFields.day.name,
-              label: 'Seleccioná un día para el retiro',
-              onchange: viewModel.updateDate,
-              required: viewModel.dayFieldIsRequired,
-              validationMessage: ReactiveFormHelper.getValidationMessages,
-              initialDate: viewModel.deliveryDay,
-              enabledDays: viewModel.enabledDays,
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: CustomDropdown(
+              label: 'Seleccioná un horarío',
+              required: viewModel.timeFieldIsRequired,
+              formControlName: DeliveryAppointmentFormFields.time.name,
+              items: viewModel.timeItems,
+              onchange: viewModel.updateTime,
+              // initialValue: null,
             ),
           ),
-          CustomDropdown(
-            label: 'Seleccioná un horarío',
-            required: viewModel.timeFieldIsRequired,
-            formControlName: DeliveryAppointmentFormFields.time.name,
-            items: viewModel.timeItems,
-            onchange: viewModel.updateTime,
-            // initialValue: null,
-          ),
+          CustomTextArea(
+            label: 'Aclaraciones',
+            formControlName: DeliveryAppointmentFormFields.observations.name,
+          )
         ],
       ),
     );

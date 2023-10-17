@@ -16,6 +16,7 @@ import 'package:stacked/stacked.dart';
 enum DeliveryAppointmentFormFields {
   day,
   time,
+  observations,
 }
 
 class DeliveryAppointmentFormModel extends BaseViewModel {
@@ -57,6 +58,12 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
               value: null,
               disabled: true,
               validators: [Validators.required],
+            ),
+            DeliveryAppointmentFormFields.observations.name:
+                FormControl<String>(
+              value: null,
+              disabled: false,
+              validators: [],
             ),
           },
         );
