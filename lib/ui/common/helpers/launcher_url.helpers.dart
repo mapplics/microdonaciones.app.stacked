@@ -5,11 +5,9 @@ class LaunchUrlHelper {
   /// Usamos la bandera de [isWspLink] para poder enviar una descripcion distinta.
   static Future<void> openUrl(String url) async {
     try {
-      final uri = Uri.tryParse(url);
+      final uri = Uri.parse(url);
 
-      if (uri != null && await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (e) {
       rethrow;
     }
