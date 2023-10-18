@@ -6,7 +6,6 @@ import 'package:microdonations/core/models/firebase_user.model.dart';
 import 'package:microdonations/core/models/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
-import 'package:microdonations/ui/views/home/home_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -61,7 +60,7 @@ class LoginViewModel extends BaseViewModel {
     } else {
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
-      _navigationService.clearStackAndShowView(const HomeView());
+      _navigationService.replaceWithOngSelectorView();
     }
   }
 
