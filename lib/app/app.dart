@@ -24,6 +24,7 @@ import 'package:microdonations/ui/views/orders_history/orders_history_view.dart'
 import 'package:microdonations/services/order_history_service.dart';
 import 'package:microdonations/ui/views/order_history_detail/order_history_detail_view.dart';
 import 'package:microdonations/services/ong_service.dart';
+import 'package:microdonations/ui/views/ong_selector/ong_selector_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -38,6 +39,7 @@ import 'package:microdonations/services/ong_service.dart';
     MaterialRoute(page: NewDonationConfirmedView),
     MaterialRoute(page: OrdersHistoryView),
     MaterialRoute(page: OrderHistoryDetailView),
+    MaterialRoute(page: OngSelectorView),
 // @stacked-route
   ],
   dependencies: [

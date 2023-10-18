@@ -20,7 +20,7 @@ class HomeViewModel extends ReactiveViewModel {
     if (!_authService.isUserLogged) {
       _navigationService.navigateToLoginView();
     } else {
-      _navigationService.navigateToNewDonationView();
+      _navigationService.navigateToOngSelectorView();
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
@@ -16,7 +17,12 @@ import 'package:stacked/stacked.dart';
 import 'new_donation_viewmodel.dart';
 
 class NewDonationView extends StackedView<NewDonationViewModel> {
-  const NewDonationView({Key? key}) : super(key: key);
+  final Ong ongSelected;
+
+  const NewDonationView({
+    required this.ongSelected,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget builder(
@@ -119,41 +125,6 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                                         ),
                                       ),
                               ),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     Padding(
-                              //       padding: const EdgeInsets.symmetric(
-                              //           horizontal: 26.0),
-                              //       child: PageIndicator(
-                              //         totalSlides: viewModel.numPages,
-                              //         currentSlide: viewModel.currentSlide,
-                              //         dotIndicatorSize: DotIndicatorSize.small,
-                              //       ),
-                              //     ),
-                              //     viewModel.isLastSlide
-                              //         ? LinkButton(
-                              //             label: 'Finalizar',
-                              //             action: () =>
-                              //                 viewModel.createDonation(context),
-                              //             textStyle: CustomStylesTheme.bold16_20
-                              //                 .copyWith(
-                              //               color:
-                              //                   CustomStylesTheme.tertiaryColor,
-                              //             ),
-                              //           )
-                              //         : LinkButton(
-                              //             label: 'Siguiente',
-                              //             action: () =>
-                              //                 viewModel.nextPage(context),
-                              //             textStyle: CustomStylesTheme.bold16_20
-                              //                 .copyWith(
-                              //               color:
-                              //                   CustomStylesTheme.tertiaryColor,
-                              //             ),
-                              //           ),
-                              //   ],
-                              // ),
                             ],
                           ),
                         ),
@@ -171,7 +142,7 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
 
   @override
   void onViewModelReady(NewDonationViewModel viewModel) {
-    viewModel.initNewDonation();
+    viewModel.initNewDonation(ongSelected);
     super.onViewModelReady(viewModel);
   }
 

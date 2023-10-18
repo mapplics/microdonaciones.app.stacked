@@ -6,6 +6,7 @@ class Ong {
   final String vision;
   final String phone;
   final String email;
+  final String? googleLink;
   final bool enabled;
 
   Ong({
@@ -17,6 +18,7 @@ class Ong {
     required this.phone,
     required this.email,
     required this.enabled,
+    this.googleLink,
   });
 
   /// Crea una instancia de [Ong]
@@ -29,6 +31,8 @@ class Ong {
       vision: data['vision'],
       phone: data['phone'],
       email: data['email'],
+      googleLink: 'https://maps.app.goo.gl/ZXrtKSdB81p4G61J9',
+      // googleLink: data['googleLink'],
       enabled: (data['enabled'] == 1) ? true : false,
     );
   }

@@ -3,8 +3,8 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
+import 'package:microdonations/core/models/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/services/ong_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,26 +12,76 @@ import 'package:stacked_services/stacked_services.dart';
 class NewDonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _navigationService = locator<NavigationService>();
-  final _ongService = locator<OngService>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
-
   bool isLoading = false;
-
   bool haveError = false;
 
   final PageController pageController = PageController(initialPage: 0);
   final int numPages = 4;
   int currentSlide = 0;
 
+  /// Recupera informacion de la ong que es necesaria para el flujo de donacion
+  Future<void> initNewDonation(Ong ongSelected) async {
+    try {
+      isLoading = true;
+      haveError = false;
+
+      rebuildUi();
+
+      await _newDonationService.initNewDonationData(ongSelected);
+    } catch (e) {
+      haveError = true;
+    } finally {
+      isLoading = false;
+      rebuildUi();
+    }
+  }
+
+  /// Define la accion del boton de retroceder del appbar.
+  Future<bool> onBackBtnAppbar() async {
+    if (currentSlide != 0) {
+      previousPage();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /// Devuelve true si se debe mostrar el boton para retroceder una pagina.
+  bool get canShowGoBackBtn => currentSlide != 0;
+
+  /// Devuelve true si se esta mostrando la ultima slide.
+  bool get isLastSlide => ((numPages - 1) == currentSlide);
+
+  /// Funcion que se ejecuta al pasar de slide.
   void onPageChange(int page) {
     currentSlide = page;
     rebuildUi();
   }
 
-  /// Devuelve true si se debe mostrar el boton para retroceder una pagina.
-  bool get canShowGoBackBtn => currentSlide != 0;
+  //// Navega a la siguiente pagina.
+  void nextPage(BuildContext context) {
+    final NewDonationError? validation = _validateCurrentSwipe();
+
+    if (validation == null) {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 175),
+        curve: Curves.linear,
+      );
+    } else {
+      _handleSnackError(context, validation);
+    }
+  }
+
+  //// Retrocede una pagina.
+  void previousPage() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 175),
+      curve: Curves.linear,
+    );
+  }
 
   /// Valida segun el slide actual [currentSlide] si los datos son validos.
   /// devuelve null si es valido.
@@ -48,38 +98,6 @@ class NewDonationViewModel extends ReactiveViewModel {
         return null;
       default:
         return NewDonationError.unknow;
-    }
-  }
-
-  /// Devuelve true si se esta mostrando la ultima slide.
-  bool get isLastSlide => ((numPages - 1) == currentSlide);
-
-  Future<void> createDonation(BuildContext context) async {
-    try {
-      context.loaderOverlay.show();
-      await _newDonationService.createDontaion();
-      _navigationService.replaceWithNewDonationConfirmedView();
-    } catch (e) {
-      MessegeHelper.showErrorSnackBar(
-        context,
-        'No se pudo crear la donacion. Por favor, volve a intentarlo mas tarde.',
-      );
-    } finally {
-      context.loaderOverlay.hide();
-    }
-  }
-
-  //// Navega a la siguiente pagina.
-  void nextPage(BuildContext context) {
-    final NewDonationError? validation = _validateCurrentSwipe();
-
-    if (validation == null) {
-      pageController.nextPage(
-        duration: const Duration(milliseconds: 175),
-        curve: Curves.linear,
-      );
-    } else {
-      _handleSnackError(context, validation);
     }
   }
 
@@ -121,38 +139,19 @@ class NewDonationViewModel extends ReactiveViewModel {
     MessegeHelper.showInfoSnackBar(context, _message);
   }
 
-  //// Retrocede una pagina.
-  void previousPage() {
-    pageController.previousPage(
-      duration: const Duration(milliseconds: 175),
-      curve: Curves.linear,
-    );
-  }
-
-  Future<bool> onBackBtnAppbar() async {
-    if (currentSlide != 0) {
-      previousPage();
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  Future<void> initNewDonation() async {
+  /// Crea la donacion.
+  Future<void> createDonation(BuildContext context) async {
     try {
-      isLoading = true;
-      haveError = false;
-
-      rebuildUi();
-
-      final ongs = await _ongService.getOngs();
-
-      await _newDonationService.initNewDonationData(ongs.first);
+      context.loaderOverlay.show();
+      await _newDonationService.createDontaion();
+      _navigationService.replaceWithNewDonationConfirmedView();
     } catch (e) {
-      haveError = true;
+      MessegeHelper.showErrorSnackBar(
+        context,
+        'No se pudo crear la donacion. Por favor, volve a intentarlo mas tarde.',
+      );
     } finally {
-      isLoading = false;
-      rebuildUi();
+      context.loaderOverlay.hide();
     }
   }
 
