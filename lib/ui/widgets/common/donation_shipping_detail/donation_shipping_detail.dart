@@ -33,28 +33,28 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
           padding: const EdgeInsets.only(top: 38.0),
           child: Text(
             viewModel.deliverDescription,
-            style: CustomStylesTheme.bold16_20,
+            style: AppTheme.bold16_20,
           ),
         ),
         const Divider(),
         Text(
           viewModel.deliveryAddress,
-          style: CustomStylesTheme.regular15_16.copyWith(
-            color: CustomStylesTheme.tertiaryColor,
+          style: AppTheme.regular15_16.copyWith(
+            color: AppTheme.tertiaryColor,
           ),
         ),
         const Padding(
           padding: EdgeInsets.only(top: 38.0),
           child: Text(
             'Horarios',
-            style: CustomStylesTheme.bold16_20,
+            style: AppTheme.bold16_20,
           ),
         ),
         const Divider(),
         Text(
           viewModel.deliveryTime,
-          style: CustomStylesTheme.regular15_16.copyWith(
-            color: CustomStylesTheme.tertiaryColor,
+          style: AppTheme.regular15_16.copyWith(
+            color: AppTheme.tertiaryColor,
           ),
         )
       ],

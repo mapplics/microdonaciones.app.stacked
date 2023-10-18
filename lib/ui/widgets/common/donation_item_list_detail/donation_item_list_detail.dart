@@ -22,7 +22,7 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
       children: [
         const Text(
           'Productos',
-          style: CustomStylesTheme.bold16_20,
+          style: AppTheme.bold16_20,
           textAlign: TextAlign.left,
         ),
         ...viewModel.donationItems
@@ -39,7 +39,7 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: Text(
                             e.title.capitalize(),
-                            style: CustomStylesTheme.regular15_16,
+                            style: AppTheme.regular15_16,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
@@ -48,8 +48,8 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
                           padding: const EdgeInsets.only(right: 12.0),
                           child: Text(
                             e.quantity.toString(),
-                            style: CustomStylesTheme.bold16_20.copyWith(
-                              color: CustomStylesTheme.tertiaryColor,
+                            style: AppTheme.bold16_20.copyWith(
+                              color: AppTheme.tertiaryColor,
                             ),
                           ),
                         )
@@ -67,16 +67,16 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
           children: [
             Text(
               'total de productos'.toUpperCase(),
-              style: CustomStylesTheme.regular15_16.copyWith(
-                color: CustomStylesTheme.primaryColor,
+              style: AppTheme.regular15_16.copyWith(
+                color: AppTheme.primaryColor,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 12.0),
               child: Text(
                 viewModel.totalProducts.toString(),
-                style: CustomStylesTheme.bold16_20.copyWith(
-                  color: CustomStylesTheme.primaryColor,
+                style: AppTheme.bold16_20.copyWith(
+                  color: AppTheme.primaryColor,
                 ),
               ),
             )

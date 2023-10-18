@@ -60,12 +60,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobalLoaderOverlay(
-      overlayColor: CustomStylesTheme.lightGreyColor,
+      overlayColor: AppTheme.lightGreyColor,
       useDefaultLoading: false,
       overlayOpacity: 0.5,
       overlayWidget: const Center(
         child: CircularProgressIndicator(
-          color: CustomStylesTheme.primaryColor,
+          color: AppTheme.primaryColor,
         ),
       ),
       child: MaterialApp(
@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        theme: CustomStylesTheme.mainTheme,
+        theme: AppTheme.mainTheme,
         initialRoute: Routes.startupView,
         onGenerateRoute: StackedRouter().onGenerateRoute,
         navigatorKey: StackedService.navigatorKey,

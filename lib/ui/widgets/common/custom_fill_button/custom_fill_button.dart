@@ -30,7 +30,7 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
       label: Text(
         label,
         style: textStyle ??
-            CustomStylesTheme.bold14_20.copyWith(
+            AppTheme.bold14_20.copyWith(
               color: Colors.white,
             ),
       ),
@@ -38,9 +38,9 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
       onPressed: () => action(),
       style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(
-          (backgroundColor ?? CustomStylesTheme.primaryColor),
+          (backgroundColor ?? AppTheme.primaryColor),
         ),
-        minimumSize: MaterialStatePropertyAll(CustomStylesTheme.minimumBtnSize),
+        minimumSize: MaterialStatePropertyAll(AppTheme.minimumBtnSize),
         shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

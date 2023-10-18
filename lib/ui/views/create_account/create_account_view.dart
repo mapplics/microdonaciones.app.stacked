@@ -43,7 +43,7 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: CustomFillButton(
-                  backgroundColor: CustomStylesTheme.tertiaryColor,
+                  backgroundColor: AppTheme.tertiaryColor,
                   label: 'Crear una cuenta',
                   action: () => viewModel.onSaveUserData(context),
                 ),

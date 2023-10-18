@@ -13,23 +13,23 @@ class MessegeHelper {
       VoidCallback? functionBtn}) async {
     await showDialog(
       barrierDismissible: false,
-      barrierColor: CustomStylesTheme.blackColor.withOpacity(0.8),
+      barrierColor: AppTheme.blackColor.withOpacity(0.8),
       context: context,
       builder: (ctx) => AlertDialog(
         elevation: 0.0,
-        backgroundColor: CustomStylesTheme.gray400,
+        backgroundColor: AppTheme.gray400,
         title: Text(
           title,
           textAlign: TextAlign.start,
-          style: CustomStylesTheme.bold16_24.copyWith(
+          style: AppTheme.bold16_24.copyWith(
             color: Colors.white,
           ),
         ),
         content: Text(
           message,
           textAlign: TextAlign.start,
-          style: CustomStylesTheme.regular14_24.copyWith(
-            color: CustomStylesTheme.gray100,
+          style: AppTheme.regular14_24.copyWith(
+            color: AppTheme.gray100,
           ),
         ),
         actions: [
@@ -43,13 +43,13 @@ class MessegeHelper {
                   fit: FlexFit.tight,
                   child: TextButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            CustomStylesTheme.primaryColor)),
+                        backgroundColor:
+                            MaterialStateProperty.all(AppTheme.primaryColor)),
                     onPressed: functionBtn ?? () => Navigator.of(context).pop(),
                     child: Text(
                       textBtnConfirm,
                       style: const TextStyle(
-                          color: CustomStylesTheme.blackColor,
+                          color: AppTheme.blackColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 13),
                     ),
@@ -73,24 +73,24 @@ class MessegeHelper {
     VoidCallback? cancelFunction,
   }) async {
     await showDialog(
-      barrierColor: CustomStylesTheme.blackColor.withOpacity(0.8),
+      barrierColor: AppTheme.blackColor.withOpacity(0.8),
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
         elevation: 0.0,
-        backgroundColor: CustomStylesTheme.gray400,
+        backgroundColor: AppTheme.gray400,
         title: Text(
           title,
           textAlign: TextAlign.start,
-          style: CustomStylesTheme.bold16_24.copyWith(
+          style: AppTheme.bold16_24.copyWith(
             color: Colors.white,
           ),
         ),
         content: Text(
           message,
           textAlign: TextAlign.start,
-          style: CustomStylesTheme.regular14_24.copyWith(
-            color: CustomStylesTheme.gray100,
+          style: AppTheme.regular14_24.copyWith(
+            color: AppTheme.gray100,
           ),
         ),
         actions: [
@@ -105,7 +105,7 @@ class MessegeHelper {
                   child: TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        CustomStylesTheme.gray200,
+                        AppTheme.gray200,
                       ),
                     ),
                     onPressed: cancelFunction ??
@@ -115,7 +115,7 @@ class MessegeHelper {
                     child: Text(
                       textBtnCancel ?? 'Cancelar',
                       style: const TextStyle(
-                        color: CustomStylesTheme.primaryColor,
+                        color: AppTheme.primaryColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 13,
                       ),
@@ -131,14 +131,14 @@ class MessegeHelper {
                   child: TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        CustomStylesTheme.primaryColor,
+                        AppTheme.primaryColor,
                       ),
                     ),
                     onPressed: () => confirmFunction(),
                     child: Text(
                       textBtnConfirm ?? 'Confirmar',
                       style: const TextStyle(
-                          color: CustomStylesTheme.blackColor,
+                          color: AppTheme.blackColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 13),
                     ),
@@ -199,8 +199,8 @@ class MessegeHelper {
                   Expanded(
                     child: Text(
                       message,
-                      style: CustomStylesTheme.regular12_20.copyWith(
-                        color: CustomStylesTheme.blackColor,
+                      style: AppTheme.regular12_20.copyWith(
+                        color: AppTheme.blackColor,
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -211,7 +211,7 @@ class MessegeHelper {
                     },
                     child: const Icon(
                       PhosphorIcons.xLight, //,
-                      color: CustomStylesTheme.gray100,
+                      color: AppTheme.gray100,
                     ),
                   ),
                 ],
@@ -222,7 +222,7 @@ class MessegeHelper {
         elevation: 0,
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.only(bottom: marginBottom, left: 16, right: 16),
-        backgroundColor: CustomStylesTheme.gray400, // backgroundColor,
+        backgroundColor: AppTheme.gray400, // backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
@@ -240,7 +240,7 @@ class MessegeHelper {
     showSnackBar(
       context,
       message,
-      CustomStylesTheme.errorColor,
+      AppTheme.errorColor,
       PhosphorIcons.warningOctagonBold,
       marginBottom: marginBottom,
     );
@@ -255,7 +255,7 @@ class MessegeHelper {
     showSnackBar(
       context,
       message,
-      CustomStylesTheme.secondaryColor,
+      AppTheme.secondaryColor,
       PhosphorIcons.infoBold,
       marginBottom: marginBottom,
     );
@@ -270,7 +270,7 @@ class MessegeHelper {
     showSnackBar(
       context,
       message,
-      CustomStylesTheme.sucessColor,
+      AppTheme.sucessColor,
       PhosphorIcons.checkCircleBold,
       marginBottom: marginBottom,
     );

@@ -77,7 +77,7 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
               padding: const EdgeInsets.only(left: 12.0),
               child: Text(
                 product.name.capitalize(),
-                style: CustomStylesTheme.bold14_20.copyWith(
+                style: AppTheme.bold14_20.copyWith(
                   color: Colors.white,
                 ),
               ),
@@ -88,7 +88,7 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
               side: MaterialStateBorderSide.resolveWith(
                 (states) => BorderSide(
                   color: states.contains(MaterialState.selected)
-                      ? CustomStylesTheme.primaryColor
+                      ? AppTheme.primaryColor
                       : Colors.white,
                 ),
               ),

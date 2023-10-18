@@ -35,14 +35,14 @@ class CustomInputText extends StackedView<CustomTextFieldModel> {
       children: [
         ReactiveTextField(
           formControlName: formControlName,
-          cursorColor: CustomStylesTheme.primaryColor,
+          cursorColor: AppTheme.primaryColor,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           validationMessages: validationMessage,
-          style: CustomStylesTheme.regular14_16.copyWith(
-            color: CustomStylesTheme.blackColor,
+          style: AppTheme.regular14_16.copyWith(
+            color: AppTheme.blackColor,
           ),
-          decoration: CustomStylesTheme.inputDecoration(
+          decoration: AppTheme.inputDecoration(
             label: label,
             required: isRequired,
             hintText: hintText,

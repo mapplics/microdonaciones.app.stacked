@@ -31,16 +31,16 @@ class UserAvatar extends StackedView<UserAvatarModel> {
         Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: CustomStylesTheme.blackColor,
+            color: AppTheme.blackColor,
             boxShadow: [
               BoxShadow(
-                color: CustomStylesTheme.blackColor.withOpacity(0.3),
+                color: AppTheme.blackColor.withOpacity(0.3),
                 blurRadius: 10,
               )
             ],
           ),
           child: CircleAvatar(
-            backgroundColor: CustomStylesTheme.primaryColor,
+            backgroundColor: AppTheme.primaryColor,
             radius: viewModel.getRadius,
             child: Text(
               user.getInitials,

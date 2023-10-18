@@ -17,7 +17,7 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: CustomStylesTheme.tertiaryColor,
+        color: AppTheme.tertiaryColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
@@ -34,7 +34,7 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                   padding: const EdgeInsets.only(top: 40),
                   child: Text(
                     '¿Te interesaría colaborar\ncon la logística del proyecto?',
-                    style: CustomStylesTheme.bold16_24.copyWith(
+                    style: AppTheme.bold16_24.copyWith(
                       color: Colors.white,
                     ),
                     textAlign: TextAlign.center,
@@ -48,7 +48,7 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                       label: 'MÁS INFORMACIÓN',
                       action: () => viewModel.navigateNewCollaborator(context),
                       mainColor: Colors.white,
-                      textStyle: CustomStylesTheme.regular14_16.copyWith(
+                      textStyle: AppTheme.regular14_16.copyWith(
                         color: Colors.white,
                       ),
                     ),

@@ -27,7 +27,7 @@ class OrdersHistoryView extends StackedView<OrdersHistoryViewModel> {
         showActions: false,
       ),
       body: RefreshIndicator(
-        backgroundColor: CustomStylesTheme.gray400,
+        backgroundColor: AppTheme.gray400,
         onRefresh: viewModel.refresHistoy,
         child: PagedListView<int, BaseHistoryOrder>(
           pagingController: viewModel.pagingController,
@@ -42,13 +42,13 @@ class OrdersHistoryView extends StackedView<OrdersHistoryViewModel> {
               body:
                   'Cuando hayas realizado alguna donación te las mostraremos aqui.',
               icon: PhosphorIcons.questionLight,
-              colorIcon: CustomStylesTheme.warningColor,
+              colorIcon: AppTheme.warningColor,
             ),
             firstPageErrorIndicatorBuilder: (_) => EmptyStateWithButton(
               title: 'Tuvimos un problema para mostrar tus donaciones',
               body: 'Por favor, volve a intentarlo mas tarde.',
               icon: PhosphorIcons.xCircleLight,
-              colorIcon: CustomStylesTheme.errorColor,
+              colorIcon: AppTheme.errorColor,
               textButton: 'Volver a intentar',
               buttonAction: viewModel.refresHistoy,
             ),

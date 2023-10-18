@@ -39,8 +39,8 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
           content ??
               Text(
                 label,
-                style: CustomStylesTheme.regular14_24.copyWith(
-                  color: CustomStylesTheme.blackColor,
+                style: AppTheme.regular14_24.copyWith(
+                  color: AppTheme.blackColor,
                 ),
               ),
         ],

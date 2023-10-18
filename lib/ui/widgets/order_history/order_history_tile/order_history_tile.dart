@@ -20,31 +20,31 @@ class OrderHistoryTile extends StackedView<OrderHistoryTileModel> {
   ) {
     return Container(
       decoration: const BoxDecoration(
-        color: CustomStylesTheme.gray400,
+        color: AppTheme.gray400,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: ListTile(
         leading: Container(
           padding: const EdgeInsets.all(5),
           decoration: const BoxDecoration(
-            color: CustomStylesTheme.secondaryColor,
+            color: AppTheme.secondaryColor,
             borderRadius: BorderRadius.all(Radius.circular(80)),
           ),
           child: Icon(
             viewModel.isDeliveryOrder(orderHistory)
                 ? PhosphorIcons.mapPinLineLight
                 : PhosphorIcons.houseLineLight,
-            color: CustomStylesTheme.backgroundColor,
-            size: CustomStylesTheme.iconSizeLg,
+            color: AppTheme.backgroundColor,
+            size: AppTheme.iconSizeLg,
           ),
         ),
         title: Text(
           'Donación del ${DateTimeHelper.formatDateTime(orderHistory.createAt)}',
-          style: CustomStylesTheme.bold16_24,
+          style: AppTheme.bold16_24,
         ),
         subtitle: Text(
           orderHistory.orderState.name,
-          style: CustomStylesTheme.regular14_16,
+          style: AppTheme.regular14_16,
         ),
         trailing: const Icon(
           PhosphorIcons.caretRightLight,

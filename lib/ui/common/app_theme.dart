@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/ui/widgets/forms/label_field/label_field.dart';
 
-class CustomStylesTheme {
+class AppTheme {
   /// Colors
   ///
   ///
@@ -330,15 +330,15 @@ class CustomStylesTheme {
   static ThemeData dateTimePicker() {
     return ThemeData.dark().copyWith(
       textTheme: const TextTheme(
-        headlineMedium: CustomStylesTheme.bold16_20,
+        headlineMedium: AppTheme.bold16_20,
       ),
       colorScheme: const ColorScheme.dark(
-        primary: CustomStylesTheme.secondaryColor,
-        surface: CustomStylesTheme.secondaryColor,
-        onSurface: CustomStylesTheme.blackColor,
+        primary: AppTheme.secondaryColor,
+        surface: AppTheme.secondaryColor,
+        onSurface: AppTheme.blackColor,
         onPrimary: Colors.white,
       ),
-      dialogBackgroundColor: CustomStylesTheme.backgroundColor,
+      dialogBackgroundColor: AppTheme.backgroundColor,
     );
   }
 
@@ -378,10 +378,10 @@ class CustomStylesTheme {
     // tested with just a hot reload.
     colorScheme: ColorScheme.fromSeed(
       //brightness: Brightness.dark,
-      seedColor: CustomStylesTheme.primaryColor,
-      primary: CustomStylesTheme.primaryColor,
-      secondary: CustomStylesTheme.secondaryColor,
-      tertiary: CustomStylesTheme.tertiaryColor,
+      seedColor: AppTheme.primaryColor,
+      primary: AppTheme.primaryColor,
+      secondary: AppTheme.secondaryColor,
+      tertiary: AppTheme.tertiaryColor,
     ),
     //appBarTheme: AppBarTheme(backgroundColor: CustomStylesTheme.primaryColor),
     // brightness: Brightness.light,
@@ -399,17 +399,17 @@ class CustomStylesTheme {
     // Define the default `TextTheme`. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and more.
     textTheme: const TextTheme(
-      displayLarge: CustomStylesTheme.regular24_28,
-      displayMedium: CustomStylesTheme.regular20_24,
-      displaySmall: CustomStylesTheme.regular16_20,
-      headlineMedium: CustomStylesTheme.regular14_16,
-      headlineSmall: CustomStylesTheme.regular12_16,
-      titleLarge: CustomStylesTheme.regular10_12,
-      bodyLarge: CustomStylesTheme.bold24_28,
-      bodyMedium: CustomStylesTheme.bold20_24,
-      titleMedium: CustomStylesTheme.bold16_24,
-      titleSmall: CustomStylesTheme.bold16_20,
+      displayLarge: AppTheme.regular24_28,
+      displayMedium: AppTheme.regular20_24,
+      displaySmall: AppTheme.regular16_20,
+      headlineMedium: AppTheme.regular14_16,
+      headlineSmall: AppTheme.regular12_16,
+      titleLarge: AppTheme.regular10_12,
+      bodyLarge: AppTheme.bold24_28,
+      bodyMedium: AppTheme.bold20_24,
+      titleMedium: AppTheme.bold16_24,
+      titleSmall: AppTheme.bold16_20,
     ),
-    scaffoldBackgroundColor: CustomStylesTheme.backgroundColor,
+    scaffoldBackgroundColor: AppTheme.backgroundColor,
   );
 }

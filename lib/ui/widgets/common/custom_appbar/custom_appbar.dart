@@ -28,12 +28,12 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
     return AppBar(
       title: Text(
         title,
-        style: CustomStylesTheme.bold16_24.copyWith(
+        style: AppTheme.bold16_24.copyWith(
           color: Colors.white,
         ),
       ),
       centerTitle: true,
-      backgroundColor: CustomStylesTheme.secondaryColor,
+      backgroundColor: AppTheme.secondaryColor,
       foregroundColor: Colors.white,
       forceMaterialTransparency: true,
       actions: showActions
@@ -53,7 +53,7 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: CustomStylesTheme.blackColor.withOpacity(
+                                color: AppTheme.blackColor.withOpacity(
                                   0.1,
                                 ),
                                 offset: Offset.fromDirection(-150.0),
@@ -68,7 +68,7 @@ class CustomAppbar extends StackedView<CustomAppbarModel>
                               onPressed: null,
                               style: ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(
-                                  CustomStylesTheme.secondaryColor,
+                                  AppTheme.secondaryColor,
                                 ),
                               ),
                               icon: Icon(

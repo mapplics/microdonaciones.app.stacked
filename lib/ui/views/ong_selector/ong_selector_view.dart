@@ -33,7 +33,7 @@ class OngSelectorView extends StackedView<OngSelectorViewModel> {
                     padding: EdgeInsets.only(bottom: 19.0),
                     child: Text(
                       '¿A que ONG te gustaria hacer tu donación?',
-                      style: CustomStylesTheme.regular14_16,
+                      style: AppTheme.regular14_16,
                     ),
                   ),
                   Expanded(

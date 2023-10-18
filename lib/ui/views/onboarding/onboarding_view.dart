@@ -62,8 +62,8 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                     CustomOutlineButton(
                       label: 'Comenzar!',
                       action: viewModel.navigateToHome,
-                      textStyle: CustomStylesTheme.bold14_20.copyWith(
-                        color: CustomStylesTheme.tertiaryColor,
+                      textStyle: AppTheme.bold14_20.copyWith(
+                        color: AppTheme.tertiaryColor,
                       ),
                     ),
                 ],
@@ -108,7 +108,7 @@ class OnboardingPage extends StatelessWidget {
               ),
               Text(
                 description,
-                style: CustomStylesTheme.bold14_16.copyWith(
+                style: AppTheme.bold14_16.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,

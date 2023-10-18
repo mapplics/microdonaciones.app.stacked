@@ -66,7 +66,7 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                       children: [
                         Container(
                           decoration: const BoxDecoration(
-                            color: CustomStylesTheme.gray400,
+                            color: AppTheme.gray400,
                             borderRadius: BorderRadius.all(
                               Radius.circular(10),
                             ),
@@ -82,11 +82,9 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                                     ? LinkButton(
                                         label: 'Atras',
                                         action: viewModel.previousPage,
-                                        textStyle: CustomStylesTheme
-                                            .regular16_20
-                                            .copyWith(
-                                          color:
-                                              CustomStylesTheme.lightGreyColor,
+                                        textStyle:
+                                            AppTheme.regular16_20.copyWith(
+                                          color: AppTheme.lightGreyColor,
                                         ),
                                       )
                                     : const SizedBox(),
@@ -108,20 +106,16 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
                                         label: 'Finalizar',
                                         action: () =>
                                             viewModel.createDonation(context),
-                                        textStyle: CustomStylesTheme.bold16_20
-                                            .copyWith(
-                                          color:
-                                              CustomStylesTheme.tertiaryColor,
+                                        textStyle: AppTheme.bold16_20.copyWith(
+                                          color: AppTheme.tertiaryColor,
                                         ),
                                       )
                                     : LinkButton(
                                         label: 'Siguiente',
                                         action: () =>
                                             viewModel.nextPage(context),
-                                        textStyle: CustomStylesTheme.bold16_20
-                                            .copyWith(
-                                          color:
-                                              CustomStylesTheme.tertiaryColor,
+                                        textStyle: AppTheme.bold16_20.copyWith(
+                                          color: AppTheme.tertiaryColor,
                                         ),
                                       ),
                               ),

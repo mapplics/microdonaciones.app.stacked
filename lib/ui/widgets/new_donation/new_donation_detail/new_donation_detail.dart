@@ -22,7 +22,7 @@ class NewDonationSummary extends StackedView<NewDonationDetailModel> {
           padding: EdgeInsets.only(bottom: 37.0),
           child: Text(
             'Va a ingresar la siguiente donación',
-            style: CustomStylesTheme.regular14_16,
+            style: AppTheme.regular14_16,
             textAlign: TextAlign.center,
           ),
         ),

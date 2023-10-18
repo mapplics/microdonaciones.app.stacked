@@ -18,7 +18,7 @@ class StartupView extends StackedView<StartupViewModel> {
       resizeToAvoidBottomInset: false,
       body: Center(
         child: CircularProgressIndicator(
-          color: CustomStylesTheme.primaryColor,
+          color: AppTheme.primaryColor,
         ),
       ),
     );

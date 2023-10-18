@@ -29,8 +29,8 @@ class NewDonationConfirmedView
             padding: const EdgeInsets.only(top: 24.0),
             child: Text(
               '¡Listo!',
-              style: CustomStylesTheme.bold16_20.copyWith(
-                color: CustomStylesTheme.tertiaryColor,
+              style: AppTheme.bold16_20.copyWith(
+                color: AppTheme.tertiaryColor,
               ),
             ),
           ),
@@ -38,14 +38,14 @@ class NewDonationConfirmedView
             padding: EdgeInsets.only(top: 8.0, bottom: 27),
             child: Text(
               'Ya cargaste tu donación',
-              style: CustomStylesTheme.regular14_16,
+              style: AppTheme.regular14_16,
             ),
           ),
           const Padding(
             padding: EdgeInsets.only(bottom: 45.0),
             child: Icon(
               PhosphorIcons.checkCircleBold,
-              color: CustomStylesTheme.tertiaryColor,
+              color: AppTheme.tertiaryColor,
               size: 140,
             ),
           ),
@@ -54,7 +54,7 @@ class NewDonationConfirmedView
             child: CustomFillButton(
               label: 'Ir al inicio',
               action: viewModel.goHome,
-              backgroundColor: CustomStylesTheme.tertiaryColor,
+              backgroundColor: AppTheme.tertiaryColor,
             ),
           ),
         ],

@@ -42,7 +42,7 @@ class WrapperHttpLoading extends StackedView<WrapperHttpLoadingModel> {
     return (showLoading)
         ? const Center(
             child: CircularProgressIndicator(
-              color: CustomStylesTheme.primaryColor,
+              color: AppTheme.primaryColor,
             ),
           )
         : (showError)
@@ -52,7 +52,7 @@ class WrapperHttpLoading extends StackedView<WrapperHttpLoadingModel> {
                 textButton: 'Volver a intentar',
                 buttonAction: retryFunction,
                 icon: PhosphorIcons.xCircleBold,
-                colorIcon: CustomStylesTheme.errorColor,
+                colorIcon: AppTheme.errorColor,
               )
             : mainContent;
   }

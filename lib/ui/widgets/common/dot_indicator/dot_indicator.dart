@@ -33,7 +33,7 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
         boxShadow: active
             ? [
                 BoxShadow(
-                  color: CustomStylesTheme.tertiaryColor.withOpacity(0.3),
+                  color: AppTheme.tertiaryColor.withOpacity(0.3),
                   blurRadius: 7.0,
                 )
               ]
@@ -41,8 +41,8 @@ class DotIndicator extends StackedView<DotIndicatorModel> {
         color: active
             ? withPositionsColors
                 ? viewModel.getDotColor(currentSlide)
-                : CustomStylesTheme.tertiaryColor
-            : CustomStylesTheme.darkGreyColor,
+                : AppTheme.tertiaryColor
+            : AppTheme.darkGreyColor,
       ),
     );
   }

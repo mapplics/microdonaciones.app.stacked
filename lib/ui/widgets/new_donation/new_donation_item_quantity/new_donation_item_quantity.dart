@@ -21,7 +21,7 @@ class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
           padding: EdgeInsets.only(bottom: 19.0),
           child: Text(
             'Seleccioná que alimentos son los que vas a donar',
-            style: CustomStylesTheme.regular14_16,
+            style: AppTheme.regular14_16,
           ),
         ),
         Expanded(
@@ -39,8 +39,8 @@ class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
                     children: [
                       Text(
                         viewModel.selectedItems[index].title.capitalize(),
-                        style: CustomStylesTheme.regular16_20.copyWith(
-                          color: CustomStylesTheme.blackColor,
+                        style: AppTheme.regular16_20.copyWith(
+                          color: AppTheme.blackColor,
                         ),
                       ),
                       QuantityPicker(

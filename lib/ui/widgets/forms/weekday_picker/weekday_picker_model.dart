@@ -32,7 +32,7 @@ class WeekdayPickerModel extends BaseViewModel {
       lastDate: maxDate,
       selectableDayPredicate: _shouldBeSelectable,
       builder: (_, child) => Theme(
-        data: CustomStylesTheme.dateTimePicker(),
+        data: AppTheme.dateTimePicker(),
         child: child!,
       ),
     ).then((DateTime? value) {

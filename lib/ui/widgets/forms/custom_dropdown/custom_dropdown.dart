@@ -43,8 +43,8 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
         ),
         ReactiveDropdownField<T>(
           formControlName: formControlName,
-          decoration: CustomStylesTheme.inputDecoration(hintText: ''),
-          iconEnabledColor: CustomStylesTheme.tertiaryColor,
+          decoration: AppTheme.inputDecoration(hintText: ''),
+          iconEnabledColor: AppTheme.tertiaryColor,
           items: viewModel.getDropdownItems(items) as List<DropdownMenuItem<T>>,
           isExpanded: true,
           dropdownColor: Colors.white,
@@ -52,12 +52,12 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
           validationMessages: ReactiveFormHelper.getValidationMessages,
           hint: Text(
             'Seleccioná una opción',
-            style: CustomStylesTheme.regular14_24.copyWith(
-              color: CustomStylesTheme.gray300,
+            style: AppTheme.regular14_24.copyWith(
+              color: AppTheme.gray300,
             ),
           ),
-          style: CustomStylesTheme.regular14_20.copyWith(
-            color: CustomStylesTheme.blackColor,
+          style: AppTheme.regular14_20.copyWith(
+            color: AppTheme.blackColor,
           ),
         )
       ],

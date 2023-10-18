@@ -24,7 +24,7 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       decoration: const BoxDecoration(
-        color: CustomStylesTheme.gray400,
+        color: AppTheme.gray400,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
@@ -36,13 +36,13 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
             children: [
               Text(
                 ongModel.name,
-                style: CustomStylesTheme.bold16_24,
+                style: AppTheme.bold16_24,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Text(
                   ongModel.mision,
-                  style: CustomStylesTheme.regular14_16,
+                  style: AppTheme.regular14_16,
                 ),
               ),
             ],
@@ -54,7 +54,7 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
               CustomOutlineButton(
                 icon: const Icon(
                   PhosphorIcons.mapPinLineLight,
-                  color: CustomStylesTheme.tertiaryColor,
+                  color: AppTheme.tertiaryColor,
                 ),
                 label: 'Ver ubicacion',
                 action: () async {

@@ -44,7 +44,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 const Flexible(
                   child: Text(
                     'Aporta tu microdonacion y empezamos a generar un cambio',
-                    style: CustomStylesTheme.regular14_20,
+                    style: AppTheme.regular14_20,
                     overflow: TextOverflow.visible,
                     maxLines: 5,
                   ),
@@ -65,7 +65,7 @@ class HomeView extends StackedView<HomeViewModel> {
               width: double.infinity,
               child: CustomFillButton(
                 label: 'QUIERO DONAR',
-                textStyle: CustomStylesTheme.bold14_20.copyWith(
+                textStyle: AppTheme.bold14_20.copyWith(
                   color: Colors.white,
                 ),
                 action: viewModel.startDonation,

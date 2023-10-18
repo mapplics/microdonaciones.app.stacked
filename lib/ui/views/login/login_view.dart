@@ -34,8 +34,8 @@ class LoginView extends StackedView<LoginViewModel> {
               padding: const EdgeInsets.only(bottom: 16.0, top: 26),
               child: Text(
                 'Ingresar con tu cuenta',
-                style: CustomStylesTheme.bold16_24.copyWith(
-                  color: CustomStylesTheme.tertiaryColor,
+                style: AppTheme.bold16_24.copyWith(
+                  color: AppTheme.tertiaryColor,
                 ),
               ),
             ),
@@ -50,7 +50,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   label: 'Ingresar con Google',
                   icon: const Icon(
                     PhosphorIcons.googleLogoFill,
-                    color: CustomStylesTheme.tertiaryColor,
+                    color: AppTheme.tertiaryColor,
                     size: 30.0,
                   ),
                   action: () => viewModel.useGoogleAuthentication(context),

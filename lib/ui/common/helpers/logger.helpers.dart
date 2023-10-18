@@ -55,14 +55,14 @@ class _LogEntry {
   Color get color {
     switch (type) {
       case _LogType.error:
-        return CustomStylesTheme.errorColor;
+        return AppTheme.errorColor;
       case _LogType.warning:
-        return CustomStylesTheme.warningColor;
+        return AppTheme.warningColor;
       case _LogType.success:
-        return CustomStylesTheme.sucessColor;
+        return AppTheme.sucessColor;
       case _LogType.info:
       default:
-        return CustomStylesTheme.secondaryColor;
+        return AppTheme.secondaryColor;
     }
   }
 }

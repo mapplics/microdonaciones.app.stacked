@@ -60,17 +60,17 @@ class ShippingSegmentedButtonsModel extends BaseViewModel {
                 size: 18,
                 color: (shippingType == selectedDelivery)
                     ? Colors.white
-                    : CustomStylesTheme.blackColor,
+                    : AppTheme.blackColor,
               ),
               const SizedBox(
                 width: 4,
               ),
               Text(
                 label,
-                style: CustomStylesTheme.bold14_20.copyWith(
+                style: AppTheme.bold14_20.copyWith(
                   color: (shippingType == selectedDelivery)
                       ? Colors.white
-                      : CustomStylesTheme.blackColor,
+                      : AppTheme.blackColor,
                 ),
               ),
             ],

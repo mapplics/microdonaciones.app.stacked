@@ -20,13 +20,13 @@ class DotIndicatorModel extends BaseViewModel {
   Color getDotColor(int currentSlide) {
     switch (currentSlide) {
       case 0:
-        return CustomStylesTheme.tertiaryColor;
+        return AppTheme.tertiaryColor;
       case 1:
-        return CustomStylesTheme.secondaryColor;
+        return AppTheme.secondaryColor;
       case 2:
-        return CustomStylesTheme.primaryColor;
+        return AppTheme.primaryColor;
       default:
-        return CustomStylesTheme.tertiaryColor;
+        return AppTheme.tertiaryColor;
     }
   }
 }

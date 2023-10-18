@@ -32,17 +32,17 @@ class CustomTextArea extends StackedView<CustomTextAreaModel> {
       children: [
         ReactiveTextField(
           formControlName: formControlName,
-          cursorColor: CustomStylesTheme.primaryColor,
+          cursorColor: AppTheme.primaryColor,
           keyboardType: TextInputType.multiline,
           textInputAction: textInputAction,
           validationMessages: validationMessage,
           minLines: 1,
           maxLines: 10,
           maxLength: 500,
-          style: CustomStylesTheme.regular14_16.copyWith(
-            color: CustomStylesTheme.blackColor,
+          style: AppTheme.regular14_16.copyWith(
+            color: AppTheme.blackColor,
           ),
-          decoration: CustomStylesTheme.inputDecoration(
+          decoration: AppTheme.inputDecoration(
             label: label,
             required: isRequired,
             hintText: hintText,

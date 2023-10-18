@@ -40,13 +40,13 @@ class OrderState {
   Color get getStatusColor {
     switch (orderStateType.name) {
       case 'pending':
-        return CustomStylesTheme.warningColor;
+        return AppTheme.warningColor;
       case 'completed':
-        return CustomStylesTheme.sucessColor;
+        return AppTheme.sucessColor;
       case 'cancelled':
-        return CustomStylesTheme.errorColor;
+        return AppTheme.errorColor;
       default:
-        return CustomStylesTheme.gray400;
+        return AppTheme.gray400;
     }
   }
 }

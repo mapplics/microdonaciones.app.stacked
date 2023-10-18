@@ -51,11 +51,11 @@ class WeekdayPicker extends StackedView<WeekdayPickerModel> {
           formControlName: formControlName,
           controller: viewModel.controller,
           onTap: (_) => viewModel.openDatePicker(context),
-          style: CustomStylesTheme.regular16_24.copyWith(
-            color: CustomStylesTheme.blackColor,
+          style: AppTheme.regular16_24.copyWith(
+            color: AppTheme.blackColor,
           ),
           validationMessages: validationMessage,
-          decoration: CustomStylesTheme.inputDecoration(
+          decoration: AppTheme.inputDecoration(
             required: required,
             hintText: 'Seleccioná una opción',
           ),

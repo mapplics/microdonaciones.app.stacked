@@ -8,12 +8,12 @@ class LinkButtonModel extends BaseViewModel {
   LinkButtonModel(this.textStyleParam);
 
   /// Tipografia por defecto si no se le pasa un [TextStyle] al Widget.
-  final TextStyle defaultTextStyle = CustomStylesTheme.bold16_20.copyWith(
-    color: CustomStylesTheme.tertiaryColor,
+  final TextStyle defaultTextStyle = AppTheme.bold16_20.copyWith(
+    color: AppTheme.tertiaryColor,
   );
 
   /// El color que tiene el texto del boton cuando esta deshabilitado.
-  final Color _disabledTextColor = CustomStylesTheme.darkGreyColor;
+  final Color _disabledTextColor = AppTheme.darkGreyColor;
 
   TextStyle get getDisabledTextStyle {
     return textStyleParam?.copyWith(color: _disabledTextColor) ??

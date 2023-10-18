@@ -40,7 +40,7 @@ class OrderHistoryDetailView extends StackedView<OrderHistoryDetailViewModel> {
               alignment: Alignment.center,
               child: Text(
                 'Ingresaste la siguiente donación',
-                style: CustomStylesTheme.regular14_20,
+                style: AppTheme.regular14_20,
               ),
             ),
           ),
@@ -48,13 +48,13 @@ class OrderHistoryDetailView extends StackedView<OrderHistoryDetailViewModel> {
             text: TextSpan(children: [
               TextSpan(
                 text: 'Estado: ',
-                style: CustomStylesTheme.bold16_20.copyWith(
-                  color: CustomStylesTheme.blackColor,
+                style: AppTheme.bold16_20.copyWith(
+                  color: AppTheme.blackColor,
                 ),
               ),
               TextSpan(
                 text: viewModel.order.orderState.name,
-                style: CustomStylesTheme.regular15_16.copyWith(
+                style: AppTheme.regular15_16.copyWith(
                   color: viewModel.order.orderState.getStatusColor,
                 ),
               )

@@ -27,7 +27,7 @@ class NewDonationShippingMethod
             padding: EdgeInsets.only(bottom: 19.0),
             child: Text(
               'Seleccioná el metodo de entrega que quieras utilizar para tu donación',
-              style: CustomStylesTheme.regular14_16,
+              style: AppTheme.regular14_16,
               textAlign: TextAlign.center,
             ),
           ),
@@ -58,15 +58,15 @@ class NewDonationShippingMethod
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text(
                           'Retiramos la donación por tu domicilio',
-                          style: CustomStylesTheme.bold16_20.copyWith(
-                            color: CustomStylesTheme.blackColor,
+                          style: AppTheme.bold16_20.copyWith(
+                            color: AppTheme.blackColor,
                           ),
                         ),
                       ),
                       Text(
                         'En esta primera etapa solo podremos retirar tu donación si estás dentro de la siguiente zona.',
-                        style: CustomStylesTheme.regular14_20.copyWith(
-                          color: CustomStylesTheme.blackColor,
+                        style: AppTheme.regular14_20.copyWith(
+                          color: AppTheme.blackColor,
                         ),
                       ),
                       Padding(
@@ -96,8 +96,8 @@ class NewDonationShippingMethod
                           children: [
                             Text(
                               'Vamos a retirar tu donación',
-                              style: CustomStylesTheme.bold16_20.copyWith(
-                                color: CustomStylesTheme.blackColor,
+                              style: AppTheme.bold16_20.copyWith(
+                                color: AppTheme.blackColor,
                               ),
                             ),
                             Padding(
@@ -105,15 +105,15 @@ class NewDonationShippingMethod
                                   const EdgeInsets.only(top: 8.0, bottom: 2.0),
                               child: Text(
                                 viewModel.deliveryDetail,
-                                style: CustomStylesTheme.regular14_20.copyWith(
-                                  color: CustomStylesTheme.blackColor,
+                                style: AppTheme.regular14_20.copyWith(
+                                  color: AppTheme.blackColor,
                                 ),
                               ),
                             ),
                             Text(
                               'Por la dirección ${viewModel.userAddress.fullAddress.capitalize()}',
-                              style: CustomStylesTheme.regular14_20.copyWith(
-                                color: CustomStylesTheme.blackColor,
+                              style: AppTheme.regular14_20.copyWith(
+                                color: AppTheme.blackColor,
                               ),
                             ),
                             LinkButton(
@@ -124,9 +124,8 @@ class NewDonationShippingMethod
                                   EdgeInsets.all(0),
                                 ),
                               ),
-                              textStyle:
-                                  CustomStylesTheme.regular14_20.copyWith(
-                                color: CustomStylesTheme.tertiaryColor,
+                              textStyle: AppTheme.regular14_20.copyWith(
+                                color: AppTheme.tertiaryColor,
                               ),
                             ),
                           ],
@@ -142,8 +141,8 @@ class NewDonationShippingMethod
                     children: [
                       Text(
                         'Puntos de entrega para dejar tu donación',
-                        style: CustomStylesTheme.bold16_20.copyWith(
-                          color: CustomStylesTheme.blackColor,
+                        style: AppTheme.bold16_20.copyWith(
+                          color: AppTheme.blackColor,
                         ),
                       ),
                       ReceptionPointList(

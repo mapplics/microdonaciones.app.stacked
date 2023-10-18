@@ -14,10 +14,10 @@ class UserAvatarModel extends BaseViewModel {
   /// Devuelve el TextStyle que debe tener las iniciales del usuario
   /// segun el [UserAvatarSize]
   TextStyle get initialsTextStyle => (UserAvatarSize.small == size)
-      ? CustomStylesTheme.bold14_20.copyWith(
+      ? AppTheme.bold14_20.copyWith(
           color: Colors.white,
         )
-      : CustomStylesTheme.bold34_44.copyWith(
+      : AppTheme.bold34_44.copyWith(
           color: Colors.white,
         );
 }

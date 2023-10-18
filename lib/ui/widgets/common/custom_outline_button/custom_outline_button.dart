@@ -30,8 +30,8 @@ class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
       label: Text(
         label,
         style: textStyle ??
-            CustomStylesTheme.regular16_20.copyWith(
-              color: mainColor ?? CustomStylesTheme.tertiaryColor,
+            AppTheme.regular16_20.copyWith(
+              color: mainColor ?? AppTheme.tertiaryColor,
             ),
       ),
       icon: (icon != null) ? icon! : const SizedBox(),
@@ -39,10 +39,10 @@ class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
       style: ButtonStyle(
         side: MaterialStatePropertyAll(
           BorderSide(
-            color: mainColor ?? CustomStylesTheme.tertiaryColor,
+            color: mainColor ?? AppTheme.tertiaryColor,
           ),
         ),
-        minimumSize: MaterialStatePropertyAll(CustomStylesTheme.minimumBtnSize),
+        minimumSize: MaterialStatePropertyAll(AppTheme.minimumBtnSize),
         shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

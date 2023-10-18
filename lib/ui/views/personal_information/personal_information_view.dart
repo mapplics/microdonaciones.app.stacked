@@ -54,7 +54,7 @@ class PersonalInformationView
                         ),
                       ),
                     CustomFillButton(
-                      backgroundColor: CustomStylesTheme.tertiaryColor,
+                      backgroundColor: AppTheme.tertiaryColor,
                       label: 'Guardar',
                       action: () => viewModel.onSaveUserData(context),
                     ),

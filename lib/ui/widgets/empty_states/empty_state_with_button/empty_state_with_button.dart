@@ -37,7 +37,7 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: CustomStylesTheme.tertiaryColor,
+              color: AppTheme.tertiaryColor,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
@@ -52,8 +52,8 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
           const SizedBox(height: 24),
           Text(
             title,
-            style: CustomStylesTheme.bold20_24.copyWith(
-              color: CustomStylesTheme.blackColor,
+            style: AppTheme.bold20_24.copyWith(
+              color: AppTheme.blackColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -61,15 +61,15 @@ class EmptyStateWithButton extends StackedView<EmptyStateWithButtonModel> {
           Text(
             body,
             textAlign: TextAlign.center,
-            style: CustomStylesTheme.regular16_24.copyWith(
-              color: CustomStylesTheme.lightGreyColor,
+            style: AppTheme.regular16_24.copyWith(
+              color: AppTheme.lightGreyColor,
             ),
           ),
           const SizedBox(height: 18),
           CustomFillButton(
             label: textButton,
             action: buttonAction,
-            textStyle: CustomStylesTheme.regular16_20.copyWith(
+            textStyle: AppTheme.regular16_20.copyWith(
               color: Colors.white,
             ),
           ),

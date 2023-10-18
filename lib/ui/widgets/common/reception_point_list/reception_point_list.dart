@@ -33,14 +33,14 @@ class ReceptionPointList extends StackedView<ReceptionPointListModel> {
               (receptionPoint) => CustomRadioListTile<ReceptionPoint>(
                 title: Text(
                   '${receptionPoint.name} | ${receptionPoint.address}',
-                  style: CustomStylesTheme.bold14_20.copyWith(
-                    color: CustomStylesTheme.blackColor,
+                  style: AppTheme.bold14_20.copyWith(
+                    color: AppTheme.blackColor,
                   ),
                 ),
                 subtitle: Text(
                   'Horarios: ${receptionPoint.extraInfo}',
-                  style: CustomStylesTheme.regular14_20.copyWith(
-                    color: CustomStylesTheme.blackColor,
+                  style: AppTheme.regular14_20.copyWith(
+                    color: AppTheme.blackColor,
                   ),
                 ),
                 value: receptionPoint,

@@ -34,12 +34,12 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
                 EdgeInsets.all(0.0),
               ),
               backgroundColor: MaterialStatePropertyAll(
-                CustomStylesTheme.gray400,
+                AppTheme.gray400,
               ),
             ),
             icon: const Icon(
               PhosphorIcons.minusBold,
-              color: CustomStylesTheme.lightGreyColor,
+              color: AppTheme.lightGreyColor,
               size: 12.0,
             ),
           ),
@@ -48,8 +48,8 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Text(
             viewModel.quantityValue.toString(),
-            style: CustomStylesTheme.bold16_20.copyWith(
-              color: CustomStylesTheme.tertiaryColor,
+            style: AppTheme.bold16_20.copyWith(
+              color: AppTheme.tertiaryColor,
             ),
           ),
         ),
@@ -63,12 +63,12 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
                 EdgeInsets.all(0.0),
               ),
               backgroundColor: MaterialStatePropertyAll(
-                CustomStylesTheme.gray400,
+                AppTheme.gray400,
               ),
             ),
             icon: const Icon(
               PhosphorIcons.plusBold,
-              color: CustomStylesTheme.lightGreyColor,
+              color: AppTheme.lightGreyColor,
               size: 12.0,
             ),
           ),

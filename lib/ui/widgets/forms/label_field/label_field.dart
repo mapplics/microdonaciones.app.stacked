@@ -16,7 +16,7 @@ class LabelField extends StackedView<LabelFieldModel> {
     LabelFieldModel viewModel,
     Widget? child,
   ) {
-    TextStyle _defaultTextStyle = CustomStylesTheme.regular14_20;
+    TextStyle _defaultTextStyle = AppTheme.regular14_20;
 
     return (required)
         ? RichText(
@@ -25,13 +25,13 @@ class LabelField extends StackedView<LabelFieldModel> {
                 TextSpan(
                   text: label,
                   style: _defaultTextStyle.copyWith(
-                    color: CustomStylesTheme.blackColor,
+                    color: AppTheme.blackColor,
                   ),
                 ),
                 TextSpan(
                   text: ' *',
                   style: _defaultTextStyle.copyWith(
-                    color: CustomStylesTheme.errorColor,
+                    color: AppTheme.errorColor,
                   ),
                 )
               ],

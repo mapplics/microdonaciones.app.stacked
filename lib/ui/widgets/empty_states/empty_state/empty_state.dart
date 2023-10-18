@@ -32,7 +32,7 @@ class EmptyState extends StackedView<EmptyStateModel> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: CustomStylesTheme.tertiaryColor,
+              color: AppTheme.tertiaryColor,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
@@ -47,8 +47,8 @@ class EmptyState extends StackedView<EmptyStateModel> {
           const SizedBox(height: 24),
           Text(
             title,
-            style: CustomStylesTheme.bold20_24.copyWith(
-              color: CustomStylesTheme.blackColor,
+            style: AppTheme.bold20_24.copyWith(
+              color: AppTheme.blackColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -56,8 +56,8 @@ class EmptyState extends StackedView<EmptyStateModel> {
           Text(
             body,
             textAlign: TextAlign.center,
-            style: CustomStylesTheme.regular16_24.copyWith(
-              color: CustomStylesTheme.lightGreyColor,
+            style: AppTheme.regular16_24.copyWith(
+              color: AppTheme.lightGreyColor,
             ),
           ),
         ],
