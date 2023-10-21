@@ -31,8 +31,7 @@ class Ong {
       vision: data['vision'],
       phone: data['phone'],
       email: data['email'],
-      googleLink: 'https://maps.app.goo.gl/ZXrtKSdB81p4G61J9',
-      // googleLink: data['googleLink'],
+      googleLink: data['googleLink'],
       enabled: (data['enabled'] == 1) ? true : false,
     );
   }
