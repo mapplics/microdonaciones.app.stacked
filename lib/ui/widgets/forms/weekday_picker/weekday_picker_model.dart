@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
-import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 
 class WeekdayPickerModel extends BaseViewModel {
@@ -22,8 +20,6 @@ class WeekdayPickerModel extends BaseViewModel {
   openDatePicker(BuildContext ctx) {
     final startDate = _getInitialDate();
     final maxDate = DateTime.now().add(const Duration(days: 14));
-
-    logSucess(DateTimeHelper.formatDateTime(startDate));
 
     showDatePicker(
       context: ctx,
@@ -58,7 +54,6 @@ class WeekdayPickerModel extends BaseViewModel {
       DateTime nextIntialDate;
       do {
         nextIntialDate = defaultDate.add(const Duration(days: 1));
-        logSucess(nextIntialDate.toIso8601String());
       } while (!enabledDay!.contains(nextIntialDate.weekday));
 
       return nextIntialDate;
