@@ -1,6 +1,6 @@
 class Weekday {
   final int id;
-  final String tag;
+  final DateTime tag;
   final String name;
 
   Weekday({
@@ -12,7 +12,7 @@ class Weekday {
   static Weekday createOne(Map<String, dynamic> data) {
     return Weekday(
       id: data['id'],
-      tag: data['tag'],
+      tag: DateTime.parse(data['tag']),
       name: data['name'],
     );
   }

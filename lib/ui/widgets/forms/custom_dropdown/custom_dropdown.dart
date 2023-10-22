@@ -49,6 +49,7 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
           isExpanded: true,
           dropdownColor: Colors.white,
           menuMaxHeight: 375,
+          onChanged: onchange,
           validationMessages: ReactiveFormHelper.getValidationMessages,
           hint: Text(
             'Seleccioná una opción',
@@ -68,8 +69,5 @@ class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   CustomDropdownModel viewModelBuilder(
     BuildContext context,
   ) =>
-      CustomDropdownModel<T>(
-        onchange: onchange,
-        // initialValue: initialValue,
-      );
+      CustomDropdownModel<T>();
 }

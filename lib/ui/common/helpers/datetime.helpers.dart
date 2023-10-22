@@ -24,6 +24,13 @@ class DateTimeHelper {
     }
   }
 
+  /// Recibe una fecha y devuelve el mes en formato string.
+  /// Ejemplo: Noviembre
+  static String getMonthName(DateTime dateTime) {
+    final mesFormat = DateFormat.MMMM('es');
+    return mesFormat.format(dateTime);
+  }
+
   /// Devuelve true si el año de [date] es el año actual.
   static bool isActualYear(DateTime date) {
     final now = DateTime.now();

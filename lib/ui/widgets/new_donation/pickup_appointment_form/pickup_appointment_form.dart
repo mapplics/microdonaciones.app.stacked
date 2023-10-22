@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
-import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_text_area/custom_text_area.dart';
 import 'package:microdonations/ui/widgets/forms/custom_dropdown/custom_dropdown.dart';
-import 'package:microdonations/ui/widgets/forms/weekday_picker/weekday_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
 
@@ -25,14 +23,13 @@ class PickupAppointmentForm extends StackedView<DeliveryAppointmentFormModel> {
       formGroup: viewModel.formGroup,
       child: Column(
         children: [
-          WeekdayPicker(
-            formControlName: DeliveryAppointmentFormFields.day.name,
-            label: 'Seleccioná un día para el retiro',
-            onchange: viewModel.updateDate,
+          CustomDropdown(
+            label: 'Seleccioná un día para que retiremos tu donación',
             required: viewModel.dayFieldIsRequired,
-            validationMessage: ReactiveFormHelper.getValidationMessages,
-            initialDate: viewModel.deliveryDay,
-            enabledDays: viewModel.enabledDays,
+            formControlName: DeliveryAppointmentFormFields.day.name,
+            items: viewModel.dayItems,
+            onchange: viewModel.updateDate,
+            // initialValue: null,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24.0),

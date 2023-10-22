@@ -3,12 +3,12 @@
 import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
 class PickupDonation extends BaseNewDonation {
-  late int? _weekdayId = null;
-  late int? _rangeId = null;
+  late RangeTime? _rangeTime = null;
   late DateTime? _pickupDate = null;
   late UserAddress? _userAddress = null;
   late String? _observations = null;
@@ -25,17 +25,11 @@ class PickupDonation extends BaseNewDonation {
     ong = selectedOng;
   }
 
-  set setWeekdayId(int id) {
-    _weekdayId = id;
+  set setTimeId(RangeTime rangeTime) {
+    _rangeTime = rangeTime;
   }
 
-  int? get weekday => _weekdayId;
-
-  set setTimeId(int id) {
-    _rangeId = id;
-  }
-
-  int? get rangeId => _rangeId;
+  RangeTime? get rangeId => _rangeTime;
 
   set setPickupDate(DateTime date) {
     _pickupDate = date;
@@ -61,16 +55,14 @@ class PickupDonation extends BaseNewDonation {
   /// Devuelve true si la instancia [DeliveryNewDonation]
   /// es valida como para crear una donacion.
   bool valid() {
-    return (_weekdayId != null) &&
-        (_rangeId != null) &&
+    return (_rangeTime != null) &&
         (_pickupDate != null) &&
         (_userAddress != null);
   }
 
   /// Resetea todos los campos.
   void resetFields() {
-    _weekdayId = null;
-    _rangeId = null;
+    _rangeTime = null;
     _pickupDate = null;
     _userAddress = null;
   }
@@ -85,8 +77,7 @@ class PickupDonation extends BaseNewDonation {
       "ong_id": ong.id,
       "shipping_method": 'pickup',
       "address_id": _userAddress!.id,
-      "range_time_id": _rangeId,
-      "weekday_id": _weekdayId,
+      "range_time_id": _rangeTime!.id,
       "observations": _observations,
       "date":
           '${_pickupDate!.year}${_pickupDate!.month}${_formatearNumero(_pickupDate!.day)}',

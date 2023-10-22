@@ -13,9 +13,11 @@ class NewDonationApiService {
   /// Recibe un [NewDonation] y crea una donacion.
   Future<void> createDonation(BaseNewDonation donation) async {
     try {
+      final json = donation.toJson();
+
       await _dio.post(
         '${_apiUrl}orders',
-        data: donation.toJson(),
+        data: json,
         options: Options(responseType: ResponseType.json),
       );
     } catch (e) {

@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'MicroDonaciones',
         debugShowCheckedModeBanner: false,
         locale: const Locale(
           'es',

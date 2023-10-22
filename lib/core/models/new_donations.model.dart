@@ -7,7 +7,7 @@ import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:collection/collection.dart';
 
-import 'pickup_dropdown_value.model.dart';
+import 'dropdowns/time_pickup_dropdown_value.model.dart';
 
 class NewDonation {
   final Ong ong;
@@ -17,7 +17,7 @@ class NewDonation {
 
   ShippingMethod typeDelivery = ShippingMethod.pickup;
   UserAddress? _userAddress;
-  PickupDropdownValue? _pickupValue;
+  TimePickupDropdownValue? _pickupValue;
   ReceptionPoint? _receptionPoint;
 
   /// Devuelve la lista de items [DonationItem] que el usuario selecciono
@@ -54,11 +54,11 @@ class NewDonation {
 
   /// Setea el [_pickupValue].
   /// Se utiliza cuando la donacion se retira por la casa del donante.
-  set setPickupValue(PickupDropdownValue pickupValue) =>
+  set setPickupValue(TimePickupDropdownValue pickupValue) =>
       _pickupValue = pickupValue;
 
   /// Devuelve [_pickupValue]
-  PickupDropdownValue? get pickupValue => _pickupValue;
+  TimePickupDropdownValue? get pickupValue => _pickupValue;
 
   /// Resetea [_pickupValue] a null.
   void resetPickupValue() => _pickupValue = null;
@@ -106,8 +106,7 @@ class NewDonation {
       "shipping_method": typeDelivery.name,
       "reception_point_id": _receptionPoint?.id,
       "address_id": _isDelivery ? _userAddress!.id : null,
-      "range_time_id": _isDelivery ? _pickupValue!.rangeTimeId : null,
-      "weekday_id": _isDelivery ? _pickupValue!.weekdayId : null,
+      "range_time_id": _isDelivery ? _pickupValue!.rangeTime.id : null,
       "products": _donationsList
           .map(
             (donationItem) => {

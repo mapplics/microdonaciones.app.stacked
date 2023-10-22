@@ -1,13 +1,16 @@
 import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/enums/new_donation_error.enum.dart';
+import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/core/models/delivery_new_donation.model.dart';
 import 'package:microdonations/core/models/donation_item.model.dart';
 import 'package:microdonations/core/models/donation_items_detail.model.dart';
-import 'package:microdonations/core/models/pickup_dropdown_value.model.dart';
+import 'package:microdonations/core/models/dropdowns/pickup_day_dropdown_value.model.dart';
+import 'package:microdonations/core/models/dropdowns/time_pickup_dropdown_value.model.dart';
 import 'package:microdonations/core/models/pickup_new_donation.model.dart';
 import 'package:microdonations/core/models/pickup_shipping_validation.model.dart';
 import 'package:microdonations/core/models/product.model.dart';
 import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/reception_point.model.dart';
 import 'package:microdonations/core/models/user_address.model.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
@@ -117,18 +120,13 @@ class NewDonationService with ListenableServiceMixin {
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void _updatePickupTime(PickupDropdownValue pickupValue) {
-    _pickupDonation.setTimeId = pickupValue.rangeTimeId;
+  void _updatePickupTime(RangeTime rangeTime) {
+    _pickupDonation.setTimeId = rangeTime;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
-  void _updatePickupObservations(String obs) {
-    _pickupDonation.setObservations = obs;
-  }
-
-  /// Actualiza el dia de la semana que se va a retirar la donacion.
-  void _updatePickupWeekday(PickupDropdownValue pickupValue) {
-    _pickupDonation.setWeekdayId = pickupValue.weekdayId;
+  void _updatePickupObservations(String? obs) {
+    _pickupDonation.setObservations = obs ?? '';
   }
 
   /// Actualiza el dia que se va a retirar la donacion.
@@ -151,17 +149,17 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) {
-    // _pickupAppointmentForm = form;
-
     if (_pickupShippingValidation.form?.valid ?? false) {
-      final dayValue = ReactiveFormHelper.getControlValue(
-          form, DeliveryAppointmentFormFields.day.name);
-      final pickupValue = ReactiveFormHelper.getControlValue(
-          form, DeliveryAppointmentFormFields.time.name) as PickupDropdownValue;
+      final dropdownDayValue = ReactiveFormHelper.getControlValue(
+              form, DeliveryAppointmentFormFields.day.name)
+          as DatePickupDropdownValue;
 
-      _updatePickupTime(pickupValue);
-      _updatePickupWeekday(pickupValue);
-      _updatePickupDate(dayValue);
+      final dropdownRangeValue = ReactiveFormHelper.getControlValue(
+              form, DeliveryAppointmentFormFields.time.name)
+          as TimePickupDropdownValue;
+
+      _updatePickupTime(dropdownRangeValue.rangeTime);
+      _updatePickupDate(dropdownDayValue.date);
     }
 
     final obs = ReactiveFormHelper.getControlValue(
@@ -194,18 +192,14 @@ class NewDonationService with ListenableServiceMixin {
       final form = _pickupShippingValidation.form;
 
       final day = ReactiveFormHelper.getControlValue(
-          form!, DeliveryAppointmentFormFields.day.name) as DateTime;
+              form!, DeliveryAppointmentFormFields.day.name)
+          as DatePickupDropdownValue;
 
       final time = ReactiveFormHelper.getControlValue(
-          form, DeliveryAppointmentFormFields.time.name) as PickupDropdownValue;
+              form, DeliveryAppointmentFormFields.time.name)
+          as TimePickupDropdownValue;
 
-      final weekday = _newDonationData.pickupRange
-          .firstWhere((element) => element.weekday.id == time.weekdayId);
-
-      final weekdayTime = weekday.ranges
-          .firstWhere((element) => element.id == time.rangeTimeId);
-
-      return 'El día ${weekday.weekday.name} ${DateTimeHelper.formatDateTime(day)} entre las ${weekdayTime.betweenTime}.';
+      return 'El día ${DateTimeHelper.getDayOfWeek(day.date).name.capitalize()} ${day.date.day} de ${DateTimeHelper.getMonthName(day.date).capitalize()} entre las ${time.rangeTime.betweenTime}.';
     }
   }
 
