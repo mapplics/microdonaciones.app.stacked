@@ -29,6 +29,7 @@ class AuthService with ListenableServiceMixin {
     try {
       SocialLoginResponse response = await _authApi.login(email, token);
       setAuthModel(response.token);
+      notifyListeners();
       return response;
     } catch (e) {
       rethrow;
