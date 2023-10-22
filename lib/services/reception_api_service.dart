@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:microdonations/core/interceptor/dio.interceptor.dart';
-import 'package:microdonations/core/models/ong.model.dart';
-import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong.model.dart';
+import 'package:microdonations/core/models/ong/ong_pickup_weekday_range.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 class ReceptionApiService {
@@ -12,14 +12,14 @@ class ReceptionApiService {
   final String? _apiUrl = dotenv.env['API_URL'];
 
   /// Devuelve los puntos de entrega de la [ong].
-  Future<List<ReceptionPoint>> getReceptionPoints(Ong ong) async {
+  Future<List<OngReceptionPoint>> getReceptionPoints(Ong ong) async {
     try {
       final response = await _dio.get(
         '${_apiUrl}reception-points/${ong.id}',
         options: Options(responseType: ResponseType.json),
       );
 
-      return ReceptionPoint.createList(response.data['data']);
+      return OngReceptionPoint.createList(response.data['data']);
     } catch (e) {
       logError('No se pudo recuperar los puntos de entrega! ${e.toString()}');
       rethrow;
@@ -27,14 +27,14 @@ class ReceptionApiService {
   }
 
   /// Devuelve los los horarios de retiro a domicilio que puede hacer la [ong].
-  Future<List<PickupWeekDayRange>> getWeekdayRangeTime(Ong ong) async {
+  Future<List<OngPickupWeekDayRange>> getWeekdayRangeTime(Ong ong) async {
     try {
       final response = await _dio.get(
         '${_apiUrl}pickeup-weekday-range-time/${ong.id}',
         options: Options(responseType: ResponseType.json),
       );
 
-      return PickupWeekDayRange.createList(response.data['data']);
+      return OngPickupWeekDayRange.createList(response.data['data']);
     } catch (e) {
       logError('No se pudo recuperar los puntos de entrega! ${e.toString()}');
       rethrow;

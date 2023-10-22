@@ -1,4 +1,4 @@
-import 'base_address.abstract.dart';
+import 'abstracts/base_address.abstract.dart';
 
 /// Clase para representar la direccion del usuario logueado.
 class UserAddress implements BaseAddress {

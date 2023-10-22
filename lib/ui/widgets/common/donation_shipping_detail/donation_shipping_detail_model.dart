@@ -1,11 +1,11 @@
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
 class DonationShippingDetailModel extends BaseViewModel {
   final String? userAddress;
-  final ReceptionPoint? receptionPoint;
+  final OngReceptionPoint? receptionPoint;
   final ShippingMethod type;
   final String? pickupPresentation;
 

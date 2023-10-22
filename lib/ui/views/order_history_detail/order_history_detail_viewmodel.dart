@@ -1,6 +1,6 @@
-import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
-import 'package:microdonations/core/models/delivery_history_order.model.dart';
-import 'package:microdonations/core/models/pickup_history_order.dart';
+import 'package:microdonations/core/models/history/abstracts/base_history_order.abstract.dart';
+import 'package:microdonations/core/models/history/delivery_history_order.model.dart';
+import 'package:microdonations/core/models/history/pickup_history_order.dart';
 import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';

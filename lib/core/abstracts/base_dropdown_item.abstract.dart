@@ -1,18 +1,18 @@
-abstract class CustomDropdownItems<T> {
+abstract class BaseDropdownItem<T> {
   T value;
   String label;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CustomDropdownItems<T> &&
+      other is BaseDropdownItem<T> &&
           runtimeType == other.runtimeType &&
           value == other.value;
 
   @override
   int get hashCode => value.hashCode;
 
-  CustomDropdownItems({
+  BaseDropdownItem({
     required this.label,
     required this.value,
   });

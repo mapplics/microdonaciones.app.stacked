@@ -1,18 +1,17 @@
-import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
-import 'package:microdonations/core/enums/new_donation_error.enum.dart';
+import 'package:microdonations/core/models/new_donation/abstracts/base_new_donation.abstract.dart';
+import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/delivery_new_donation.model.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
-import 'package:microdonations/core/models/donation_items_detail.model.dart';
-import 'package:microdonations/core/models/dropdowns/pickup_day_dropdown_value.model.dart';
-import 'package:microdonations/core/models/dropdowns/time_pickup_dropdown_value.model.dart';
-import 'package:microdonations/core/models/pickup_new_donation.model.dart';
-import 'package:microdonations/core/models/pickup_shipping_validation.model.dart';
-import 'package:microdonations/core/models/product.model.dart';
-import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/new_donation/delivery_new_donation.model.dart';
+import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
+import 'package:microdonations/core/models/new_donation/donation_product_list.model.dart';
+import 'package:microdonations/core/models/new_donation/pickup_new_donation.model.dart';
+import 'package:microdonations/core/models/new_donation/pickup_shipping_validation.model.dart';
+import 'package:microdonations/core/models/ong/ong_product.model.dart';
+import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
-import 'package:microdonations/core/models/user_address.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
+import 'package:microdonations/core/models/user/user_address.model.dart';
+import 'package:microdonations/core/models/weekday.model.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
@@ -31,7 +30,7 @@ class NewDonationService with ListenableServiceMixin {
 
   late Ong _ongSelected;
 
-  DonationItemsDetail _donationItems = DonationItemsDetail();
+  DonationProductList _donationItems = DonationProductList();
 
   ShippingMethod _shippingMethod = ShippingMethod.pickup;
 
@@ -43,7 +42,7 @@ class NewDonationService with ListenableServiceMixin {
       PickupShippingValidation();
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
-  List<DonationItem> get donationsItems => _donationItems.donationsItemsList;
+  List<DonationProduct> get donationsItems => _donationItems.donationsItemsList;
 
   /// Devuelve las opciones que el usuario puede elegir para donar.
   UserAddress? get userAddres => _pickupDonation.userAddress;
@@ -78,24 +77,24 @@ class NewDonationService with ListenableServiceMixin {
     }
   }
 
-  /// Recibe un [product] que se convierte a [DonationItem] que se agrega
+  /// Recibe un [product] que se convierte a [DonationProduct] que se agrega
   /// a la lista de donaciones [_selectedItems].
-  void addDonationItem(Product product) {
-    final asDonationItem = DonationItem.createFromProduct(product);
+  void addDonationItem(OngProduct product) {
+    final asDonationItem = DonationProduct.createFromProduct(product);
     _donationItems.addDonationItem(asDonationItem);
     notifyListeners();
   }
 
-  /// Recibe un [Product] y busca una coincidencia en [_selectedItems].
-  /// Si encuentra una elimina el [DonationItem] de [_selectedItems]
-  void removeDonationItem(Product product) {
+  /// Recibe un [OngProduct] y busca una coincidencia en [_selectedItems].
+  /// Si encuentra una elimina el [DonationProduct] de [_selectedItems]
+  void removeDonationItem(OngProduct product) {
     _donationItems.removeDonationItem(product);
     notifyListeners();
   }
 
-  /// Recibe un [DonationItem] y una cantidad [quantity]
+  /// Recibe un [DonationProduct] y una cantidad [quantity]
   /// que se le va a asignar al mismo.
-  void onChangeItemQuantity(DonationItem item, int quantity) {
+  void onChangeItemQuantity(DonationProduct item, int quantity) {
     _donationItems.updateDonationItemQuality(item, quantity);
     notifyListeners();
   }
@@ -112,16 +111,16 @@ class NewDonationService with ListenableServiceMixin {
   }
 
   /// Devuelve el punto de entrega, si es que el usuario selecciono uno.
-  ReceptionPoint? get receptionPoint => _deliveryDonation.receptionPoint;
+  OngReceptionPoint? get receptionPoint => _deliveryDonation.receptionPoint;
 
   /// Actualiza el punto de entrega de la donacion.
-  void updateReceptionPoint(ReceptionPoint receptionPoint) {
+  void updateReceptionPoint(OngReceptionPoint receptionPoint) {
     _deliveryDonation.setReceptionPoint = receptionPoint;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
   void _updatePickupTime(RangeTime rangeTime) {
-    _pickupDonation.setTimeId = rangeTime;
+    _pickupDonation.setRangeTime = rangeTime;
   }
 
   /// Actualiza el horario de retiro de la donacion por domicilio.
@@ -150,16 +149,18 @@ class NewDonationService with ListenableServiceMixin {
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) {
     if (_pickupShippingValidation.form?.valid ?? false) {
-      final dropdownDayValue = ReactiveFormHelper.getControlValue(
-              form, DeliveryAppointmentFormFields.day.name)
-          as DatePickupDropdownValue;
+      final Weekday weekday = ReactiveFormHelper.getControlValue(
+        form,
+        DeliveryAppointmentFormFields.day.name,
+      );
 
-      final dropdownRangeValue = ReactiveFormHelper.getControlValue(
-              form, DeliveryAppointmentFormFields.time.name)
-          as TimePickupDropdownValue;
+      final RangeTime rangeTime = ReactiveFormHelper.getControlValue(
+        form,
+        DeliveryAppointmentFormFields.time.name,
+      );
 
-      _updatePickupTime(dropdownRangeValue.rangeTime);
-      _updatePickupDate(dropdownDayValue.date);
+      _updatePickupTime(rangeTime);
+      _updatePickupDate(weekday.tag);
     }
 
     final obs = ReactiveFormHelper.getControlValue(
@@ -191,20 +192,22 @@ class NewDonationService with ListenableServiceMixin {
     } else {
       final form = _pickupShippingValidation.form;
 
-      final day = ReactiveFormHelper.getControlValue(
-              form!, DeliveryAppointmentFormFields.day.name)
-          as DatePickupDropdownValue;
+      final Weekday weekday = ReactiveFormHelper.getControlValue(
+        form!,
+        DeliveryAppointmentFormFields.day.name,
+      );
 
-      final time = ReactiveFormHelper.getControlValue(
-              form, DeliveryAppointmentFormFields.time.name)
-          as TimePickupDropdownValue;
+      final RangeTime rangeTime = ReactiveFormHelper.getControlValue(
+        form,
+        DeliveryAppointmentFormFields.time.name,
+      );
 
-      return 'El día ${DateTimeHelper.getDayOfWeek(day.date).name.capitalize()} ${day.date.day} de ${DateTimeHelper.getMonthName(day.date).capitalize()} entre las ${time.rangeTime.betweenTime}.';
+      return 'El día ${DateTimeHelper.getDayOfWeek(weekday.tag).name.capitalize()} ${weekday.tag.day} de ${DateTimeHelper.getMonthName(weekday.tag).capitalize()} entre las ${rangeTime.betweenTime}.';
     }
   }
 
-  /// Devuelve true si existe el [Product] en la lista de donacion.
-  bool checkIfItemExist(Product product) =>
+  /// Devuelve true si existe el [OngProduct] en la lista de donacion.
+  bool checkIfItemExist(OngProduct product) =>
       _donationItems.checkIfItemExist(product);
 
   /// Devuelve null si la persona selecciono al menos un item para donar.
@@ -253,7 +256,7 @@ class NewDonationService with ListenableServiceMixin {
 
   /// Resetea todos todos los campos del servicio a su valor inicial.
   void resetNewDonation() {
-    _donationItems = DonationItemsDetail();
+    _donationItems = DonationProductList();
     _shippingMethod = ShippingMethod.pickup;
     _deliveryDonation = DeliveryNewDonation();
     _pickupDonation = PickupDonation();

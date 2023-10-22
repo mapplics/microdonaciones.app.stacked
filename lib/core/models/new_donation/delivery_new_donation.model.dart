@@ -1,19 +1,21 @@
 // ignore_for_file: avoid_init_to_null
 
-import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
-import 'package:microdonations/core/models/donation_items_detail.model.dart';
-import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/new_donation/abstracts/base_new_donation.abstract.dart';
+import 'package:microdonations/core/models/new_donation/donation_product_list.model.dart';
+import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
-import 'reception_point.model.dart';
+import '../ong/ong_reception_point.model.dart';
 
+/// Representa una donacion que el usuario va a llevar a un punto de entrega.
+/// Esta clase es la que se parsea y se envia a la API.
 class DeliveryNewDonation extends BaseNewDonation {
-  late ReceptionPoint? _receptionPoint = null;
+  late OngReceptionPoint? _receptionPoint = null;
 
   DeliveryNewDonation({super.type = ShippingMethod.pickup});
 
   @override
-  set setDonationItemsDetail(DonationItemsDetail items) {
+  set setDonationItemsDetail(DonationProductList items) {
     donationItemsDetail = items;
   }
 
@@ -22,11 +24,11 @@ class DeliveryNewDonation extends BaseNewDonation {
     ong = selectedOng;
   }
 
-  set setReceptionPoint(ReceptionPoint receptionPoint) {
+  set setReceptionPoint(OngReceptionPoint receptionPoint) {
     _receptionPoint = receptionPoint;
   }
 
-  ReceptionPoint? get receptionPoint => _receptionPoint;
+  OngReceptionPoint? get receptionPoint => _receptionPoint;
 
   /// Devuelve true si la instancia [PickupDonation]
   /// es valida como para crear una donacion.

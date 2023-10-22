@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:microdonations/core/models/logged_user.model.dart';
-import 'package:microdonations/core/models/update_user_request.model.dart';
+import 'package:microdonations/core/models/user/logged_user.model.dart';
+import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../core/interceptor/dio.interceptor.dart';

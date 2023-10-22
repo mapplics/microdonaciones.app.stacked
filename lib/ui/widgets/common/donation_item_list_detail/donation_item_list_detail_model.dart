@@ -1,8 +1,8 @@
-import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
 import 'package:stacked/stacked.dart';
 
 class DonationItemListDetailModel extends BaseViewModel {
-  final List<DonationItem> donationItems;
+  final List<DonationProduct> donationItems;
 
   DonationItemListDetailModel(this.donationItems);
 

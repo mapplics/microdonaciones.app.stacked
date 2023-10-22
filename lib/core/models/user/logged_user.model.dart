@@ -1,5 +1,5 @@
-import 'package:microdonations/core/models/base_user.abstract.dart';
-import 'package:microdonations/core/models/user_address.model.dart';
+import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
+import 'package:microdonations/core/models/user/user_address.model.dart';
 
 class LoggedUser implements BaseUser {
   @override

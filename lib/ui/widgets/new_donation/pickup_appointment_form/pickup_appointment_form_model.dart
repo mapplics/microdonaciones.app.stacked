@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
-import 'package:microdonations/core/models/dropdowns/pickup_day_dropdown_value.model.dart';
-import 'package:microdonations/core/models/dropdowns/time_pickup_dropdown_value.model.dart';
+import 'package:microdonations/core/abstracts/base_dropdown_item.abstract.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
+import 'package:microdonations/core/models/weekday.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +20,7 @@ enum DeliveryAppointmentFormFields {
 class DeliveryAppointmentFormModel extends BaseViewModel {
   final _newDonationDataService = locator<NewDonationDataService>();
   final OnChangeForm onchange;
-  List<CustomDropdownItems<TimePickupDropdownValue>> _timeItems = [];
+  List<BaseDropdownItem<RangeTime>> _timeItems = [];
 
   DeliveryAppointmentFormModel(this.onchange);
 
@@ -29,20 +28,20 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
 
   final List<StreamSubscription<dynamic>> _formSubscriptions = [];
 
-  List<CustomDropdownItems<DatePickupDropdownValue>> get dayItems {
+  List<BaseDropdownItem<Weekday>> get dayItems {
     return _newDonationDataService.pickupRange
         .map((e) => e.getDropdownDays())
         .toList();
   }
 
-  List<CustomDropdownItems<TimePickupDropdownValue>> get timeItems {
+  List<BaseDropdownItem<RangeTime>> get timeItems {
     final value = ReactiveFormHelper.getControlValue(
         formGroup, DeliveryAppointmentFormFields.day.name);
 
     if (value != null) {
-      final dropdownValue = value as DatePickupDropdownValue;
+      final dropdownValue = value as Weekday;
 
-      _loadTimeItems(dropdownValue.date);
+      _loadTimeItems(dropdownValue.tag);
       return _timeItems;
     } else {
       return [];
@@ -53,13 +52,11 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
     formGroup = form ??
         FormGroup(
           {
-            DeliveryAppointmentFormFields.day.name:
-                FormControl<DatePickupDropdownValue>(
+            DeliveryAppointmentFormFields.day.name: FormControl<Weekday>(
               value: null,
               validators: [Validators.required],
             ),
-            DeliveryAppointmentFormFields.time.name:
-                FormControl<TimePickupDropdownValue>(
+            DeliveryAppointmentFormFields.time.name: FormControl<RangeTime>(
               value: null,
               disabled: true,
               validators: [Validators.required],
@@ -83,8 +80,7 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
   }
 
   void updateDate<T>(T value) {
-    logSucess('entro');
-    final pickupValue = value as FormControl<DatePickupDropdownValue>;
+    final pickupValue = value as FormControl<Weekday>;
 
     formGroup
         .control(DeliveryAppointmentFormFields.day.name)
@@ -101,7 +97,7 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
 
   /// Setea la hora y dia en que se le retira la donacion al usuario.
   void updateTime<T>(T value) {
-    final pickupValue = value as FormControl<TimePickupDropdownValue>;
+    final pickupValue = value as FormControl<RangeTime>;
     formGroup.control(DeliveryAppointmentFormFields.time.name).value =
         pickupValue.value;
   }

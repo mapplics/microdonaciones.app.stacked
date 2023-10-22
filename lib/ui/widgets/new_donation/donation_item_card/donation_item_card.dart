@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/product.model.dart';
+import 'package:microdonations/core/models/ong/ong_product.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:stacked/stacked.dart';
@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 import 'donation_item_card_model.dart';
 
 class DonationItemCard extends StackedView<DonationItemCardModel> {
-  final Product product;
+  final OngProduct product;
   final bool initialValue;
   final OnChangeCheckbox onChange;
 

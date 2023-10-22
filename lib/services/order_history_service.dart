@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
+import 'package:microdonations/core/models/history/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/core/interceptor/dio.interceptor.dart';
-import 'package:microdonations/core/models/delivery_history_order.model.dart';
-import 'package:microdonations/core/models/pickup_history_order.dart';
+import 'package:microdonations/core/models/history/delivery_history_order.model.dart';
+import 'package:microdonations/core/models/history/pickup_history_order.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 

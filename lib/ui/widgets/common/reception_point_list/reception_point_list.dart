@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/forms/custom_radio_list_tile/custom_radio_list_tile.dart';
@@ -8,9 +8,9 @@ import 'package:stacked/stacked.dart';
 import 'reception_point_list_model.dart';
 
 class ReceptionPointList extends StackedView<ReceptionPointListModel> {
-  final List<ReceptionPoint> receptionPoints;
+  final List<OngReceptionPoint> receptionPoints;
   final OnChangeRadioButton onchange;
-  final ReceptionPoint? initialValue;
+  final OngReceptionPoint? initialValue;
 
   const ReceptionPointList({
     required this.receptionPoints,
@@ -30,7 +30,7 @@ class ReceptionPointList extends StackedView<ReceptionPointListModel> {
       children: [
         ...receptionPoints
             .map(
-              (receptionPoint) => CustomRadioListTile<ReceptionPoint>(
+              (receptionPoint) => CustomRadioListTile<OngReceptionPoint>(
                 title: Text(
                   '${receptionPoint.name} | ${receptionPoint.address}',
                   style: AppTheme.bold14_20.copyWith(

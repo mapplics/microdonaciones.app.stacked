@@ -1,6 +1,8 @@
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/update_address_request.model.dart';
+import 'package:microdonations/core/models/update_requests/update_address_request.model.dart';
 
+/// Representa la request que se debe enviar a la API para actualizar
+/// los datos del usuario.
 class UpdateUserRequest {
   final String firstname;
   final String lastname;

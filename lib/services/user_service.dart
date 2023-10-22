@@ -1,9 +1,9 @@
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/models/update_user_request.model.dart';
+import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/services/user_api_service.dart';
 import 'package:stacked/stacked.dart';
 
-import '../core/models/logged_user.model.dart';
+import '../core/models/user/logged_user.model.dart';
 
 class UserService with ListenableServiceMixin {
   final _userApi = locator<UserApiService>();

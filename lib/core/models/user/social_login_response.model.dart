@@ -1,4 +1,4 @@
-import 'package:microdonations/core/models/logged_user.model.dart';
+import 'package:microdonations/core/models/user/logged_user.model.dart';
 
 /// Clase que permite tipar la respuesta del endpoint de login de la API.
 class SocialLoginResponse {

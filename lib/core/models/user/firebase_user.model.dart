@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:microdonations/core/models/base_user.abstract.dart';
+import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
 
 class FirebaseUser implements BaseUser {
   @override

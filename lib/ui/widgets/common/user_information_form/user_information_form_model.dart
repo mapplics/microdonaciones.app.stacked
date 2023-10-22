@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:microdonations/core/form/validators/only_text.validator.dart';
 import 'package:microdonations/core/form/validators/phone_number.validator.dart';
-import 'package:microdonations/core/models/base_user.abstract.dart';
-import 'package:microdonations/core/models/logged_user.model.dart';
+import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
+import 'package:microdonations/core/models/user/logged_user.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';

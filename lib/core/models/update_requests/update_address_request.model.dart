@@ -1,6 +1,5 @@
 import 'package:microdonations/core/extensions/string.extension.dart';
-
-import 'base_address.abstract.dart';
+import 'package:microdonations/core/models/user/abstracts/base_address.abstract.dart';
 
 /// Clase para enviar a la API y actualizar la direccion del usuario
 class UpdateAddressRequest implements BaseAddress {

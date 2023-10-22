@@ -1,17 +1,17 @@
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:stacked/stacked.dart';
 
 class ReceptionPointListModel extends BaseViewModel {
   final OnChangeRadioButton onchange;
-  final ReceptionPoint? _initialValue;
+  final OngReceptionPoint? _initialValue;
 
   ReceptionPointListModel(this.onchange, this._initialValue);
 
-  ReceptionPoint? _selectedValue;
+  OngReceptionPoint? _selectedValue;
   bool _firstTime = true;
 
-  ReceptionPoint? get selectedValue {
+  OngReceptionPoint? get selectedValue {
     if (_firstTime) {
       _firstTime = false;
       _selectedValue = _initialValue;
@@ -21,7 +21,7 @@ class ReceptionPointListModel extends BaseViewModel {
     return _selectedValue;
   }
 
-  void onchangeValue(ReceptionPoint newValue) {
+  void onchangeValue(OngReceptionPoint newValue) {
     _selectedValue = newValue;
     onchange(newValue);
     rebuildUi();

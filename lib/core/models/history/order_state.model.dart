@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/enums/order_state_type.enum.dart';
+import 'package:microdonations/core/models/history/enum/order_state_type.enum.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 
 /// Representa el estado de una donación.

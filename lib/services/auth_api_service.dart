@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:microdonations/core/interceptor/dio.interceptor.dart';
-import 'package:microdonations/core/models/social_login_response.model.dart';
+import 'package:microdonations/core/models/user/social_login_response.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 class AuthApiService {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:stacked/stacked.dart';
 
 import 'donation_item_list_detail_model.dart';
 
 class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
-  final List<DonationItem> donationItems;
+  final List<DonationProduct> donationItems;
 
   const DonationItemListDetail({required this.donationItems, super.key});
 

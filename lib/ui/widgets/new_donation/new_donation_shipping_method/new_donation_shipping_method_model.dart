@@ -1,9 +1,9 @@
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
-import 'package:microdonations/core/models/pickup_weekday_range.model.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
-import 'package:microdonations/core/models/user_address.model.dart';
+import 'package:microdonations/core/models/ong/ong_pickup_weekday_range.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
+import 'package:microdonations/core/models/user/user_address.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
@@ -22,11 +22,11 @@ class DonationShippingMethodModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [_userService];
 
   /// Devuelve los puntos de entrega de la ong seleccionada.
-  List<ReceptionPoint> get receptionPoints =>
+  List<OngReceptionPoint> get receptionPoints =>
       _newDonationDataService.receptionPoints;
 
   /// Devuelve los horarios de retiro de la ong.
-  List<PickupWeekDayRange> get pickupRange =>
+  List<OngPickupWeekDayRange> get pickupRange =>
       _newDonationDataService.pickupRange;
 
   /// Devuelve true si el tipo de delivery [ShippingMethod] seleccionado
@@ -49,7 +49,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Devuelve el punto de entrega que selecciono el usuario.
   /// Si es que selecciono uno.
-  ReceptionPoint? get receptionPointSelected =>
+  OngReceptionPoint? get receptionPointSelected =>
       _newDonationService.receptionPoint;
 
   /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]

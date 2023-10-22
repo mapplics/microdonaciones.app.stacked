@@ -1,3 +1,4 @@
+/// Representa un rando de horario.
 class RangeTime {
   final int id;
   final String start;
@@ -17,11 +18,13 @@ class RangeTime {
     );
   }
 
-  /// Devuelve como String el rango de tiempo en formato 'hh:mm a hh:mm'
+  /// Devuelve el rango de tiempo en formato 'hh:mm a hh:mm'
+  /// Ejemplo: 12:00 a 13:00
   String get fullTime =>
       '${_removeMiliseconds(start)} a ${_removeMiliseconds(end)}';
 
-  /// Devuelve como String el rango de tiempo en formato 'hh:mm y las hh:mm'
+  /// Devuelve el rango de tiempo en formato 'hh:mm y las hh:mm'
+  /// Ejemplo: 12:00 y las 13:00
   String get betweenTime =>
       '${_removeMiliseconds(start)} y las ${_removeMiliseconds(end)}';
 

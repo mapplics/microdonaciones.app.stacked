@@ -1,11 +1,11 @@
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/models/auth.model.dart';
+import 'package:microdonations/core/models/user/auth.model.dart';
 import 'package:microdonations/services/auth_api_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/storage.helpers.dart';
 import 'package:stacked/stacked.dart';
 
-import '../core/models/social_login_response.model.dart';
+import '../core/models/user/social_login_response.model.dart';
 
 class AuthService with ListenableServiceMixin {
   final _authApi = locator<AuthApiService>();

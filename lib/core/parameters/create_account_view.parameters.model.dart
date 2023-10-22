@@ -1,4 +1,4 @@
-import 'package:microdonations/core/models/firebase_user.model.dart';
+import 'package:microdonations/core/models/user/firebase_user.model.dart';
 
 class CreateAccountViewParameters {
   final FirebaseUser user;

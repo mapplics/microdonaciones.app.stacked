@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';

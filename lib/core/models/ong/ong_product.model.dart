@@ -1,12 +1,12 @@
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
-/// Representa los productos que puede recibir una ONG como donacion.
-class Product {
+/// Representa un producto que se le puede donar a una ONG.
+class OngProduct {
   final int id;
   final String name;
   final String urlImg;
 
-  Product({
+  OngProduct({
     required this.id,
     required this.name,
     required this.urlImg,
@@ -19,9 +19,9 @@ class Product {
           'The pathImg should not be empty',
         );
 
-  /// Crea una instancia de [Product]
-  static Product createOne(Map<String, dynamic> data) {
-    return Product(
+  /// Crea una instancia de [OngProduct]
+  static OngProduct createOne(Map<String, dynamic> data) {
+    return OngProduct(
       id: data['id'],
       name: data['name'],
       urlImg: data['image'].toString().replaceFirst(
@@ -31,13 +31,13 @@ class Product {
     );
   }
 
-  /// Crea una lista de [Product]
-  static List<Product> createList(List<dynamic> data) {
-    List<Product> items = [];
+  /// Crea una lista de [OngProduct]
+  static List<OngProduct> createList(List<dynamic> data) {
+    List<OngProduct> items = [];
 
     for (var course in data) {
       try {
-        items.add(Product.createOne(course));
+        items.add(OngProduct.createOne(course));
       } catch (e) {
         logError(e);
         rethrow;

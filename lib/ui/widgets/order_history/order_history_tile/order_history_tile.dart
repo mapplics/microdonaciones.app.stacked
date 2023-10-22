@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
+import 'package:microdonations/core/models/history/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';

@@ -1,17 +1,17 @@
-import 'package:microdonations/core/models/order_state.model.dart';
-import 'package:microdonations/core/models/product.model.dart';
+import 'package:microdonations/core/models/history/order_state.model.dart';
+import 'package:microdonations/core/models/ong/ong_product.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
 class DonationHistory {
   final int id;
   final ShippingMethod shippingMethod;
-  final ReceptionPoint? receptionPoint;
+  final OngReceptionPoint? receptionPoint;
   final RangeTime? rangeTime;
   final String? weekday;
   final OrderState orderState;
-  final List<Product> products;
+  final List<OngProduct> products;
 
   DonationHistory({
     required this.id,
@@ -27,11 +27,11 @@ class DonationHistory {
     return DonationHistory(
       id: data['id'],
       shippingMethod: _parseTypeDelivery(data['shippingMethod']),
-      receptionPoint: ReceptionPoint.createOne(data['receptionPoint']),
+      receptionPoint: OngReceptionPoint.createOne(data['receptionPoint']),
       rangeTime: null,
       weekday: null,
       orderState: OrderState.createOne(data['orderState']),
-      products: Product.createList(data['products']),
+      products: OngProduct.createList(data['products']),
     );
   }
 

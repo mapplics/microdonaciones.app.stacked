@@ -1,12 +1,14 @@
 // ignore_for_file: avoid_init_to_null
 
-import 'package:microdonations/core/abstracts/base_new_donation.abstract.dart';
-import 'package:microdonations/core/models/donation_items_detail.model.dart';
-import 'package:microdonations/core/models/ong.model.dart';
+import 'package:microdonations/core/models/new_donation/abstracts/base_new_donation.abstract.dart';
+import 'package:microdonations/core/models/new_donation/donation_product_list.model.dart';
+import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
-import 'package:microdonations/core/models/user_address.model.dart';
+import 'package:microdonations/core/models/user/user_address.model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 
+/// Representa una donacion que va a hacer el usuario
+/// y que se le va a retirar a domicilio.
 class PickupDonation extends BaseNewDonation {
   late RangeTime? _rangeTime = null;
   late DateTime? _pickupDate = null;
@@ -16,7 +18,7 @@ class PickupDonation extends BaseNewDonation {
   PickupDonation({super.type = ShippingMethod.pickup});
 
   @override
-  set setDonationItemsDetail(DonationItemsDetail items) {
+  set setDonationItemsDetail(DonationProductList items) {
     donationItemsDetail = items;
   }
 
@@ -25,11 +27,11 @@ class PickupDonation extends BaseNewDonation {
     ong = selectedOng;
   }
 
-  set setTimeId(RangeTime rangeTime) {
+  set setRangeTime(RangeTime rangeTime) {
     _rangeTime = rangeTime;
   }
 
-  RangeTime? get rangeId => _rangeTime;
+  RangeTime? get rangeTime => _rangeTime;
 
   set setPickupDate(DateTime date) {
     _pickupDate = date;

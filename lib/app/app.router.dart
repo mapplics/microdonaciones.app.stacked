@@ -7,7 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i13;
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/ong.model.dart' as _i16;
+import 'package:microdonations/core/models/ong/ong.model.dart' as _i16;
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart'
     as _i15;
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'

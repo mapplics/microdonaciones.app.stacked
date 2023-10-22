@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/base_user.abstract.dart';
+import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../common/app_theme.dart';

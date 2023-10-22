@@ -1,3 +1,4 @@
+/// Representa una ONG a la que se le puede donar.
 class Ong {
   final int id;
   final String name;

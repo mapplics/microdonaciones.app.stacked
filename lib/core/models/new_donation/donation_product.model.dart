@@ -1,15 +1,13 @@
-import 'package:microdonations/core/models/product.model.dart';
+import 'package:microdonations/core/models/ong/ong_product.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
-/// Representa un item/tipo [Product] que eligio un usuario para donar
+/// Representa un producto que el usuario eligio para donar
 /// junto con la cantidad del mismo.
-class DonationItem {
-  Product product;
-
-  /// Representa la cantidad que se va a donar del item.
+class DonationProduct {
+  OngProduct product;
   int quantity;
 
-  DonationItem({
+  DonationProduct({
     required this.product,
     this.quantity = 0,
   })  : assert(
@@ -21,15 +19,15 @@ class DonationItem {
           'The quantity should not be a infinite number',
         );
 
-  /// Crea un [DonationItem] usando un [Product] como referencia.
-  static DonationItem createFromProduct(Product product) {
-    return DonationItem(product: product, quantity: 0);
+  /// Crea un [DonationProduct] usando un [OngProduct] como referencia.
+  static DonationProduct createFromProduct(OngProduct product) {
+    return DonationProduct(product: product, quantity: 0);
   }
 
-  /// Crea la instancia de un [DonationItem]
-  static DonationItem createOne(Map<String, dynamic> data) {
-    return DonationItem(
-      product: Product(
+  /// Crea la instancia de un [DonationProduct] en base a una respuesta de la API.
+  static DonationProduct createOne(Map<String, dynamic> data) {
+    return DonationProduct(
+      product: OngProduct(
         id: data['id'],
         name: data['name'],
         urlImg: data['image'],
@@ -38,13 +36,14 @@ class DonationItem {
     );
   }
 
-  static List<DonationItem> createArray(List<dynamic> data) {
-    final List<DonationItem> items = [];
+  /// Crea un arreglo de [DonationProduct] en base a una respuesta de la API.
+  static List<DonationProduct> createArray(List<dynamic> data) {
+    final List<DonationProduct> items = [];
 
     for (var item in data) {
       try {
         items.add(
-          DonationItem.createOne(item),
+          DonationProduct.createOne(item),
         );
       } catch (e) {
         continue;
@@ -57,8 +56,7 @@ class DonationItem {
   /// Devuelve el titulo del producto a donar.
   String get title => product.name;
 
-  /// Setea el [quantity] del [DonationItem].
-  /// Valida que el numero ingresado no sea negativo.
+  /// Setea el [quantity] del [DonationProduct].
   set updateQuantity(int value) {
     if (!value.isNegative) {
       quantity = value;

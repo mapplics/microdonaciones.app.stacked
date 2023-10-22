@@ -1,3 +1,4 @@
+/// Representa un dia de la semana.
 class Weekday {
   final int id;
   final DateTime tag;

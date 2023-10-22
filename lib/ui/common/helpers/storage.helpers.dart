@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:microdonations/core/models/auth.model.dart';
-import 'package:microdonations/core/models/logged_user.model.dart';
+import 'package:microdonations/core/models/user/auth.model.dart';
+import 'package:microdonations/core/models/user/logged_user.model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum _Keys {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/reception_point.model.dart';
+import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
@@ -8,7 +8,7 @@ import 'donation_shipping_detail_model.dart';
 
 class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
   final String? userAddress;
-  final ReceptionPoint? receptionPoint;
+  final OngReceptionPoint? receptionPoint;
   final ShippingMethod type;
   final String? pickupDetail;
 

@@ -1,5 +1,5 @@
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/models/donation_item.model.dart';
+import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -7,11 +7,11 @@ class DonationItemQuantityModel extends BaseViewModel {
   final _newDonationService = locator<NewDonationService>;
 
   /// Contiene los items que seleciono el usuario para donar.
-  List<DonationItem> selectedItems = [];
+  List<DonationProduct> selectedItems = [];
 
-  /// Recupera la lista de items [DonationItem] que seleciono
+  /// Recupera la lista de items [DonationProduct] que seleciono
   /// el usuario para donar del [NewDonationService].
-  List<DonationItem> getSelectedItems() =>
+  List<DonationProduct> getSelectedItems() =>
       selectedItems = _newDonationService.call().donationsItems;
 
   /// Devuelve true si es el primer item de la lista de [selectedItems].
@@ -24,7 +24,7 @@ class DonationItemQuantityModel extends BaseViewModel {
   /// de la lista de items.
   bool shouldShowLastDivider(int index) => (index == selectedItems.length - 1);
 
-  /// Setea la cantidad que se va a donar del item [DonationItem]
-  void updateItemQuantity(DonationItem item, int quantity) =>
+  /// Setea la cantidad que se va a donar del item [DonationProduct]
+  void updateItemQuantity(DonationProduct item, int quantity) =>
       _newDonationService.call().onChangeItemQuantity(item, quantity);
 }

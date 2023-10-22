@@ -1,6 +1,6 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:microdonations/app/app.locator.dart';
-import 'package:microdonations/core/abstracts/base_history_order.abstract.dart';
+import 'package:microdonations/core/models/history/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/services/order_history_service.dart';
 import 'package:stacked/stacked.dart';
 

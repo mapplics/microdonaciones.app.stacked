@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:microdonations/core/models/update_address_request.model.dart';
-import 'package:microdonations/core/models/update_user_request.model.dart';
+import 'package:microdonations/core/models/update_requests/update_address_request.model.dart';
+import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';

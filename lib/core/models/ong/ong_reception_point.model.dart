@@ -1,22 +1,23 @@
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 /// Representa un punto de entrega de una ONG.
-class ReceptionPoint {
+/// El usuario puede llevar su donacion a este punto de entrega.
+class OngReceptionPoint {
   final int id;
   final String name;
   final String address;
   final String extraInfo;
 
-  ReceptionPoint({
+  OngReceptionPoint({
     required this.id,
     required this.name,
     required this.address,
     required this.extraInfo,
   });
 
-  /// Recibe un [data] y crea una instancia de un [ReceptionPoint]
-  static ReceptionPoint createOne(Map<String, dynamic> data) {
-    return ReceptionPoint(
+  /// Recibe un [data] y crea una instancia de un [OngReceptionPoint]
+  static OngReceptionPoint createOne(Map<String, dynamic> data) {
+    return OngReceptionPoint(
       id: data['id'],
       name: data['name'],
       address: data['address'],
@@ -24,13 +25,13 @@ class ReceptionPoint {
     );
   }
 
-  /// Crea una lista de [ReceptionPoint]
-  static List<ReceptionPoint> createList(List<dynamic> data) {
-    List<ReceptionPoint> receptionPoints = [];
+  /// Crea una lista de [OngReceptionPoint]
+  static List<OngReceptionPoint> createList(List<dynamic> data) {
+    List<OngReceptionPoint> receptionPoints = [];
 
     for (var receptionPoint in data) {
       try {
-        receptionPoints.add(ReceptionPoint.createOne(receptionPoint));
+        receptionPoints.add(OngReceptionPoint.createOne(receptionPoint));
       } catch (e) {
         logError(e);
         rethrow;

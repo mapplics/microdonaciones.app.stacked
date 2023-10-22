@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/abstracts/custom_dropdown_model.abstract.dart';
+import 'package:microdonations/core/abstracts/base_dropdown_item.abstract.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
@@ -11,7 +11,7 @@ import 'custom_dropdown_model.dart';
 
 class CustomDropdown<T> extends StackedView<CustomDropdownModel> {
   final OnChangeDropdownButton onchange;
-  final List<CustomDropdownItems<T>> items;
+  final List<BaseDropdownItem<T>> items;
   final String formControlName;
   final String label;
   final bool required;
