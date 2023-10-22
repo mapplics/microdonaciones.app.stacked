@@ -41,11 +41,11 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
                   style: AppTheme.bold16_24,
                 ),
               ),
-              if (ongModel.mision.isNotEmpty)
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
+              if (ongModel.description != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    'aklsjdlaksjdlaksjdlaksjdlaksjhlaksjdhgfalksjfdghalkdsfjghlasdkfjghslkdjhgsldkjfgh',
+                    ongModel.description!,
                     style: AppTheme.regular14_16,
                   ),
                 ),
