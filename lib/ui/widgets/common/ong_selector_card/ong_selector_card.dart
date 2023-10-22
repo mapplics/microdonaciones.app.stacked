@@ -34,17 +34,21 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                ongModel.name,
-                style: AppTheme.bold16_24,
-              ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                padding: const EdgeInsets.only(bottom: 6.0),
                 child: Text(
-                  ongModel.mision,
-                  style: AppTheme.regular14_16,
+                  ongModel.name,
+                  style: AppTheme.bold16_24,
                 ),
               ),
+              if (ongModel.mision.isNotEmpty)
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    'aklsjdlaksjdlaksjdlaksjdlaksjhlaksjdhgfalksjfdghalkdsfjghlasdkfjghslkdjhgsldkjfgh',
+                    style: AppTheme.regular14_16,
+                  ),
+                ),
             ],
           ),
 
