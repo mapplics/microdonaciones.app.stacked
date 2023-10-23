@@ -21,5 +21,7 @@ class ReactiveFormHelper {
             'El numero de telefono no es valido. Debes ingresar un numero con formato 341 o 15',
         'number': (err) =>
             'Este campo solamente puede contener numeros. No puede contener letras ni simbolos.',
+        'address': (err) =>
+            'La dirección es invalida. Recuerda que debes incluir nombre de la calle y numero.',
       };
 }

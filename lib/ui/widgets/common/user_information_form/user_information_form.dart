@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked/stacked.dart';
@@ -85,6 +86,15 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
                   isRequired: ReactiveFormHelper.isRequiredField(
                     viewModel.formGroup!,
                     UserInformationFormFields.address.name,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    '* Esta es la dirección que utilizaremos en caso de que quieras que retiremos una donación por tu casa.',
+                    style: AppTheme.regular14_16.copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ),
               ],

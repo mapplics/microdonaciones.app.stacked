@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:microdonations/core/form/validators/address.validator.dart';
 import 'package:microdonations/core/form/validators/only_text.validator.dart';
 import 'package:microdonations/core/form/validators/phone_number.validator.dart';
 import 'package:microdonations/core/models/user/abstracts/base_user.abstract.dart';
@@ -50,6 +51,7 @@ class UserInformationFormModel extends BaseViewModel {
           value: _canSetAddres(user) ? _tryParceAddress(user) : '',
           validators: [
             Validators.required,
+            const AddressValidator(),
           ],
         ),
       },
