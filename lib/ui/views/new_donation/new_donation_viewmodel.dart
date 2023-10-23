@@ -5,6 +5,7 @@ import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/services/new_donation_service.dart';
+import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -65,6 +66,8 @@ class NewDonationViewModel extends ReactiveViewModel {
   void nextPage(BuildContext context) {
     final NewDonationError? validation = _validateCurrentSwipe();
 
+    FocusHelper.closeKeyboard();
+
     if (validation == null) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 175),
@@ -77,6 +80,8 @@ class NewDonationViewModel extends ReactiveViewModel {
 
   //// Retrocede una pagina.
   void previousPage() {
+    FocusHelper.closeKeyboard();
+
     pageController.previousPage(
       duration: const Duration(milliseconds: 175),
       curve: Curves.linear,
@@ -142,6 +147,8 @@ class NewDonationViewModel extends ReactiveViewModel {
   /// Crea la donacion.
   Future<void> createDonation(BuildContext context) async {
     try {
+      FocusHelper.closeKeyboard();
+
       context.loaderOverlay.show();
       await _newDonationService.createDontaion();
       _navigationService.replaceWithNewDonationConfirmedView();
