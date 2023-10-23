@@ -33,7 +33,7 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Text(
-                    '¿Te interesaría colaborar\ncon la logística del proyecto?',
+                    '¿Queres la app Microdonaciones\npara tu organización?',
                     style: AppTheme.bold16_24.copyWith(
                       color: Colors.white,
                     ),
@@ -54,18 +54,6 @@ class NewCollaborator extends StackedView<NewCollaboratorModel> {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(
-                //     bottom: (MediaQuery.of(context).size.height / 25),
-                //   ),
-                //   child: Text(
-                //     'Laborum sunt laborum commodo enim. Mollit est amet commodo tempor minim.',
-                //     style: CustomStylesTheme.regular14_16.copyWith(
-                //       color: Colors.white.withOpacity(0.52),
-                //     ),
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
               ],
             ),
           ),
