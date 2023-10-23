@@ -8,6 +8,7 @@ class Ong {
   final String phone;
   final String email;
   final String? description;
+  final String? address;
   final String? googleLink;
   final bool enabled;
 
@@ -19,8 +20,9 @@ class Ong {
     required this.vision,
     required this.phone,
     required this.email,
-    required this.description,
     required this.enabled,
+    this.description,
+    this.address,
     this.googleLink,
   });
 
@@ -34,9 +36,10 @@ class Ong {
       vision: data['vision'],
       phone: data['phone'],
       email: data['email'],
-      description: data['description'],
-      googleLink: data['googleLink'],
       enabled: (data['enabled'] == 1) ? true : false,
+      description: data['description'],
+      address: data['address'],
+      googleLink: data['googleLink'],
     );
   }
 
