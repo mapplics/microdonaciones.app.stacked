@@ -32,7 +32,7 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
 
   String get pickupTimeDetail {
     if (pickupDonation != null) {
-      return 'El día ${pickupDonation!.weekday.name} ${DateTimeHelper.formatDateTime(pickupDonation!.pickupDate)} entre las ${pickupDonation!.range.betweenTime}.';
+      return 'El día ${DateTimeHelper.getDayOfWeek(pickupDonation!.pickupDate).name} ${DateTimeHelper.formatDateTime(pickupDonation!.pickupDate)} entre las ${pickupDonation!.range.betweenTime}.';
     } else {
       return 'Dato Invalido';
     }

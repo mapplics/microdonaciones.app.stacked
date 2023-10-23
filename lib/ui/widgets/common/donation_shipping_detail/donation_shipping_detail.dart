@@ -11,12 +11,14 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
   final OngReceptionPoint? receptionPoint;
   final ShippingMethod type;
   final String? pickupDetail;
+  final String? observations;
 
   const DonationShippingDetail({
     required this.userAddress,
     required this.receptionPoint,
     required this.type,
-    required this.pickupDetail,
+    this.pickupDetail,
+    this.observations,
     super.key,
   });
 
@@ -56,7 +58,27 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
           style: AppTheme.regular15_16.copyWith(
             color: AppTheme.tertiaryColor,
           ),
-        )
+        ),
+        if (observations?.isNotEmpty ?? false)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 38.0),
+                child: Text(
+                  'Observaciones',
+                  style: AppTheme.bold16_20,
+                ),
+              ),
+              const Divider(),
+              Text(
+                observations!,
+                style: AppTheme.regular15_16.copyWith(
+                  color: AppTheme.tertiaryColor,
+                ),
+              )
+            ],
+          ),
       ],
     );
   }
