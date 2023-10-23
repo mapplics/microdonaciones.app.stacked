@@ -117,7 +117,9 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(right: 15.0),
+                          padding: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.width / 52,
+                          ),
                           child: CustomOutlineButton(
                             icon: const Icon(
                               PhosphorIcons.mapPinLineLight,
