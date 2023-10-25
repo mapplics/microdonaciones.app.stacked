@@ -56,6 +56,21 @@ class NewDonationViewModel extends ReactiveViewModel {
   /// Devuelve true si se esta mostrando la ultima slide.
   bool get isLastSlide => ((numPages - 1) == currentSlide);
 
+  String get slideTitle {
+    switch (currentSlide) {
+      case 0:
+        return '¿Que necesitamos?';
+      case 1:
+        return 'Cantidad';
+      case 2:
+        return 'Metodo de entrega';
+      case 3:
+        return 'Confirmación';
+      default:
+        return '¿Que necesitamos?';
+    }
+  }
+
   /// Funcion que se ejecuta al pasar de slide.
   void onPageChange(int page) {
     currentSlide = page;

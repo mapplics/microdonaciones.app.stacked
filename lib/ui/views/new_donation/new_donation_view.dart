@@ -35,8 +35,8 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
       child: GestureDetector(
         onTap: () => FocusHelper.closeKeyboard(),
         child: CustomScaffold(
-          appbar: const CustomAppbar(
-            title: 'Que necesitamos?',
+          appbar: CustomAppbar(
+            title: viewModel.slideTitle,
             showActions: false,
           ),
           body: WrapperHttpLoading(
