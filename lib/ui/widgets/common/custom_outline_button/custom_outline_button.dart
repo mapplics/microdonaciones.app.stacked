@@ -42,7 +42,6 @@ class CustomOutlineButton extends StackedView<CustomOutlineButtonModel> {
             color: mainColor ?? AppTheme.tertiaryColor,
           ),
         ),
-        minimumSize: MaterialStatePropertyAll(AppTheme.minimumBtnSize),
         shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

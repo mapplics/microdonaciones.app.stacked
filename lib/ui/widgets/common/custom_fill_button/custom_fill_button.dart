@@ -40,7 +40,6 @@ class CustomFillButton extends StackedView<CustomFillButtonModel> {
         backgroundColor: MaterialStatePropertyAll(
           (backgroundColor ?? AppTheme.primaryColor),
         ),
-        minimumSize: MaterialStatePropertyAll(AppTheme.minimumBtnSize),
         shape: const MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
