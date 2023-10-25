@@ -125,11 +125,12 @@ class OngSelectorCard extends StackedView<OngSelectorCardModel> {
                               PhosphorIcons.mapPinLineLight,
                               color: AppTheme.tertiaryColor,
                             ),
-                            label: 'Ver ubicacion',
+                            label: 'Ver ubicación',
                             action: () async {
                               try {
                                 await LaunchUrlHelper.openUrl(
-                                    ongModel.googleLink!);
+                                  ongModel.googleLink!,
+                                );
                               } catch (e) {
                                 MessegeHelper.showErrorSnackBar(
                                   context,
