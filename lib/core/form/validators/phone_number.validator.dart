@@ -6,7 +6,9 @@ class RequiredPhoneNumber extends Validator<dynamic> {
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    RegExp regex = RegExp(r'^(341|15)\d{7}$');
-    return regex.hasMatch(control.value) ? null : {'phoneNumber': true};
+    String value = control.value;
+    return (value.length == 12 || value.length == 11)
+        ? null
+        : {'phoneNumber': true};
   }
 }
