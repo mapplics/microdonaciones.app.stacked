@@ -6,9 +6,10 @@ class AddressValidator extends Validator<dynamic> {
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
     final regex = RegExp(
-      r'^(?=.*[A-Za-z])(?=.*\d)(?![\d ])[A-Za-z\d ]+$',
+      r'^(?=.*[A-Za-zÁÉÍÓÚáéíóú])(?=.*\d)(?![\d ])[A-Za-zÁÉÍÓÚáéíóú\d ]+$',
       caseSensitive: false,
     );
+
     return regex.hasMatch(control.value) ? null : {'address': true};
   }
 }
