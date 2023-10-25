@@ -18,7 +18,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     Widget? child,
   ) {
     return CustomScaffold(
-      appbar: const CustomAppbar(title: 'Hola!', showActions: false),
+      appbar: const CustomAppbar(title: '¡Hola!', showActions: false),
       body: Stack(
         children: [
           PageView(
@@ -29,7 +29,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_uno.png',
                 description:
-                    'Bienvenidos!\nMicroDonaciones es un desarrollo\nde la Asociación Civil Código Fuente.',
+                    '¡Bienvenidos!\nMicroDonaciones es un desarrollo\nde la Asociación Civil Código Fuente.',
               ),
               OnboardingPage(
                 pathImg: 'assets/img/img_foto_dos.png',
@@ -60,7 +60,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   ),
                   if (viewModel.isLastPage)
                     CustomOutlineButton(
-                      label: 'Comenzar!',
+                      label: '¡Comenzar!',
                       action: viewModel.navigateToHome,
                       textStyle: AppTheme.bold14_20.copyWith(
                         color: AppTheme.tertiaryColor,
