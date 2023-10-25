@@ -36,13 +36,16 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
               onChanged: (_) => viewModel.toggleCheckbox(),
             ),
           ),
-          content ??
-              Text(
-                label,
-                style: AppTheme.regular14_24.copyWith(
-                  color: AppTheme.blackColor,
+          Flexible(
+            child: content ??
+                Text(
+                  label,
+                  style: AppTheme.regular14_20.copyWith(
+                    color: AppTheme.blackColor,
+                  ),
+                  maxLines: 2,
                 ),
-              ),
+          ),
         ],
       ),
     );
