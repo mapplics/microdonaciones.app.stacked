@@ -48,7 +48,7 @@ class DonationShippingDetail extends StackedView<DonationShippingDetailModel> {
         const Padding(
           padding: EdgeInsets.only(top: 38.0),
           child: Text(
-            'Horarios',
+            'Fecha y hora',
             style: AppTheme.bold16_20,
           ),
         ),
