@@ -30,7 +30,7 @@ class CustomCheckbox extends StackedView<CustomCheckboxModel> {
       child: Row(
         children: [
           SizedBox(
-            width: 24,
+            width: 30,
             child: Checkbox(
               value: viewModel.selectedValue,
               onChanged: (_) => viewModel.toggleCheckbox(),

@@ -92,7 +92,7 @@ class UserInformationForm extends StackedView<UserInformationFormModel> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
                     '* Esta es la dirección que utilizaremos en caso de que quieras que retiremos una donación por tu casa.',
-                    style: AppTheme.regular14_16.copyWith(
+                    style: AppTheme.regular12_16.copyWith(
                       fontStyle: FontStyle.italic,
                     ),
                   ),

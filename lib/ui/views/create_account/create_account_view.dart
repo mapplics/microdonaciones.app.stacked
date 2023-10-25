@@ -34,19 +34,16 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
                 onchange: (form) => viewModel.updateForm = form,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 18.0),
+                padding: const EdgeInsets.only(top: 24.0, bottom: 30.0),
                 child: TermsAndConditionsCheckbox(
                   onchange: (newValue) =>
                       viewModel.termsAndConditionsOnChange(newValue),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: CustomFillButton(
-                  backgroundColor: AppTheme.tertiaryColor,
-                  label: 'Crear una cuenta',
-                  action: () => viewModel.onSaveUserData(context),
-                ),
+              CustomFillButton(
+                backgroundColor: AppTheme.tertiaryColor,
+                label: 'Crear una cuenta',
+                action: () => viewModel.onSaveUserData(context),
               )
             ],
           ),
