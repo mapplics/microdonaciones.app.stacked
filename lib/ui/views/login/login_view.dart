@@ -57,6 +57,24 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
             ),
+            viewModel.isApple() ? Padding(
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                bottom: 22.0,
+              ),
+              child: SizedBox(
+                width: 260,
+                child: CustomOutlineButton(
+                  label: 'Ingresar con Apple',
+                  icon: const Icon(
+                    PhosphorIcons.appleLogoFill,
+                    color: AppTheme.tertiaryColor,
+                    size: 30.0,
+                  ),
+                  action: () => viewModel.useAppleAuthentication(context),
+                ),
+              ),
+            ): Container(),
           ],
         ),
       ),

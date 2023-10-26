@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -58,5 +55,16 @@ class DefaultFirebaseOptions {
     messagingSenderId: '826758902094',
     projectId: 'microdonaciones-15b3f',
     storageBucket: 'microdonaciones-15b3f.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDoVu4ZFXdzzvfiJ_iogukopUCZujf0LUA',
+    appId: '1:826758902094:ios:46618d1af979fd78f0ee1f',
+    messagingSenderId: '826758902094',
+    projectId: 'microdonaciones-15b3f',
+    storageBucket: 'microdonaciones-15b3f.appspot.com',
+    androidClientId: '826758902094-83quij1eeqifc1hh0iv05a9fhm3mrpg5.apps.googleusercontent.com',
+    iosClientId: '826758902094-dn0ldmprl9s6p419eqqgh20g92cdedpk.apps.googleusercontent.com',
+    iosBundleId: 'com.mapplics.microdonaciones',
   );
 }
