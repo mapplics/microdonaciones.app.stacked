@@ -21,6 +21,7 @@ class CustomAppbarModel extends ReactiveViewModel {
   /// Devuelve true si deberia mostrar el avatar con las iniciales del user.
   bool get showAvatarWithInitials => _authService.isUserLogged;
 
+  /// Devuelve instancia del usuario logueado, si es que existe uno.
   LoggedUser? get user => _userService.loggedUser;
 
   /// Navega a la pantalla de datos personales.
