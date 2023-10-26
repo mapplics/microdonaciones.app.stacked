@@ -47,6 +47,7 @@ class DeliveryNewDonation extends BaseNewDonation {
       "ong_id": ong.id,
       "shipping_method": 'delivery',
       "reception_point_id": _receptionPoint!.id,
+      "observations": null,
       "products": donationItemsDetail.donationsItemsList
           .map(
             (donationItem) => {
