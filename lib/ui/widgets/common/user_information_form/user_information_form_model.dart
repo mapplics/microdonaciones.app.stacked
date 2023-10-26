@@ -45,9 +45,7 @@ class UserInformationFormModel extends BaseViewModel {
           ],
         ),
         UserInformationFormFields.phone.name:
-            FormControl<String>(value: user.phone, validators: [
-          const RequiredPhoneNumber(),
-        ]),
+            FormControl<String>(value: user.phone),
         UserInformationFormFields.address.name: FormControl<String>(
           value: _canSetAddres(user) ? _tryParceAddress(user) : '',
           validators: [
