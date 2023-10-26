@@ -7,7 +7,7 @@ class NewCollaboratorModel extends BaseViewModel {
   Future<void> navigateNewCollaborator(BuildContext ctx) async {
     try {
       await LaunchUrlHelper.openUrl(
-        'https://docs.google.com/forms/d/1ww_2-lg_O7MsEUVOBM0nikmDyyIvLPSKE9US4peKN8c/edit',
+        'https://docs.google.com/forms/d/e/1FAIpQLSfaDNIyxfXZpx6vyjYgN4Mc7s0v13bxS5aMBTlONBp3fiR_gQ/viewform?usp=sf_link',
       );
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
