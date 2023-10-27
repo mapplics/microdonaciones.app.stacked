@@ -6,6 +6,7 @@ import 'package:microdonations/core/models/user/firebase_user.model.dart';
 import 'package:microdonations/core/models/user/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
@@ -14,6 +15,9 @@ import 'package:stacked_services/stacked_services.dart';
 class LoginViewModel extends BaseViewModel {
   final _authService = locator<AuthService>;
   final _navigationService = locator<NavigationService>();
+  final bool navigateOngSelector;
+
+  LoginViewModel({this.navigateOngSelector = false});
 
   /// Inicia el flujo de iniciar sesion con Google.
   /// Abre el popUp para que el usuario eliga una cuenta
@@ -39,6 +43,7 @@ class LoginViewModel extends BaseViewModel {
       FirebaseAuthenticationResult authResult) async {
     /// Recupero mi social login token.
     final _firebaseToken = await authResult.user!.getIdToken();
+    logSucess(_firebaseToken);
 
     /// Hago login contra API.
     final _socialLoginResp = await _authService.call().login(
@@ -57,7 +62,12 @@ class LoginViewModel extends BaseViewModel {
     } else {
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
-      _navigationService.replaceWithOngSelectorView();
+
+      if (navigateOngSelector) {
+        _navigationService.replaceWithOngSelectorView();
+      } else {
+        _navigationService.replaceWithHomeView();
+      }
     }
   }
 

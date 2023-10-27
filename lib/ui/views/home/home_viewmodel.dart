@@ -18,7 +18,7 @@ class HomeViewModel extends ReactiveViewModel {
   void startDonation() {
     /// Si el usuario no esta logueado le pedimos que se loguee.
     if (!_authService.isUserLogged) {
-      _navigationService.navigateToLoginView();
+      _navigationService.navigateToLoginView(navigateOngSelector: true);
     } else {
       _navigationService.navigateToOngSelectorView();
     }

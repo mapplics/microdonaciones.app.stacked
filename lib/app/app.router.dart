@@ -133,8 +133,12 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i4.LoginView: (data) {
+      final args = data.getArgs<LoginViewArguments>(
+        orElse: () => const LoginViewArguments(),
+      );
       return _i13.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i4.LoginView(),
+        builder: (context) => _i4.LoginView(
+            key: args.key, navigateOngSelector: args.navigateOngSelector),
         settings: data,
       );
     },
@@ -201,6 +205,33 @@ class StackedRouter extends _i1.RouterBase {
   List<_i1.RouteDef> get routes => _routes;
   @override
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+}
+
+class LoginViewArguments {
+  const LoginViewArguments({
+    this.key,
+    this.navigateOngSelector = false,
+  });
+
+  final _i13.Key? key;
+
+  final bool navigateOngSelector;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "navigateOngSelector": "$navigateOngSelector"}';
+  }
+
+  @override
+  bool operator ==(covariant LoginViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.navigateOngSelector == navigateOngSelector;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ navigateOngSelector.hashCode;
+  }
 }
 
 class PersonalInformationViewArguments {
@@ -340,14 +371,18 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToLoginView([
+  Future<dynamic> navigateToLoginView({
+    _i13.Key? key,
+    bool navigateOngSelector = false,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(
+            key: key, navigateOngSelector: navigateOngSelector),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -509,14 +544,18 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithLoginView([
+  Future<dynamic> replaceWithLoginView({
+    _i13.Key? key,
+    bool navigateOngSelector = false,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(
+            key: key, navigateOngSelector: navigateOngSelector),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
