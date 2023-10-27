@@ -1,5 +1,4 @@
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
@@ -11,7 +10,6 @@ import '../../common/helpers/storage.helpers.dart';
 class StartupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  final _userService = locator<UserService>();
 
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
@@ -34,7 +32,7 @@ class StartupViewModel extends BaseViewModel {
 
         if (_authService.authModel != null) {
           /// Recupero el perfil
-          _userService.setLoggedUser = await _userService.getProfile();
+          _authService.setLoggedUser = await _authService.getProfile();
         }
       } catch (e) {
         logError('Fallo AutoLogin ${e.toString()}');

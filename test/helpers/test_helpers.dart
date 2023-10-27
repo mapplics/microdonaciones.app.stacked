@@ -1,5 +1,4 @@
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/services/user_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:microdonations/app/app.locator.dart';
@@ -20,7 +19,6 @@ import 'package:microdonations/services/ong_service.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<UserService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<UserApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<AuthApiService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NewDonationService>(onMissingStub: OnMissingStub.returnDefault),
@@ -50,6 +48,7 @@ void registerServices() {
   getAndRegisterHistoryOrderService();
   getAndRegisterOrderHistoryService();
   getAndRegisterOngService();
+  getAndRegisterSessionService();
 // @stacked-mock-register
 }
 
@@ -198,6 +197,13 @@ MockOngService getAndRegisterOngService() {
   _removeRegistrationIfExists<OngService>();
   final service = MockOngService();
   locator.registerSingleton<OngService>(service);
+  return service;
+}
+
+MockSessionService getAndRegisterSessionService() {
+  _removeRegistrationIfExists<SessionService>();
+  final service = MockSessionService();
+  locator.registerSingleton<SessionService>(service);
   return service;
 }
 // @stacked-mock-create

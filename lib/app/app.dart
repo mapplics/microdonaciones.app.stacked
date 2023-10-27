@@ -1,4 +1,3 @@
-import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/views/home/home_view.dart';
 import 'package:microdonations/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -47,7 +46,6 @@ import 'package:microdonations/ui/views/ong_selector/ong_selector_view.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: AuthService),
-    LazySingleton(classType: UserService),
     LazySingleton(classType: UserApiService),
     LazySingleton(classType: AuthApiService),
     LazySingleton(classType: NewDonationService),
