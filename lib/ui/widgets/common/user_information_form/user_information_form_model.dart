@@ -34,24 +34,23 @@ class UserInformationFormModel extends BaseViewModel {
           value: user.firstname,
           validators: [
             Validators.required,
-            // const RequiredOnlyText(),
+            const RequiredOnlyText(),
           ],
         ),
         UserInformationFormFields.lastname.name: FormControl<String>(
           value: user.lastname,
           validators: [
             Validators.required,
-            // const RequiredOnlyText(),
+            const RequiredOnlyText(),
           ],
         ),
-        UserInformationFormFields.phone.name: FormControl<String>(
-          value: user.phone,
-        ),
+        UserInformationFormFields.phone.name:
+            FormControl<String>(value: user.phone),
         UserInformationFormFields.address.name: FormControl<String>(
           value: _canSetAddres(user) ? _tryParceAddress(user) : '',
           validators: [
             Validators.required,
-            // const AddressValidator(),
+            const AddressValidator(),
           ],
         ),
       },

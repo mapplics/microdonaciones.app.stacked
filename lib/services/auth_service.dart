@@ -39,13 +39,13 @@ class AuthService with ListenableServiceMixin {
   /// Hace el logout del usuario.
   Future<void> logout() async {
     await clearAuth();
-    notifyListeners();
   }
 
   /// Setea [_authModel] en null y limpia el Storage.
   Future<void> clearAuth() async {
     _authModel = null;
     await StorageHelper.logoutClean();
+    notifyListeners();
   }
 
   /// Intenta loguear al usuario recuperando un [AuthModel] del storage.

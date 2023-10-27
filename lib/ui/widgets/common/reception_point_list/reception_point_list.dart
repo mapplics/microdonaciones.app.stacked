@@ -38,7 +38,7 @@ class ReceptionPointList extends StackedView<ReceptionPointListModel> {
                   ),
                 ),
                 subtitle: Text(
-                  'Horarios: ${receptionPoint.extraInfo}',
+                  receptionPoint.extraInfo,
                   style: AppTheme.regular14_20.copyWith(
                     color: AppTheme.blackColor,
                   ),
