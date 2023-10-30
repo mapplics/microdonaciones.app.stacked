@@ -7,7 +7,6 @@ import 'package:microdonations/core/models/user/firebase_user.model.dart';
 import 'package:microdonations/core/models/user/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:stacked/stacked.dart';
@@ -46,7 +45,6 @@ class LoginViewModel extends BaseViewModel {
       FirebaseAuthenticationResult authResult) async {
     /// Recupero mi social login token.
     final _firebaseToken = await authResult.user!.getIdToken();
-    logSucess(_firebaseToken);
 
     /// Hago login contra API.
     final _socialLoginResp = await _authService.call().login(
