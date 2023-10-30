@@ -48,7 +48,9 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]
   void initUserAddress() {
+    print('initUserAddress');
     if (ShippingMethod.pickup == typeDeliverySelected) {
+      print('ENTRO');
       _newDonationService.updateUserAddres(_authService.loggedUser!.address);
     }
   }
@@ -72,11 +74,16 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Navega a la pantalla para editar los datos del usuario.
   void navigateToPersonalInformation() {
-    _navigationService.navigateToPersonalInformationView(
+    _navigationService
+        .navigateToPersonalInformationView(
       viewParameters: UserInformationFormParameters(
         user: _authService.loggedUser!,
       ),
-    );
+    )
+        .then((value) {
+      /// Siempre que vuelvo de la pagina actualizo la direccion.
+      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+    });
   }
 
   /// Setea el punto de entrega que eligio el usuario.
