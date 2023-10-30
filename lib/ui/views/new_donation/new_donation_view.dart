@@ -34,99 +34,104 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
       onWillPop: viewModel.onBackBtnAppbar,
       child: GestureDetector(
         onTap: () => FocusHelper.closeKeyboard(),
-        child: CustomScaffold(
-          appbar: CustomAppbar(
-            title: viewModel.slideTitle,
-            showActions: false,
-          ),
-          body: WrapperHttpLoading(
-            showLoading: viewModel.isLoading,
-            showError: viewModel.haveError,
-            retryFunction: viewModel.initNewDonation,
-            mainContent: Stack(
-              children: [
-                PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: viewModel.pageController,
-                  onPageChanged: viewModel.onPageChange,
-                  children: const [
-                    NewDonationItemsSelector(),
-                    NewDonationItemQuantity(),
-                    NewDonationShippingMethod(),
-                    NewDonationSummary(),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 24,
+        child: SafeArea(
+          top: false,
+          child: CustomScaffold(
+            appbar: CustomAppbar(
+              title: viewModel.slideTitle,
+              showActions: false,
+            ),
+            body: WrapperHttpLoading(
+              showLoading: viewModel.isLoading,
+              showError: viewModel.haveError,
+              retryFunction: viewModel.initNewDonation,
+              mainContent: Stack(
+                children: [
+                  PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: viewModel.pageController,
+                    onPageChanged: viewModel.onPageChange,
+                    children: const [
+                      NewDonationItemsSelector(),
+                      NewDonationItemQuantity(),
+                      NewDonationShippingMethod(),
+                      NewDonationSummary(),
+                    ],
                   ),
-                  child: SafeArea(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: AppTheme.gray400,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height / 24,
+                    ),
+                    child: SafeArea(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: AppTheme.gray400,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  fit: FlexFit.tight,
+                                  child: viewModel.canShowGoBackBtn
+                                      ? LinkButton(
+                                          label: 'Atras',
+                                          action: viewModel.previousPage,
+                                          textStyle:
+                                              AppTheme.regular16_20.copyWith(
+                                            color: AppTheme.lightGreyColor,
+                                          ),
+                                        )
+                                      : const SizedBox(),
+                                ),
+                                Flexible(
+                                  flex: 1,
+                                  fit: FlexFit.tight,
+                                  child: PageIndicator(
+                                    totalSlides: viewModel.numPages,
+                                    currentSlide: viewModel.currentSlide,
+                                    dotIndicatorSize: DotIndicatorSize.small,
+                                  ),
+                                ),
+                                Flexible(
+                                  flex: 1,
+                                  fit: FlexFit.tight,
+                                  child: viewModel.isLastSlide
+                                      ? LinkButton(
+                                          label: 'Finalizar',
+                                          action: () =>
+                                              viewModel.createDonation(context),
+                                          textStyle:
+                                              AppTheme.bold16_20.copyWith(
+                                            color: AppTheme.tertiaryColor,
+                                          ),
+                                        )
+                                      : LinkButton(
+                                          label: 'Siguiente',
+                                          action: () =>
+                                              viewModel.nextPage(context),
+                                          textStyle:
+                                              AppTheme.bold16_20.copyWith(
+                                            color: AppTheme.tertiaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: viewModel.canShowGoBackBtn
-                                    ? LinkButton(
-                                        label: 'Atras',
-                                        action: viewModel.previousPage,
-                                        textStyle:
-                                            AppTheme.regular16_20.copyWith(
-                                          color: AppTheme.lightGreyColor,
-                                        ),
-                                      )
-                                    : const SizedBox(),
-                              ),
-                              Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: PageIndicator(
-                                  totalSlides: viewModel.numPages,
-                                  currentSlide: viewModel.currentSlide,
-                                  dotIndicatorSize: DotIndicatorSize.small,
-                                ),
-                              ),
-                              Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: viewModel.isLastSlide
-                                    ? LinkButton(
-                                        label: 'Finalizar',
-                                        action: () =>
-                                            viewModel.createDonation(context),
-                                        textStyle: AppTheme.bold16_20.copyWith(
-                                          color: AppTheme.tertiaryColor,
-                                        ),
-                                      )
-                                    : LinkButton(
-                                        label: 'Siguiente',
-                                        action: () =>
-                                            viewModel.nextPage(context),
-                                        textStyle: AppTheme.bold16_20.copyWith(
-                                          color: AppTheme.tertiaryColor,
-                                        ),
-                                      ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
