@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/core/models/user/auth.model.dart';
@@ -45,7 +46,7 @@ class AuthService with ListenableServiceMixin {
       setAuthModel(response.token);
       notifyListeners();
       return response;
-    } catch (e) {
+    } on DioException catch (e) {
       rethrow;
     }
   }
