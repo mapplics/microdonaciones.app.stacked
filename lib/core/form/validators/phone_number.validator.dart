@@ -7,7 +7,7 @@ class RequiredPhoneNumber extends Validator<dynamic> {
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
     String value = control.value;
-    return (value.length == 12 || value.length == 11)
+    return (value.length == 12 || value.length == 10)
         ? null
         : {'phoneNumber': true};
   }

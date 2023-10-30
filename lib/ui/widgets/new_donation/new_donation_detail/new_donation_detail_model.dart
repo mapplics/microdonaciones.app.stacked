@@ -3,12 +3,17 @@ import 'package:microdonations/core/models/new_donation/delivery_new_donation.mo
 import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
 import 'package:microdonations/core/models/new_donation/pickup_new_donation.model.dart';
 import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
-class NewDonationDetailModel extends BaseViewModel {
+class NewDonationDetailModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
+  final _authService = locator<AuthService>();
+
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve los productos que selecciono el usuario para donar.
   List<DonationProduct> get products => _newDonationService.donationsItems;

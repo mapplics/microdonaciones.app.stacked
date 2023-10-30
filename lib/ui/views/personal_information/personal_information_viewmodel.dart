@@ -4,7 +4,6 @@ import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_requests/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
@@ -13,7 +12,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PersonalInformationViewModel extends BaseViewModel {
-  final _userService = locator<UserService>();
   final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
   late FormGroup _form;
@@ -55,7 +53,7 @@ class PersonalInformationViewModel extends BaseViewModel {
 
     try {
       context.loaderOverlay.show();
-      await _userService.updateProfile(_updateRequest);
+      await _authService.updateProfile(_updateRequest);
       MessegeHelper.showSuccessSnackBar(
         context,
         'Tus datos fueron actualizados exitosamente!',

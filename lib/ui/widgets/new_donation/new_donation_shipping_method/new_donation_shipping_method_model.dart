@@ -1,3 +1,4 @@
+import 'package:microdonations/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
@@ -7,7 +8,6 @@ import 'package:microdonations/core/models/user/user_address.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
-import 'package:microdonations/services/user_service.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,11 +15,11 @@ import 'package:stacked_services/stacked_services.dart';
 class DonationShippingMethodModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _newDonationDataService = locator<NewDonationDataService>();
-  final _userService = locator<UserService>();
+  final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
 
   @override
-  List<ListenableServiceMixin> get listenableServices => [_userService];
+  List<ListenableServiceMixin> get listenableServices => [_authService];
 
   /// Devuelve los puntos de entrega de la ong seleccionada.
   List<OngReceptionPoint> get receptionPoints =>
@@ -39,13 +39,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       _newDonationService.deliveryTypeValue;
 
   /// Devuelve la direccion del usuario.
-  UserAddress get userAddress => _userService.loggedUser!.address;
-
-  /// Devuelve la hora y dia que eligio el usuario para que retiren su donacion
-  /// si es que eligio una.
-  // PickupDropdownValue? get getPickupValue {
-  //   return _newDonationService.pickupValue;
-  // }
+  UserAddress get userAddress => _authService.loggedUser!.address;
 
   /// Devuelve el punto de entrega que selecciono el usuario.
   /// Si es que selecciono uno.
@@ -54,8 +48,10 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]
   void initUserAddress() {
+    print('initUserAddress');
     if (ShippingMethod.pickup == typeDeliverySelected) {
-      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
+      print('ENTRO');
+      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
     }
   }
 
@@ -70,7 +66,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       );
       _newDonationService.updatePickupAreaConfirm(false);
     } else {
-      _newDonationService.updateUserAddres(_userService.loggedUser!.address);
+      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
     }
 
     rebuildUi();
@@ -78,11 +74,16 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Navega a la pantalla para editar los datos del usuario.
   void navigateToPersonalInformation() {
-    _navigationService.navigateToPersonalInformationView(
+    _navigationService
+        .navigateToPersonalInformationView(
       viewParameters: UserInformationFormParameters(
-        user: _userService.loggedUser!,
+        user: _authService.loggedUser!,
       ),
-    );
+    )
+        .then((value) {
+      /// Siempre que vuelvo de la pagina actualizo la direccion.
+      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+    });
   }
 
   /// Setea el punto de entrega que eligio el usuario.

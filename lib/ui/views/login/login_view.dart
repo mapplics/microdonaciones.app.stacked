@@ -10,7 +10,12 @@ import '../../widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StackedView<LoginViewModel> {
-  const LoginView({Key? key}) : super(key: key);
+  /// Si es true al terminar el login navega al selector de ONG.
+  /// Si es falso navega al home.
+  final bool navigateOngSelector;
+
+  const LoginView({Key? key, this.navigateOngSelector = false})
+      : super(key: key);
 
   @override
   Widget builder(
@@ -85,5 +90,5 @@ class LoginView extends StackedView<LoginViewModel> {
   LoginViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      LoginViewModel();
+      LoginViewModel(navigateOngSelector: navigateOngSelector);
 }

@@ -18,7 +18,7 @@ class ReactiveFormHelper {
         'onlyText': (err) =>
             'Este campo solamente puede contener letras. No puede contener numeros ni simbolos.',
         'phoneNumber': (err) =>
-            'El numero de telefono no es valido. Debe tener 11 o 12 caracteres de longitud.',
+            'El numero de telefono no es valido. Debe tener 10 o 12 caracteres de longitud.',
         'number': (err) =>
             'Este campo solamente puede contener numeros. No puede contener letras ni simbolos.',
         'address': (err) =>
