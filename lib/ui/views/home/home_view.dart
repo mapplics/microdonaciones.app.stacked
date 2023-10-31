@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
@@ -37,8 +36,9 @@ class HomeView extends StackedView<HomeViewModel> {
                   padding: const EdgeInsets.only(
                     right: 16.0,
                   ),
-                  child: SvgPicture.asset(
-                    'assets/logos/ic_logorosa.svg',
+                  child: Image.asset(
+                    'assets/icons/Icono_app-05.png',
+                    scale: 4.5,
                   ),
                 ),
                 const Flexible(
