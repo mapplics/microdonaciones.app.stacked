@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
@@ -32,11 +31,15 @@ class LoginView extends StackedView<LoginViewModel> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/logos/ic_logovioleta.svg',
+            Padding(
+              padding: const EdgeInsets.only(bottom: 42.0),
+              child: Image.asset(
+                'assets/icons/Icono_app-06.png',
+                scale: 1.8,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0, top: 26),
+              padding: const EdgeInsets.only(top: 12, bottom: 10.0),
               child: Text(
                 'Ingresar con tu cuenta',
                 style: AppTheme.bold16_24.copyWith(
@@ -47,7 +50,7 @@ class LoginView extends StackedView<LoginViewModel> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 8.0,
-                bottom: 22.0,
+                bottom: 12.0,
               ),
               child: SizedBox(
                 width: 260,
@@ -62,24 +65,18 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
             ),
-            viewModel.isApple() ? Padding(
-              padding: const EdgeInsets.only(
-                top: 8.0,
-                bottom: 22.0,
-              ),
-              child: SizedBox(
-                width: 260,
-                child: CustomOutlineButton(
-                  label: 'Ingresar con Apple',
-                  icon: const Icon(
-                    PhosphorIcons.appleLogoFill,
-                    color: AppTheme.tertiaryColor,
-                    size: 30.0,
-                  ),
-                  action: () => viewModel.useAppleAuthentication(context),
+            SizedBox(
+              width: 260,
+              child: CustomOutlineButton(
+                label: 'Ingresar con Apple',
+                icon: const Icon(
+                  PhosphorIcons.appleLogoFill,
+                  color: AppTheme.tertiaryColor,
+                  size: 30.0,
                 ),
+                action: () => viewModel.useAppleAuthentication(context),
               ),
-            ): Container(),
+            )
           ],
         ),
       ),
