@@ -44,7 +44,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 ),
                 const Flexible(
                   child: Text(
-                    'Aporta tu microdonacion y empezamos a generar un cambio',
+                    'Aportá tu microdonación y empezamos a generar un cambio',
                     style: AppTheme.regular14_20,
                     overflow: TextOverflow.visible,
                     maxLines: 5,
