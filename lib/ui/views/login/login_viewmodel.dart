@@ -67,7 +67,7 @@ class LoginViewModel extends BaseViewModel {
       if (navigateOngSelector) {
         _navigationService.replaceWithOngSelectorView();
       } else {
-        _navigationService.replaceWithHomeView();
+        _navigationService.popUntil((route) => route.isFirst);
       }
     }
   }
@@ -147,7 +147,12 @@ class LoginViewModel extends BaseViewModel {
     } else {
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
-      _navigationService.replaceWithOngSelectorView();
+
+      if (navigateOngSelector) {
+        _navigationService.replaceWithOngSelectorView();
+      } else {
+        _navigationService.popUntil((route) => route.isFirst);
+      }
     }
   }
 
