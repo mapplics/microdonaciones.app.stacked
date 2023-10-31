@@ -3,4 +3,5 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/icons/ic_launcher.png"
   remove_alpha_ios: true
-  
+  adaptive_icon_background: "assets/icons/ic_launcher_adaptive_back.png"
+  adaptive_icon_foreground: "assets/icons/ic_launcher_adaptive_fore.png"
