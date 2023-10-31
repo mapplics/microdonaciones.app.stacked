@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../widgets/common/custom_fill_button/custom_fill_button.dart';
@@ -84,12 +85,27 @@ class HomeView extends StackedView<HomeViewModel> {
                 children: [
                   CustomTile(
                     label: 'Historial de donaciones',
-                    svgPath: 'assets/icons/ic_historialdedonaciones.svg',
+                    svgPath: PhosphorIcons.listChecks,
                     action: viewModel.goToDonationHistory,
                   ),
                 ],
               ),
             ),
+          // Padding(
+          //   padding: const EdgeInsets.only(
+          //     left: 30,
+          //     right: 30,
+          //   ),
+          //   child: Column(
+          //     children: [
+          //       CustomTile(
+          //         label: 'Sobre MicroDonaciones',
+          //         svgPath: PhosphorIcons.question,
+          //         action: viewModel.goToDonationHistory,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           const Spacer(),
 
           /// Seccion para ser colaborador logistico.
