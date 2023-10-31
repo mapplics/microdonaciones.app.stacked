@@ -65,18 +65,20 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
             ),
-            SizedBox(
-              width: 260,
-              child: CustomOutlineButton(
-                label: 'Ingresar con Apple',
-                icon: const Icon(
-                  PhosphorIcons.appleLogoFill,
-                  color: AppTheme.tertiaryColor,
-                  size: 30.0,
-                ),
-                action: () => viewModel.useAppleAuthentication(context),
-              ),
-            )
+            viewModel.isApple()
+                ? SizedBox(
+                    width: 260,
+                    child: CustomOutlineButton(
+                      label: 'Ingresar con Apple',
+                      icon: const Icon(
+                        PhosphorIcons.appleLogoFill,
+                        color: AppTheme.tertiaryColor,
+                        size: 30.0,
+                      ),
+                      action: () => viewModel.useAppleAuthentication(context),
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),
