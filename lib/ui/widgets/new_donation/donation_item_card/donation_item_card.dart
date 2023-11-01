@@ -47,16 +47,36 @@ class DonationItemCard extends StackedView<DonationItemCardModel> {
                 ),
               ),
             ),
-            imageBuilder: (_, imageProvider) => Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+            imageBuilder: (_, imageProvider) => Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        product.urlImg,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  ),
                 ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.black.withOpacity(0.5),
+                        Colors.black.withOpacity(0.4),
+                        Colors.black.withOpacity(0.3),
+                        Colors.black.withOpacity(0.2),
+                        Colors.black.withOpacity(0.1),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
