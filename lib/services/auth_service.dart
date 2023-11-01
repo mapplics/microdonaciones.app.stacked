@@ -46,7 +46,7 @@ class AuthService with ListenableServiceMixin {
       setAuthModel(response.token);
       notifyListeners();
       return response;
-    } on DioException catch (e) {
+    } on DioException catch (_) {
       rethrow;
     }
   }
