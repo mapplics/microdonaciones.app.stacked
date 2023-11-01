@@ -32,7 +32,7 @@ class LoginView extends StackedView<LoginViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 42.0),
+              padding: const EdgeInsets.only(bottom: 12),
               child: Image.asset(
                 'assets/icons/Icono_app-06.png',
                 scale: 1.8,
