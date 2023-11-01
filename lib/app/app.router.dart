@@ -5,13 +5,14 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/ong/ong.model.dart' as _i16;
+import 'package:microdonations/core/models/ong/ong.model.dart' as _i17;
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart'
-    as _i15;
+    as _i16;
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
-    as _i14;
+    as _i15;
+import 'package:microdonations/ui/views/about/about_view.dart' as _i13;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
 import 'package:microdonations/ui/views/home/home_view.dart' as _i2;
@@ -31,7 +32,7 @@ import 'package:microdonations/ui/views/personal_information/personal_informatio
     as _i6;
 import 'package:microdonations/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i17;
+import 'package:stacked_services/stacked_services.dart' as _i18;
 
 class Routes {
   static const homeView = '/home-view';
@@ -56,6 +57,8 @@ class Routes {
 
   static const ongSelectorView = '/ong-selector-view';
 
+  static const aboutView = '/about-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -68,6 +71,7 @@ class Routes {
     ordersHistoryView,
     orderHistoryDetailView,
     ongSelectorView,
+    aboutView,
   };
 }
 
@@ -117,17 +121,21 @@ class StackedRouter extends _i1.RouterBase {
       Routes.ongSelectorView,
       page: _i12.OngSelectorView,
     ),
+    _i1.RouteDef(
+      Routes.aboutView,
+      page: _i13.AboutView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
@@ -136,14 +144,14 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<LoginViewArguments>(
         orElse: () => const LoginViewArguments(),
       );
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => _i4.LoginView(
             key: args.key, navigateOngSelector: args.navigateOngSelector),
         settings: data,
       );
     },
     _i5.OnboardingView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.OnboardingView(),
         settings: data,
       );
@@ -151,7 +159,7 @@ class StackedRouter extends _i1.RouterBase {
     _i6.PersonalInformationView: (data) {
       final args =
           data.getArgs<PersonalInformationViewArguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.PersonalInformationView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
@@ -159,7 +167,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i7.CreateAccountView: (data) {
       final args = data.getArgs<CreateAccountViewArguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.CreateAccountView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
@@ -167,35 +175,41 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i8.NewDonationView: (data) {
       final args = data.getArgs<NewDonationViewArguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i8.NewDonationView(ongSelected: args.ongSelected, key: args.key),
         settings: data,
       );
     },
     _i9.NewDonationConfirmedView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.NewDonationConfirmedView(),
         settings: data,
       );
     },
     _i10.OrdersHistoryView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.OrdersHistoryView(),
         settings: data,
       );
     },
     _i11.OrderHistoryDetailView: (data) {
       final args = data.getArgs<OrderHistoryDetailViewArguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => _i11.OrderHistoryDetailView(
             viewParameters: args.viewParameters, key: args.key),
         settings: data,
       );
     },
     _i12.OngSelectorView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.OngSelectorView(),
+        settings: data,
+      );
+    },
+    _i13.AboutView: (data) {
+      return _i14.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.AboutView(),
         settings: data,
       );
     },
@@ -213,7 +227,7 @@ class LoginViewArguments {
     this.navigateOngSelector = false,
   });
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   final bool navigateOngSelector;
 
@@ -240,9 +254,9 @@ class PersonalInformationViewArguments {
     this.key,
   });
 
-  final _i14.UserInformationFormParameters viewParameters;
+  final _i15.UserInformationFormParameters viewParameters;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -267,9 +281,9 @@ class CreateAccountViewArguments {
     this.key,
   });
 
-  final _i15.CreateAccountViewParameters viewParameters;
+  final _i16.CreateAccountViewParameters viewParameters;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -294,9 +308,9 @@ class NewDonationViewArguments {
     this.key,
   });
 
-  final _i16.Ong ongSelected;
+  final _i17.Ong ongSelected;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -323,7 +337,7 @@ class OrderHistoryDetailViewArguments {
 
   final _i11.OrderHistoryDetailParameters viewParameters;
 
-  final _i13.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -342,7 +356,7 @@ class OrderHistoryDetailViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i17.NavigationService {
+extension NavigatorStateExtension on _i18.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -372,7 +386,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> navigateToLoginView({
-    _i13.Key? key,
+    _i14.Key? key,
     bool navigateOngSelector = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -404,8 +418,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> navigateToPersonalInformationView({
-    required _i14.UserInformationFormParameters viewParameters,
-    _i13.Key? key,
+    required _i15.UserInformationFormParameters viewParameters,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -422,8 +436,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> navigateToCreateAccountView({
-    required _i15.CreateAccountViewParameters viewParameters,
-    _i13.Key? key,
+    required _i16.CreateAccountViewParameters viewParameters,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -440,8 +454,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> navigateToNewDonationView({
-    required _i16.Ong ongSelected,
-    _i13.Key? key,
+    required _i17.Ong ongSelected,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -486,7 +500,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
 
   Future<dynamic> navigateToOrderHistoryDetailView({
     required _i11.OrderHistoryDetailParameters viewParameters,
-    _i13.Key? key,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -510,6 +524,20 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.ongSelectorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.aboutView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -545,7 +573,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> replaceWithLoginView({
-    _i13.Key? key,
+    _i14.Key? key,
     bool navigateOngSelector = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -577,8 +605,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> replaceWithPersonalInformationView({
-    required _i14.UserInformationFormParameters viewParameters,
-    _i13.Key? key,
+    required _i15.UserInformationFormParameters viewParameters,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -595,8 +623,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> replaceWithCreateAccountView({
-    required _i15.CreateAccountViewParameters viewParameters,
-    _i13.Key? key,
+    required _i16.CreateAccountViewParameters viewParameters,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -613,8 +641,8 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> replaceWithNewDonationView({
-    required _i16.Ong ongSelected,
-    _i13.Key? key,
+    required _i17.Ong ongSelected,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -659,7 +687,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
 
   Future<dynamic> replaceWithOrderHistoryDetailView({
     required _i11.OrderHistoryDetailParameters viewParameters,
-    _i13.Key? key,
+    _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -683,6 +711,20 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.ongSelectorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.aboutView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

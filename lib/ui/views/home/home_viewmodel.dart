@@ -24,7 +24,13 @@ class HomeViewModel extends ReactiveViewModel {
     }
   }
 
+  /// Navega a la pagina del historial de donaciones.
   void goToDonationHistory() {
     _navigationService.navigateToOrdersHistoryView();
+  }
+
+  /// Navega a la pantalla de about.
+  navigateToAbout() {
+    _navigationService.navigateToAboutView();
   }
 }
