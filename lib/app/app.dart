@@ -25,6 +25,7 @@ import 'package:microdonations/ui/views/order_history_detail/order_history_detai
 import 'package:microdonations/services/ong_service.dart';
 import 'package:microdonations/ui/views/ong_selector/ong_selector_view.dart';
 import 'package:microdonations/ui/views/about/about_view.dart';
+import 'package:microdonations/ui/dialogs/confirm/confirm_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -65,6 +66,7 @@ import 'package:microdonations/ui/views/about/about_view.dart';
   ],
   dialogs: [
     StackedDialog(classType: TestDialogDialog),
+    StackedDialog(classType: ConfirmDialog),
 // @stacked-dialog
   ],
 )

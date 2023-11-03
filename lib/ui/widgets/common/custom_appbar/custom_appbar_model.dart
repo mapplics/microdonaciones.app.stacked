@@ -24,7 +24,7 @@ class CustomAppbarModel extends ReactiveViewModel {
       _navigationService.navigateToPersonalInformationView(
         viewParameters: UserInformationFormParameters(
           user: _authService.loggedUser!,
-          showLogoutButton: (_authService.isUserLogged) ? true : false,
+          userLogged: (_authService.isUserLogged) ? true : false,
         ),
       );
 

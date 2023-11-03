@@ -45,22 +45,44 @@ class PersonalInformationView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (viewParameters.showLogoutButton)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: CustomOutlineButton(
-                          label: 'Desloguear',
-                          action: viewModel.logout,
+                    if (viewParameters.userLogged)
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: CustomOutlineButton(
+                            label: 'Desloguear',
+                            action: viewModel.logout,
+                          ),
                         ),
                       ),
-                    CustomFillButton(
-                      backgroundColor: AppTheme.tertiaryColor,
-                      label: 'Guardar',
-                      action: () => viewModel.onSaveUserData(context),
+                    Expanded(
+                      child: CustomFillButton(
+                        backgroundColor: AppTheme.tertiaryColor,
+                        label: 'Guardar',
+                        action: () => viewModel.onSaveUserData(context),
+                      ),
                     ),
                   ],
                 ),
               ),
+              if (viewParameters.userLogged && viewModel.isApple())
+                GestureDetector(
+                  onTap: () => viewModel.deleteAccountConfirm(context),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 48.0),
+                    child: Text(
+                      'Borrar cuenta',
+                      style: AppTheme.regular16_20.copyWith(
+                        color: AppTheme.primaryColor,
+                        decorationStyle: TextDecorationStyle.solid,
+                        fontStyle: FontStyle.normal,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppTheme.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

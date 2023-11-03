@@ -63,8 +63,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '826758902094',
     projectId: 'microdonaciones-15b3f',
     storageBucket: 'microdonaciones-15b3f.appspot.com',
-    androidClientId: '826758902094-83quij1eeqifc1hh0iv05a9fhm3mrpg5.apps.googleusercontent.com',
-    iosClientId: '826758902094-dn0ldmprl9s6p419eqqgh20g92cdedpk.apps.googleusercontent.com',
+    androidClientId:
+        '826758902094-83quij1eeqifc1hh0iv05a9fhm3mrpg5.apps.googleusercontent.com',
+    iosClientId:
+        '826758902094-dn0ldmprl9s6p419eqqgh20g92cdedpk.apps.googleusercontent.com',
     iosBundleId: 'com.mapplics.microdonaciones',
   );
 }

@@ -90,4 +90,15 @@ class AuthService with ListenableServiceMixin {
       rethrow;
     }
   }
+
+  /// Hace el logout del usuario.
+  Future<void> deleteAccount() async {
+    try {
+      await _authApi.deleteAccount();
+      await clearAuth();
+      notifyListeners();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
