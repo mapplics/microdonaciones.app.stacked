@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/new_donation/donation_item_card/donation_item_card.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,6 +17,14 @@ class NewDonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.only(bottom: 19.0),
+            child: Text(
+              'Seleccióná qué alimentos son los que vas a donar.',
+              style: AppTheme.regular14_16,
+              textAlign: TextAlign.center,
+            ),
+          ),
           ...viewModel.donationItemsOptions
               .map(
                 (item) => Padding(
