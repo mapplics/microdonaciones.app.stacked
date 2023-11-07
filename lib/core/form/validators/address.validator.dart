@@ -6,7 +6,7 @@ class AddressValidator extends Validator<dynamic> {
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
     final regex = RegExp(
-      r'^(?=.*[A-Za-zÁÉÍÓÚáéíóú])(?=.*\d)(?![\d ])[A-Za-zÁÉÍÓÚáéíóú\d ]+$',
+      r'^(?=.*[A-Za-zñÑáéíóúÁÉÍÓÚ].*[0-9]|[0-9].*[A-Za-zñÑáéíóúÁÉÍÓÚ]).+$',
       caseSensitive: false,
     );
 
