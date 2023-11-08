@@ -5,6 +5,7 @@ import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_requests/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
 import 'package:microdonations/services/auth_service.dart';
+import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
@@ -89,17 +90,33 @@ class PersonalInformationViewModel extends BaseViewModel {
       secondaryButtonTitle: 'Cancelar',
     )
         .then((value) async {
+      /// Chequeo si la persona eligio eliminar la su cuenta.
       if (value?.confirmed ?? false) {
         try {
           context.loaderOverlay.show();
-          await Future.delayed(Duration(seconds: 2));
-          // await _authService.deleteAccount();
+          await _authService.getProfile();
+
+          _dialogService
+              .showDialog(
+            title: '¡Solicitud recibida!',
+            description:
+                'Tu solicitud para eliminar tu cuenta ha sido recibida. En las próximas horas eliminaremos tu cuenta y no podrás volver a iniciar sesión. En caso de que quieras volver a habilitarla deberás contactarte con nosotros por alguno de nuestros medios.',
+            barrierDismissible: false,
+            buttonTitleColor: AppTheme.primaryColor,
+            buttonTitle: 'Aceptar',
+          )
+              .then((value) {
+            _authService.logout();
+            _navigationService.popUntil((route) => route.isFirst);
+          });
         } catch (e) {
+          MessegeHelper.showErrorSnackBar(
+            context,
+            'No pudimmos eliminar tu cuenta. Por favor, volve a intentarlo mas tarde.',
+          );
         } finally {
           context.loaderOverlay.hide();
         }
-      } else {
-        print('cancela');
       }
     });
   }
