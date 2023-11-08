@@ -29,6 +29,7 @@ class ConfirmDialog extends StackedView<ConfirmDialogModel> {
       shadowColor: Colors.white,
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 15),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
