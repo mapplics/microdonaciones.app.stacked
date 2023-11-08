@@ -20,8 +20,9 @@ class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
         const Padding(
           padding: EdgeInsets.only(bottom: 19.0),
           child: Text(
-            'Seleccioná que alimentos son los que vas a donar',
+            'Seleccioná la cantidad de cada uno de los alimentos que vas a donar.',
             style: AppTheme.regular14_16,
+            textAlign: TextAlign.center,
           ),
         ),
         Expanded(
