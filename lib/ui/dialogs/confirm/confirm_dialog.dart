@@ -69,8 +69,9 @@ class ConfirmDialog extends StackedView<ConfirmDialogModel> {
             ),
             Row(
               children: [
-                SizedBox(
+                Container(
                   width: 120,
+                  padding: const EdgeInsets.only(right: 5),
                   child: CustomFillButton(
                     label: request.secondaryButtonTitle ??
                         'MainButtonTitle not found!',
