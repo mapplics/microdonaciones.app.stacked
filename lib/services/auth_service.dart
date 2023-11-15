@@ -59,6 +59,7 @@ class AuthService with ListenableServiceMixin {
   /// Setea [_authModel] en null y limpia el Storage.
   Future<void> clearAuth() async {
     _authModel = null;
+    _loggedUser = null;
     await StorageHelper.logoutClean();
     notifyListeners();
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:microdonations/ui/widgets/common/custom_appbar/custom_appbar.dart';
 import 'package:microdonations/ui/widgets/common/custom_scaffold/custom_scaffold.dart';
@@ -9,12 +10,9 @@ import '../../widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'login_viewmodel.dart';
 
 class LoginView extends StackedView<LoginViewModel> {
-  /// Si es true al terminar el login navega al selector de ONG.
-  /// Si es falso navega al home.
-  final bool navigateOngSelector;
+  final LoginViewParameters viewParameters;
 
-  const LoginView({Key? key, this.navigateOngSelector = false})
-      : super(key: key);
+  const LoginView({Key? key, required this.viewParameters}) : super(key: key);
 
   @override
   Widget builder(
@@ -89,5 +87,5 @@ class LoginView extends StackedView<LoginViewModel> {
   LoginViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      LoginViewModel(navigateOngSelector: navigateOngSelector);
+      LoginViewModel(viewParameters: viewParameters);
 }

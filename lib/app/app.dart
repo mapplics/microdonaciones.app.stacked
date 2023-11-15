@@ -26,6 +26,7 @@ import 'package:microdonations/services/ong_service.dart';
 import 'package:microdonations/ui/views/ong_selector/ong_selector_view.dart';
 import 'package:microdonations/ui/views/about/about_view.dart';
 import 'package:microdonations/ui/dialogs/confirm/confirm_dialog.dart';
+import 'package:microdonations/ui/dialogs/confirm_delete_account/confirm_delete_account_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -67,6 +68,7 @@ import 'package:microdonations/ui/dialogs/confirm/confirm_dialog.dart';
   dialogs: [
     StackedDialog(classType: TestDialogDialog),
     StackedDialog(classType: ConfirmDialog),
+    StackedDialog(classType: ConfirmDeleteAccountDialog),
 // @stacked-dialog
   ],
 )

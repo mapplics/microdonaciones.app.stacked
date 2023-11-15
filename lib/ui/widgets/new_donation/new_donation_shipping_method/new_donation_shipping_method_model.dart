@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
@@ -18,6 +21,8 @@ class DonationShippingMethodModel extends ReactiveViewModel {
   final _authService = locator<AuthService>();
   final _navigationService = locator<NavigationService>();
 
+  final scrollController = ScrollController();
+
   @override
   List<ListenableServiceMixin> get listenableServices => [_authService];
 
@@ -34,6 +39,11 @@ class DonationShippingMethodModel extends ReactiveViewModel {
   bool get isDelivery =>
       _newDonationService.deliveryTypeValue == ShippingMethod.delivery;
 
+  /// Devuelve true si el usuario esta logueado.
+  bool get isUserLogged {
+    return _authService.isUserLogged;
+  }
+
   /// Devuelve el tipo de entrega que eligio el usuario.
   ShippingMethod get typeDeliverySelected =>
       _newDonationService.deliveryTypeValue;
@@ -48,9 +58,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
 
   /// Inicializa la direccion del usuario si el tipo es [ShippingMethod.delivery]
   void initUserAddress() {
-    print('initUserAddress');
-    if (ShippingMethod.pickup == typeDeliverySelected) {
-      print('ENTRO');
+    if (ShippingMethod.pickup == typeDeliverySelected && isUserLogged) {
       _newDonationService.updateUserAddres(_authService.loggedUser!.address);
     }
   }
@@ -66,7 +74,9 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       );
       _newDonationService.updatePickupAreaConfirm(false);
     } else {
-      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+      if (isUserLogged) {
+        _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+      }
     }
 
     rebuildUi();
@@ -86,6 +96,35 @@ class DonationShippingMethodModel extends ReactiveViewModel {
     });
   }
 
+  /// Hace un scroll bottom en la pagina.
+  void scrollToBottom() {
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  /// Navega a la pantalla de login.
+  void navigateToLogin() {
+    _navigationService
+        .navigateToLoginView(
+      viewParameters: LoginViewParameters(
+        popWhenFinish: true,
+        popUntilFirst: false,
+      ),
+    )
+        .then((value) {
+      if (isUserLogged) {
+        logSucess('Loguie');
+        _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+        rebuildUi();
+      } else {
+        logWarn('no Loguie');
+      }
+    });
+  }
+
   /// Setea el punto de entrega que eligio el usuario.
   void updateReceptionPoint<ReceptionPoint>(dynamic value) {
     _newDonationService.updateReceptionPoint(value);
@@ -94,12 +133,30 @@ class DonationShippingMethodModel extends ReactiveViewModel {
   /// Actualiza el formulario para retiro
   void updatePickUpAppointmentForm(FormGroup form) {
     _newDonationService.updatePickUpAppointmentForm(form);
+
+    /// Si todos los datos son validos hago un scroll bottom.
+    if (form.valid && areaConfirm) {
+      scrollToBottom();
+    }
+
     rebuildUi();
+  }
+
+  /// Hace un scroll botom al hacer focus en el campo aclaraciones.
+  void onFocusAclaracionesChange(bool hasFocus) {
+    if (hasFocus) {
+      Future.delayed(const Duration(milliseconds: 300), () => scrollToBottom());
+    }
   }
 
   /// Actualiza el valor de area de retiro.
   void toggleAreaConfirm(bool newValue) {
     _newDonationService.updatePickupAreaConfirm(newValue);
+
+    /// Si todos los datos son validos hago un scroll bottom.
+    if (areaConfirm && pickupAppointmentFormValid) {
+      scrollToBottom();
+    }
   }
 
   /// Devuelve true si el usuario confirmo que esta dentro del area de retiro

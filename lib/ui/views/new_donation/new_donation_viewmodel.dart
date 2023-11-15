@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong/ong.model.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
@@ -13,6 +16,8 @@ import 'package:stacked_services/stacked_services.dart';
 class NewDonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _navigationService = locator<NavigationService>();
+  final _authService = locator<AuthService>();
+  final _dialogService = locator<DialogService>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
@@ -129,23 +134,27 @@ class NewDonationViewModel extends ReactiveViewModel {
     switch (error) {
       case NewDonationError.noProductsSelected:
         _message =
-            'Para poder continuar debes seleccionar al menos un producto para donar.';
+            'Para poder continuar, debes seleccionar al menos un producto para donar.';
         break;
       case NewDonationError.quantityProductsInvalid:
         _message =
-            'Para poder continuar todos tus productos deben tener una cantidad mayor a cero.';
+            'Para poder continuar, todos tus productos deben tener una cantidad mayor a cero.';
         break;
       case NewDonationError.pickupRangeInvalid:
         _message =
-            'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación.';
+            'Para poder continuar, debes elegir un día y horario para que pasemos a retirar tu donación.';
         break;
       case NewDonationError.receptionPointInvalid:
         _message =
-            'Para poder continuar debes elegir un punto de entrega para llevar tu donación.';
+            'Para poder continuar, debes elegir un punto de entrega para llevar tu donación.';
         break;
       case NewDonationError.pickupAreaInvalid:
         _message =
-            'Para poder continuar debes confirmar que te encuentras dentro de la zona de retiro.';
+            'Para poder continuar, debes confirmar que te encuentras dentro de la zona de retiro.';
+        break;
+      case NewDonationError.unloggedUser:
+        _message =
+            'Para poder continuar, necesitamos que inicies sesión. Por favor, ingresa con una cuenta y vuelve a intentarlo.';
         break;
       case NewDonationError.unknow:
         _message =
@@ -153,7 +162,7 @@ class NewDonationViewModel extends ReactiveViewModel {
         break;
       default:
         _message =
-            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso.';
+            'Algo salió mal. Por favor, vuelve a comenzar tu donación desde el primer paso.';
     }
 
     MessegeHelper.showInfoSnackBar(context, _message);
@@ -165,8 +174,31 @@ class NewDonationViewModel extends ReactiveViewModel {
       FocusHelper.closeKeyboard();
 
       context.loaderOverlay.show();
-      await _newDonationService.createDontaion();
-      _navigationService.replaceWithNewDonationConfirmedView();
+
+      if (!_authService.isUserLogged) {
+        _dialogService
+            .showCustomDialog(
+          title: 'Finalizar donación',
+          description:
+              'Para poder terminar el proceso de donación necesitamos que inicies sesión. Por favor, crea tu cuenta y volve a intentarlo.',
+          variant: DialogType.confirm,
+          mainButtonTitle: 'Iniciar sesión',
+          secondaryButtonTitle: 'Cancelar',
+        )
+            .then((value) {
+          if (value?.confirmed ?? false) {
+            _navigationService.navigateToLoginView(
+              viewParameters: LoginViewParameters(
+                popWhenFinish: true,
+                popUntilFirst: false,
+              ),
+            );
+          }
+        });
+      } else {
+        await _newDonationService.createDontaion();
+        _navigationService.replaceWithNewDonationConfirmedView();
+      }
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
         context,

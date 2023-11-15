@@ -85,7 +85,7 @@ class PersonalInformationViewModel extends BaseViewModel {
       title: '¿Eliminamos tu cuenta?',
       description:
           'Eliminaremos tu cuenta y no podras volver a iniciar sesión. Si cambias de opinión deberás comunicarte con nosotros para que volvamos a habilitar tu usuario.',
-      variant: DialogType.confirm,
+      variant: DialogType.confirmDeleteAccount,
       mainButtonTitle: 'Borrar cuenta',
       secondaryButtonTitle: 'Cancelar',
     )

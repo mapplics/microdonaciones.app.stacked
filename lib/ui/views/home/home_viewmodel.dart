@@ -16,12 +16,7 @@ class HomeViewModel extends ReactiveViewModel {
 
   /// Empieza el flujo para hacer una donacion.
   void startDonation() {
-    /// Si el usuario no esta logueado le pedimos que se loguee.
-    if (!_authService.isUserLogged) {
-      _navigationService.navigateToLoginView(navigateOngSelector: true);
-    } else {
-      _navigationService.navigateToOngSelectorView();
-    }
+    _navigationService.navigateToOngSelectorView();
   }
 
   /// Navega a la pagina del historial de donaciones.

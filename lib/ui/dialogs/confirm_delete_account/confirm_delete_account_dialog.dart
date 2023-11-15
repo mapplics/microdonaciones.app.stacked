@@ -5,15 +5,14 @@ import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_ou
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'confirm_dialog_model.dart';
+import 'confirm_delete_account_dialog_model.dart';
 
-const double _graphicSize = 60;
-
-class ConfirmDialog extends StackedView<ConfirmDialogModel> {
+class ConfirmDeleteAccountDialog
+    extends StackedView<ConfirmDeleteAccountDialogModel> {
   final DialogRequest request;
   final Function(DialogResponse) completer;
 
-  const ConfirmDialog({
+  const ConfirmDeleteAccountDialog({
     Key? key,
     required this.request,
     required this.completer,
@@ -22,7 +21,7 @@ class ConfirmDialog extends StackedView<ConfirmDialogModel> {
   @override
   Widget builder(
     BuildContext context,
-    ConfirmDialogModel viewModel,
+    ConfirmDeleteAccountDialogModel viewModel,
     Widget? child,
   ) {
     return Dialog(
@@ -96,9 +95,9 @@ class ConfirmDialog extends StackedView<ConfirmDialogModel> {
                   child: CustomOutlineButton(
                     label:
                         request.mainButtonTitle ?? 'MainButtonTitle not found!',
-                    mainColor: AppTheme.tertiaryColor,
+                    mainColor: AppTheme.errorColor,
                     textStyle: AppTheme.regular16_14.copyWith(
-                      color: AppTheme.tertiaryColor,
+                      color: AppTheme.errorColor,
                     ),
                     action: () => completer(DialogResponse(confirmed: true)),
                   ),
@@ -112,6 +111,6 @@ class ConfirmDialog extends StackedView<ConfirmDialogModel> {
   }
 
   @override
-  ConfirmDialogModel viewModelBuilder(BuildContext context) =>
-      ConfirmDialogModel();
+  ConfirmDeleteAccountDialogModel viewModelBuilder(BuildContext context) =>
+      ConfirmDeleteAccountDialogModel();
 }

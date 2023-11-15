@@ -6,6 +6,7 @@ import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/user/firebase_user.model.dart';
 import 'package:microdonations/core/models/user/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -17,9 +18,9 @@ import 'package:flutter/foundation.dart';
 class LoginViewModel extends BaseViewModel {
   final _authService = locator<AuthService>;
   final _navigationService = locator<NavigationService>();
-  final bool navigateOngSelector;
+  final LoginViewParameters viewParameters;
 
-  LoginViewModel({this.navigateOngSelector = false});
+  LoginViewModel({required this.viewParameters});
 
   /// Inicia el flujo de iniciar sesion con Google.
   /// Abre el popUp para que el usuario eliga una cuenta
@@ -63,12 +64,22 @@ class LoginViewModel extends BaseViewModel {
     } else {
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
+      _goBackHandled();
+    }
+  }
 
-      if (navigateOngSelector) {
-        _navigationService.replaceWithOngSelectorView();
-      } else {
-        _navigationService.popUntil((route) => route.isFirst);
-      }
+  /// Resuelve a que pagina se debe navegar despues de terminar el login
+  _goBackHandled() {
+    if (viewParameters.returnedView != null) {
+      _navigationService.back();
+      _navigationService.navigateToView(viewParameters.returnedView!);
+    } else if (viewParameters.popUntilFirst) {
+      _navigationService.popUntil((route) => route.isFirst);
+    } else if (viewParameters.popWhenFinish) {
+      _navigationService.back();
+    } else {
+      /// caso por default
+      _navigationService.back();
     }
   }
 
@@ -148,11 +159,7 @@ class LoginViewModel extends BaseViewModel {
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
 
-      if (navigateOngSelector) {
-        _navigationService.replaceWithOngSelectorView();
-      } else {
-        _navigationService.popUntil((route) => route.isFirst);
-      }
+      _goBackHandled();
     }
   }
 
