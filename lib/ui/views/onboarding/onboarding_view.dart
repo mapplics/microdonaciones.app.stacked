@@ -19,36 +19,37 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   ) {
     return CustomScaffold(
       appbar: const CustomAppbar(title: '¡Hola!', showActions: false),
-      body: Stack(
+      body: Column(
         children: [
-          PageView(
-            physics: const ClampingScrollPhysics(),
-            controller: viewModel.pageController,
-            onPageChanged: viewModel.onPageChange,
-            children: const [
-              OnboardingPage(
-                pathImg: 'assets/img/img_foto_uno.png',
-                description:
-                    '¡Bienvenidos!\nMicroDonaciones es un desarrollo\nde la Asociación Civil Código Fuente.',
-              ),
-              OnboardingPage(
-                pathImg: 'assets/img/img_foto_dos.png',
-                description:
-                    'Nuestro objetivo es crear soluciones digitales. Donamos nuestro tiempo, coordinamos equipos, desarrollamos tecnologías que generen impacto en la sociedad.',
-              ),
-              OnboardingPage(
-                pathImg: 'assets/img/img_foto_tres.png',
-                description:
-                    'A través de MicroDonaciones vas a poder publicar y hacer el seguimiento de tu donación destinada a distintos merenderos de la ciudad.',
-              ),
-            ],
+          Expanded(
+            child: PageView(
+              physics: const ClampingScrollPhysics(),
+              controller: viewModel.pageController,
+              onPageChanged: viewModel.onPageChange,
+              children: const [
+                OnboardingPage(
+                  pathImg: 'assets/img/img_foto_uno.png',
+                  description:
+                      '¡Bienvenidos!\nMicroDonaciones es un desarrollo\nde la Asociación Civil Código Fuente.',
+                ),
+                OnboardingPage(
+                  pathImg: 'assets/img/img_foto_dos.png',
+                  description:
+                      'Nuestro objetivo es crear soluciones digitales. Donamos nuestro tiempo, coordinamos equipos, desarrollamos tecnologías que generen impacto en la sociedad.',
+                ),
+                OnboardingPage(
+                  pathImg: 'assets/img/img_foto_tres.png',
+                  description:
+                      'A través de MicroDonaciones vas a poder publicar y hacer el seguimiento de tu donación destinada a distintos merenderos de la ciudad.',
+                ),
+              ],
+            ),
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height / 8),
+              padding: const EdgeInsets.only(bottom: 18.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 18.0),
@@ -94,16 +95,20 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _deviceWidth = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width / 1.5,
+          width: _deviceWidth / 1.6,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40.0, bottom: 18),
+                padding: const EdgeInsets.only(bottom: 18),
                 child: Image.asset(
                   pathImg,
+                  // width: _deviceWidth,
+                  // fit: BoxFit.cover,
                 ),
               ),
               Text(
