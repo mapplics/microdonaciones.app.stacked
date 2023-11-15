@@ -8,11 +8,13 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
 import '../ui/dialogs/confirm/confirm_dialog.dart';
+import '../ui/dialogs/confirm_delete_account/confirm_delete_account_dialog.dart';
 import '../ui/dialogs/test_dialog/test_dialog_dialog.dart';
 
 enum DialogType {
   testDialog,
   confirm,
+  confirmDeleteAccount,
 }
 
 void setupDialogUi() {
@@ -23,6 +25,8 @@ void setupDialogUi() {
         TestDialogDialog(request: request, completer: completer),
     DialogType.confirm: (context, request, completer) =>
         ConfirmDialog(request: request, completer: completer),
+    DialogType.confirmDeleteAccount: (context, request, completer) =>
+        ConfirmDeleteAccountDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);
