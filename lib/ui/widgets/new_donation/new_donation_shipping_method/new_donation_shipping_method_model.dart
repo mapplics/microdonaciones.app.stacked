@@ -74,7 +74,9 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       );
       _newDonationService.updatePickupAreaConfirm(false);
     } else {
-      _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+      if (isUserLogged) {
+        _newDonationService.updateUserAddres(_authService.loggedUser!.address);
+      }
     }
 
     rebuildUi();

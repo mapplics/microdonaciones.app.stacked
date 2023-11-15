@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong/ong.model.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/new_donation_service.dart';
 import 'package:microdonations/ui/common/helpers/focus.helpers.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
@@ -13,6 +16,8 @@ import 'package:stacked_services/stacked_services.dart';
 class NewDonationViewModel extends ReactiveViewModel {
   final _newDonationService = locator<NewDonationService>();
   final _navigationService = locator<NavigationService>();
+  final _authService = locator<AuthService>();
+  final _dialogService = locator<DialogService>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_newDonationService];
@@ -169,8 +174,31 @@ class NewDonationViewModel extends ReactiveViewModel {
       FocusHelper.closeKeyboard();
 
       context.loaderOverlay.show();
-      await _newDonationService.createDontaion();
-      _navigationService.replaceWithNewDonationConfirmedView();
+
+      if (!_authService.isUserLogged) {
+        _dialogService
+            .showCustomDialog(
+          title: 'Finalizar donación',
+          description:
+              'Para poder terminar el proceso de donación necesitamos que inicies sesión. Por favor, crea tu cuenta y volve a intentarlo.',
+          variant: DialogType.confirm,
+          mainButtonTitle: 'Iniciar sesión',
+          secondaryButtonTitle: 'Cancelar',
+        )
+            .then((value) {
+          if (value?.confirmed ?? false) {
+            _navigationService.navigateToLoginView(
+              viewParameters: LoginViewParameters(
+                popWhenFinish: true,
+                popUntilFirst: false,
+              ),
+            );
+          }
+        });
+      } else {
+        await _newDonationService.createDontaion();
+        _navigationService.replaceWithNewDonationConfirmedView();
+      }
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
         context,
