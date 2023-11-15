@@ -1,6 +1,7 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
 import 'package:microdonations/core/models/user/logged_user.model.dart';
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
@@ -29,5 +30,10 @@ class CustomAppbarModel extends ReactiveViewModel {
       );
 
   /// Navega a la pagina para que la persona se loguee
-  void navigateToLogin() => _navigationService.navigateToLoginView();
+  void navigateToLogin() => _navigationService.navigateToLoginView(
+        viewParameters: LoginViewParameters(
+          popWhenFinish: false,
+          popUntilFirst: true,
+        ),
+      );
 }

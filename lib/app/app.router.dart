@@ -7,11 +7,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i14;
 import 'package:flutter/material.dart';
-import 'package:microdonations/core/models/ong/ong.model.dart' as _i17;
+import 'package:microdonations/core/models/ong/ong.model.dart' as _i18;
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart'
-    as _i16;
-import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
+    as _i17;
+import 'package:microdonations/core/parameters/login_view.parameters.model.dart'
     as _i15;
+import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart'
+    as _i16;
 import 'package:microdonations/ui/views/about/about_view.dart' as _i13;
 import 'package:microdonations/ui/views/create_account/create_account_view.dart'
     as _i7;
@@ -32,7 +34,7 @@ import 'package:microdonations/ui/views/personal_information/personal_informatio
     as _i6;
 import 'package:microdonations/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i18;
+import 'package:stacked_services/stacked_services.dart' as _i19;
 
 class Routes {
   static const homeView = '/home-view';
@@ -141,12 +143,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i4.LoginView: (data) {
-      final args = data.getArgs<LoginViewArguments>(
-        orElse: () => const LoginViewArguments(),
-      );
+      final args = data.getArgs<LoginViewArguments>(nullOk: false);
       return _i14.MaterialPageRoute<dynamic>(
-        builder: (context) => _i4.LoginView(
-            key: args.key, navigateOngSelector: args.navigateOngSelector),
+        builder: (context) =>
+            _i4.LoginView(key: args.key, viewParameters: args.viewParameters),
         settings: data,
       );
     },
@@ -224,27 +224,27 @@ class StackedRouter extends _i1.RouterBase {
 class LoginViewArguments {
   const LoginViewArguments({
     this.key,
-    this.navigateOngSelector = false,
+    required this.viewParameters,
   });
 
   final _i14.Key? key;
 
-  final bool navigateOngSelector;
+  final _i15.LoginViewParameters viewParameters;
 
   @override
   String toString() {
-    return '{"key": "$key", "navigateOngSelector": "$navigateOngSelector"}';
+    return '{"key": "$key", "viewParameters": "$viewParameters"}';
   }
 
   @override
   bool operator ==(covariant LoginViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.navigateOngSelector == navigateOngSelector;
+    return other.key == key && other.viewParameters == viewParameters;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ navigateOngSelector.hashCode;
+    return key.hashCode ^ viewParameters.hashCode;
   }
 }
 
@@ -254,7 +254,7 @@ class PersonalInformationViewArguments {
     this.key,
   });
 
-  final _i15.UserInformationFormParameters viewParameters;
+  final _i16.UserInformationFormParameters viewParameters;
 
   final _i14.Key? key;
 
@@ -281,7 +281,7 @@ class CreateAccountViewArguments {
     this.key,
   });
 
-  final _i16.CreateAccountViewParameters viewParameters;
+  final _i17.CreateAccountViewParameters viewParameters;
 
   final _i14.Key? key;
 
@@ -308,7 +308,7 @@ class NewDonationViewArguments {
     this.key,
   });
 
-  final _i17.Ong ongSelected;
+  final _i18.Ong ongSelected;
 
   final _i14.Key? key;
 
@@ -356,7 +356,7 @@ class OrderHistoryDetailViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i18.NavigationService {
+extension NavigatorStateExtension on _i19.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -387,7 +387,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
 
   Future<dynamic> navigateToLoginView({
     _i14.Key? key,
-    bool navigateOngSelector = false,
+    required _i15.LoginViewParameters viewParameters,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -395,8 +395,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.loginView,
-        arguments: LoginViewArguments(
-            key: key, navigateOngSelector: navigateOngSelector),
+        arguments: LoginViewArguments(key: key, viewParameters: viewParameters),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -418,7 +417,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToPersonalInformationView({
-    required _i15.UserInformationFormParameters viewParameters,
+    required _i16.UserInformationFormParameters viewParameters,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -436,7 +435,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToCreateAccountView({
-    required _i16.CreateAccountViewParameters viewParameters,
+    required _i17.CreateAccountViewParameters viewParameters,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -454,7 +453,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> navigateToNewDonationView({
-    required _i17.Ong ongSelected,
+    required _i18.Ong ongSelected,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -574,7 +573,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
 
   Future<dynamic> replaceWithLoginView({
     _i14.Key? key,
-    bool navigateOngSelector = false,
+    required _i15.LoginViewParameters viewParameters,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -582,8 +581,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.loginView,
-        arguments: LoginViewArguments(
-            key: key, navigateOngSelector: navigateOngSelector),
+        arguments: LoginViewArguments(key: key, viewParameters: viewParameters),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -605,7 +603,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithPersonalInformationView({
-    required _i15.UserInformationFormParameters viewParameters,
+    required _i16.UserInformationFormParameters viewParameters,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -623,7 +621,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithCreateAccountView({
-    required _i16.CreateAccountViewParameters viewParameters,
+    required _i17.CreateAccountViewParameters viewParameters,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -641,7 +639,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   }
 
   Future<dynamic> replaceWithNewDonationView({
-    required _i17.Ong ongSelected,
+    required _i18.Ong ongSelected,
     _i14.Key? key,
     int? routerId,
     bool preventDuplicates = true,

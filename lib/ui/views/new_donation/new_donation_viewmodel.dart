@@ -129,23 +129,27 @@ class NewDonationViewModel extends ReactiveViewModel {
     switch (error) {
       case NewDonationError.noProductsSelected:
         _message =
-            'Para poder continuar debes seleccionar al menos un producto para donar.';
+            'Para poder continuar, debes seleccionar al menos un producto para donar.';
         break;
       case NewDonationError.quantityProductsInvalid:
         _message =
-            'Para poder continuar todos tus productos deben tener una cantidad mayor a cero.';
+            'Para poder continuar, todos tus productos deben tener una cantidad mayor a cero.';
         break;
       case NewDonationError.pickupRangeInvalid:
         _message =
-            'Para poder continuar debes elegir un dia y horario para que pasemos a retirar tu donación.';
+            'Para poder continuar, debes elegir un día y horario para que pasemos a retirar tu donación.';
         break;
       case NewDonationError.receptionPointInvalid:
         _message =
-            'Para poder continuar debes elegir un punto de entrega para llevar tu donación.';
+            'Para poder continuar, debes elegir un punto de entrega para llevar tu donación.';
         break;
       case NewDonationError.pickupAreaInvalid:
         _message =
-            'Para poder continuar debes confirmar que te encuentras dentro de la zona de retiro.';
+            'Para poder continuar, debes confirmar que te encuentras dentro de la zona de retiro.';
+        break;
+      case NewDonationError.unloggedUser:
+        _message =
+            'Para poder continuar, necesitamos que inicies sesión. Por favor, ingresa con una cuenta y vuelve a intentarlo.';
         break;
       case NewDonationError.unknow:
         _message =
@@ -153,7 +157,7 @@ class NewDonationViewModel extends ReactiveViewModel {
         break;
       default:
         _message =
-            'Algo salio mal. Por favor, volve a comenzar tu donacion desde el primer paso.';
+            'Algo salió mal. Por favor, vuelve a comenzar tu donación desde el primer paso.';
     }
 
     MessegeHelper.showInfoSnackBar(context, _message);

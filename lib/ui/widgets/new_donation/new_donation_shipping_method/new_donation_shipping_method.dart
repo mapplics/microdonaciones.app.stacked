@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
+import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_outline_button.dart';
 import 'package:microdonations/ui/widgets/forms/custom_checkbox/custom_checkbox.dart';
 import 'package:stacked/stacked.dart';
 import 'new_donation_shipping_method_model.dart';
@@ -20,6 +21,7 @@ class NewDonationShippingMethod
     Widget? child,
   ) {
     return SingleChildScrollView(
+      controller: viewModel.scrollController,
       child: Column(
         children: [
           /// Descripcion
@@ -82,15 +84,18 @@ class NewDonationShippingMethod
                         initialValue: viewModel.areaConfirm,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0, bottom: 43.0),
+                        padding: const EdgeInsets.only(top: 20.0),
                         child: PickupAppointmentForm(
                           onchange: viewModel.updatePickUpAppointmentForm,
                           form: viewModel.pickupAppointmentForm,
+                          onFocusChangeAclaraciones:
+                              viewModel.onFocusAclaracionesChange,
                         ),
                       ),
 
                       /// Instrucciones para retiro por domicilio
-                      if (viewModel.pickupAppointmentFormValid)
+                      if (viewModel.pickupAppointmentFormValid &&
+                          viewModel.isUserLogged)
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -130,8 +135,27 @@ class NewDonationShippingMethod
                             ),
                           ],
                         ),
+
+                      if (!viewModel.isUserLogged)
+                        Column(
+                          children: [
+                            Text(
+                              'Para poder utilizar este metodo de entrega es necesario que estes logueado',
+                              style: AppTheme.regular14_20.copyWith(
+                                color: AppTheme.blackColor,
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: CustomOutlineButton(
+                                label: 'Iniciar Sesion',
+                                action: viewModel.navigateToLogin,
+                              ),
+                            ),
+                          ],
+                        ),
                       const SizedBox(
-                        height: 100,
+                        height: 165,
                       ),
                     ],
                   ),

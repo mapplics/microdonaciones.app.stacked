@@ -10,8 +10,14 @@ import 'pickup_appointment_form_model.dart';
 class PickupAppointmentForm extends StackedView<DeliveryAppointmentFormModel> {
   final OnChangeForm onchange;
   final FormGroup? form;
+  final OnFocusChange onFocusChangeAclaraciones;
 
-  const PickupAppointmentForm({required this.onchange, this.form, super.key});
+  const PickupAppointmentForm({
+    required this.onchange,
+    required this.onFocusChangeAclaraciones,
+    this.form,
+    super.key,
+  });
 
   @override
   Widget builder(
@@ -45,6 +51,7 @@ class PickupAppointmentForm extends StackedView<DeliveryAppointmentFormModel> {
           CustomTextArea(
             label: 'Aclaraciones',
             formControlName: DeliveryAppointmentFormFields.observations.name,
+            onFocusChange: onFocusChangeAclaraciones,
           )
         ],
       ),

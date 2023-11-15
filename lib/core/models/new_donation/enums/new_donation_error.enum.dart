@@ -4,5 +4,6 @@ enum NewDonationError {
   quantityProductsInvalid,
   pickupRangeInvalid,
   pickupAreaInvalid,
+  unloggedUser,
   unknow,
 }

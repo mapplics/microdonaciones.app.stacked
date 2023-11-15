@@ -12,6 +12,7 @@ import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
 import 'package:microdonations/core/models/user/user_address.model.dart';
 import 'package:microdonations/core/models/weekday.model.dart';
+import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
@@ -27,6 +28,7 @@ import '../app/app.locator.dart';
 class NewDonationService with ListenableServiceMixin {
   final _newDonationData = locator<NewDonationDataService>();
   final _newDonationApi = locator<NewDonationApiService>();
+  final _authService = locator<AuthService>();
 
   late Ong _ongSelected;
 
@@ -232,9 +234,15 @@ class NewDonationService with ListenableServiceMixin {
           ? null
           : NewDonationError.receptionPointInvalid;
     } else {
-      return _pickupShippingValidation.isValid
-          ? null
-          : _pickupShippingValidation.getTypeError;
+      if (_pickupShippingValidation.isValid) {
+        if (!_authService.isUserLogged) {
+          return NewDonationError.unloggedUser;
+        }
+
+        return null;
+      } else {
+        return _pickupShippingValidation.getTypeError;
+      }
     }
   }
 
