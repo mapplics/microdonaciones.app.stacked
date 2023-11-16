@@ -137,22 +137,29 @@ class NewDonationShippingMethod
                         ),
 
                       if (!viewModel.isUserLogged)
-                        Column(
-                          children: [
-                            Text(
-                              'Para poder utilizar este metodo de entrega es necesario que estes logueado',
-                              style: AppTheme.regular14_20.copyWith(
-                                color: AppTheme.blackColor,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 28.0),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  'Para poder utilizar este método de entrega, es necesario que estés logueado.',
+                                  textAlign: TextAlign.center,
+                                  style: AppTheme.regular14_20.copyWith(
+                                    color: AppTheme.blackColor,
+                                  ),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: CustomOutlineButton(
-                                label: 'Iniciar Sesion',
-                                action: viewModel.navigateToLogin,
+                              SizedBox(
+                                width: double.infinity,
+                                child: CustomOutlineButton(
+                                  label: 'Iniciar Sesion',
+                                  action: viewModel.navigateToLogin,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       const SizedBox(
                         height: 165,
