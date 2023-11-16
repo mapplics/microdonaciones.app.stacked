@@ -180,7 +180,7 @@ class NewDonationViewModel extends ReactiveViewModel {
             .showCustomDialog(
           title: 'Finalizar donación',
           description:
-              'Para poder terminar el proceso de donación necesitamos que inicies sesión. Por favor, crea tu cuenta y volve a intentarlo.',
+              'Para poder terminar el proceso de donación, necesitamos que inicies sesión. Por favor, crea tu cuenta y vuelve a intentarlo.',
           variant: DialogType.confirm,
           mainButtonTitle: 'Iniciar sesión',
           secondaryButtonTitle: 'Cancelar',
