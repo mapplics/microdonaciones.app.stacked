@@ -40,6 +40,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>ic_launcher</string>
+            </array>
+        </dict>
+    </dict>
 	<!-- Google Sign-In section -->
 	<key>CFBundleURLTypes</key>
 	<array>
