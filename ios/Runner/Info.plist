@@ -65,5 +65,10 @@
 		</dict>
 	</array>
 	<!-- End of the Google Sign-In section -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    	<key>NSAllowsLocalNetworking</key>
+    	<true/>
+	</dict>
 </dict>
 </plist>
