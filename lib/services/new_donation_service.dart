@@ -1,27 +1,27 @@
-import 'package:microdonations/core/models/new_donation/abstracts/base_new_donation.abstract.dart';
-import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+import 'package:stacked/stacked.dart';
+
 import 'package:microdonations/core/extensions/string.extension.dart';
+import 'package:microdonations/core/models/new_donation/abstracts/base_new_donation.abstract.dart';
 import 'package:microdonations/core/models/new_donation/delivery_new_donation.model.dart';
 import 'package:microdonations/core/models/new_donation/donation_product.model.dart';
 import 'package:microdonations/core/models/new_donation/donation_product_list.model.dart';
+import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/new_donation/pickup_new_donation.model.dart';
 import 'package:microdonations/core/models/new_donation/pickup_shipping_validation.model.dart';
-import 'package:microdonations/core/models/ong/ong_product.model.dart';
 import 'package:microdonations/core/models/ong/ong.model.dart';
-import 'package:microdonations/core/models/range_time.model.dart';
+import 'package:microdonations/core/models/ong/ong_pickup_weekday_range.model.dart';
+import 'package:microdonations/core/models/ong/ong_product.model.dart';
 import 'package:microdonations/core/models/ong/ong_reception_point.model.dart';
+import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/user/user_address.model.dart';
-import 'package:microdonations/core/models/weekday.model.dart';
 import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/services/new_donation_api_service.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
-import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/pickup_appointment_form/pickup_appointment_form_model.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
-import 'package:reactive_forms/reactive_forms.dart';
-import 'package:stacked/stacked.dart';
 
 import '../app/app.locator.dart';
 
@@ -130,11 +130,6 @@ class NewDonationService with ListenableServiceMixin {
     _pickupDonation.setObservations = obs ?? '';
   }
 
-  /// Actualiza el dia que se va a retirar la donacion.
-  void _updatePickupDate(DateTime date) {
-    _pickupDonation.setPickupDate = date;
-  }
-
   /// Actualiza el domicilio del usuario que va a hacer la donacion.
   void updateUserAddres(UserAddress userAddres) {
     _pickupDonation.setUserAddress = userAddres;
@@ -151,18 +146,12 @@ class NewDonationService with ListenableServiceMixin {
   /// Actualiza el formulario de delivery [_pickupAppointmentForm]
   void updatePickUpAppointmentForm(FormGroup form) {
     if (_pickupShippingValidation.form?.valid ?? false) {
-      final Weekday weekday = ReactiveFormHelper.getControlValue(
-        form,
-        DeliveryAppointmentFormFields.day.name,
-      );
-
       final RangeTime rangeTime = ReactiveFormHelper.getControlValue(
         form,
         DeliveryAppointmentFormFields.time.name,
       );
 
       _updatePickupTime(rangeTime);
-      _updatePickupDate(weekday.tag);
     }
 
     final obs = ReactiveFormHelper.getControlValue(
@@ -194,7 +183,7 @@ class NewDonationService with ListenableServiceMixin {
     } else {
       final form = _pickupShippingValidation.form;
 
-      final Weekday weekday = ReactiveFormHelper.getControlValue(
+      final OngPickupWeekDayRange weekday = ReactiveFormHelper.getControlValue(
         form!,
         DeliveryAppointmentFormFields.day.name,
       );
@@ -204,7 +193,7 @@ class NewDonationService with ListenableServiceMixin {
         DeliveryAppointmentFormFields.time.name,
       );
 
-      return 'El día ${DateTimeHelper.getDayOfWeek(weekday.tag).name.capitalize()} ${weekday.tag.day} de ${DateTimeHelper.getMonthName(weekday.tag).capitalize()} entre las ${rangeTime.betweenTime}.';
+      return 'El día ${weekday.weekday.name.capitalize()} entre las ${rangeTime.betweenTime} .';
     }
   }
 

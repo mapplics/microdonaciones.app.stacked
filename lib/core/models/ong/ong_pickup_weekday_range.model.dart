@@ -1,9 +1,7 @@
 import 'package:microdonations/core/abstracts/base_dropdown_item.abstract.dart';
-import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/core/models/dropdowns/dropdown_pickup_date.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
 import 'package:microdonations/core/models/weekday.model.dart';
-import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 import '../dropdowns/dropdown_pickup_time.model.dart';
@@ -20,7 +18,7 @@ class OngPickupWeekDayRange {
   });
 
   /// Crea una instancia de [OngPickupWeekDayRange]
-  static OngPickupWeekDayRange createOne(Map<String, dynamic> data) {
+  static OngPickupWeekDayRange createOne(Map data) {
     return OngPickupWeekDayRange(
       weekday: Weekday.createOne(data),
       ranges: _parseRangeTimes(data['rangeTimes']),
@@ -74,11 +72,21 @@ class OngPickupWeekDayRange {
     );
   }
 
-  BaseDropdownItem<Weekday> getDropdownDays() {
-    return DropdownPickupDateItem(
-      label:
-          '${DateTimeHelper.getDayOfWeek(weekday.tag).name.capitalize()} ${weekday.tag.day} de ${DateTimeHelper.getMonthName(weekday.tag)}',
-      value: weekday,
-    );
+  static List<BaseDropdownItem<OngPickupWeekDayRange>> getDropdowns(
+      List<OngPickupWeekDayRange> list) {
+    final List<BaseDropdownItem<OngPickupWeekDayRange>> dropdowns = [];
+
+    list.forEach((weekday) {
+      dropdowns.addAll(
+        weekday.ranges.map(
+          (range) => DropdownPickupDateItem(
+            label: weekday.weekday.name,
+            value: weekday,
+          ),
+        ),
+      );
+    });
+
+    return dropdowns;
   }
 }

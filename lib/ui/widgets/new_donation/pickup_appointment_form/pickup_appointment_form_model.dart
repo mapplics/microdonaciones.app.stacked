@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/abstracts/base_dropdown_item.abstract.dart';
+import 'package:microdonations/core/models/ong/ong_pickup_weekday_range.model.dart';
 import 'package:microdonations/core/models/range_time.model.dart';
-import 'package:microdonations/core/models/weekday.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/services/new_donation_data_service.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
@@ -28,10 +28,9 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
 
   final List<StreamSubscription<dynamic>> _formSubscriptions = [];
 
-  List<BaseDropdownItem<Weekday>> get dayItems {
-    return _newDonationDataService.pickupRange
-        .map((e) => e.getDropdownDays())
-        .toList();
+  List<BaseDropdownItem<OngPickupWeekDayRange>> get dayItems {
+    return OngPickupWeekDayRange.getDropdowns(
+        _newDonationDataService.pickupRange);
   }
 
   List<BaseDropdownItem<RangeTime>> get timeItems {
@@ -39,9 +38,9 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
         formGroup, DeliveryAppointmentFormFields.day.name);
 
     if (value != null) {
-      final dropdownValue = value as Weekday;
+      final dropdownValue = value as OngPickupWeekDayRange;
 
-      _loadTimeItems(dropdownValue.tag);
+      _loadTimeItems(dropdownValue);
       return _timeItems;
     } else {
       return [];
@@ -52,7 +51,8 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
     formGroup = form ??
         FormGroup(
           {
-            DeliveryAppointmentFormFields.day.name: FormControl<Weekday>(
+            DeliveryAppointmentFormFields.day.name:
+                FormControl<OngPickupWeekDayRange>(
               value: null,
               validators: [Validators.required],
             ),
@@ -80,7 +80,7 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
   }
 
   void updateDate<T>(T value) {
-    final pickupValue = value as FormControl<Weekday>;
+    final pickupValue = value as FormControl<OngPickupWeekDayRange>;
 
     formGroup
         .control(DeliveryAppointmentFormFields.day.name)
@@ -119,13 +119,9 @@ class DeliveryAppointmentFormModel extends BaseViewModel {
   }
 
   /// Devuelve horarios los horarios para el dia seleccionado.
-  void _loadTimeItems(DateTime dateTime) {
+  void _loadTimeItems(OngPickupWeekDayRange dateTime) {
     _timeItems = [];
-
-    final range = _newDonationDataService.pickupRange
-        .firstWhere((element) => element.weekday.tag == dateTime);
-
-    _timeItems.addAll(range.getDropdownRanges());
+    _timeItems.addAll(dateTime.getDropdownRanges());
   }
 
   /// Cancela todas las subscripciones del formulario.

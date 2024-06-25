@@ -34,9 +34,9 @@ class ReceptionApiService {
         options: Options(responseType: ResponseType.json),
       );
 
-      return OngPickupWeekDayRange.createList(response.data['data']);
+      return OngPickupWeekDayRange.createList(response.data);
     } catch (e) {
-      logError('No se pudo recuperar los puntos de entrega! ${e.toString()}');
+      logError('No se pudo recuperar el rango de entrega! ${e.toString()}');
       rethrow;
     }
   }

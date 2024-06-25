@@ -1,19 +1,16 @@
 /// Representa un dia de la semana.
 class Weekday {
-  final int id;
-  final DateTime tag;
+  final String tag;
   final String name;
 
   Weekday({
-    required this.id,
     required this.tag,
     required this.name,
   });
 
-  static Weekday createOne(Map<String, dynamic> data) {
+  static Weekday createOne(Map data) {
     return Weekday(
-      id: data['id'],
-      tag: DateTime.parse(data['tag']),
+      tag: data['tag'],
       name: data['name'],
     );
   }

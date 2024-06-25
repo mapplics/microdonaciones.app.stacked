@@ -11,9 +11,9 @@ import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_button
 /// y que se le va a retirar a domicilio.
 class PickupDonation extends BaseNewDonation {
   late RangeTime? _rangeTime = null;
-  late DateTime? _pickupDate = null;
   late UserAddress? _userAddress = null;
   late String? _observations = null;
+  // late int? _pickupDate = null;
 
   PickupDonation({super.type = ShippingMethod.pickup});
 
@@ -33,9 +33,9 @@ class PickupDonation extends BaseNewDonation {
 
   RangeTime? get rangeTime => _rangeTime;
 
-  set setPickupDate(DateTime date) {
-    _pickupDate = date;
-  }
+  // set setPickupDate(int rangeId) {
+  //   _pickupDate = rangeId;
+  // }
 
   String? get observations => _observations;
 
@@ -44,7 +44,7 @@ class PickupDonation extends BaseNewDonation {
   }
 
   /// Devuelve la direccion del usuario.
-  DateTime? get pickupDate => _pickupDate;
+  // int? get pickupDate => _pickupDate;
 
   /// Setea la direccion del usuario.
   set setUserAddress(UserAddress userAddress) {
@@ -58,20 +58,20 @@ class PickupDonation extends BaseNewDonation {
   /// es valida como para crear una donacion.
   bool valid() {
     return (_rangeTime != null) &&
-        (_pickupDate != null) &&
+        // (_pickupDate != null) &&
         (_userAddress != null);
   }
 
   /// Resetea todos los campos.
   void resetFields() {
     _rangeTime = null;
-    _pickupDate = null;
+    // _pickupDate = null;
     _userAddress = null;
   }
 
-  String _formatearNumero(int day) {
-    return (day < 10) ? '0$day' : day.toString();
-  }
+  // String _formatearNumero(int day) {
+  //   return (day < 10) ? '0$day' : day.toString();
+  // }
 
   @override
   toJson() {
@@ -79,10 +79,9 @@ class PickupDonation extends BaseNewDonation {
       "ong_id": ong.id,
       "shipping_method": 'pickup',
       "address_id": _userAddress!.id,
-      "range_time_id": _rangeTime!.id,
+      "weekday_range_time_id": _rangeTime!.id,
       "observations": _observations,
-      "date":
-          '${_pickupDate!.year}${_pickupDate!.month}${_formatearNumero(_pickupDate!.day)}',
+      // "date": _pickupDate,
       "products": donationItemsDetail.donationsItemsList
           .map(
             (donationItem) => {

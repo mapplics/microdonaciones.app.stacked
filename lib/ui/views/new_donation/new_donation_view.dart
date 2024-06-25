@@ -44,7 +44,7 @@ class NewDonationView extends StackedView<NewDonationViewModel> {
             body: WrapperHttpLoading(
               showLoading: viewModel.isLoading,
               showError: viewModel.haveError,
-              retryFunction: viewModel.initNewDonation,
+              retryFunction: () => viewModel.initNewDonation(ongSelected),
               mainContent: Stack(
                 children: [
                   PageView(
