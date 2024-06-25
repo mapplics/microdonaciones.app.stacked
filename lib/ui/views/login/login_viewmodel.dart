@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/constants/constant_data.dart';
 import 'package:microdonations/core/models/user/firebase_user.model.dart';
 import 'package:microdonations/core/models/user/social_login_response.model.dart';
 import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
@@ -14,11 +17,13 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:io';
 
 class LoginViewModel extends BaseViewModel {
   final _authService = locator<AuthService>;
   final _navigationService = locator<NavigationService>();
   final LoginViewParameters viewParameters;
+  final _secureStorage = const FlutterSecureStorage();
 
   LoginViewModel({required this.viewParameters});
 
@@ -60,8 +65,12 @@ class LoginViewModel extends BaseViewModel {
             viewParameters: CreateAccountViewParameters(
                 FirebaseUser.createOne(authResult.user!)),
           )
-          .then((_) => _onBackCreateAccount(_socialLoginResp));
+          .then((_) {
+            login();
+            _onBackCreateAccount(_socialLoginResp);
+          } );
     } else {
+      login();
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
       _goBackHandled();
@@ -154,8 +163,12 @@ class LoginViewModel extends BaseViewModel {
             viewParameters: CreateAccountViewParameters(
                 FirebaseUser.createOne(userCredential.user!)),
           )
-          .then((_) => _onBackCreateAccount(_socialLoginResp));
+          .then((_) {
+            login();
+            _onBackCreateAccount(_socialLoginResp);
+          });
     } else {
+      login();
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
 
@@ -165,5 +178,25 @@ class LoginViewModel extends BaseViewModel {
 
   bool isApple() {
     return defaultTargetPlatform == TargetPlatform.iOS;
+  }
+
+    Future<void> getToken() async {
+    FirebaseMessaging.instance.getToken().then((token) async {
+      await _secureStorage.write(key: ConstantData.deviceToken, value: token);
+    });
+  }
+
+  Future<bool?> login() async {
+    try {
+      var storedToken = await _secureStorage.read(key: ConstantData.deviceToken);
+      if (storedToken == null) {
+        var token = await FirebaseMessaging.instance.getToken();
+        await _secureStorage.write(key: ConstantData.deviceToken, value: token);
+      } 
+    } catch (e) {
+      rethrow;
+    }
+
+    return false;
   }
 }
