@@ -75,16 +75,21 @@ class OngPickupWeekDayRange {
   static List<BaseDropdownItem<OngPickupWeekDayRange>> getDropdowns(
       List<OngPickupWeekDayRange> list) {
     final List<BaseDropdownItem<OngPickupWeekDayRange>> dropdowns = [];
+    final Set<String> uniqueLabels = {};
 
     list.forEach((weekday) {
-      dropdowns.addAll(
-        weekday.ranges.map(
-          (range) => DropdownPickupDateItem(
-            label: weekday.weekday.name,
-            value: weekday,
-          ),
-        ),
-      );
+      weekday.ranges.forEach((range) {
+        final label = weekday.weekday.name;
+        if (!uniqueLabels.contains(label)) {
+          dropdowns.add(
+            DropdownPickupDateItem(
+              label: label,
+              value: weekday,
+            ),
+          );
+          uniqueLabels.add(label);
+        }
+      });
     });
 
     return dropdowns;

@@ -162,15 +162,6 @@ class NewDonationService with ListenableServiceMixin {
     _pickupShippingValidation.updateForm = form;
   }
 
-  void updatePickupAreaConfirm(bool newValue) {
-    _pickupShippingValidation.updateValidArea = newValue;
-  }
-
-  /// Devuelve true si el usuario confirmo que esta dentro del area de retiro.
-  bool get pickupAreaConfirmValue {
-    return _pickupShippingValidation.validArea;
-  }
-
   /// Limpia el formulario de pickup de [_pickupShippingValidation]
   void resetPickupAppointmentForm() {
     _pickupShippingValidation.clearForm();

@@ -17,7 +17,7 @@ class DeliveryHistoryOrder extends BaseHistoryOrder {
     super.shippingMethod = ShippingMethod.delivery,
   });
 
-  static DeliveryHistoryOrder createOne(Map<String, dynamic> data) {
+  static DeliveryHistoryOrder createOne(Map data) {
     return DeliveryHistoryOrder(
         orderId: data['id'],
         products: DonationProduct.createArray(data['products']),

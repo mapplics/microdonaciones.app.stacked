@@ -72,7 +72,6 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       _newDonationService.updateReceptionPoint(
         _newDonationDataService.receptionPoints.first,
       );
-      _newDonationService.updatePickupAreaConfirm(false);
     } else {
       if (isUserLogged) {
         _newDonationService.updateUserAddres(_authService.loggedUser!.address);
@@ -135,7 +134,7 @@ class DonationShippingMethodModel extends ReactiveViewModel {
     _newDonationService.updatePickUpAppointmentForm(form);
 
     /// Si todos los datos son validos hago un scroll bottom.
-    if (form.valid && areaConfirm) {
+    if (form.valid) {
       scrollToBottom();
     }
 
@@ -148,19 +147,6 @@ class DonationShippingMethodModel extends ReactiveViewModel {
       Future.delayed(const Duration(milliseconds: 300), () => scrollToBottom());
     }
   }
-
-  /// Actualiza el valor de area de retiro.
-  void toggleAreaConfirm(bool newValue) {
-    _newDonationService.updatePickupAreaConfirm(newValue);
-
-    /// Si todos los datos son validos hago un scroll bottom.
-    if (areaConfirm && pickupAppointmentFormValid) {
-      scrollToBottom();
-    }
-  }
-
-  /// Devuelve true si el usuario confirmo que esta dentro del area de retiro
-  bool get areaConfirm => _newDonationService.pickupAreaConfirmValue;
 
   /// Devuelve el detalle del delivery.
   /// Muestra el dia, horario y direccion en donde se va a hacer.

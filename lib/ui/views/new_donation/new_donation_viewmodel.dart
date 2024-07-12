@@ -148,10 +148,6 @@ class NewDonationViewModel extends ReactiveViewModel {
         _message =
             'Para poder continuar, debes elegir un punto de entrega para llevar tu donación.';
         break;
-      case NewDonationError.pickupAreaInvalid:
-        _message =
-            'Para poder continuar, debes confirmar que te encuentras dentro de la zona de retiro.';
-        break;
       case NewDonationError.unloggedUser:
         _message =
             'Para poder continuar, necesitamos que inicies sesión. Por favor, ingresa con una cuenta y vuelve a intentarlo.';

@@ -52,6 +52,9 @@ class LoginViewModel extends BaseViewModel {
     /// Recupero mi social login token.
     final _firebaseToken = await authResult.user!.getIdToken();
 
+    debugPrint(_firebaseToken);
+    debugPrint(authResult.user!.email!);
+
     /// Hago login contra API.
     final _socialLoginResp = await _authService.call().login(
           authResult.user!.email!,
@@ -62,15 +65,16 @@ class LoginViewModel extends BaseViewModel {
     if (_socialLoginResp.customerIsNull) {
       _navigationService
           .navigateToCreateAccountView(
-            viewParameters: CreateAccountViewParameters(
-                FirebaseUser.createOne(authResult.user!)),
-          )
+        viewParameters: CreateAccountViewParameters(
+            FirebaseUser.createOne(authResult.user!)),
+      )
           .then((_) {
-            login();
-            _onBackCreateAccount(_socialLoginResp);
-          } );
+        login();
+        _onBackCreateAccount(_socialLoginResp);
+      });
     } else {
       login();
+
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
       _goBackHandled();
@@ -160,15 +164,16 @@ class LoginViewModel extends BaseViewModel {
     if (_socialLoginResp.customerIsNull) {
       _navigationService
           .navigateToCreateAccountView(
-            viewParameters: CreateAccountViewParameters(
-                FirebaseUser.createOne(userCredential.user!)),
-          )
+        viewParameters: CreateAccountViewParameters(
+            FirebaseUser.createOne(userCredential.user!)),
+      )
           .then((_) {
-            login();
-            _onBackCreateAccount(_socialLoginResp);
-          });
+        login();
+        _onBackCreateAccount(_socialLoginResp);
+      });
     } else {
       login();
+
       /// Navego a la pagina de home.
       _finishLogin(_socialLoginResp);
 
@@ -180,7 +185,7 @@ class LoginViewModel extends BaseViewModel {
     return defaultTargetPlatform == TargetPlatform.iOS;
   }
 
-    Future<void> getToken() async {
+  Future<void> getToken() async {
     FirebaseMessaging.instance.getToken().then((token) async {
       await _secureStorage.write(key: ConstantData.deviceToken, value: token);
     });
@@ -188,11 +193,12 @@ class LoginViewModel extends BaseViewModel {
 
   Future<bool?> login() async {
     try {
-      var storedToken = await _secureStorage.read(key: ConstantData.deviceToken);
+      var storedToken =
+          await _secureStorage.read(key: ConstantData.deviceToken);
       if (storedToken == null) {
         var token = await FirebaseMessaging.instance.getToken();
         await _secureStorage.write(key: ConstantData.deviceToken, value: token);
-      } 
+      }
     } catch (e) {
       rethrow;
     }

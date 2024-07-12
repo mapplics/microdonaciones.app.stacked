@@ -36,7 +36,7 @@ class NewDonationShippingMethod
 
           /// Segmented Buttons
           Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
+            padding: const EdgeInsets.only(bottom: 30.0),
             child: SizedBox(
               width: double.infinity,
               child: ShippingSegmentedButtons(
@@ -56,41 +56,11 @@ class NewDonationShippingMethod
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          'Retiramos la donación por tu domicilio',
-                          style: AppTheme.bold16_20.copyWith(
-                            color: AppTheme.blackColor,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'En esta primera etapa solo podremos retirar tu donación si estás dentro de la siguiente zona.',
-                        style: AppTheme.regular14_20.copyWith(
-                          color: AppTheme.blackColor,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 18.0),
-                        child: Image.asset(
-                          'assets/img/pickup_map.png',
-                          scale: 0.1,
-                        ),
-                      ),
-                      CustomCheckbox(
-                        label: 'Confirmo que estoy dentro de la zona de retiro',
-                        onchange: viewModel.toggleAreaConfirm,
-                        initialValue: viewModel.areaConfirm,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: PickupAppointmentForm(
-                          onchange: viewModel.updatePickUpAppointmentForm,
-                          form: viewModel.pickupAppointmentForm,
-                          onFocusChangeAclaraciones:
-                              viewModel.onFocusAclaracionesChange,
-                        ),
+                      PickupAppointmentForm(
+                        onchange: viewModel.updatePickUpAppointmentForm,
+                        form: viewModel.pickupAppointmentForm,
+                        onFocusChangeAclaraciones:
+                            viewModel.onFocusAclaracionesChange,
                       ),
 
                       /// Instrucciones para retiro por domicilio

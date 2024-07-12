@@ -18,7 +18,7 @@ class OrderHistoryService {
   Future<List<BaseHistoryOrder>> getOrdersHistory(int pageNumber) async {
     try {
       final response = await _dio.get(
-        '${_apiUrl}orders-history?page[number]=$pageNumber&page[size]=$pageSize&include=orderState,receptionPoint,rangeTime,products',
+        '${_apiUrl}orders-history?page[number]=$pageNumber&page[size]=$pageSize&include=customer,orderState,receptionPoint,weekdayRangeTime,products',
         options: Options(responseType: ResponseType.json),
       );
 

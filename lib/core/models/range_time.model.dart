@@ -1,3 +1,5 @@
+import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
+
 /// Representa un rando de horario.
 class RangeTime {
   final int id;
@@ -15,6 +17,17 @@ class RangeTime {
       id: data['id'],
       start: data['timeOpen'],
       end: data['timeClose'],
+    );
+  }
+
+  /// Crea un Range time de un weekdayrangetime.
+  /// Lo utilizamos para parsear la respuesta en el historial de donaciones.
+  static RangeTime createOneFromWeekdayRangeTime(Map data) {
+    logSucess(data);
+    return RangeTime(
+      id: data['id'],
+      start: data['timeFrom'],
+      end: data['timeTo'],
     );
   }
 
