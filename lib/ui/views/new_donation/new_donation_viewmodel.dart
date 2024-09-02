@@ -3,6 +3,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:microdonations/app/app.dialogs.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/constants/routes.dart';
 import 'package:microdonations/core/models/new_donation/enums/new_donation_error.enum.dart';
 import 'package:microdonations/core/models/ong/ong.model.dart';
 import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
@@ -185,8 +186,8 @@ class NewDonationViewModel extends ReactiveViewModel {
           if (value?.confirmed ?? false) {
             _navigationService.navigateToLoginView(
               viewParameters: LoginViewParameters(
-                popWhenFinish: true,
-                popUntilFirst: false,
+                popWhenFinish: false,
+                onBackRoute: RoutesData.newDonationViewRoute,
               ),
             );
           }

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:microdonations/app/app.locator.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/core/models/update_requests/update_address_request.model.dart';
 import 'package:microdonations/core/models/update_requests/update_user_request.model.dart';
+import 'package:microdonations/core/parameters/create_account_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
 import 'package:microdonations/ui/common/helpers/messege.helper.dart';
 import 'package:microdonations/ui/common/helpers/reactive_form.helpers.dart';
 import 'package:microdonations/ui/widgets/common/user_information_form/user_information_form_model.dart';
-import 'package:reactive_forms/reactive_forms.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class CreateAccountViewModel extends BaseViewModel {
   final _authService = locator<AuthService>();
@@ -20,6 +22,10 @@ class CreateAccountViewModel extends BaseViewModel {
 
   /// Indica si el usuario acepto los terminos y condiciones.
   bool _termsAccepted = false;
+
+  CreateAccountViewParameters viewParameters;
+
+  CreateAccountViewModel({required this.viewParameters});
 
   /// Recibe un [FormGroup] para actualizar el valor de [_form]
   set updateForm(FormGroup newValue) => _form = newValue;
@@ -71,7 +77,14 @@ class CreateAccountViewModel extends BaseViewModel {
       context.loaderOverlay.show();
       await _authService.updateProfile(_updateRequest);
       MessegeHelper.showSuccessSnackBar(context, 'Usuario creado con éxito');
-      _navigationService.popUntil((route) => route.isFirst);
+
+      /// Si se especifica una ruta para redirigir al usuario despues de crear su cuenta, se redirige a esa ruta.
+      if (viewParameters.onBackRoute?.isNotEmpty ?? false) {
+        _navigationService
+            .popUntil(ModalRoute.withName(viewParameters.onBackRoute!));
+      } else {
+        _navigationService.popUntil((route) => route.isFirst);
+      }
     } catch (e) {
       MessegeHelper.showErrorSnackBar(
         context,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/constants/routes.dart';
 import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/services/auth_service.dart';
-import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
@@ -110,16 +110,13 @@ class DonationShippingMethodModel extends ReactiveViewModel {
         .navigateToLoginView(
       viewParameters: LoginViewParameters(
         popWhenFinish: true,
-        popUntilFirst: false,
+        onBackRoute: RoutesData.newDonationViewRoute,
       ),
     )
         .then((value) {
       if (isUserLogged) {
-        logSucess('Loguie');
         _newDonationService.updateUserAddres(_authService.loggedUser!.address);
         rebuildUi();
-      } else {
-        logWarn('no Loguie');
       }
     });
   }

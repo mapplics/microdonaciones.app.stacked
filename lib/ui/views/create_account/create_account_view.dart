@@ -56,5 +56,5 @@ class CreateAccountView extends StackedView<CreateAccountViewModel> {
   CreateAccountViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      CreateAccountViewModel();
+      CreateAccountViewModel(viewParameters: viewParameters);
 }

@@ -1,5 +1,6 @@
 import 'package:microdonations/app/app.locator.dart';
 import 'package:microdonations/app/app.router.dart';
+import 'package:microdonations/core/constants/routes.dart';
 import 'package:microdonations/core/models/user/logged_user.model.dart';
 import 'package:microdonations/core/parameters/login_view.parameters.model.dart';
 import 'package:microdonations/core/parameters/personal_information_view.parameters.model.dart';
@@ -33,7 +34,7 @@ class CustomAppbarModel extends ReactiveViewModel {
   void navigateToLogin() => _navigationService.navigateToLoginView(
         viewParameters: LoginViewParameters(
           popWhenFinish: false,
-          popUntilFirst: true,
+          onBackRoute: RoutesData.homeViewRoute,
         ),
       );
 }
