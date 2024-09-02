@@ -42,6 +42,11 @@ class NewDonationItemsSelector extends StackedView<DonationItemsSelectorModel> {
                 ),
               )
               .toList(),
+          Container(
+            padding: const EdgeInsets.only(
+              bottom: 100.0,
+            ),
+          ),
         ],
       ),
     );
