@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microdonations/core/extensions/string.extension.dart';
 import 'package:microdonations/ui/widgets/common/custom_outline_button/custom_outline_button.dart';
-import 'package:microdonations/ui/widgets/forms/custom_checkbox/custom_checkbox.dart';
 import 'package:stacked/stacked.dart';
 import 'new_donation_shipping_method_model.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
