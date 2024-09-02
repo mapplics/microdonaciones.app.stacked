@@ -1,7 +1,6 @@
 import 'package:microdonations/core/models/history/abstracts/base_history_order.abstract.dart';
 import 'package:microdonations/core/models/history/delivery_history_order.model.dart';
 import 'package:microdonations/core/models/history/pickup_history_order.dart';
-import 'package:microdonations/ui/common/helpers/datetime.helpers.dart';
 import 'package:microdonations/ui/widgets/new_donation/shipping_segmented_buttons/shipping_segmented_buttons_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -32,7 +31,7 @@ class OrderHistoryDetailViewModel extends BaseViewModel {
 
   String get pickupTimeDetail {
     if (pickupDonation != null) {
-      return 'El día ${DateTimeHelper.getDayOfWeek(pickupDonation!.pickupDate).name} ${DateTimeHelper.formatDateTime(pickupDonation!.pickupDate)} entre las ${pickupDonation!.range.betweenTime}.';
+      return 'Un día ${pickupDonation!.pickupDate.name} entre las ${pickupDonation!.range.betweenTime}.';
     } else {
       return 'Dato Invalido';
     }
