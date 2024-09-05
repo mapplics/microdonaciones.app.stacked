@@ -71,7 +71,7 @@ class LoginViewModel extends BaseViewModel {
     final socialLoginResp =
         await _authService.login(authResult.user!.email!, firebaseToken!);
 
-    if (!socialLoginResp.customerIsNull) {
+    if (socialLoginResp.customerIsNull) {
       await _navigationService.navigateToCreateAccountView(
         viewParameters: CreateAccountViewParameters(
           user: FirebaseUser.createOne(authResult.user!),
