@@ -31,6 +31,7 @@ class DonationProduct {
         id: data['id'],
         name: data['name'],
         urlImg: data['image'],
+        unitType: data['unit_type'],
       ),
       quantity: data['quantity'] ?? 0,
     );

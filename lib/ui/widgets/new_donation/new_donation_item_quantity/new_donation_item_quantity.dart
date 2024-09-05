@@ -46,6 +46,8 @@ class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
                       ),
                       QuantityPicker(
                         initialValue: viewModel.selectedItems[index].quantity,
+                        unitType:
+                            viewModel.selectedItems[index].product.unitType,
                         onChange: (quantity) => viewModel.updateItemQuantity(
                           viewModel.selectedItems[index],
                           quantity,
@@ -68,6 +70,7 @@ class NewDonationItemQuantity extends StackedView<DonationItemQuantityModel> {
             itemCount: viewModel.selectedItems.length,
           ),
         ),
+        Padding(padding: const EdgeInsets.only(top: 100.0)),
       ],
     );
   }

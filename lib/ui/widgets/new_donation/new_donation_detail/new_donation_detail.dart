@@ -16,33 +16,37 @@ class NewDonationSummary extends StackedView<NewDonationDetailModel> {
     NewDonationDetailModel viewModel,
     Widget? child,
   ) {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 37.0),
-          child: Text(
-            'Va a ingresar la siguiente donación',
-            style: AppTheme.regular14_16,
-            textAlign: TextAlign.center,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(bottom: 37.0),
+            child: Text(
+              'Va a ingresar la siguiente donación',
+              style: AppTheme.regular14_16,
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
 
-        /// Detalle con los items que se van a donar.
-        DonationItemListDetail(donationItems: viewModel.products),
+          /// Detalle con los items que se van a donar.
+          DonationItemListDetail(donationItems: viewModel.products),
 
-        /// Detalle de como se va a entregar la donación.
-        DonationShippingDetail(
-          receptionPoint: viewModel.receptionPoint,
-          type: viewModel.shippingMethod,
-          userAddress: viewModel.userAddres,
-          observations: viewModel.shippingMethod == ShippingMethod.pickup
-              ? viewModel.pickupDonation?.observations
-              : null,
-          pickupDetail: viewModel.shippingMethod == ShippingMethod.pickup
-              ? viewModel.presentation
-              : null,
-        ),
-      ],
+          /// Detalle de como se va a entregar la donación.
+          DonationShippingDetail(
+            receptionPoint: viewModel.receptionPoint,
+            type: viewModel.shippingMethod,
+            userAddress: viewModel.userAddres,
+            observations: viewModel.shippingMethod == ShippingMethod.pickup
+                ? viewModel.pickupDonation?.observations
+                : null,
+            pickupDetail: viewModel.shippingMethod == ShippingMethod.pickup
+                ? viewModel.presentation
+                : null,
+          ),
+
+          const Padding(padding: EdgeInsets.only(top: 120.0)),
+        ],
+      ),
     );
   }
 

@@ -47,7 +47,7 @@ class DonationItemListDetail extends StackedView<DonationItemListDetailModel> {
                         Padding(
                           padding: const EdgeInsets.only(right: 12.0),
                           child: Text(
-                            e.quantity.toString(),
+                            '${e.quantity.toString()} ${e.product.unitType.tag}',
                             style: AppTheme.bold16_20.copyWith(
                               color: AppTheme.tertiaryColor,
                             ),

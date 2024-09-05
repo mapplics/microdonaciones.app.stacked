@@ -52,7 +52,8 @@ class DeliveryNewDonation extends BaseNewDonation {
           .map(
             (donationItem) => {
               'id': donationItem.product.id,
-              'quantity': donationItem.quantity
+              'quantity': donationItem.quantity,
+              'unit_type_id': donationItem.product.unitType.id,
             },
           )
           .toList(),

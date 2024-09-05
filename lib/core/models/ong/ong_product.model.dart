@@ -1,3 +1,4 @@
+import 'package:microdonations/core/models/ong/unit_type.model.dart';
 import 'package:microdonations/ui/common/helpers/logger.helpers.dart';
 
 /// Representa un producto que se le puede donar a una ONG.
@@ -5,11 +6,13 @@ class OngProduct {
   final int id;
   final String name;
   final String urlImg;
+  final UnitType unitType;
 
   OngProduct({
     required this.id,
     required this.name,
     required this.urlImg,
+    required this.unitType,
   })  : assert(
           name.isNotEmpty,
           'The title should not be empty',
@@ -24,6 +27,7 @@ class OngProduct {
     return OngProduct(
       id: data['id'],
       name: data['name'],
+      unitType: UnitType.createOne(data['unit_type']),
       urlImg: data['image'].toString().replaceFirst(
             'http://localhost:8080/',
             'http://10.0.2.2:8080/',

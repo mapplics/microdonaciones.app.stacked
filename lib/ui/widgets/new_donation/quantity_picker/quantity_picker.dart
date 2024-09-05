@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microdonations/core/models/ong/unit_type.model.dart';
 import 'package:microdonations/core/typedef/typedefs.dart';
 import 'package:microdonations/ui/common/app_theme.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -9,10 +10,12 @@ import 'quantity_picker_model.dart';
 class QuantityPicker extends StackedView<QuantityPickerModel> {
   final int initialValue;
   final OnChangeQuantityPicker onChange;
+  final UnitType? unitType;
 
   const QuantityPicker({
     required this.onChange,
     this.initialValue = 0,
+    this.unitType,
     super.key,
   });
 
@@ -47,7 +50,7 @@ class QuantityPicker extends StackedView<QuantityPickerModel> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Text(
-            viewModel.quantityValue.toString(),
+            '${viewModel.quantityValue.toString()} ${unitType?.tag ?? ''}',
             style: AppTheme.bold16_20.copyWith(
               color: AppTheme.tertiaryColor,
             ),
